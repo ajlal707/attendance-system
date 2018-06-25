@@ -1,0 +1,34 @@
+<!--************************************
+				Header Start
+		*************************************-->
+<header id="tg-header" class="tg-header tg-headerfix tg-haslayout">
+  <div class="tg-navbtn">
+    <button id="tg-btnmenutoggle" class="tg-btnmenutoggle">
+      <i class="fa fa-bars" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="user">
+    <a href="javascript:void(0);" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+      <figure>
+        <img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>" alt="">
+      </figure>
+      <span><%= user.name %>
+        <i class="fa fa-angle-down"></i>
+      </span>
+    </a>
+    <ul class="dropdown-menu tg-profile-dropdown">
+      <li>
+        <a href="/profile">Edit profile</a>
+      </li>
+
+      <li>
+          <form action="/logout" method="GET">
+            <button type="submit" class="tg-logoutbtn">Logout</button>
+          </form>
+      </li>
+    </ul>
+  </div>
+</header>
+<!--************************************  
+				Header End
+		*************************************-->

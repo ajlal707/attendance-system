@@ -1,0 +1,197 @@
+@media (max-width:1440px){
+	.wp-countercontent h2 {
+		font-size: 13px;
+		line-height: 13px;
+	}
+}
+@media (max-width:1366px){
+	.wp-playeinggames{padding: 15px 0 15px 10px;}
+}
+@media (max-width:1280px){
+	.wp-gamestatstabs {font-size: 12px;}
+	.wp-playerstatestable thead tr th{font-size: 13px;}
+	.wp-playeinggames{float: left;}
+}
+@media (max-width:1199px){
+	
+	.wp-pagetitleholder {padding: 29px 0 29px 20px;}
+	.wp-rightarea {padding: 15px 20px 15px 0;}
+	.wp-wrapper.wp-openmenu{padding: 0;}
+	.wp-statisticscounters{margin:-15px 0;}
+	.wp-counter{margin: 15px 0;}
+	.wp-gamestatstabs {font-size: 14px;}
+	.wp-gamesstatistics{margin:0 0 40px;}
+}
+@media (max-width:991px){
+	.wp-prizesarea .wp-logo,
+	.wp-signupprizearea .wp-logo{
+		width: 215px;
+		min-width: auto;
+	}
+	.wp-states {
+		width: 115px;
+		height: 115px;
+	}
+	.wp-signupprizearea .wp-description p {
+		font-size: 18px;
+		line-height: 28px;
+	}
+}
+@media (max-width:800px){
+	.wp-logo {
+		width: 100%;
+		min-height: auto;
+		padding: 10px 0 10px 20px;
+	}
+	.wp-logo a img {
+		width: 130px;
+		float: left;
+	}
+	.wp-sidebarwrapper {
+		top: 130px;
+		height: calc(100% - 130px);
+	}
+	.wp-searchformarea {
+		top: 0;
+		z-index: 99;
+		right: 20px;
+		padding: 6px 0;
+		max-width: 250px;
+		position: absolute;
+	}
+	.wp-main {padding: 150px 15px 50px 15px;}
+}
+@media (max-width:767px){
+	.tg-dropdowarrow{display: block;}
+	.tg-nav{
+		width: auto;
+		float: right;
+	}
+	.tg-navigation{
+		top: 100%;
+		left: 0;
+		background: #fff;
+		position: absolute;
+	}
+	.tg-navigation ul{}
+	.tg-navigation ul li{
+		width: 100%;
+		float: left;
+		display: block;
+	}
+	.sub-menu,
+	.mega-menu{
+		clear: both;
+		float: left;
+		display: none;
+		position: static;
+		width: 100% !important;
+	}
+	body.wp-loginpage .wp-main {min-height: 185vh;}
+	body.wp-loginpage .wp-copyright{
+		float: none;
+		margin: 0 0 10px;
+		text-align: center;
+	}
+	body.wp-loginpage .wp-addnav ul{text-align: center;}
+	body.wp-loginpage .wp-addnav ul li{
+		float: none;
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.wp-formsignup .form-group{width: 100%;}
+	.wp-welcomearea,
+	.wp-signupprizearea{min-height: auto;}
+}
+@media (max-width:730px){
+	.wp-gamestatstabs li{
+		width: 50%;
+		padding: 5px;
+	}
+	.chart{height: 250px !important;}
+}
+@media (max-width:640px){}
+@media (max-width:568px){
+	.wp-welcomearea,
+	.wp-prizesarea{min-height: auto;}
+	.wp-numberofprizes {width: 200px;}
+	.wp-numberofprizes figcaption h3 {
+		font-size: 28px;
+		line-height: 28px;
+	}
+	.wp-numberofprizes figcaption h3 span {
+		font-size: 22px;
+		line-height: 20px;
+	}
+	.wp-numberofprizes figcaption {
+		top: 50px;
+		left: 50px;
+	}
+	.wp-welcomearea .wp-cupicon{display: none;}
+	.wp-forgotpassword a{margin: 0;}
+}
+@media (max-width:480px){
+	.wp-logo {padding: 12px 0 12px 20px;}
+	.wp-sponserholser .row > [class^="col-"],
+	.wp-sponserholser .row > [class*="col-"],
+	.wp-statisticscounters .row > [class^="col-"],
+	.wp-statisticscounters .row > [class*="col-"]{width: 100%;}
+	.wp-weeklytabs{
+		float: left;
+		padding:10px 0 0;
+	}
+	.wp-weeklytabs li:first-child{padding-left: 0;}
+	.wp-weeklytabs li,
+	.wp-gamestatstabs li{width: 100%;}
+	.wp-weeklytabs li{padding: 5px 0}
+	.wp-footer{
+		text-align: center;
+		padding: 25px 15px;
+	}
+	.wp-copyright{
+		width: 100%;
+		padding:0 0 15px;
+		text-align: center;
+	}
+	.wp-addnav{
+		width: 100%;
+		text-align: center;
+	}
+	.wp-addnav ul li{
+		float: none;
+		display:inline-block;
+		vertical-align: middle;
+	}
+	.wp-searchformarea {
+		padding: 5px 0;
+		max-width: 150px;
+	}
+	.wp-searchform .form-group .form-control {padding: 10px 20px 10px 45px;}
+	.wp-logo a img {width: 110px;}
+	.wp-searchform .form-group i{width: 35px;}
+	.wp-formaddwinner .form-group .wp-btn{padding: 0 30px;}
+	.wp-formaddquestion .form-group.wp-btnbox .wp-btn,
+	.wp-formloadquestion .form-group.wp-btnbox .wp-btn{padding: 0 30px;}
+}
+@media (max-width:479px){
+	.wp-gameimgsponser{
+		width: 100%;
+		padding: 0 0 20px;
+	}
+	.wp-gameimg{width: 50%;}
+	.wp-sponser{
+		width: 50%;
+		clear: none;
+		padding: 0 0 0 10px;
+	}
+	.wp-gamecontent{
+		width: 100%;
+		float: left;
+	}
+	.wp-pagetitle {padding: 4px 0;}
+	.wp-pagetitle h1 {
+		font-size: 13px;
+		line-height: 13px;
+	}
+}
+@media (max-width:320px){}
