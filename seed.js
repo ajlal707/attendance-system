@@ -16,4 +16,4 @@ var data = {
     role:'admin',
 }
 
-User.collection.insert(d)
+db.User.insert(d)
