@@ -2,6 +2,7 @@ var User = require('./models/user')
 var mongoose = require("mongoose");
 //mongo connection
 mongoose.connect('mongodb://maxifjaved:maxifjaved@127.0.0.1:27017/winnipitty?authSource=admin')
+
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function () {
@@ -16,4 +17,5 @@ var data = {
     role:'admin',
 }
 
-db.User.insert(d)
+// db.User.create(d)
+User.collection.insert(data)
