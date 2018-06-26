@@ -1,7 +1,8 @@
 var express = require('express')
 var router = express.Router()
 const passport = require('passport')
-const ensureAuthentication = require('../config/authUser')
+const User = require('../models/user')
+const jwt = require('../config/jwt')
 
 router.get('/', function (req, res) {
   res.render('index', { title: 'winnipitty - Login' })
@@ -13,11 +14,18 @@ router.post('/userLogin', function (req, res, next) {
 
     if (!user) return res.json({ error: info.error })
 
-    req.logIn(user, function (err) {
-      if (err) return next(err);
 
-      return res.json({ success: req.user })
-    });
+    const token = jwt.createToken(user._id)
+    user.token = token
+    user.save((err) => {
+      if (err) return res.json({ error: 'something happen bad.' })
+
+      req.logIn(user, function (err) {
+        if (err) return next(err);
+
+        return res.json({ success: req.user })
+      })
+    })
   })(req, res, next);
 });
 

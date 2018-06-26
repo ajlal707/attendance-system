@@ -15,6 +15,8 @@ router.post('/signup', (req, res, next) => {
       if (err) { return next(err) }
       if (user) return res.json({ error: 'User with this email already exists.' })
 
+
+
       User.create({
         firstName: firstName,
         lastName: lastName,
@@ -28,7 +30,7 @@ router.post('/signup', (req, res, next) => {
       }, (err, user) => {
         if (err) return res.json({ error: err })
 
-        return res.json({ success: 'User added successfully.' })
+        return res.json({ success: 'success.' })
       })
     })
   } else {
