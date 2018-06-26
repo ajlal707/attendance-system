@@ -10,7 +10,7 @@ db.once('open', function () {
 })
 
 var data = {
-    firsName:'akkas',
+    firstName:'akkas',
     lastName:'tech',
     email:'akkastest@gmail.com',
     password:'123456',
