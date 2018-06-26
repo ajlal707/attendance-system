@@ -13,8 +13,12 @@ var data = {
     firsName:'akkas',
     lastName:'tech',
     email:'akkastest@gmail.com',
-    password:'123456',
-    role:'admin',
+    password:'12345,
+    role:'admin'
 }
+<<<<<<< HEAD
+User.collection.insert(d);
+=======
 
 User.collection.insert(data)
+>>>>>>> 2b4a1608c9c58318014534ac060b96c1e93bcfec
