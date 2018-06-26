@@ -11,10 +11,10 @@ router.post('/userLogin', function (req, res, next) {
   passport.authenticate('login', function (err, user, info) {
     if (err) { return next(err) }
 
-    if(!user)  return res.json({error:info.error}) 
+    if (!user) return res.json({ error: info.error })
 
     req.logIn(user, function (err) {
-      if (err)  return next(err); 
+      if (err) return next(err);
 
       return res.json({ success: req.user })
     });
@@ -27,10 +27,16 @@ router.post('/faceBookLogin',
 )
 
 router.get('/facebook/callback',
-  passport.authenticate('facebook', {
-    successRedirect: '/users/dashboard',
-    failureRedirect: '/login'
-  }));
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function (req, res) {
+    if (req.user.role === 'admin') {
+      res.redirect('/admin/dashboard');
+    } else {
+      res.redirect('/users/dashboard');
+    }
+  });
+
+
 router.get('/logout', function (req, res) {
   req.logout();
   res.redirect('/');
@@ -44,22 +50,28 @@ router.post('/googleLogin',
         'https://www.googleapis.com/auth/plus.profile.emails.read']
   }
   ));
-
 router.get('/auth/google/callback',
-  passport.authenticate('google', {
-    successRedirect: '/users/dashboard',
-    failureRedirect: '/login'
-  }));
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function (req, res) {
+    if (req.user.role === 'admin') {
+      res.redirect('/admin/dashboard');
+    } else {
+      res.redirect('/users/dashboard');
+    }
+  });
 
-
+// twitter login
 router.post('/twitterLogin',
   passport.authenticate('twitter'));
 
 router.get('/twitter/callback',
   passport.authenticate('twitter', { failureRedirect: '/login' }),
   function (req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/users/dashboard');
+    if (req.user.role === 'admin') {
+      res.redirect('/admin/dashboard');
+    } else {
+      res.redirect('/users/dashboard');
+    }
   });
 
 module.exports = router
