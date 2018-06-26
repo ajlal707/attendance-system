@@ -12,7 +12,8 @@ const flash = require('connect-flash')
 
 var indexRouter = require('./routes/index')
 var signupRouter = require('./routes/signup')
-var dashboardRouter = require('./routes/dashboard')
+var adminDashboardRouter = require('./routes/admin/dashboard')
+var usersDashboardRouter = require('./routes/users/dashboard')
 var profileRouter = require('./routes/profile')
 var forgotpasswordRouter = require('./routes/forgotpassword')
 var resetpasswordRouter = require('./routes/resetpassword')
@@ -41,7 +42,6 @@ app.use(function (req, res, next) {
 
 
 //mongo connection
-//mongoose.connect('mongodb://127.0.0.1:27017/winnipitty')
 mongoose.connect('mongodb://127.0.0.1:27017/winnipitty')
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
@@ -78,7 +78,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
 app.use('/signup', signupRouter)
-app.use('/dashboard', dashboardRouter)
+app.use('/admin/dashboard', adminDashboardRouter)
+app.use('/users/dashboard', usersDashboardRouter)
 app.use('/profile', profileRouter)
 app.use('/forgotpassword', forgotpasswordRouter)
 app.use('/resetpassword', resetpasswordRouter)

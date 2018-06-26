@@ -17,5 +17,4 @@ var data = {
     role:'admin',
 }
 
-// db.User.create(d)
 User.collection.insert(data)

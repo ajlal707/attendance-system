@@ -41,7 +41,7 @@ module.exports = function () {
 passport.use(new FacebookStrategy({
   clientID: "126323524608997", // Use your Facebook App Id
   clientSecret: "b769eb00970dec2989b94801b6db4314", // Use your Facebook App Secret
-  callbackURL: "http://18.219.229.227:3000/facebook/callback",
+  callbackURL: "http://localhost:3000/facebook/callback",
   profileFields: ['id', 'email', 'name'] //This
 },
   function (token, tokenSecret, profile, done) {
@@ -75,7 +75,7 @@ passport.use(new FacebookStrategy({
 passport.use(new GoogleStrategy({
   clientID: '249539541629-s43qakts9sncp2vljv38c0cemj5o6dqo.apps.googleusercontent.com',
   clientSecret: '-G7lJENALQ2cmQHtKxfocqVR',
-  callbackURL: "http://18.219.229.227:3000/auth/google/callback",
+  callbackURL: "http://localhost:3000/auth/google/callback",
   passReqToCallback: true
 },
   function (request, accessToken, refreshToken, profile, done) {

@@ -1,6 +1,4 @@
-<!--************************************
-				Main Start
-		*************************************-->
+
 <main id="tg-main" class="tg-main tg-haslayout">
   <div class="container-fluid">
     <!--****************Alert Style*******************-->
@@ -11,6 +9,7 @@
         <strong>Welcome :
           <% if(user.firstName) {%>
             <%= user.firstName + ' ' + user.lastName %>
+            <%= user.role %>
               <% } else { %>
                 <%= user.username %>
                   <% } %>
@@ -29,4 +28,3 @@
 <!--************************************
 				Main End
     *************************************-->
-<% include _includes/_footer.html %>

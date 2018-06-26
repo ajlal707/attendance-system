@@ -77,8 +77,11 @@ function userLogin() {
             error.style.color = 'red'
             error.innerHTML = res.error
 
-          } else if (res.success) {
-            window.location.href = '/dashboard';
+          } else if (res.success.role === 'admin') {
+            window.location.href = '/admin/dashboard';
+          }
+          else{
+            window.location.href = '/users/dashboard';
           }
         }
       });

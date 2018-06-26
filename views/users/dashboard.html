@@ -1,0 +1,30 @@
+
+<main id="tg-main" class="tg-main tg-haslayout">
+  <div class="container-fluid">
+    <!--****************Alert Style*******************-->
+
+
+    <div class="alert tg-alert">
+      <p>
+        <strong>Welcome :
+          <% if(user.firstName) {%>
+            <%= user.firstName + ' ' + user.lastName %>
+            <%= user.role %>
+              <% } else { %>
+                <%= user.username %>
+                  <% } %>
+        </strong>
+      </p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+  </div>
+  <form method="GET" action="/logout">
+    <button class="wp-btn">logout</button>
+  </form>
+</main>
+<!--************************************
+				Main End
+    *************************************-->
