@@ -1,19 +1,17 @@
 var express = require('express')
-var router = express.Router()
-var User = require('../../models/user')
+const User = require('../../models/user')
 let ensureAuthenticated = require('../../config/authUser')
+var router = express.Router()
 
 router.get('/', ensureAuthenticated, function (req, res, next) {
+  req.session.welcome = 'false'
+  
   User.findOne({ _id: req.user._id })
     .exec(function (err, user) {
       if (err) { return next(err) }
 
-      res.render('users/dashboard', { title: 'Winnipitty - Dashboard', user })
+      res.render('users/gameResult', { title: 'Winnipitty', user })
     })
-});
-router.get('/logout', function (req, res) {
-  req.logout();
-  res.redirect('/');
 })
 
 module.exports = router

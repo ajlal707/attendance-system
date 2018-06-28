@@ -198,11 +198,12 @@ jQuery(document).on('ready', function () {
   /*--------------------------------------
       DATA TABLE		
   --------------------------------------*/
-  if (jQuery('table.display').length > 0) {
-    var _display = jQuery('table.display').DataTable({
-      scrollY: 400,
+  $(document).ready(function () {
+    $('#example').DataTable({
+      responsive: true,
+      scrollY: 640,
     });
-  }
+  });
   /*--------------------------------------
       TINYMCE WYSIWYG EDITOR			
   --------------------------------------*/
@@ -240,6 +241,13 @@ jQuery(document).on('ready', function () {
       }
     });
   }
+  jQuery(document).ready(function () {
+    new dragdrop.start((dom, api) => {
+      dom.addEventListener('drop', (event) => {
+        //console.log( api.orders );
+      })
+    });
+  });
 	/*--------------------------------------
 			PRETTY PHOTO GALLERY			
 	--------------------------------------*/
@@ -259,6 +267,7 @@ jQuery(document).on('ready', function () {
 
 
 function userLogin() {
+  document.getElementById('error').value = '';
   var email = document.getElementById('email').value;
   var password = document.getElementById('password').value;
 
@@ -295,6 +304,7 @@ function userLogin() {
 }
 // signup user
 function matchPassword() {
+  document.getElementById('error').value = '';
   var password1 = document.getElementById('password').value;
   var password2 = document.getElementById('confirmPassword').value;
   if (password1 === password2) {
@@ -309,7 +319,7 @@ function matchPassword() {
 }
 
 function addUser() {
-
+  document.getElementById('error').value = '';
   var firstName = document.getElementById('firstName').value;
   var lastName = document.getElementById('lastName').value;
   var username = document.getElementById('username').value;
@@ -360,6 +370,7 @@ function addUser() {
 // FORGOT PASSWORD FUNCTION
 
 function forgotpassword() {
+  document.getElementById('error').value = '';
   var email = document.getElementById('email').value;
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
     $.ajax({
@@ -381,42 +392,44 @@ function forgotpassword() {
   } else {
     var error = document.getElementById('error');
     error.style.color = 'red'
-    error.innerHTML = 'Please enter an email address.'
+    error.innerHTML = 'Please enter an valid email address.'
   }
 }
 
 // RESET PASSWORD FUNCTION
 
 function resetPassword() {
+  document.getElementById('error').value = '';
   document.getElementById('btnSubmit').disabled = true;
   var pass1 = document.getElementById('pass1').value;
   var pass2 = document.getElementById('pass2').value;
   var token = document.getElementById('token').value;
   if (pass1 && pass2) {
     if (pass1.trim().toString() === pass2.trim().toString()) {
-
-      $.ajax({
-        type: "POST",
-        url: "/resetpassword/resetpassword",
-        data: { password: pass1, token: token },
-        success: function (res) {
-          if (res.error) {
-            document.getElementById('btnSubmit').disabled = false;
-            var error = document.getElementById('error');
-            error.style.color = 'red'
-            error.innerHTML = res.error
-
-          } else if (res.success) {
-            if (res.user.role === 'admin') {
-              window.location.href = '/'
-            } else {
+      if (pass1.length > 5) {
+        $.ajax({
+          type: "POST",
+          url: "/resetpassword/resetpassword",
+          data: { password: pass1, token: token },
+          success: function (res) {
+            if (res.error) {
+              document.getElementById('btnSubmit').disabled = false;
               var error = document.getElementById('error');
-              error.style.color = 'green'
-              error.innerHTML = 'Password Reset Successfully.Please visit login page'
+              error.style.color = 'red'
+              error.innerHTML = res.error
+
+            } else {
+              window.location.href = '/'
             }
           }
-        }
-      });
+        });
+
+      } else {
+        document.getElementById('btnSubmit').disabled = false;
+        var error = document.getElementById('error');
+        error.style.color = 'red'
+        error.innerHTML = 'Password length must be 6'
+      }
     } else {
       document.getElementById('btnSubmit').disabled = false;
       var error = document.getElementById('error');
@@ -432,15 +445,21 @@ function resetPassword() {
 }
 
 function updateProfile() {
-  var firstname = document.getElementById('firstname').value;
-  var lastname = document.getElementById('lastname').value;
+  var firstName = document.getElementById('firstName').value;
+  var lastName = document.getElementById('lastName').value;
   var email = document.getElementById('email').value;
   var address = document.getElementById('address').value;
-  if (firstname && lastname && email && address) {
+  var streetAddress = document.getElementById('streetAddress').value;
+  var country = document.getElementById('country').value;
+  var city = document.getElementById('city').value;
+  var state = document.getElementById('state').value;
+  var zipcode = document.getElementById('zipcode').value;
+  var phoneNumber = document.getElementById('phoneNumber').value;
+  if (firstName && lastName && email && address && phoneNumber) {
     $.ajax({
       type: "POST",
-      url: "/profile/updateprofile",
-      data: { firstname, lastname, email, address },
+      url: "/users/profile/updateprofile",
+      data: { firstName, lastName, email, address, zipcode, city, state, streetAddress, country, phoneNumber },
       success: function (res) {
         if (res.error) {
           document.getElementById('btnSubmit').disabled = false;
@@ -449,7 +468,7 @@ function updateProfile() {
           error.innerHTML = res.error
 
         } else if (res.success) {
-          window.location.href = '/profile';
+          window.location.href = '/users/profile';
         }
       }
     });
@@ -457,6 +476,6 @@ function updateProfile() {
     document.getElementById('btnSubmit').disabled = false;
     var error = document.getElementById('error');
     error.style.color = 'red'
-    error.innerHTML = 'Fix all the missing fields.'
+    error.innerHTML = 'firstname, lastname, email, phone number, address must not be empty.'
   }
 }

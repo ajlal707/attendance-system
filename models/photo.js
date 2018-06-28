@@ -10,3 +10,4 @@ var PhotoSchema = mongoose.Schema({
 
 var Photo = mongoose.model('Photo', PhotoSchema)
 module.exports = Photo
+

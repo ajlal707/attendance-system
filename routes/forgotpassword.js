@@ -16,18 +16,18 @@ router.post('/forgetPassword', function (req, res, next) {
 
     if (!user) return res.json({ error: 'User with this email doesn\'t exists.' })
 
-    if (user) {
+    if (user.token) {
       let mailOptions = {
         from: MailENV.email.from,
         to: user.email,
         subject: MailENV.email.subject,
         html: `<p style="font-weight: bold;">Hi,</p>
-              <p>We\'ve received a request to reset your password.
-               If you didnt make this request, just ignore this email.
+                <p>We\'ve received a request to reset your password.
+                If you didnt make this request, just ignore this email.
                 Otherwise you can reset your password using the link below.</p>
-                <p>Thanks</p><p>Khalis Group ltd</p><div style="text-align: center">
+                <p>Thanks</p><p>Winnipitty</p><div style="text-align: center">
                 <a style="color: white; text-decoration: underline; background: #d18e54; width: 250px; display: block; margin: auto; line-height: 25px; text-decoration: none; border-radius: 3px;"
-                 href="http://18.219.229.227:3001/resetpassword/${user.token}">Click here to reset your password.</a></div>`
+                 href="http://18.219.229.227:3000/resetpassword/${user.token}">Click here to reset your password.</a></div>`
       };
       var transporter = nodemailer.createTransport({
         service: MailENV.smtp.service,
@@ -42,6 +42,8 @@ router.post('/forgetPassword', function (req, res, next) {
 
         return res.json({ success: 'Password Reset Email Sent Successfully' });
       });
+    } else {
+      return res.json({ success: 'No user found with such email.' });
     }
   })
 })

@@ -13,8 +13,15 @@ const flash = require('connect-flash')
 var indexRouter = require('./routes/index')
 var signupRouter = require('./routes/signup')
 var adminDashboardRouter = require('./routes/admin/dashboard')
+
+
 var usersDashboardRouter = require('./routes/users/dashboard')
-var profileRouter = require('./routes/profile')
+var profileDashboardRouter = require('./routes/users/profile')
+var enterTriveDashboardRouter = require('./routes/users/enterTrive')
+var gameResultDashboardRouter = require('./routes/users/gameResult')
+var supportDashboardRouter = require('./routes/users/support')
+
+
 var forgotpasswordRouter = require('./routes/forgotpassword')
 var resetpasswordRouter = require('./routes/resetpassword')
 
@@ -79,8 +86,13 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', indexRouter)
 app.use('/signup', signupRouter)
 app.use('/admin/dashboard', adminDashboardRouter)
+
 app.use('/users/dashboard', usersDashboardRouter)
-app.use('/profile', profileRouter)
+app.use('/users/profile', profileDashboardRouter)
+app.use('/users/enterTrive', enterTriveDashboardRouter)
+app.use('/users/gameResult', gameResultDashboardRouter)
+app.use('/users/support', supportDashboardRouter)
+
 app.use('/forgotpassword', forgotpasswordRouter)
 app.use('/resetpassword', resetpasswordRouter)
 
