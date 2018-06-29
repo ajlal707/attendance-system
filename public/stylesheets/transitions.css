@@ -2,11 +2,21 @@
 *:before,
 p a,
 a,
-.tg-socialicons li a,
-.tg-roundicontext,
-.tg-roundicontext .tg-usericonholder,
+.wp-socialicons li a,
+.wp-roundicontext,
+.wp-roundicontext .wp-usericonholder,
 .sub-menu,
-.mega-menu
+.mega-menu,
+.wp-dropdownmenu,
+.wp-dashboardnav ul li a,
+.wp-dashboardnav ul li a i,
+.wp-dashboardnav ul li a span,
+.wp-closenav,
+.wp-sidebarwrapper,
+.wp-wrapper,
+.wp-dbdashboardheader,
+.wp-adminimg,
+.wp-sponser
 
 
 
@@ -32,4 +42,11 @@ a,
 	-ms-transition: all 300ms ease-in-out;
 	-o-transition: all 300ms ease-in-out;
 	transition: all 300ms ease-in-out;
+}
+.wp-sidebarwrapper{
+	-webkit-transition: all 600ms ease-in-out;
+	-moz-transition: all 600ms ease-in-out;
+	-ms-transition: all 600ms ease-in-out;
+	-o-transition: all 600ms ease-in-out;
+	transition: all 600ms ease-in-out;
 }
