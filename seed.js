@@ -1,5 +1,6 @@
 var User = require('./models/user')
 var mongoose = require("mongoose");
+
 //mongo connection
 mongoose.connect('mongodb://maxifjaved:maxifjaved@127.0.0.1:27017/winnipitty?authSource=admin')
 
@@ -10,11 +11,11 @@ db.once('open', function () {
 })
 
 var data = {
-    firstName:'akkas',
-    lastName:'tech',
-    email:'akkastest@gmail.com',
-    password:'12345',
-    role:'admin'
+    firstName: 'akkas',
+    lastName: 'tech',
+    email: 'akkastest@gmail.com',
+    password: '123456',
+    role: 'admin',
 }
 
-User.collection.insert(data)
+User.create(data)
