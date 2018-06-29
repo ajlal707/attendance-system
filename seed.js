@@ -1,6 +1,5 @@
 var User = require('./models/user')
 var mongoose = require("mongoose");
-const bcrypt = require('bcrypt-nodejs')
 
 //mongo connection
 mongoose.connect('mongodb://maxifjaved:maxifjaved@127.0.0.1:27017/winnipitty?authSource=admin')
