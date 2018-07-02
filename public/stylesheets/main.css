@@ -141,7 +141,7 @@ textarea.form-control{
 .form-control:-moz-placeholder { color: #666; } /* Mozilla Firefox 4 to 18 */
 .form-control::-moz-placeholder { color: #666; } /* Mozilla Firefox 19+ */
 .form-control:-ms-input-placeholder { color: #666; } /* Internet Explorer 10-11 */
-.form-control::-ms-input-placeholder { color:#66; } /* Microsoft Edge */
+.form-control::-ms-input-placeholder { color:#666; } /* Microsoft Edge */
 input:focus,
 .select select:focus,
 .form-control:focus {
@@ -1977,6 +1977,22 @@ body.wp-loginpage .wp-addnav ul li a{color: #fff;}
 	line-height: 13px;
 	text-transform: uppercase;
 }
+.wp-loginwithsocial .wp-socialicons form {
+    float: left;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+	border-radius: 50%;
+	background: #123ea8;
+}
+.wp-loginwithsocial .wp-socialicons form + form {margin: 0 0 0 5px;}
+.wp-loginwithsocial button {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 13px;
+    text-transform: uppercase;
+}
 .wp-loginwithsocial .wp-socialicons li a{background: #123ea8;}
 /* =============================================
 			Signup Page Style					
@@ -2217,7 +2233,7 @@ body.wp-loginpage .wp-addnav ul li a{color: #fff;}
 }
 .wp-userdbimg img{
 	width: 100%;
-	height: auto;
+	height: 180px;
 	display: block;
 	border-radius: 50%;
 }
@@ -2817,3 +2833,37 @@ body.wp-loginpage .wp-addnav ul li a{color: #fff;}
 .dataTables_length,
 .dataTables_filter,
 .dataTables_wrapper .dataTables_paginate{display: none;}
+.editpic{
+	top: 50%;
+	left: 50%;
+	margin: 0;
+	width: 40px;
+	height: 40px;
+	color: #fff;
+	font-size: 15px;
+	cursor: pointer;
+	line-height: 40px;
+	border-radius: 50%;
+	position: absolute;
+	text-align: center;
+	background: #f26522;
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-o-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+}
+.editpic input{display: none}
+.at-formeiditpics{text-align: center;}
+.at-formeiditpics button{
+	padding: 0 10px;
+    line-height: 30px;
+	color: #fff;
+	font-size: 15px;
+    background: #f26522;
+	border-radius: 10px;
+	font-weight: 500;
+    display: inline-block;
+	vertical-align: middle;
+	text-transform: uppercase;
+}

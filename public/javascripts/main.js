@@ -479,3 +479,39 @@ function updateProfile() {
     error.innerHTML = 'firstname, lastname, email, phone number, address must not be empty.'
   }
 }
+
+function updateAdminProfile() {
+  var firstName = document.getElementById('firstName').value;
+  var lastName = document.getElementById('lastName').value;
+  var email = document.getElementById('email').value;
+  var address = document.getElementById('address').value;
+  var streetAddress = document.getElementById('streetAddress').value;
+  var country = document.getElementById('country').value;
+  var city = document.getElementById('city').value;
+  var state = document.getElementById('state').value;
+  var zipcode = document.getElementById('zipcode').value;
+  var phoneNumber = document.getElementById('phoneNumber').value;
+  if (firstName && lastName && email && address && phoneNumber) {
+    $.ajax({
+      type: "POST",
+      url: "/admin/profile/updateprofile",
+      data: { firstName, lastName, email, address, zipcode, city, state, streetAddress, country, phoneNumber },
+      success: function (res) {
+        if (res.error) {
+          document.getElementById('btnSubmit').disabled = false;
+          var error = document.getElementById('error');
+          error.style.color = 'red'
+          error.innerHTML = res.error
+
+        } else if (res.success) {
+          window.location.href = '/admin/profile';
+        }
+      }
+    });
+  } else {
+    document.getElementById('btnSubmit').disabled = false;
+    var error = document.getElementById('error');
+    error.style.color = 'red'
+    error.innerHTML = 'firstname, lastname, email, phone number, address must not be empty.'
+  }
+}
