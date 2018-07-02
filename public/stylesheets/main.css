@@ -2227,7 +2227,7 @@ body.wp-loginpage .wp-addnav ul li a{color: #fff;}
 }
 .wp-userdbimg img{
 	width: 100%;
-	height: auto;
+	height: 180px;
 	display: block;
 	border-radius: 50%;
 }
@@ -2827,3 +2827,37 @@ body.wp-loginpage .wp-addnav ul li a{color: #fff;}
 .dataTables_length,
 .dataTables_filter,
 .dataTables_wrapper .dataTables_paginate{display: none;}
+.editpic{
+	top: 50%;
+	left: 50%;
+	margin: 0;
+	width: 40px;
+	height: 40px;
+	color: #fff;
+	font-size: 15px;
+	cursor: pointer;
+	line-height: 40px;
+	border-radius: 50%;
+	position: absolute;
+	text-align: center;
+	background: #f26522;
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-o-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+}
+.editpic input{display: none}
+.at-formeiditpics{text-align: center;}
+.at-formeiditpics button{
+	padding: 0 10px;
+    line-height: 30px;
+	color: #fff;
+	font-size: 15px;
+    background: #f26522;
+	border-radius: 10px;
+	font-weight: 500;
+    display: inline-block;
+	vertical-align: middle;
+	text-transform: uppercase;
+}

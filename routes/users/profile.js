@@ -85,9 +85,7 @@ router.post('/uploadImage', ensureAuthenticated, (req, res, next) => {
             if (err) {
               return res.status(500).json(err)
             }
-            return res.status(200).json({
-              message: "Please go back and provide a picture with valid extensions (.jpeg,.jpg,.png)"
-            })
+            return res.status(200).json({ message: "Please go back and provide a picture with valid extensions (.jpeg,.jpg,.png)" })
           })
         }
       } else {

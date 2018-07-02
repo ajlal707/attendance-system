@@ -12,7 +12,9 @@ const flash = require('connect-flash')
 
 var indexRouter = require('./routes/index')
 var signupRouter = require('./routes/signup')
+
 var adminDashboardRouter = require('./routes/admin/dashboard')
+var adminProfileDashboardRouter = require('./routes/admin/profile')
 
 
 var usersDashboardRouter = require('./routes/users/dashboard')
@@ -49,7 +51,7 @@ app.use(function (req, res, next) {
 
 
 //mongo connection
-//  mongoose.connect('mongodb://127.0.0.1:27017/winnipitty')
+// mongoose.connect('mongodb://127.0.0.1:27017/winnipitty')
 mongoose.connect('mongodb://maxifjaved:maxifjaved@127.0.0.1:27017/winnipitty?authSource=admin')
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
@@ -87,6 +89,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', indexRouter)
 app.use('/signup', signupRouter)
 app.use('/admin/dashboard', adminDashboardRouter)
+app.use('/admin/profile', adminProfileDashboardRouter)
 
 app.use('/users/dashboard', usersDashboardRouter)
 app.use('/users/profile', profileDashboardRouter)
@@ -98,12 +101,12 @@ app.use('/forgotpassword', forgotpasswordRouter)
 app.use('/resetpassword', resetpasswordRouter)
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404))
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}

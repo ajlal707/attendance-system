@@ -40,7 +40,7 @@
 		*************************************-->
     <header id="wp-dbdashboardheader" class="wp-dbdashboardheader">
       <strong class="wp-logo">
-        <a href="/users/dashboard">
+        <a href="/admin/dashboard">
           <img src="../../images/logo.png" alt="image description">
         </a>
       </strong>
@@ -146,30 +146,42 @@
           </div>
           <nav id="wp-dashboardnav" class="wp-dashboardnav">
             <ul>
-              <li>
-                <a href="/users/dashboard">
-                  <i class="fa fa-tachometer"></i>
-                  <span>home</span>
-                </a>
-              </li>
-              <li>
-                <a href="/users/enterTrive">
-                  <i class="fa fa-gamepad"></i>
-                  <span>Enter trivia</span>
-                </a>
-              </li>
-              <li class="wp-active">
-                <a href="javascript:(0);">
-                  <i class="fa fa-users"></i>
-                  <span>Profile</span>
-                </a>
-              </li>
-              <li>
-                <a href="/users/support">
-                  <i class="fa fa-support"></i>
-                  <span>Support</span>
-                </a>
-              </li>
+                    <ul>
+							<li class="wp-active"><a href="/admin/dashboard"><i class="fa fa-tachometer"></i><span>home</span></a></li>
+							<li class="menu-item-has-children">
+								<a href="javascript:(0);"><i class="fa fa-gamepad "></i><span>latest winners</span></a>
+								<ul class="sub-menu">
+									<li><a href="latest-winners.html">Winners List</a></li>
+									<li><a href="addwinner.html">Add Winner</a></li>
+								</ul>
+							</li>
+							<li><a href="featured-games.html"><i class="fa fa-tag"></i><span>featured games</span></a></li>
+							<li><a href="popular-games.html"><i class="fa fa-user"></i><span>Popular Games</span></a></li>
+							<li class="menu-item-has-children">
+								<a href="javascript:(0);"><i class="fa fa-support"></i><span>Users</span></a>
+								<ul class="sub-menu">
+									<li><a href="users.html">Users List</a></li>
+									<li><a href="addusers.html">Add Users</a></li>
+								</ul>
+							</li>
+							<li class="menu-item-has-children">
+								<a href="javascript:(0);"><i class="fa fa-tag"></i><span>Sponsers</span></a>
+								<ul class="sub-menu">
+									<li><a href="sponserslist.html">Sponsers List</a></li>
+									<li><a href="addsponser.html">Add Sponser</a></li>
+								</ul>
+							</li>
+							<li class="menu-item-has-children">
+								<a href="javascript:(0);"><i class="fa fa-user"></i><span>Questions</span></a>
+								<ul class="sub-menu">
+									<li><a href="questions.html">Questions</a></li>
+									<li><a href="addquestion.html">Add New</a></li>
+									<li><a href="loadquestions.html">Load In Bulk</a></li>
+								</ul>
+							</li>
+							<li><a href="creategame.html"><i class="fa fa-support"></i><span>Create Game</span></a></li>
+							<li><a href="/admin/profile"><i class="fa fa-support"></i><span>PROFILE</span></a></li>
+						</ul>
             </ul>
           </nav>
           <div class="wp-bottomarea">
@@ -197,7 +209,7 @@
               <figure class="wp-userdbimg">
                 <img src="<%= user.photoId ? `../../uploads/${user.photoId.fileName}` : '../../images/user-dashboard-img.jpg' %>" alt="image description">
                 
-                    <form enctype="multipart/form-data" action="/users/profile/uploadImage" method="post" class="at-formeiditpics">
+                    <form enctype="multipart/form-data" action="/admin/profile/uploadImage" method="post" class="at-formeiditpics">
                       <label class="editpic" for="image-file">
                           <i class="fa fa-pencil"></i>
                           <input id="image-file" type="file" name="profilePhoto" accept="image/x-png,image/jpg,image/jpeg" single="single" />
@@ -327,7 +339,7 @@
                         </div>
                       </div>
                       <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">
-                        <button class="wp-btn" onclick="updateProfile()">update profile</button>
+                        <button class="wp-btn" onclick="updateAdminProfile()">update profile</button>
                       </div>
                     </div>
                   </fieldset>
