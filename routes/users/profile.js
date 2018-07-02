@@ -72,7 +72,7 @@ router.post('/uploadImage', ensureAuthenticated, (req, res, next) => {
                     user.save(function (err) {
                       if (err) return res.json({ error: 'something happend bad' })
 
-                      res.redirect('/profile')
+                      res.redirect('/users/profile')
                     })
                   })
                 }

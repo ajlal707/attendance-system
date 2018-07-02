@@ -141,7 +141,7 @@ textarea.form-control{
 .form-control:-moz-placeholder { color: #666; } /* Mozilla Firefox 4 to 18 */
 .form-control::-moz-placeholder { color: #666; } /* Mozilla Firefox 19+ */
 .form-control:-ms-input-placeholder { color: #666; } /* Internet Explorer 10-11 */
-.form-control::-ms-input-placeholder { color:#66; } /* Microsoft Edge */
+.form-control::-ms-input-placeholder { color:#666; } /* Microsoft Edge */
 input:focus,
 .select select:focus,
 .form-control:focus {
@@ -1970,14 +1970,24 @@ body.wp-loginpage .wp-addnav ul li a{color: #fff;}
 	display: inline-block;
 	vertical-align: middle;
 }
-.wp-loginwithsocial span{
+.wp-loginwithsocial span{color: #fff;}
+.wp-loginwithsocial .wp-socialicons form{
+	float: left;
+	width: 30px;
+	height: 30px;
+	background: #123ea8;
+	line-height: 30px;
+	border-radius: 50%;
+}
+.wp-loginwithsocial .wp-socialicons form + form{margin: 0 0 0 5px;}
+.wp-loginwithsocial button {
 	color: #fff;
 	font-size: 13px;
 	font-weight: 500;
 	line-height: 13px;
 	text-transform: uppercase;
 }
-.wp-loginwithsocial .wp-socialicons li a{background: #123ea8;}
+.wp-loginwithsocial .wp-socialicons button{background: #123ea8;}
 /* =============================================
 			Signup Page Style					
 ============================================= */
