@@ -1,34 +1,4 @@
-
-<!-- <main id="tg-main" class="tg-main tg-haslayout">
-  <div class="container-fluid">
-
-
-    <div class="alert tg-alert">
-      <p>
-        <strong>Welcome :
-          <% if(user.firstName) {%>
-            <%= user.firstName + ' ' + user.lastName %>
-            <%= user.role %>
-              <% } else { %>
-                <%= user.username %>
-                  <% } %>
-        </strong>
-      </p>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-
-  </div>
-  <form method="GET" action="/logout">
-    <button class="wp-btn">logout</button>
-  </form>
-</main> -->
-<!--************************************
-				Main End
-    *************************************-->
-
-    <!doctype html>
+<!doctype html>
 <!--[if lt IE 7]>		<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>			<html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>			<html class="no-js lt-ie9" lang=""> <![endif]-->
@@ -41,12 +11,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<link rel="icon" href="favicon.png" type="image/x-icon">
-  <link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
+	<link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
 	<link rel="stylesheet" href="../stylesheets/normalize.css">
 	<link rel="stylesheet" href="../stylesheets/font-awesome.min.css">
 	<link rel="stylesheet" href="../stylesheets/icomoon.css">
 	<link rel="stylesheet" href="../stylesheets/scrollbar.css">
-	<link rel="stylesheet" href="../stylesheets/datatables.min.css">
+    <link rel="stylesheet" href="../stylesheets/datatables.css">
 	<link rel="stylesheet" href="../stylesheets/transitions.css">
 	<link rel="stylesheet" href="../stylesheets/main.css">
 	<link rel="stylesheet" href="../stylesheets/color.css">
@@ -70,7 +40,7 @@
 				<div class="wp-pagetitleholder">
 					<a id="wp-closenav" class="wp-closenav" href="javascript:(0);"><i class="icon-menu"></i></a>
 					<div class="wp-pagetitle">
-						<h1>home</h1>
+						<h1>Users</h1>
 					</div>
 				</div>
 			</div>
@@ -121,36 +91,17 @@
 							<img src="../../images/admin-pic.jpg" alt="image description">
 						</figure>
 						<div class="wp-adminname">
-
-
-                <% if(user.firstName) {%>
-                 <h3><%= user.firstName + ' ' + user.lastName %></h3>
-                    <% } else { %>
-                      <h3> <%= user.username %></h3>
-                        <% } %>
-
-                        
-                        <% if(user.city && user.state) {%>
-                          <span><%= user.city + ',' + user.state %></span>
-                             <% } else { %>
-                              <span> Add Address</span>
-                                 <% } %>
-            
-                                 
-                                 
+							<h3>Jonathan Smith</h3>
+							<span>Berlin, Germany</span>
 						</div>
 						<span class="wp-totalstars">
 							<i class="fa fa-star"></i>
-							<% if(user.zipcode) {%>
-                <em><%= user.city + ',' + user.state %></em>
-                   <% } else { %>
-                    <em> Add zipcode</em>
-                       <% } %>
+							<em>54082</em>
 						</span>
 					</div>
 					<nav id="wp-dashboardnav" class="wp-dashboardnav">
 						<ul>
-							<li class="wp-active"><a href="index.html"><i class="fa fa-tachometer"></i><span>home</span></a></li>
+							<li><a href="/admin/dashboard"><i class="fa fa-tachometer"></i><span>home</span></a></li>
 							<li class="menu-item-has-children">
 								<a href="javascript:(0);"><i class="fa fa-gamepad "></i><span>latest winners</span></a>
 								<ul class="sub-menu">
@@ -160,10 +111,10 @@
 							</li>
 							<li><a href="/admin/featuredGames"><i class="fa fa-tag"></i><span>featured games</span></a></li>
 							<li><a href="/admin/popularGames"><i class="fa fa-user"></i><span>Popular Games</span></a></li>
-							<li class="menu-item-has-children">
+							<li class="menu-item-has-children wp-active">
 								<a href="javascript:(0);"><i class="fa fa-support"></i><span>Users</span></a>
 								<ul class="sub-menu">
-									<li><a href="/admin/usersList">Users List</a></li>
+									<li class="wp-active"><a href="users.html">Users List</a></li>
 									<li><a href="/admin/addUser">Add Users</a></li>
 								</ul>
 							</li>
@@ -184,15 +135,12 @@
 							</li>
 							<li><a href="/admin/createGame"><i class="fa fa-support"></i><span>Create Game</span></a></li>
 							<li><a href="/admin/profile"><i class="fa fa-support"></i><span>PROFILE</span></a></li>
+
 						</ul>
 					</nav>
 					<div class="wp-bottomarea">
-            
-            <button class="wp-btnsetting"><i class="icon-cog"></i></button>
-         
-          <form action="/logout" method="GET">
-            <button class="wp-btnlogout"><i class="icon-power-switch"></i></button>
-          </form>
+						<a class="wp-btnsetting" href="javascript:(0);"><i class="icon-cog"></i></a>
+						<a class="wp-btnlogout" href="javascript:(0);"><i class="icon-power-switch"></i></a>
 					</div>
 				</div>
 			</div>
@@ -204,149 +152,22 @@
 				Main Start
 		*************************************-->
 		<main id="wp-main" class="wp-main wp-haslayout">
-			<div class="wp-statisticsholder wp-dbsectionspace wp-haslayout">
-				<div id="wp-statisticscounters" class="wp-statisticscounters">
-					<div class="row">
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-							<div class="wp-counter wp-totalplayers">
-								<span class="icon-users wp-countericon"></span>
-								<div class="wp-countercontent">
-									<h3><span data-from="100" data-to="256" data-speed="8000" data-refresh-interval="50">256</span></h3>
-									<h2>Total No. Of Players</h2>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-							<div class="wp-counter wp-totalgamesplay">
-								<span class="icon-database wp-countericon"></span>
-								<div class="wp-countercontent">
-									<h3><span data-from="75" data-to="180" data-speed="8000" data-refresh-interval="50">180</span></h3>
-									<h2>Total Games Played</h2>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-							<div class="wp-counter wp-totalgiveprize">
-								<span class="icon-magic-wand wp-countericon"></span>
-								<div class="wp-countercontent">
-									<h3><span data-from="150" data-to="350" data-speed="8000" data-refresh-interval="50">350</span></h3>
-									<h2>Total Pize Given</h2>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-							<div class="wp-counter wp-responsrate">
-								<span class="icon-laptop wp-countericon"></span>
-								<div class="wp-countercontent">
-									<h3><span data-from="200" data-to="575" data-speed="8000" data-refresh-interval="50">575</span></h3>
-									<h2>Response Rate</h2>
-								</div>
-							</div>
-						</div>	
-					</div>
-				</div>
-			</div>
 			<div class="wp-dbsectionspace wp-haslayout">
 				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
-						<div class="wp-dbbox wp-gamesstatistics">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="wp-dbbox wp-gameusers">
 							<div class="wp-dbboxtittle">
-								<h3>Game Statistics</h3>
-								<ul class="wp-weeklytabs" role="tablist">
-									<li role="presentation" class="active"><a href="#weekly" aria-controls="weekly" role="tab" data-toggle="tab">Weekly</a></li>
-									<li role="presentation"><a onclick="initGraph('monthly-canvas')" href="#monthly" aria-controls="monthly" role="tab" data-toggle="tab">Monthly</a></li>
-									<li role="presentation"><a onclick="initGraph('yearly-canvas')" href="#yearly" aria-controls="yearly" role="tab" data-toggle="tab">Yearly leaders</a></li>
-								</ul>
+								<h3>Users</h3>
 							</div>
 							<div class="wp-dbboxcontent">
-								<div class="tab-content">
-									<div role="tabpanel" class="tab-pane fade in active" id="weekly">
-										<ul class="wp-gamestatstabs" role="tablist">
-											<li role="presentation" class="active"><a href="#high" onclick="initGraph('high-canvas')" aria-controls="high" role="tab" data-toggle="tab">High 2 Low</a></li>
-											<li role="presentation"><a onclick="initGraph('pricing-canvas')" href="#pricing" aria-controls="pricing" role="tab" data-toggle="tab">Pricing Game</a></li>
-											<li role="presentation"><a onclick="initGraph('notright-canvas')" href="#notright" aria-controls="notright" role="tab" data-toggle="tab">That's not Right</a></li>
-											<li role="presentation"><a onclick="initGraph('tagsales-canvas')" href="#tagsales" aria-controls="tagsales" role="tab" data-toggle="tab">Tag Sale</a></li>
-										</ul>
-										<div class="tab-content">
-											<div role="tabpanel" class="tab-pane fade in active" id="high">
-												<canvas class="chart" id="high-canvas" height="417"></canvas>
-											</div>
-											<div role="tabpanel" class="tab-pane fade" id="pricing">
-												<canvas class="chart" id="pricing-canvas" height="417"></canvas>
-											</div>
-											<div role="tabpanel" class="tab-pane fade" id="notright">
-												<canvas class="chart" id="notright-canvas" height="417"></canvas>
-											</div>
-											<div role="tabpanel" class="tab-pane fade" id="tagsales">
-												<canvas id="tagsales-canvas" class="chart" height="417"></canvas>
-											</div>
-										</div>
-									</div>
-									<div role="tabpanel" class="tab-pane fade" id="monthly">
-										<!-- <div role="tabpanel" class="tab-pane fade in active" id="weekly1"> -->
-											<ul class="wp-gamestatstabs" role="tablist">
-												<li role="presentation" class="active"><a onclick="initGraph('high1-canvas')" href="#high1" aria-controls="high1" role="tab" data-toggle="tab">High 2 Low</a></li>
-												<li role="presentation"><a onclick="initGraph('pricing1-canvas')" href="#pricing1" aria-controls="pricing1" role="tab" data-toggle="tab">Pricing Game</a></li>
-												<li role="presentation"><a onclick="initGraph('notright1-canvas')" href="#notright1" aria-controls="notright1" role="tab" data-toggle="tab">That's not Right</a></li>
-												<li role="presentation"><a onclick="initGraph('tagsale1-canvas')" href="#tagsales1" aria-controls="tagsales1" role="tab" data-toggle="tab">Tag Sale</a></li>
-											</ul>
-											<div class="tab-content">
-												<div role="tabpanel" class="tab-pane fade in active" id="high1">
-													<canvas id="monthly-canvas" class="chart" height="417"></canvas>
-												</div>
-												<div role="tabpanel" class="tab-pane fade" id="pricing1">
-													<canvas id="pricing1-canvas" class="chart" height="417"></canvas>
-												</div>
-												<div role="tabpanel" class="tab-pane fade" id="notright1">
-													<canvas id="notright1-canvas" class="chart" height="417"></canvas>
-												</div>
-												<div role="tabpanel" class="tab-pane fade" id="tagsales1">
-													<canvas id="tagsale1-canvas" class="chart" height="417"></canvas>
-												</div>
-											</div>
-										<!-- </div> -->
-									</div>
-									<div role="tabpanel" class="tab-pane fade" id="yearly">
-										<!-- <div role="tabpanel" class="tab-pane fade in active" id="weekly2"> -->
-											<ul class="wp-gamestatstabs" role="tablist">
-												<li role="presentation" class="active"><a href="#high2" aria-controls="high2" role="tab" data-toggle="tab">High 2 Low</a></li>
-												<li role="presentation"><a onclick="initGraph('pricing2-canvas')" href="#pricing2" aria-controls="pricing2" role="tab" data-toggle="tab">Pricing Game</a></li>
-												<li role="presentation"><a onclick="initGraph('notright2-canvas')" href="#notright2" aria-controls="notright2" role="tab" data-toggle="tab">That's not Right</a></li>
-												<li role="presentation"><a onclick="initGraph('tagsale2-canvas')" href="#tagsales2" aria-controls="tagsales2" role="tab" data-toggle="tab">Tag Sale</a></li>
-											</ul>
-											<div class="tab-content">
-												<div role="tabpanel" class="tab-pane fade in active" id="high2">
-													<canvas id="yearly-canvas" class="chart" height="417"></canvas>
-												</div>
-												<div role="tabpanel" class="tab-pane fade" id="pricing2">
-													<canvas id="pricing2-canvas" class="chart" height="417"></canvas>
-												</div>
-												<div role="tabpanel" class="tab-pane fade" id="notright2">
-													<canvas id="notright2-canvas" class="chart" height="417"></canvas>
-												</div>
-												<div role="tabpanel" class="tab-pane fade" id="tagsales2">
-													<canvas id="tagsale2-canvas" class="chart" height="417"></canvas>
-												</div>
-											</div>
-										<!-- </div> -->
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
-						<div class="wp-dbbox">
-							<div class="wp-dbboxtittle">
-								<h3>Top 10 Player States</h3>
-							</div>
-							<div class="wp-dbboxcontent">
-								<table class="table wp-playerstatestable">
+								<table class="table display wp-playerstatestable">
 									<thead>
 										<tr>
 											<th>#</th>
 											<th>Player Name</th>
 											<th>game name</th>
 											<th>prize</th>
+											<th>Serial Number</th>
 											<th>status</th>
 										</tr>
 									</thead>
@@ -358,6 +179,7 @@
 											</td>
 											<td data-title="Category"><span class="tg-adcategories">High 2 Low</span></td>
 											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
 											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">active</span></td>
 										</tr>
 										<tr data-category="active">
@@ -367,6 +189,7 @@
 											</td>
 											<td data-title="Category"><span class="tg-adcategories">High 2 Low</span></td>
 											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
 											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">active</span></td>
 										</tr>
 										<tr data-category="active">
@@ -376,6 +199,7 @@
 											</td>
 											<td data-title="Category"><span class="tg-adcategories">Tage Sale</span></td>
 											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
 											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">not used</span></td>
 										</tr>
 										<tr data-category="active">
@@ -385,6 +209,7 @@
 											</td>
 											<td data-title="Category"><span class="tg-adcategories">Pricing Games</span></td>
 											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
 											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">not used</span></td>
 										</tr>
 										<tr data-category="active">
@@ -394,6 +219,7 @@
 											</td>
 											<td data-title="Category"><span class="tg-adcategories">High 2 Low</span></td>
 											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
 											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">active</span></td>
 										</tr>
 										<tr data-category="active">
@@ -403,6 +229,7 @@
 											</td>
 											<td data-title="Category"><span class="tg-adcategories">High 2 Low</span></td>
 											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
 											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">active</span></td>
 										</tr>
 										<tr data-category="active">
@@ -412,6 +239,7 @@
 											</td>
 											<td data-title="Category"><span class="tg-adcategories">High 2 Low</span></td>
 											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
 											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">active</span></td>
 										</tr>
 										<tr data-category="active">
@@ -421,6 +249,7 @@
 											</td>
 											<td data-title="Category"><span class="tg-adcategories">Tage Sale</span></td>
 											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
 											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">not used</span></td>
 										</tr>
 										<tr data-category="active">
@@ -430,6 +259,7 @@
 											</td>
 											<td data-title="Category"><span class="tg-adcategories">Pricing Games</span></td>
 											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
 											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">not used</span></td>
 										</tr>
 										<tr data-category="active">
@@ -439,6 +269,167 @@
 											</td>
 											<td data-title="Category"><span class="tg-adcategories">High 2 Low</span></td>
 											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
+											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">active</span></td>
+										</tr>
+										<tr data-category="active">
+											<td data-title="serial">11</td>
+											<td data-title="Title">
+												<h3>Jhon Doe</h3>
+											</td>
+											<td data-title="Category"><span class="tg-adcategories">High 2 Low</span></td>
+											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
+											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">active</span></td>
+										</tr>
+										<tr data-category="active">
+											<td data-title="serial">12</td>
+											<td data-title="Title">
+												<h3>Katie R. Lamar</h3>
+											</td>
+											<td data-title="Category"><span class="tg-adcategories">High 2 Low</span></td>
+											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
+											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">active</span></td>
+										</tr>
+										<tr data-category="active">
+											<td data-title="serial">13</td>
+											<td data-title="Title">
+												<h3>Joseph L. Bowlin</h3>
+											</td>
+											<td data-title="Category"><span class="tg-adcategories">Tage Sale</span></td>
+											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
+											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">not used</span></td>
+										</tr>
+										<tr data-category="active">
+											<td data-title="serial">14</td>
+											<td data-title="Title">
+												<h3>Cleo J. Miller</h3>
+											</td>
+											<td data-title="Category"><span class="tg-adcategories">Pricing Games</span></td>
+											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
+											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">not used</span></td>
+										</tr>
+										<tr data-category="active">
+											<td data-title="serial">15</td>
+											<td data-title="Title">
+												<h3>Claudia C. Harvin</h3>
+											</td>
+											<td data-title="Category"><span class="tg-adcategories">High 2 Low</span></td>
+											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
+											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">active</span></td>
+										</tr>
+										<tr data-category="active">
+											<td data-title="serial">16</td>
+											<td data-title="Title">
+												<h3>Jhon Doe</h3>
+											</td>
+											<td data-title="Category"><span class="tg-adcategories">High 2 Low</span></td>
+											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
+											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">active</span></td>
+										</tr>
+										<tr data-category="active">
+											<td data-title="serial">17</td>
+											<td data-title="Title">
+												<h3>Katie R. Lamar</h3>
+											</td>
+											<td data-title="Category"><span class="tg-adcategories">High 2 Low</span></td>
+											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
+											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">active</span></td>
+										</tr>
+										<tr data-category="active">
+											<td data-title="serial">18</td>
+											<td data-title="Title">
+												<h3>Joseph L. Bowlin</h3>
+											</td>
+											<td data-title="Category"><span class="tg-adcategories">Tage Sale</span></td>
+											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
+											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">not used</span></td>
+										</tr>
+										<tr data-category="active">
+											<td data-title="serial">19</td>
+											<td data-title="Title">
+												<h3>Cleo J. Miller</h3>
+											</td>
+											<td data-title="Category"><span class="tg-adcategories">Pricing Games</span></td>
+											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
+											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">not used</span></td>
+										</tr>
+										<tr data-category="active">
+											<td data-title="serial">20</td>
+											<td data-title="Title">
+												<h3>Claudia C. Harvin</h3>
+											</td>
+											<td data-title="Category"><span class="tg-adcategories">High 2 Low</span></td>
+											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
+											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">active</span></td>
+										</tr>
+										<tr data-category="active">
+											<td data-title="serial">20</td>
+											<td data-title="Title">
+												<h3>Claudia C. Harvin</h3>
+											</td>
+											<td data-title="Category"><span class="tg-adcategories">High 2 Low</span></td>
+											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
+											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">active</span></td>
+										</tr>
+										<tr data-category="active">
+											<td data-title="serial">20</td>
+											<td data-title="Title">
+												<h3>Claudia C. Harvin</h3>
+											</td>
+											<td data-title="Category"><span class="tg-adcategories">High 2 Low</span></td>
+											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
+											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">active</span></td>
+										</tr>
+										<tr data-category="active">
+											<td data-title="serial">20</td>
+											<td data-title="Title">
+												<h3>Claudia C. Harvin</h3>
+											</td>
+											<td data-title="Category"><span class="tg-adcategories">High 2 Low</span></td>
+											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
+											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">active</span></td>
+										</tr>
+										<tr data-category="active">
+											<td data-title="serial">20</td>
+											<td data-title="Title">
+												<h3>Claudia C. Harvin</h3>
+											</td>
+											<td data-title="Category"><span class="tg-adcategories">High 2 Low</span></td>
+											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
+											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">active</span></td>
+										</tr>
+										<tr data-category="active">
+											<td data-title="serial">20</td>
+											<td data-title="Title">
+												<h3>Claudia C. Harvin</h3>
+											</td>
+											<td data-title="Category"><span class="tg-adcategories">High 2 Low</span></td>
+											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
+											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">active</span></td>
+										</tr>
+										<tr data-category="active">
+											<td data-title="serial">20</td>
+											<td data-title="Title">
+												<h3>Claudia C. Harvin</h3>
+											</td>
+											<td data-title="Category"><span class="tg-adcategories">High 2 Low</span></td>
+											<td data-title="Featured">Yes</td>
+											<td data-title="Featured">0945-Ah-025784</td>
 											<td data-title="Ad Status"><span class="tg-adstatus tg-adstatusactive">active</span></td>
 										</tr>
 									</tbody>
@@ -470,7 +461,8 @@
 				Footer End
 		*************************************-->
 	</div>
-  <script src="../javascripts/vendor/jquery-library.js"></script>
+	
+	<script src="../javascripts/vendor/jquery-library.js"></script>
 	<script src="../javascripts/vendor/bootstrap.min.js"></script>
 	<script src="js/tinymce/tinymce.min.js?apiKey=4cuu2crphif3fuls3yb1pe4qrun9pkq99vltezv2lv6sogci"></script>
 	<script src="../javascripts/scrollbar.min.js"></script>
@@ -478,6 +470,6 @@
 	<script src="../javascripts/chart.min.js"></script>
 	<script src="../javascripts/countto.js"></script>
 	<script src="../javascripts/appear.js"></script>
-	<script src="../javascripts/main.js"></script>
+	<script src="../javascripts/main.js"></script>F
 </body>
 </html>
