@@ -26,7 +26,7 @@ var adminaddSponserDashboardRouter = require('./routes/admin/addSponser')
 var adminquestionsDashboardRouter = require('./routes/admin/questions')
 var adminaddQuestionDashboardRouter = require('./routes/admin/addQuestion')
 var adminloadBulkDashboardRouter = require('./routes/admin/loadBulk')
-var admincreateGameDashboardRouter = require('./routes/admin/profile')
+var admincreateGameDashboardRouter = require('./routes/admin/createGame')
 
 
 var usersDashboardRouter = require('./routes/users/dashboard')
