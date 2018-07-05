@@ -61,7 +61,7 @@
 					</div>
 					<div class="wp-userimgholder wp-themedropdown dropdown">
 						<button class="wp-btndropdown" id="wp-usermenu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<img src="../../images/user-img.jpg" alt="image description">
+							<img src="<%= undefined === user || undefined === user.photoId ? '../../images/user-img.jpg' : `/uploads/${user.photoId.fileName}` %>">
 						</button>
 						<ul class="dropdown-menu wp-dropdownmenu" aria-labelledby="wp-usermenu">
 							<li><p>Consectetur adipisicing sedi eiusmod ampore incididunt ut labore et dolore.</p></li>
@@ -88,11 +88,22 @@
 				<div class="wp-verticalscrollbar" id="wp-verticalscrollbar">
 					<div class="wp-adminarea">
 						<figure class="wp-adminimg">
-							<img src="../../images/admin-pic.jpg" alt="image description">
+							<img src="<%= undefined === user || undefined === user.photoId ? '../../images/user-img.jpg' : `/uploads/${user.photoId.fileName}` %>">
+						
 						</figure>
 						<div class="wp-adminname">
-							<h3>Jonathan Smith</h3>
-							<span>Berlin, Germany</span>
+							<% if(user.firstName) {%>
+								<h3><%= user.firstName + ' ' + user.lastName %></h3>
+								   <% } else { %>
+									 <h3> <%= user.username %></h3>
+									   <% } %>
+			   
+									   
+									   <% if(user.city && user.state) {%>
+										 <span><%= user.city + ',' + user.country %></span>
+											<% } else { %>
+											 <span> Add Address</span>
+												<% } %>
 						</div>
 						<span class="wp-totalstars">
 							<i class="fa fa-star"></i>

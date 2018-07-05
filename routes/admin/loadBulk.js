@@ -5,6 +5,7 @@ let ensureAuthenticated = require('../../config/authUser')
 
 router.get('/', ensureAuthenticated, function (req, res, next) {
   User.findOne({ _id: req.user._id })
+  .populate('photoId')
     .exec(function (err, user) {
       if (err) { return next(err) }
 
