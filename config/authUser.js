@@ -1,20 +1,18 @@
 
 
-module.exports =  function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
+
+module.exports = function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    var loc = req.baseUrl
+    loc = loc.split('/')
+    if (req.user.role === 'admin' && loc[1] === 'admin') {
+      next()
+    } else if (req.user.role === 'user' && loc[1] === 'users') {
       next()
     } else {
-      req.flash('info', 'You must be logged in to access the Dashboard.')
       res.redirect('/')
     }
+  } else {
+    res.redirect('/')
   }
-
-  // module.exports =  function ensureAuthenticated(req, res, next) {
-  //   if (req.isAuthenticated() && req.user.role === 'admin') {
-  //     res.redirect('/admin/dashboard')
-  //   } else if(req.isAuthenticated() && req.user.role === 'user') {
-  //     res.redirect('/users/dashboard')
-  //   } else{
-  //     res.redirect('/')
-  //   }
-  // }
+}

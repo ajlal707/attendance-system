@@ -7,6 +7,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
     req.session.welcome = 'false'
 
     User.findOne({ _id: req.user._id })
+    .populate('photoId')
         .exec(function (err, user) {
             if (err) { return next(err) }
 

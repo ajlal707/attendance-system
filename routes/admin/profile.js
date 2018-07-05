@@ -20,8 +20,6 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
 
 router.post('/uploadImage', ensureAuthenticated, (req, res, next) => {
     var DIR = './public/uploads/'
-    //define the type of upload multer would be doing 
-    // and pass in its destination, in our case, its a single file with the name photo
     var upload = multer({ dest: DIR }).single('profilePhoto')
 
     var path = ''
