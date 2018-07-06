@@ -400,7 +400,6 @@ function forgotpassword() {
 
 function resetPassword() {
   document.getElementById('error').value = '';
-  document.getElementById('btnSubmit').disabled = true;
   var pass1 = document.getElementById('pass1').value;
   var pass2 = document.getElementById('pass2').value;
   var token = document.getElementById('token').value;
@@ -413,7 +412,6 @@ function resetPassword() {
           data: { password: pass1, token: token },
           success: function (res) {
             if (res.error) {
-              document.getElementById('btnSubmit').disabled = false;
               var error = document.getElementById('error');
               error.style.color = 'red'
               error.innerHTML = res.error
@@ -425,19 +423,16 @@ function resetPassword() {
         });
 
       } else {
-        document.getElementById('btnSubmit').disabled = false;
         var error = document.getElementById('error');
         error.style.color = 'red'
         error.innerHTML = 'Password length must be 6'
       }
     } else {
-      document.getElementById('btnSubmit').disabled = false;
       var error = document.getElementById('error');
       error.style.color = 'red'
       error.innerHTML = 'Password not match'
     }
   } else {
-    document.getElementById('btnSubmit').disabled = false;
     var error = document.getElementById('error');
     error.style.color = 'red'
     error.innerHTML = 'All fields must not be empty.'
@@ -455,14 +450,13 @@ function updateProfile() {
   var state = document.getElementById('state').value;
   var zipcode = document.getElementById('zipcode').value;
   var phoneNumber = document.getElementById('phoneNumber').value;
-  if (firstName && lastName && email && address && phoneNumber) {
+  if (firstName && lastName && email && phoneNumber) {
     $.ajax({
       type: "POST",
       url: "/users/profile/updateprofile",
       data: { firstName, lastName, email, address, zipcode, city, state, streetAddress, country, phoneNumber },
       success: function (res) {
         if (res.error) {
-          document.getElementById('btnSubmit').disabled = false;
           var error = document.getElementById('error');
           error.style.color = 'red'
           error.innerHTML = res.error
@@ -473,10 +467,9 @@ function updateProfile() {
       }
     });
   } else {
-    document.getElementById('btnSubmit').disabled = false;
     var error = document.getElementById('error');
     error.style.color = 'red'
-    error.innerHTML = 'firstname, lastname, email, phone number, address must not be empty.'
+    error.innerHTML = 'firstname, lastname, email, phone number must not be empty.'
   }
 }
 
@@ -491,14 +484,13 @@ function updateAdminProfile() {
   var state = document.getElementById('state').value;
   var zipcode = document.getElementById('zipcode').value;
   var phoneNumber = document.getElementById('phoneNumber').value;
-  if (firstName && lastName && email && address && phoneNumber) {
+  if (firstName && lastName && email && phoneNumber) {
     $.ajax({
       type: "POST",
       url: "/admin/profile/updateprofile",
       data: { firstName, lastName, email, address, zipcode, city, state, streetAddress, country, phoneNumber },
       success: function (res) {
         if (res.error) {
-          document.getElementById('btnSubmit').disabled = false;
           var error = document.getElementById('error');
           error.style.color = 'red'
           error.innerHTML = res.error
@@ -509,9 +501,8 @@ function updateAdminProfile() {
       }
     });
   } else {
-    document.getElementById('btnSubmit').disabled = false;
     var error = document.getElementById('error');
     error.style.color = 'red'
-    error.innerHTML = 'firstname, lastname, email, phone number, address must not be empty.'
+    error.innerHTML = 'firstname, lastname, email, phone number must not be empty.'
   }
 }

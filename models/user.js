@@ -17,6 +17,7 @@ const UserSchema = Schema({
   password: { type: String, min: 6, max: 50 },
   role: { type: String },
   token: { type: String },
+  createdAt: { type: String },
   photoId: { type: mongoose.Schema.ObjectId, ref: 'Photo' }
 })
 
