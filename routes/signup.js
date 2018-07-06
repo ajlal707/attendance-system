@@ -24,7 +24,8 @@ router.post('/signup', (req, res, next) => {
         city: city,
         state: state,
         zipcode: zipcode,
-        role: 'user'
+        role: 'user',
+        createdAt:new Date().toISOString()
       }, (err, user) => {
         if (err) return res.json({ error: err })
 
