@@ -441,6 +441,7 @@ function resetPassword() {
 }
 
 function updateProfile() {
+  document.getElementById('error').value = '';
   var firstName = document.getElementById('firstName').value;
   var lastName = document.getElementById('lastName').value;
   var email = document.getElementById('email').value;
@@ -481,6 +482,7 @@ function updateProfile() {
 }
 
 function updateAdminProfile() {
+  document.getElementById('error').value = '';
   var firstName = document.getElementById('firstName').value;
   var lastName = document.getElementById('lastName').value;
   var email = document.getElementById('email').value;
