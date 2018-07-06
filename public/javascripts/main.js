@@ -396,6 +396,7 @@ function forgotpassword() {
   }
 }
 
+
 // RESET PASSWORD FUNCTION
 
 function resetPassword() {
@@ -440,6 +441,7 @@ function resetPassword() {
 }
 
 function updateProfile() {
+  document.getElementById('error').value = '';
   var firstName = document.getElementById('firstName').value;
   var lastName = document.getElementById('lastName').value;
   var email = document.getElementById('email').value;
@@ -451,21 +453,27 @@ function updateProfile() {
   var zipcode = document.getElementById('zipcode').value;
   var phoneNumber = document.getElementById('phoneNumber').value;
   if (firstName && lastName && email && phoneNumber) {
-    $.ajax({
-      type: "POST",
-      url: "/users/profile/updateprofile",
-      data: { firstName, lastName, email, address, zipcode, city, state, streetAddress, country, phoneNumber },
-      success: function (res) {
-        if (res.error) {
-          var error = document.getElementById('error');
-          error.style.color = 'red'
-          error.innerHTML = res.error
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      $.ajax({
+        type: "POST",
+        url: "/users/profile/updateprofile",
+        data: { firstName, lastName, email, address, zipcode, city, state, streetAddress, country, phoneNumber },
+        success: function (res) {
+          if (res.error) {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = res.error
 
-        } else if (res.success) {
-          window.location.href = '/users/profile';
+          } else if (res.success) {
+            window.location.href = '/users/profile';
+          }
         }
-      }
-    });
+      });
+    } else {
+      var error = document.getElementById('error');
+      error.style.color = 'red'
+      error.innerHTML = 'Invalid email'
+    }
   } else {
     var error = document.getElementById('error');
     error.style.color = 'red'
@@ -474,6 +482,7 @@ function updateProfile() {
 }
 
 function updateAdminProfile() {
+  document.getElementById('error').value = '';
   var firstName = document.getElementById('firstName').value;
   var lastName = document.getElementById('lastName').value;
   var email = document.getElementById('email').value;
@@ -485,21 +494,27 @@ function updateAdminProfile() {
   var zipcode = document.getElementById('zipcode').value;
   var phoneNumber = document.getElementById('phoneNumber').value;
   if (firstName && lastName && email && phoneNumber) {
-    $.ajax({
-      type: "POST",
-      url: "/admin/profile/updateprofile",
-      data: { firstName, lastName, email, address, zipcode, city, state, streetAddress, country, phoneNumber },
-      success: function (res) {
-        if (res.error) {
-          var error = document.getElementById('error');
-          error.style.color = 'red'
-          error.innerHTML = res.error
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      $.ajax({
+        type: "POST",
+        url: "/admin/profile/updateprofile",
+        data: { firstName, lastName, email, address, zipcode, city, state, streetAddress, country, phoneNumber },
+        success: function (res) {
+          if (res.error) {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = res.error
 
-        } else if (res.success) {
-          window.location.href = '/admin/profile';
+          } else if (res.success) {
+            window.location.href = '/admin/profile';
+          }
         }
-      }
-    });
+      });
+    } else {
+      var error = document.getElementById('error');
+      error.style.color = 'red'
+      error.innerHTML = 'Invalid email'
+    }
   } else {
     var error = document.getElementById('error');
     error.style.color = 'red'

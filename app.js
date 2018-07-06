@@ -10,9 +10,13 @@ const passport = require('passport')
 const mongoStore = require('connect-mongo')(session)
 const flash = require('connect-flash')
 
+//base routes
 var indexRouter = require('./routes/index')
 var signupRouter = require('./routes/signup')
+var forgotpasswordRouter = require('./routes/forgotpassword')
+var resetpasswordRouter = require('./routes/resetpassword')
 
+//admin routes
 var adminDashboardRouter = require('./routes/admin/dashboard')
 var adminProfileDashboardRouter = require('./routes/admin/profile')
 var adminWinnerListDashboardRouter = require('./routes/admin/winnerList')
@@ -29,6 +33,7 @@ var adminloadBulkDashboardRouter = require('./routes/admin/loadBulk')
 var admincreateGameDashboardRouter = require('./routes/admin/createGame')
 
 
+// users routes
 var usersDashboardRouter = require('./routes/users/dashboard')
 var profileDashboardRouter = require('./routes/users/profile')
 var enterTriveDashboardRouter = require('./routes/users/enterTrive')
@@ -36,8 +41,7 @@ var gameResultDashboardRouter = require('./routes/users/gameResult')
 var supportDashboardRouter = require('./routes/users/support')
 
 
-var forgotpasswordRouter = require('./routes/forgotpassword')
-var resetpasswordRouter = require('./routes/resetpassword')
+
 
 var app = express()
 
