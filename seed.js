@@ -16,7 +16,7 @@ var data = {
     email: 'akkastest@gmail.com',
     password: '123456',
     role: 'admin',
-    createdAt:new Date().toISOString()
+    createdAt:new Date()
 }
 
 User.create(data)
