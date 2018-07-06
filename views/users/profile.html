@@ -84,7 +84,7 @@
           </div>
           <div class="wp-userimgholder wp-themedropdown dropdown">
             <button class="wp-btndropdown" id="wp-usermenu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="../../images/user-img.jpg" alt="image description">
+							<img src="<%= undefined === user || undefined === user.photoId ? '../../images/user-img.jpg' : `/uploads/${user.photoId.fileName}` %>">
             </button>
             <ul class="dropdown-menu wp-dropdownmenu" aria-labelledby="wp-usermenu">
               <li>
