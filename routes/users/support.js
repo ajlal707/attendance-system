@@ -11,7 +11,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
         .exec(function (err, user) {
             if (err) { return next(err) }
 
-            res.render('users/support', { title: 'Winnipitty', user })
+            res.render('users/support', { title: 'Support', user })
         })
 })
 

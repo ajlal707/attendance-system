@@ -17,7 +17,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
       var sinceDate = user.createdAt;
       sinceDate = sinceDate.split(' ')
       var joinUserDate = sinceDate[1] + ',' + sinceDate[2] + ',' + sinceDate[3]
-      res.render('users/profile', { title: 'Winnipitty', user ,joinUserDate})
+      res.render('users/profile', { title: 'User-Profile', user ,joinUserDate})
     })
 })
 

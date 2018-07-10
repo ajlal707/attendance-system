@@ -521,3 +521,30 @@ function updateAdminProfile() {
     error.innerHTML = 'firstname, lastname, email, phone number must not be empty.'
   }
 }
+// upload image admin
+// function uploadImage() {
+//   document.getElementById('error').value = '';
+//   var imageFile = document.getElementById('image-file').value;
+//   if (imageFile) {
+//       $.ajax({
+//         type: "POST",
+//         url: "/admin/profile/uploadImage",
+//         data: { imageFile },
+//         success: function (res) {
+//           if (res.error) {
+//             var error = document.getElementById('error');
+//             error.style.color = 'red'
+//             error.innerHTML = res.error
+
+//           } else if (res.success) {
+//             window.location.href = '/admin/profile';
+//           }
+//         }
+//       });
+  
+//   } else {
+//     var error = document.getElementById('error');
+//     error.style.color = 'red'
+//     error.innerHTML = 'first select image then upload.'
+//   }
+// }

@@ -5,7 +5,7 @@ const User = require('../models/user')
 const jwt = require('../config/jwt')
 
 router.get('/', function (req, res) {
-  res.render('index', { title: 'winnipitty - Login' })
+  res.render('index', { title: 'winippity-Login' })
 })
 
 router.post('/userLogin', function (req, res, next) {

@@ -9,7 +9,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
     .exec(function (err, user) {
       if (err) { return next(err) }
 
-      res.render('admin/createGame', { title: 'Winnipitty - createGame', user })
+      res.render('admin/createGame', { title: 'Create-Game', user })
     })
 });
 router.get('/logout', function (req, res) {
