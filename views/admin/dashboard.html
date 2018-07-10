@@ -36,7 +36,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BootStrap HTML5 CSS3 Theme</title>
+	<title><%= title%></title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -147,7 +147,7 @@
 					</div>
 					<nav id="wp-dashboardnav" class="wp-dashboardnav">
 						<ul>
-							<li class="wp-active"><a href="index.html"><i class="fa fa-tachometer"></i><span>home</span></a></li>
+							<li class="wp-active"><a href="javascript:(0);"><i class="fa fa-tachometer"></i><span>home</span></a></li>
 							<li class="menu-item-has-children">
 								<a href="javascript:(0);"><i class="fa fa-gamepad "></i><span>latest winners</span></a>
 								<ul class="sub-menu">
@@ -245,7 +245,7 @@
 			</div>
 			<div class="wp-dbsectionspace wp-haslayout">
 				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
+					<!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
 						<div class="wp-dbbox wp-gamesstatistics">
 							<div class="wp-dbboxtittle">
 								<h3>Game Statistics</h3>
@@ -280,7 +280,6 @@
 										</div>
 									</div>
 									<div role="tabpanel" class="tab-pane fade" id="monthly">
-										<!-- <div role="tabpanel" class="tab-pane fade in active" id="weekly1"> -->
 											<ul class="wp-gamestatstabs" role="tablist">
 												<li role="presentation" class="active"><a onclick="initGraph('high1-canvas')" href="#high1" aria-controls="high1" role="tab" data-toggle="tab">High 2 Low</a></li>
 												<li role="presentation"><a onclick="initGraph('pricing1-canvas')" href="#pricing1" aria-controls="pricing1" role="tab" data-toggle="tab">Pricing Game</a></li>
@@ -301,10 +300,8 @@
 													<canvas id="tagsale1-canvas" class="chart" height="417"></canvas>
 												</div>
 											</div>
-										<!-- </div> -->
 									</div>
 									<div role="tabpanel" class="tab-pane fade" id="yearly">
-										<!-- <div role="tabpanel" class="tab-pane fade in active" id="weekly2"> -->
 											<ul class="wp-gamestatstabs" role="tablist">
 												<li role="presentation" class="active"><a href="#high2" aria-controls="high2" role="tab" data-toggle="tab">High 2 Low</a></li>
 												<li role="presentation"><a onclick="initGraph('pricing2-canvas')" href="#pricing2" aria-controls="pricing2" role="tab" data-toggle="tab">Pricing Game</a></li>
@@ -325,16 +322,16 @@
 													<canvas id="tagsale2-canvas" class="chart" height="417"></canvas>
 												</div>
 											</div>
-										<!-- </div> -->
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
+					</div> -->
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div class="wp-dbbox">
 							<div class="wp-dbboxtittle">
 								<h3>Top 10 Player States</h3>
+
 							</div>
 							<div class="wp-dbboxcontent">
 								<table class="table wp-playerstatestable">

@@ -9,7 +9,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
     .exec(function (err, user) {
       if (err) { return next(err) }
 
-      res.render('users/dashboard', { title: 'Winnipitty - Dashboard', user })
+      res.render('users/dashboard', { title: 'User-Dashboard', user })
     })
 });
 router.get('/logout', function (req, res) {

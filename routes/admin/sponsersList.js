@@ -9,7 +9,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
     .exec(function (err, user) {
       if (err) { return next(err) }
 
-      res.render('admin/sponsersList', { title: 'Winnipitty - Dashboard', user })
+      res.render('admin/sponsersList', { title: 'Sponser-List', user })
     })
 });
 router.get('/logout', function (req, res) {

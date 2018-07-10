@@ -6,7 +6,7 @@ const User = require('../models/user')
 
 router.get('/:token', function (req, res, next) {
   var token = req.params.token;
-  res.render('resetpassword', { title: 'winnipitty', token: token })
+  res.render('resetpassword', { title: 'Reset-Password', token: token })
 })
 
 router.post('/resetpassword', function (req, res, next) {

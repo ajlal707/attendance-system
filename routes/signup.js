@@ -3,7 +3,7 @@ var router = express.Router()
 var User = require('../models/user')
 
 router.get('/', function (req, res, next) {
-  res.render('signup', { title: 'winnipitty - signup' })
+  res.render('signup', { title: 'winippity-signup' })
 })
 
 router.post('/signup', (req, res, next) => {
@@ -24,6 +24,7 @@ router.post('/signup', (req, res, next) => {
         city: city,
         state: state,
         zipcode: zipcode,
+        status: 'Not Used',
         role: 'user',
         createdAt:new Date()
       }, (err, user) => {

@@ -6,7 +6,7 @@ const User = require('../models/user')
 var router = express.Router()
 
 router.get('/', function (req, res, next) {
-  res.render('forgotpassword', { title: 'Khalis Group - Reset Password' })
+  res.render('forgotpassword', { title: 'Forgot-Password' })
 })
 
 router.post('/forgetPassword', function (req, res, next) {

@@ -17,7 +17,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
             var sinceDate = user.createdAt;
             sinceDate = sinceDate.split(' ')
             var joinUserDate = sinceDate[1] + ',' + sinceDate[2] + ',' + sinceDate[3]
-            res.render('admin/profile', { title: 'Winnipitty', user, joinUserDate })
+            res.render('admin/profile', { title: 'Admin-Profile', user, joinUserDate })
         })
 })
 
@@ -104,7 +104,7 @@ router.post('/updateprofile', ensureAuthenticated, (req, res, next) => {
 
         if (!user) return res.json({ error: 'Something happend bad please try again.' })
 
-        user.firstName = firstName,
+            user.firstName = firstName,
             user.lastName = lastName,
             user.address = address,
             user.city = city,

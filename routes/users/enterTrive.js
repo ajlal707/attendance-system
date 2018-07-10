@@ -13,7 +13,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
     .exec(function (err, user) {
       if (err) { return next(err) }
 
-      res.render('users/enterTrive', { title: 'Winnipitty', user })
+      res.render('users/enterTrive', { title: 'Enter-Trive', user })
     })
 })
 
