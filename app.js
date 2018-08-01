@@ -12,8 +12,7 @@ const flash = require('connect-flash')
 
 //base routes
 var indexRouter = require('./routes/index')
-var forgotpasswordRouter = require('./routes/forgotpassword')
-var resetpasswordRouter = require('./routes/resetpassword')
+var resetpasswordRouter = require('./routes/changePassword')
 var profileRouter = require('./routes/profile')
 var dashboardRouter = require('./routes/dashboard')
 
@@ -79,8 +78,7 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
-app.use('/forgotpassword', forgotpasswordRouter)
-app.use('/resetpassword', resetpasswordRouter)
+app.use('/changePassword', resetpasswordRouter)
 app.use('/profile', profileRouter)
 app.use('/dashboard', dashboardRouter)
 

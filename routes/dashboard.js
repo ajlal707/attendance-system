@@ -1,9 +1,10 @@
 var express = require('express')
 const User = require('../models/user')
+const ensureAuthenticated = require('../config/authUser')
 
 var router = express.Router()
 
-router.get('/', function (req, res, next) {
+router.get('/',ensureAuthenticated, function (req, res, next) {
 
   User.findOne({ role: 'admin' }, (err, user) => {
 

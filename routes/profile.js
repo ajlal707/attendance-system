@@ -48,7 +48,7 @@ router.post('/uploadImage', ensureAuthenticated, (req, res, next) => {
                                     if (err)
                                         return res.status(500).json(err)
 
-                                    res.redirect('/admin/profile')
+                                    res.redirect('/profile')
                                 })
                             })
                         } else {
@@ -70,7 +70,7 @@ router.post('/uploadImage', ensureAuthenticated, (req, res, next) => {
                                         user.save(function (err) {
                                             if (err) return res.json({ error: 'something happend bad' })
 
-                                            res.redirect('/admin/profile')
+                                            res.redirect('/profile')
                                         })
                                     })
                                 }
@@ -95,27 +95,19 @@ router.post('/uploadImage', ensureAuthenticated, (req, res, next) => {
 
 router.post('/updateprofile', ensureAuthenticated, (req, res, next) => {
 
-    let { firstName, lastName, email, address, city, state, country, zipcode, streetAddress, phoneNumber } = req.body
+    let { username, email } = req.body
     User.findOne({ _id: req.user._id }, (err, user) => {
         if (err) return res.json({ error: err })
 
         if (!user) return res.json({ error: 'Something happend bad please try again.' })
 
-        user.firstName = firstName,
-            user.lastName = lastName,
-            user.address = address,
-            user.city = city,
-            user.state = state,
-            user.country = country,
-            user.zipcode = zipcode,
+            user.username = username,
             user.email = email,
-            user.streetAddress = streetAddress,
-            user.phoneNumber = phoneNumber
-        user.save((err) => {
-            if (err) return res.json({ error: err })
+            user.save((err) => {
+                if (err) return res.json({ error: err })
 
-            return res.json({ success: 'success.' })
-        })
+                return res.json({ success: 'success.' })
+            })
     })
 })
 router.get('/logout', function (req, res) {
