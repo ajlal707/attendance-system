@@ -27,7 +27,7 @@ router.post('/forgetPassword', function (req, res, next) {
                 Otherwise you can reset your password using the link below.</p>
                 <p>Thanks</p><p>Winnipitty</p><div style="text-align: center">
                 <a style="color: white; text-decoration: underline; background: #d18e54; width: 250px; display: block; margin: auto; line-height: 25px; text-decoration: none; border-radius: 3px;"
-                 href="http://18.219.229.227:3000/resetpassword/${user.token}">Click here to reset your password.</a></div>`
+                 href="localhost:3000/resetpassword/${user.token}">Click here to reset your password.</a></div>`
       };
       var transporter = nodemailer.createTransport({
         service: MailENV.smtp.service,

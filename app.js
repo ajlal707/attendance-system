@@ -12,33 +12,10 @@ const flash = require('connect-flash')
 
 //base routes
 var indexRouter = require('./routes/index')
-var signupRouter = require('./routes/signup')
 var forgotpasswordRouter = require('./routes/forgotpassword')
 var resetpasswordRouter = require('./routes/resetpassword')
-
-//admin routes
-var adminDashboardRouter = require('./routes/admin/dashboard')
-var adminProfileDashboardRouter = require('./routes/admin/profile')
-var adminWinnerListDashboardRouter = require('./routes/admin/winnerList')
-var adminAddwinnerDashboardRouter = require('./routes/admin/addWinner')
-var adminfeaturedGamesDashboardRouter = require('./routes/admin/featuredGames')
-var adminpopularGamesDashboardRouter = require('./routes/admin/popularGames')
-var adminusersListDashboardRouter = require('./routes/admin/usersList')
-var adminaddUserDashboardRouter = require('./routes/admin/addUser')
-var adminsponsersListDashboardRouter = require('./routes/admin/sponsersList')
-var adminaddSponserDashboardRouter = require('./routes/admin/addSponser')
-var adminquestionsDashboardRouter = require('./routes/admin/questions')
-var adminaddQuestionDashboardRouter = require('./routes/admin/addQuestion')
-var adminloadBulkDashboardRouter = require('./routes/admin/loadBulk')
-var admincreateGameDashboardRouter = require('./routes/admin/createGame')
-
-
-// users routes
-var usersDashboardRouter = require('./routes/users/dashboard')
-var profileDashboardRouter = require('./routes/users/profile')
-var enterTriveDashboardRouter = require('./routes/users/enterTrive')
-var gameResultDashboardRouter = require('./routes/users/gameResult')
-var supportDashboardRouter = require('./routes/users/support')
+var profileRouter = require('./routes/profile')
+var dashboardRouter = require('./routes/dashboard')
 
 
 
@@ -67,8 +44,8 @@ app.use(function (req, res, next) {
 
 
 //mongo connection
-// mongoose.connect('mongodb://127.0.0.1:27017/winnipitty')
-mongoose.connect('mongodb://maxifjaved:maxifjaved@127.0.0.1:27017/winnipitty?authSource=admin')
+mongoose.connect('mongodb://127.0.0.1:27017/carsOnline')
+// mongoose.connect('mongodb://maxifjaved:maxifjaved@127.0.0.1:27017/winnipitty?authSource=admin')
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function () {
@@ -102,30 +79,10 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
-app.use('/signup', signupRouter)
-app.use('/admin/dashboard', adminDashboardRouter)
-app.use('/admin/profile', adminProfileDashboardRouter)
-app.use('/admin/winnerList', adminWinnerListDashboardRouter)
-app.use('/admin/addWinner', adminAddwinnerDashboardRouter)
-app.use('/admin/featuredGames', adminfeaturedGamesDashboardRouter)
-app.use('/admin/popularGames', adminpopularGamesDashboardRouter)
-app.use('/admin/usersList', adminusersListDashboardRouter)
-app.use('/admin/addUser', adminaddUserDashboardRouter)
-app.use('/admin/sponsersList', adminsponsersListDashboardRouter)
-app.use('/admin/addSponser', adminaddSponserDashboardRouter)
-app.use('/admin/questions', adminquestionsDashboardRouter)
-app.use('/admin/addQuestion', adminaddQuestionDashboardRouter)
-app.use('/admin/loadBulk', adminloadBulkDashboardRouter)
-app.use('/admin/createGame', admincreateGameDashboardRouter)
-
-app.use('/users/dashboard', usersDashboardRouter)
-app.use('/users/profile', profileDashboardRouter)
-app.use('/users/enterTrive', enterTriveDashboardRouter)
-app.use('/users/gameResult', gameResultDashboardRouter)
-app.use('/users/support', supportDashboardRouter)
-
 app.use('/forgotpassword', forgotpasswordRouter)
 app.use('/resetpassword', resetpasswordRouter)
+app.use('/profile', profileRouter)
+app.use('/dashboard', dashboardRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

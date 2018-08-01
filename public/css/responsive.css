@@ -1,0 +1,94 @@
+
+@media (max-width:1200px){
+		.modalone .modal-dialog{width: 100%;}
+		.video-box{padding: 175px 0 0;}
+}
+@media (min-width:1024px){
+		.page-wrapper{margin-left:240px}
+		.footer{left:240px}
+		}
+@media (max-width:1199px){
+		.titel h2{font-size: 45px;}
+		.text-box h3{font-size: 30px;}
+	}
+@media (max-width:1023px){
+		.page-wrapper{margin-left:60px;transition:0.2s ease-in}
+		.footer{left:60px}
+		.widget-app-columns{-webkit-column-count:1;-moz-column-count:1;column-count:1}
+		.inbox-center a{width:200px}
+		.template-area{width:32%;}
+		}
+
+@media (min-width: 992px){
+	.modal-lg {max-width: 850px!important;}
+}
+
+@media (min-width:768px){
+	.navbar-header{width:240px;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}
+	.navbar-header .navbar-brand{padding-top:0px}
+	.page-titles .breadcrumb{float:right}
+	.card-group .card:first-child,.card-group .card:not(:first-child):not(:last-child){border-right:1px solid rgba(0, 0, 0, 0.03)}
+	.material-icon-list-demo .icons div{width:33%;padding:15px;display:inline-block;line-height:40px}
+	.mini-sidebar .page-wrapper{margin-left:60px}
+	.mini-sidebar .footer{left:60px}
+	.flex-wrap{-ms-flex-wrap:nowrap!important;flex-wrap:nowrap!important;-webkit-flex-wrap:nowrap!important}
+	}
+
+
+@media (max-width:767px){
+	.topbar{position:fixed;width:100%}
+	.topbar .top-navbar{padding-right:15px;-webkit-box-orient:horizontal;
+	-webkit-box-direction:normal;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-flex-wrap:nowrap;-ms-flex-wrap:nowrap;
+	flex-wrap:nowrap;-webkit-align-items:center}
+	.topbar .top-navbar .navbar-collapse{display:-webkit-flex;display:-ms-flexbox;display:flex;width:100%}
+	.topbar .top-navbar .navbar-nav{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row}
+	.topbar .top-navbar .navbar-nav>.nav-item.show{position:static}
+	.topbar .top-navbar .navbar-nav>.nav-item.show .dropdown-menu{width:100%;margin-top:0px}
+	.topbar .top-navbar .navbar-nav>.nav-item>.nav-link{padding-left:.50rem;padding-right:.50rem}
+	.topbar .top-navbar .navbar-nav .dropdown-menu{position:absolute}
+	.mega-dropdown .dropdown-menu{height:480px;overflow:auto}
+	.mini-sidebar .page-wrapper{margin-left:0px;padding-top:60px}
+	.comment-text .comment-footer .action-icons{display:block;padding:10px 0}
+	.vtabs .tabs-vertical{width:auto}.footer{left:0px}
+	.material-icon-list-demo .icons div{width:100%}
+	.error-page .footer{position:fixed;bottom:0px;z-index:10}
+	.error-box{position:relative;padding-bottom:60px}
+	.error-body{padding-top:10%}
+	.error-body h1{font-size:100px;font-weight:600;line-height:100px}
+	.login-register{position:relative;overflow:hidden}
+	.login-box{width:90%}
+	.login-sidebar{padding:10% 0}
+	.login-sidebar .login-box{position:relative}
+	.chat-main-box .chat-left-aside{left:-250px;position:absolute;transition:0.5s ease-in;background:#ffffff}
+	.chat-main-box .chat-left-aside.open-pnl{left:0px}
+	.chat-main-box .chat-left-aside .open-panel{display:block}
+	.chat-main-box .chat-right-aside{width:100%}
+	ul.timeline:before{left:40px}
+	ul.timeline>li>.timeline-panel{width:calc(100% - 90px)}
+	ul.timeline>li>.timeline-badge{top:16px;left:15px;margin-left:0}
+	ul.timeline>li>.timeline-panel{float:right}
+	ul.timeline>li>.timeline-panel:before{right:auto;left:-15px;border-right-width:15px;border-left-width:0}
+	ul.timeline>li>.timeline-panel:after{right:auto;left:-14px;border-right-width:14px;border-left-width:0}
+	.left-aside{width:100%;position:relative;border:0px}
+	.right-aside{margin-left:0px}
+	.flex-wrap{-ms-flex-wrap:wrap!important;flex-wrap:wrap!important;-webkit-flex-wrap:wrap!important}
+	.chat-list li .chat-content{width:calc(100% - 80px)}
+	.template-area{width: 47%;}
+	.video-box{padding: 0;}
+	.nxtbtn{
+		-moz-transform: rotate(90deg);
+		-webkit-transform: rotate(90deg);
+		-o-transform: rotate(90deg);
+		-ms-transform: rotate(90deg);
+		transform: rotate(90deg);
+	}
+	.modalone .modal-dialog{margin: 0;}
+}
+@media (max-width:567px){
+	.nxtbtn{top: 60%;}
+}
+@media (max-width:479px){
+	.nxtbtn{display: none;}
+	.titel h2 {font-size: 30px;}
+	.text-box h3 {font-size: 23px;}
+}
