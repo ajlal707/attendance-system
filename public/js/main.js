@@ -49,22 +49,17 @@ function matchPassword() {
 
 function addUser() {
     document.getElementById('error').value = '';
-    var firstName = document.getElementById('firstName').value;
-    var lastName = document.getElementById('lastName').value;
     var username = document.getElementById('username').value;
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
-    var confirmPassword = document.getElementById('confirmPassword').value;
-    var city = document.getElementById('city').value;
-    var state = document.getElementById('state').value;
-    var zipcode = document.getElementById('zipcode').value;
-    if (password === confirmPassword) {
-        if (firstName && lastName && email && password && username && city && state && zipcode) {
+    if (password.length > 5) {
+
+        if (email && password && username) {
             if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
                 $.ajax({
                     type: "POST",
-                    url: "/signup/signup",
-                    data: { firstName, lastName, username, email, password, city, state, zipcode },
+                    url: "/addUser/addNewUser",
+                    data: { username, email, password },
                     success: function (res) {
                         if (res.error) {
                             var error = document.getElementById('error');
@@ -72,7 +67,7 @@ function addUser() {
                             error.innerHTML = res.error
 
                         } else if (res.success) {
-                            window.location.href = '/';
+                            window.location.href = '/addUser';
                         }
                     }
                 });
@@ -86,13 +81,11 @@ function addUser() {
             error.style.color = 'red'
             error.innerHTML = 'Fix the missing fields.'
         }
-
     } else {
         var error = document.getElementById('error');
         error.style.color = 'red'
-        error.innerHTML = ' cant signup password not match.'
+        error.innerHTML = 'Password length grater then 5.'
     }
-
 }
 //end signup user
 

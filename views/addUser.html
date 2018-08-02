@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.png">
-    <title>Profile</title>
+    <title>Add User</title>
     <!-- Bootstrap Core CSS -->
     <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -41,14 +41,13 @@
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
-
         <header class="topbar">
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
                 <!-- ============================================================== -->
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/dashboard">
+                    <a class="navbar-brand" href="/dashboard/dashboard">
                         <b>
                             <!-- Light Logo icon -->
                             <img src="img/logo-light-icon.png" alt="homepage" class="light-logo" />
@@ -81,7 +80,7 @@
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right scale-up">
                                 <ul class="dropdown-user">
-                                    <li><a href="javascript:void(0)"><i class="ti-user"></i> My Profile</a></li>
+                                    <li><a href="/profile"><i class="ti-user"></i> My Profile</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="/logout"><i class="fa fa-power-off"></i> Logout</a></li>
                                 </ul>
@@ -107,8 +106,8 @@
                     </div>
                     <!-- User profile text-->
                     <div class="profile-text">
-                        <h5><%= user.username %></h5>
-                        <a href="javascript:void(0)" class="" data-toggle="tooltip" title="Profile"><i class="ti-user"></i></a>
+                        <h5>Markarn Doe</h5>
+                        <a href="/profile" class="" data-toggle="tooltip" title="Profile"><i class="ti-user"></i></a>
                         <a href="/logout" class="" data-toggle="tooltip" title="Logout"><i class="ti-power-off"></i></a>
                     </div>
                 </div>
@@ -121,13 +120,13 @@
                         </a></li>
                         <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-people"></i><span class="hide-menu">Users</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="/addUser">Add User</a></li>
+                                <li><a class="active" href="javascript:void(0)">Add User</a></li>
                                 <li><a href="/viewAllUsers">View All Users</a></li>
                             </ul>
                         </li>
                         <li><a class="waves-effect waves-dark" href="/addText"><i class="ti-receipt"></i><span class="hide-menu">Add Text</span></a></li>
                         <li><a class="waves-effect waves-dark" href="/addImages"><i class="icon-picture"></i><span class="hide-menu">Add Images</span></a></li>
-                        <li><a class="waves-effect waves-dark" href="/addVideos"><i class="icon-film"></i><span class="hide-menu">Add Videos</span></a></li>
+                        <li><a class="waves-effect waves-dark" href="/addvideos"><i class="icon-film"></i><span class="hide-menu">Add Videos</span></a></li>
                         <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-grid"></i><span class="hide-menu">Ads</span>
                         </a>
                             <ul aria-expanded="false" class="collapse">
@@ -153,12 +152,13 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-themecolor">Profile</h3>
+                    <h3 class="text-themecolor">Add User</h3>
                 </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                        <li class="breadcrumb-item active">Profile</li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                        <li class="breadcrumb-item">Users</li>
+                        <li class="breadcrumb-item active">Add User</li>
                     </ol>
                 </div>
             </div>
@@ -172,65 +172,51 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <!-- Row -->
                 <div class="row">
-                    <!-- Column -->
-                    <div class="col-lg-4 col-xlg-3 col-md-5">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <center class="m-t-30"> 
-                                    <img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>" class="img-circle" width="150" /><br>
-                                <form enctype="multipart/form-data" action="/profile/uploadImage" method="post">
-                                    <input type="submit" class="btn btn-secondary btn-sm m-t-20 m-b-30" value="Change Image">
-                                    <input type="file" id="image-file" name="profilePhoto" accept="image/x-png,image/jpg,image/jpeg" single="single"  />
-                                </form>
-                                    <h4 class="card-title m-t-10"><%= user.username %></h4>
-                                </center>
+                                <div class="row">
+                                    <div class="col-sm-8 col-lg-6">
+                                        <!-- <form class="form p-t-20"> -->
+                                            <span id="error"></span>
+                                            <div class="form-group">
+                                                <label for="exampleInputuname">User Name</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                                    <input type="text" class="form-control" id="username">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">User Email</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="ti-email"></i></div>
+                                                    <input type="email" class="form-control" id="email">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pwd1">Password</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="ti-lock"></i></div>
+                                                    <input type="password" class="form-control" id="password">
+                                                </div>
+                                            </div>
+                                            <button onclick="addUser()" class="btn btn-success waves-effect waves-light m-t-30">ADD USER</button>
+                                        <!-- </form> -->
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Column -->
-                    <!-- Column -->
-                    <div class="col-lg-8 col-xlg-9 col-md-7">
-                        <div class="card">                               
-                            <div class="card-body">
-                                <span id="error"></span>
-                                <!-- <form class="form-horizontal form-material"> -->
-                                    <div class="form-group">
-                                        <label class="col-md-12">Full Name</label>
-                                        <div class="col-md-12">
-                                            <input type="text" id="username"  placeholder="" class="form-control form-control-line" value="<%= user.username %>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="example-email" class="col-md-12">Email</label>
-                                        <div class="col-md-12">
-                                            <input type="email" id="email" placeholder="" class="form-control form-control-line" name="example-email" value="<%= user.email %>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        
-                                        <div class="col-md-12 m-t-20">
-                                            <a class="font-14" href="/changePassword">CLICK HERE TO CHANGE YOUR PASSWORD</a>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <button class="btn btn-success" onclick="updateProfile()">Update Profile</button>
-                                        </div>
-                                    </div>
-                                <!-- </form> -->
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
                 </div>
                 <!-- Row -->
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
             </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
@@ -254,7 +240,6 @@
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="plugins/bootstrap/js/popper.min.js"></script>
-
     <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="js/jquery.slimscroll.js"></script>
@@ -267,12 +252,12 @@
     <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/main.js"></script>
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

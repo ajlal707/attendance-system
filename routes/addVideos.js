@@ -1,6 +1,5 @@
 var express = require('express')
 const User = require('../models/user')
-const Photo = require('../models/photo')
 const ensureAuthenticated = require('../config/authUser')
 
 var router = express.Router()
@@ -12,7 +11,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
     .exec(function (err, user) {
       if (err) { return next(err) }
 
-      res.render('dashboard', { title: 'Dashboard', user })
+      res.render('addVideos', { title: 'Add-Videos', user })
     })
 })
 
