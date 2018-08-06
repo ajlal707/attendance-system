@@ -11,7 +11,11 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
         .populate('photoId').exec(function (err, user) {
             if (err) { return next(err) }
 
-            res.render('viewAllUsers', { title: 'Dashboard', user })
+            User.find({ role: { $ne: 'admin' } }, (err, users) => {
+                if (err) { return next(err) }
+
+                res.render('viewAllUsers', { title: 'Dashboard', user, users })
+            })
         })
 })
 

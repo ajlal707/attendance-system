@@ -35,13 +35,7 @@ module.exports = function () {
 
         return done(null, false, { error: 'Invalid password.' })
       });
-      // if (user.password == password) {
-
-      //   req.session.welcome = 'true'
-      //   return done(null, user)
-      // } else {
-      //   return done(null, false, { error: 'Invalid password.' })
-      // }
+      
     })
   }))
 }

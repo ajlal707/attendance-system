@@ -160,4 +160,16 @@ function updateProfile() {
         error.innerHTML = 'username, email must not be empty.'
     }
 }
+// check if image uploader filled
 
+function checkInput() {
+    document.getElementById('error').value = '';
+    var imageUploader = document.getElementById('uploader').value;
+    if (imageUploader) {
+
+    } else {
+        var error = document.getElementById('error');
+        error.style.color = 'red'
+        error.innerHTML = 'Select image first'
+    }
+}

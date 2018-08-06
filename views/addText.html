@@ -106,7 +106,7 @@
                 <!-- User profile -->
                 <div class="user-profile">
                     <!-- User profile image -->
-                    <div class="profile-img"> <img src="img/users/1.jpg" alt="user" />                       
+                    <div class="profile-img"> <img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>" alt="user" />                       
                     </div>
                     <!-- User profile text-->
                     <div class="profile-text">
@@ -134,7 +134,7 @@
                         <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-grid"></i><span class="hide-menu">Ads</span>
                         </a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="/createAdds">Create Ads</a></li>
+                                <li><a href="/createAds">Create Ads</a></li>
                                 <li><a href="/viewAllAds">View All Ads</a></li>
                             </ul>
                         </li>

@@ -102,7 +102,7 @@
                 <!-- User profile -->
                 <div class="user-profile">
                     <!-- User profile image -->
-                    <div class="profile-img"> <img src="img/users/1.jpg" alt="user" />                       
+                    <div class="profile-img"> <img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>" alt="user" />                       
                     </div>
                     <!-- User profile text-->
                     <div class="profile-text">
@@ -182,109 +182,21 @@
                                             <tr>
                                                 <th>User Name</th>
                                                 <th>Email Address</th>
-                                                <th>Password</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-
+                                      <% if(users) {%>
+                                        <% users.forEach(function(i){ %>
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>tiger.nix@gmail.com</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
+                                                <td><%= i.username %></td>
+                                                <td><%= i.email %></td>
+                                                <td><%= i.action %></td>
                                             </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>tiger.nix@gmail.com</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>tiger.nix@gmail.com</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>tiger.nix@gmail.com</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>tiger.nix@gmail.com</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>tiger.nix@gmail.com</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>tiger.nix@gmail.com</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>tiger.nix@gmail.com</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>tiger.nix@gmail.com</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>tiger.nix@gmail.com</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>tiger.nix@gmail.com</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>tiger.nix@gmail.com</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>tiger.nix@gmail.com</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>tiger.nix@gmail.com</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>tiger.nix@gmail.com</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>tiger.nix@gmail.com</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                            </tr>
-                                            
+                                            <% }) %>
+                                            <%} else {%>
+                                            <% 'there is no record found' %>
+                                            <% } %>
                                         </tbody>
                                     </table>
                                 </div>
