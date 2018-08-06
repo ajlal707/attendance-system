@@ -1,146 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
 
-
-
- <!doctype html>
-<!--[if lt IE 7]>		<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>			<html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>			<html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!-->	<html class="no-js" lang=""> <!--<![endif]-->
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title><%= title%></title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="apple-touch-icon" href="apple-touch-icon.png">
-	<link rel="icon" href="favicon.png" type="image/x-icon">
-	<link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
-	<link rel="stylesheet" href="../stylesheets/normalize.css">
-	<link rel="stylesheet" href="../stylesheets/font-awesome.min.css">
-	<link rel="stylesheet" href="../stylesheets/icomoon.css">
-	<link rel="stylesheet" href="../stylesheets/scrollbar.css">
-    <link rel="stylesheet" href="../stylesheets/datatables.css">
-	<link rel="stylesheet" href="../stylesheets/transitions.css">
-	<link rel="stylesheet" href="../stylesheets/main.css">
-	<link rel="stylesheet" href="../stylesheets/color.css">
-	<link rel="stylesheet" href="../stylesheets/responsive.css">
-	<script src="../javascripts/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.png">
+    <title>Cars Online</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="css/colors/green-dark.css" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
-<body class="wp-loginpage">
-	<!--[if lt IE 8]>
-		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-	<![endif]-->
-	<!--************************************
-			Wrapper Start
-	*************************************-->
-	<div id="wp-wrapper" class="wp-wrapper">
-		<!--************************************
-				Main Start
-		*************************************-->
-		<main id="wp-main" class="wp-main wp-haslayout">
-			<div class="wp-loginarea">
-				<div class="container">
-					<div class="row no-gutters">
-						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-							<div class="wp-prizesarea">
-								<strong class="wp-logo">
-									<img src="images/user-dashboard/logob.png" alt="image description">
-								</strong>
-								<ul class="wp-totalprizeswins">
-									<li>
-										<div class="wp-states wp-statesgameswin">
-											<figure class="wp-gamepadimg"><img src="images/user-dashboard/gamepad-icon.png" alt="image description"></figure>
-											<span class="wp-totalgeamplay">346<em>Total games <em>played</em></em></span>
-										</div>
-									</li>
-									<li>
-										<div class="wp-states wp-totalprizeswon">
-											<figure class="wp-gamepadimg"><img src="images/user-dashboard/ribbon-icon.png" alt="image description"></figure>
-											<span class="wp-totalgeamplay">346<em>Total games <em>played</em></em></span>
-										</div>
-									</li>
-								</ul>
-								<figure class="wp-numberofprizes">
-									<img src="images/user-dashboard/surprise-box.png" alt="image description">
-									<figcaption><h3>100's<span>of prizes</span></h3></figcaption>
-								</figure>
-								<div class="wp-description">
-									<p><a href="/signup">create an account</a> to win <span>various prizes</span></p>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-							<div class="wp-welcomearea">
-								<h4>welcome</h4>
-								<span class="wp-cupicon"><img src="images/user-dashboard/cup-img.png" alt="image description"></span>
-								<div class="wp-formtheme wp-formlogin">
-										<fieldset>
-											<legend>Login to win!!</legend>
-											  <p id="error"></p>
-											   <div class="form-group">
-													<input type="email" id="email" name="email"  class="form-control" placeholder="Email">
-												</div>
-												<div class="form-group">
-													<input type="password" id="password" name="password" class="form-control" placeholder="password">
-												</div>
-												<div class="form-group">
-													<button onclick="userLogin()" class="wp-btn">login</button>
-												</div>
-											<div class="form-group wp-forgotpassword">
-													<a href="/forgotpassword">forgot password</a>
-											</div>
-										</fieldset>
-								</div>
-								<div class="wp-loginwithsocial">
-									<span>or login with:</span>
-									<ul class="wp-socialicons">
-										<form method="POST" action="/faceBookLogin">
-										  <button class="wp-facebook"><i class="fa fa-facebook"></i></button>
-										 </form>
-										 <form method="POST" action="/twitterLogin">
-										  <button class="wp-twitter"><i class="fa fa-twitter"></i></button>
-								      	</form>
-										<form method="POST" action="/googleLogin">
-										  <button class="wp-googleplus"><i class="fa fa-google-plus"></i></button>
-									    </form>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</main>
-		<!--************************************
-				Main End
-		*************************************-->
-		<!--************************************
-				Footer Start
-		*************************************-->
-		<footer id="wp-footer" class="wp-footer wp-haslayout">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<p class="wp-copyright">© 2018 Winippity</p>
-						
-					</div>
-				</div>
-			</div>
-		</footer>
-		<!--************************************
-				Footer End
-		*************************************-->
-	</div>
-	
-	<script src="../javascripts/vendor/jquery-library.js"></script>
-	<script src="../javascripts/vendor/bootstrap.min.js"></script>
-	<script src="js/tinymce/tinymce.min.js?apiKey=4cuu2crphif3fuls3yb1pe4qrun9pkq99vltezv2lv6sogci"></script>
-	<script src="../javascripts/scrollbar.min.js"></script>
-	<script src="../javascripts/datatables.js"></script>
-	<script src="../javascripts/chart.min.js"></script>
-	<script src="../javascripts/countto.js"></script>
-	<script src="../javascripts/appear.js"></script>
-	<script src="../javascripts/main.js"></script>
 
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <section id="wrapper">
+        <div class="login-register" style="background-image:url(img/login-car-bg.png);">
+            <div class="login-box card">
+                <div class="card-body">
+                    <div class="logo-text">
+                        <img src="img/carsonline-logo.png" alt="user" />
+                    </div>
+                    <!-- <form class="form-horizontal form-material" id="loginform" action="index.html"> -->
+                    <h3 class="box-title m-b-20">Login</h3>
+                    <span id="error"></span>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input class="form-control" id="email" type="email" required="" placeholder="Email"> </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input class="form-control" id="password"  type="password" required="" placeholder="Password"> </div>
+                    </div>
+                    <div class="form-group text-center m-t-30">
+                        <div class="col-xs-12">
+                            <button class="btn btn-success btn-lg btn-block text-uppercase waves-effect waves-light" onclick="userLogin()">Log In</button>
+                        </div>
+                    </div>
+                    <!-- </form> -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="plugins/bootstrap/js/popper.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="../js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="../js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!--Custom JavaScript -->
+    <script src="js/custom.min.js"></script>
+    <script src="../js/custom.js"></script>
+    <script src="../js/main.js"></script>
 </body>
+
 </html>
