@@ -193,3 +193,24 @@ function deleteImage() {
     });
 
 }
+
+//delete video
+function deleteVideo() {
+    var videoId = document.getElementById('videoId').value;
+    $.ajax({
+        type: "POST",
+        url: "/addVideos/deleteVideo",
+        data: { videoId },
+        success: function (res) {
+            if (res.error) {
+                var error = document.getElementById('error');
+                error.style.color = 'red'
+                error.innerHTML = res.error
+
+            } else if (res.success) {
+                window.location.href = '/addVideos';
+            }
+        }
+    });
+
+}

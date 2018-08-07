@@ -1,11 +1,28 @@
 var express = require('express')
 var multer = require('multer')
 var fs = require('fs')
+const crypto = require('crypto')
 const User = require('../models/user')
 const Attachments = require('../models/attachments')
 const ensureAuthenticated = require('../config/authUser')
 
 var router = express.Router()
+
+const DEFAULT_UPLOAD_PATH = './public/attachments/';
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, DEFAULT_UPLOAD_PATH);
+  },
+  filename: function (req, file, cb) {
+    let customFileName = crypto.randomBytes(18).toString('hex'),
+      originalname = file.originalname,
+      fileExtension = originalname.substring(originalname.lastIndexOf('.') + 1, originalname.length) || originalname;
+    cb(null, customFileName + '.' + fileExtension)
+  }
+})
+var upload = multer({ storage }).single('galleryImg')
+
 
 router.get('/', ensureAuthenticated, function (req, res, next) {
 
@@ -22,48 +39,38 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
     })
 })
 
-router.post('/uploadGalleryImg', ensureAuthenticated, (req, res, next) => {
-  var DIR = './public/attachments/'
-  var upload = multer({ dest: DIR }).single('galleryImg')
+router.post('/uploadGalleryImg', ensureAuthenticated, upload, (req, res, next) => {
 
-  var path = ''
-  upload(req, res, function (err) {
-    if (err) {
-      return res.status(500).json(err)
-    } else {
-      if (req.file) {
-        var extension = req.file.originalname.split('.').pop()
-        if (extension == 'jpeg' || extension == 'png' || extension == 'jpg') {
+  if (req.file) {
+    const { filename, mimetype, originalname, path } = req.file;
+    let ext = ['jpeg', 'png', 'jpg'];
 
-          //upload new photo
-          var newAttachments = new Attachments();
+    if (ext.some(s => req.file.mimetype.indexOf(s))) {
+      var newAttachments = new Attachments();
 
-          newAttachments.filePath = req.file.path;
-          newAttachments.fileType = req.file.originalname.split('.').pop()
-          newAttachments.fileName = req.file.filename;
-          // newAttachments.title = req.body.title;
+      newAttachments.filePath = path;
+      newAttachments.fileType = mimetype
+      newAttachments.fileName = filename
+      newAttachments.title = originalname
 
-          newAttachments.save(function (err) {
-            if (err) {
-              res.status(500).json(err)
-            } else {
-              return res.redirect('/addImages')
-            }
-          })
+      newAttachments.save(function (err) {
+        if (err) {
+          res.status(500).json(err)
         } else {
-          var pathToDelete = req.file.path;
-          fs.unlink(pathToDelete, (err) => {
-            if (err) {
-              return res.status(500).json(err)
-            }
-            return res.status(200).json({ message: "Please go back and provide a picture with valid extensions (.jpeg,.jpg,.png)" })
-          })
+          return res.redirect('/addImages')
         }
-      } else {
-        return res.json({ message: 'No file choose. choose a file' })
-      }
+      })
+
+    } else {
+      fs.unlink(path, (err) => {
+        if (err) return res.status(500).json(err)
+
+        return res.status(200).json({ message: "Please go back and provide a video with valid extensions (.jpeg,.jpg,.png)" })
+      })
     }
-  })
+  } else {
+      return res.status(500).json({ message: "Please go back and choose a file." })
+  }
 })
 router.post('/deleteImage', ensureAuthenticated, function (req, res) {
   var id = req.body.imageId
