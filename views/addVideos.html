@@ -180,12 +180,14 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Upload Video</h4>
-                                <form action="#" class="dropzone upload-box">
+                                <form enctype="multipart/form-data" action="/addVideos/uploadGalleryVideo" method="post">
                                     <div class="fallback">
-                                        <input name="file" type="file" multiple />
+                                        <input type="file" id="video-file" name="file" accept="video/x-mp4,video/flv,video/avi" single="single" />
                                     </div>
                                     <div class="save-btn">
-                                        <button type="submit" class="btn btn-success waves-effect waves-light m-t-30">SAVE VIDEO</button>
+                                        <!-- <button type="submit" class="btn btn-success waves-effect waves-light m-t-30">SAVE VIDEO</button>
+                                         -->
+                                         <input type="submit" class="btn btn-success waves-effect waves-light m-t-30" value="SAVE VIDEO">
                                     </div>
                                 </form>
                             </div>
@@ -196,44 +198,33 @@
                     <div class="col-md-12">
                         <h4 class="card-title">Gallery</h4>
                     </div>
-                    
+                    <% if(videos) {%>
+                        <% videos.forEach(function(i){ %>
                     
                     <div class="col-lg-3 col-md-6">
                         <div class="card">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1">
-                                    <video><source src="videos/mov_bbb.mp4" type="video/mp4"></video>
+                                    <video><source src="<%= `/attachmentVideos/${i.fileName}` %>" type="video/mp4"></video>
                                     <div class="el-overlay">
                                         <ul class="el-info">
-                                            <li><a class="btn default btn-outline html5lightbox" href="videos/mov_bbb.mp4"><i class="icon-control-play"></i></a></li>
-                                            <li><a class="btn default btn-outline danger" href="javascript:void(0);"><i class="ti-trash"></i></a></li>
+                                            <li><a class="btn default btn-outline html5lightbox" href="<%= `/attachmentVideos/${i.fileName}` %>"><i class="icon-control-play"></i></a></li>
+                                            <input type="hidden" value="<%= i._id%>" id="videoId">
+                                            <li><a class="btn default btn-outline danger" href="javascript:void(0);" onclick="deleteVideo()"><i class="ti-trash"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="el-card-content">
-                                    <small>Video title will come here</small>
+                                    <small><%= i.title%></small>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1">
-                                    <video><source src="videos/mov_bbb.mp4" type="video/mp4"></video>
-                                    <div class="el-overlay">
-                                        <ul class="el-info">
-                                            <li><a class="btn default btn-outline html5lightbox" href="videos/mov_bbb.mp4"><i class="icon-control-play"></i></a></li>
-                                            <li><a class="btn default btn-outline danger" href="javascript:void(0);"><i class="ti-trash"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="el-card-content">
-                                    <small>Video title will come here</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <% }) %>
+                    <%} else {%>
+                        <% 'there is no record found' %>
+                      
+                     <% } %>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
@@ -261,6 +252,8 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="plugins/html5lightbox/jquery.js"></script>
+    <script src="plugins/html5lightbox/html5lightbox.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="plugins/bootstrap/js/popper.min.js"></script>
 
@@ -286,8 +279,7 @@
     <!-- ============================================================== -->
     <script src="plugins/styleswitcher/jQuery.style.switcher.js"></script>
 
-    <script src="plugins/html5lightbox/jquery.js"></script>
-    <script src="plugins/html5lightbox/html5lightbox.js"></script>
+
     <script src="js/main.js"></script>
 </body>
 
