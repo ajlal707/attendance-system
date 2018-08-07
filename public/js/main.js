@@ -127,7 +127,7 @@ function resetPassword() {
         error.innerHTML = 'All fields must not be empty.'
     }
 }
-
+// update profile
 function updateProfile() {
     document.getElementById('error').value = '';
     var username = document.getElementById('username').value;
@@ -172,4 +172,24 @@ function checkInput() {
         error.style.color = 'red'
         error.innerHTML = 'Select image first'
     }
+}
+// delete image 
+function deleteImage() {
+    var imageId = document.getElementById('imgId').value;
+    $.ajax({
+        type: "POST",
+        url: "/addImages/deleteImage",
+        data: { imageId },
+        success: function (res) {
+            if (res.error) {
+                var error = document.getElementById('error');
+                error.style.color = 'red'
+                error.innerHTML = res.error
+
+            } else if (res.success) {
+                window.location.href = '/addImages';
+            }
+        }
+    });
+
 }

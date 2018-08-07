@@ -209,8 +209,9 @@
                                 <div class="el-card-avatar el-overlay-1"><img src="<%= `/attachments/${i.fileName}` %>" alt="user" />
                                     <div class="el-overlay">
                                         <ul class="el-info">
-                                            <li><a class="btn default btn-outline image-popup-vertical-fit" href="img/gallery/img1.jpg"><i class="icon-magnifier"></i></a></li>
-                                            <li><a class="btn default btn-outline danger" href="javascript:void(0);"><i class="ti-trash"></i></a></li>
+                                            <li><a class="btn default btn-outline image-popup-vertical-fit" href="<%= `/attachments/${i.fileName}` %>"><i class="icon-magnifier"></i></a></li>
+                                           <input type="hidden" value="<%= i._id%>" id="imgId">
+                                            <li><a class="btn default btn-outline danger" href="javascript:void(0)" onclick="deleteImage()"><i class="ti-trash" ></i></a></li>
                                         </ul>
                                     </div>
                                 </div>

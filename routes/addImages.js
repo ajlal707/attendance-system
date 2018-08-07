@@ -65,7 +65,21 @@ router.post('/uploadGalleryImg', ensureAuthenticated, (req, res, next) => {
     }
   })
 })
+router.post('/deleteImage', ensureAuthenticated, function (req, res) {
+  var id = req.body.imageId
+  console.log(id)
+  Attachments.findOne({ _id: id }, (err, todo) => {
+    if (err) return res.json({ error: err })
 
+    fs.unlink(todo.filePath, (err) => {
+      if (err)
+        return res.json(err)
+
+      todo.remove();
+      return res.json({ success: 'success' })
+    })
+  });
+})
 
 router.get('/logout', function (req, res) {
   req.logout();
