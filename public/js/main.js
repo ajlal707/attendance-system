@@ -214,3 +214,59 @@ function deleteVideo() {
     });
 
 }
+
+// add text method
+function saveText() {
+    document.getElementById('error').value = '';
+    var title = document.getElementById('title').value;
+    var description = document.getElementById('description').value;
+    if (title && description) {
+        $.ajax({
+            type: "POST",
+            url: "/addText/addText",
+            data: { title, description },
+            success: function (res) {
+                if (res.error) {
+                    var error = document.getElementById('error');
+                    error.style.color = 'red'
+                    error.innerHTML = res.error
+
+                } else if (res.success) {
+                    window.location.href = '/addText';
+                }
+            }
+        });
+    } else {
+        var error = document.getElementById('error');
+        error.style.color = 'red'
+        error.innerHTML = 'Fields must not be empty.'
+    }
+}
+// copy text into popup
+function copyTextToPopup(title, description) {
+    console.log(title, description)
+    document.getElementById('popupTitle').innerHTML = title;
+    document.getElementById('popupdescription').innerHTML = description
+
+}
+// delete text 
+
+function deleteText() {
+    var textId = document.getElementById('textId').value;
+    $.ajax({
+        type: "POST",
+        url: "/addText/deleteText",
+        data: { textId },
+        success: function (res) {
+            if (res.error) {
+                var error = document.getElementById('error1');
+                error.style.color = 'red'
+                error.innerHTML = res.error
+
+            } else if (res.success) {
+                window.location.href = '/addText';
+            }
+        }
+    });
+
+}
