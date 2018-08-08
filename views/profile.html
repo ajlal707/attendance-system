@@ -181,9 +181,23 @@
                                 <center class="m-t-30"> 
                                     <img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>" class="img-circle" width="150" /><br>
                                 <form enctype="multipart/form-data" action="/profile/uploadImage" method="post">
-                                    <input type="submit" class="btn btn-secondary btn-sm m-t-20 m-b-30" value="Change Image">
-                                    <input type="file" id="image-file" name="profilePhoto" accept="image/x-png,image/jpg,image/jpeg" single="single"  />
+                                 
+
+
+                                    <label class="editpic">
+                                        <input id="image-file" type="file" name="profilePhoto" accept="image/x-png,image/jpg,image/jpeg" single="single" />
+                                        <i class="fa fa-pencil"></i>
+                                      </label>
+
+                                     <input type="submit" class="btn btn-secondary btn-sm m-t-20 m-b-30" value="Change Image">
+                                  
+                                   <!-- <input type="file" id="image-file" name="profilePhoto" accept="image/x-png,image/jpg,image/jpeg" single="single"  /> -->
+                             
                                 </form>
+
+
+                                    
+
                                     <h4 class="card-title m-t-10"><%= user.username %></h4>
                                 </center>
                             </div>

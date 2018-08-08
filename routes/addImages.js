@@ -74,7 +74,6 @@ router.post('/uploadGalleryImg', ensureAuthenticated, upload, (req, res, next) =
 })
 router.post('/deleteImage', ensureAuthenticated, function (req, res) {
   var id = req.body.imageId
-  console.log(id)
   Attachments.findOne({ _id: id }, (err, todo) => {
     if (err) return res.json({ error: err })
 

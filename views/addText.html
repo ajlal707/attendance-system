@@ -179,19 +179,20 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <form action="#">
+                                <!-- <form action=""> -->
                                     <div class="form-group">
                                         <label>Add Title</label>
-                                        <input type="text" class="form-control">
+                                        <span id="error"></span>
+                                        <input id="title" type="text" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label>Add Description</label>
-                                        <textarea class="form-control" name="" rows="5"></textarea>
+                                        <textarea id="description" class="form-control" name="" rows="5"></textarea>
                                     </div>
                                     <div class="pull-right">
-                                        <button type="submit" class="btn btn-success waves-effect waves-light m-t-20">SAVE</button>
+                                        <button class="btn btn-success waves-effect waves-light m-t-20" onclick="saveText()">SAVE</button>
                                     </div>
-                                </form>
+                                <!-- </form> -->
                             </div>
                         </div>
                     </div>
@@ -199,7 +200,11 @@
                 <div class="row el-element-overlay">
                     <div class="col-md-12">
                         <h4 class="card-title">Gallery</h4>
+                        <span id="error1"></span>
                     </div>
+
+                    <% if(texts) {%>
+                        <% texts.forEach(function(t){ %>
                     <div class="col-lg-3 col-md-6">
                         <div class="card">
                             <div class="el-card-item">
@@ -207,99 +212,31 @@
                                     <div class="content-box">
                                         <div class="title">
                                             <h2>CARS ONLINE HEAD</h2>
-                                            <h3>tortor eget felis porttitor volutpat</h3>
+                                            <h3 ><%= t.title %></h3>
                                         </div>
                                         <div class="description">
-                                            <p>Vivamus suscipit tortor eget felis porttitor volutpat. Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit.</p>
+                                            <p ><%= t.description %></p>
                                         </div>
                                     </div>
                                     <div class="el-overlay">
                                         <ul class="el-info">
-                                            <li><a class="btn default btn-outline" href="#" data-toggle="modal" data-target="#Modalbox-1"><i class="icon-magnifier"></i>
+                                            <li><a onclick="copyTextToPopup(`<%= t.title%>`, `<%= t.description%>`)" class="btn default btn-outline" href="javacript:void(0)" data-toggle="modal" data-target="#Modalbox-1"><i class="icon-magnifier"></i>
 
                                             </a></li>
-                                            <li><a class="btn default btn-outline danger" href="javascript:void(0);"><i class="ti-trash"></i></a></li>
+                                            <input type="hidden" value="<%= t._id %>" id="textId">
+                                            <li><a class="btn default btn-outline danger" href="javascript:void(0);" onclick="deleteText()"><i class="ti-trash"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"> 
-                                    <div class="content-box">
-                                        <div class="title">
-                                            <h2>CARS ONLINE HEAD 2</h2>
-                                            <h3>ligula sed magna dictum porta</h3>
-                                        </div>
-                                        <div class="description">
-                                            <p>Vivamus suscipit tortor eget felis porttitor volutpat. Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit.</p>
-                                        </div>
-                                    </div>
-                                    <div class="el-overlay">
-                                        <ul class="el-info">
-                                            <li><a class="btn default btn-outline" href="#" data-toggle="modal" data-target="#Modalbox-2"><i class="icon-magnifier"></i>
-
-                                            </a></li>
-                                            <li><a class="btn default btn-outline danger" href="javascript:void(0);"><i class="ti-trash"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"> 
-                                    <div class="content-box">
-                                        <div class="title">
-                                            <h2>CARS ONLINE HEAD 3</h2>
-                                            <h3>libero muslade grth oimhj</h3>
-                                        </div>
-                                        <div class="description">
-                                            <p>Vivamus suscipit tortor eget felis porttitor volutpat. Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit.</p>
-                                        </div>
-                                    </div>
-                                    <div class="el-overlay">
-                                        <ul class="el-info">
-                                            <li><a class="btn default btn-outline" href="#" data-toggle="modal" data-target="#Modalbox-3"><i class="icon-magnifier"></i>
-
-                                            </a></li>
-                                            <li><a class="btn default btn-outline danger" href="javascript:void(0);"><i class="ti-trash"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"> 
-                                    <div class="content-box">
-                                        <div class="title">
-                                            <h2>CARS ONLINE HEAD 4</h2>
-                                            <h3>bandate guji kjmn wqasde</h3>
-                                        </div>
-                                        <div class="description">
-                                            <p>Vivamus suscipit tortor eget felis porttitor volutpat. Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit.</p>
-                                        </div>
-                                    </div>
-                                    <div class="el-overlay">
-                                        <ul class="el-info">
-                                            <li><a class="btn default btn-outline" href="#" data-toggle="modal" data-target="#Modalbox-4"><i class="icon-magnifier"></i>
-
-                                            </a></li>
-                                            <li><a class="btn default btn-outline danger" href="javascript:void(0);"><i class="ti-trash"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>                    
+                    <% }) %>
+                    <%} else {%>
+                        <% 'there is no record found' %>
+                      
+                     <% } %>
+                              
                 </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
@@ -313,8 +250,8 @@
                             </div>
                             <div class="modal-body">
                                 <h2>CarsOnline</h2>
-                                <h3>tortor eget felis porttitor volutpat</h3>
-                                <p>Vivamus suscipit tortor eget felis porttitor volutpat. Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit.</p>
+                                <h3 id="popupTitle"> </h3>
+                                <p id="popupdescription"> </p>
                             </div>
                         </div>
                         <!-- /.modal-content -->
@@ -322,56 +259,7 @@
                 </div>
                 <!-- /.modal -->
 
-                <div id="Modalbox-2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content text-box">
-                            <div class="modal-header">
-                                <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">×</button>
-                            </div>
-                            <div class="modal-body">
-                                <h2>CarsOnline 2</h2>
-                                <h3>ligula sed magna dictum porta</h3>
-                                <p>Vivamus suscipit tortor eget felis porttitor volutpat. Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit.</p>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                </div>
-                <!-- /.modal -->
-
-                <div id="Modalbox-3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content text-box">
-                            <div class="modal-header">
-                                <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">×</button>
-                            </div>
-                            <div class="modal-body">
-                                <h2>CarsOnline 3</h2>
-                                <h3>libero muslade grth oimhj</h3>
-                                <p>Vivamus suscipit tortor eget felis porttitor volutpat. Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit.</p>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                </div>
-                <!-- /.modal -->
-
-                <div id="Modalbox-4" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content text-box">
-                            <div class="modal-header">
-                                <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">×</button>
-                            </div>
-                            <div class="modal-body">
-                                <h2>CarsOnline 4</h2>
-                                <h3>bandate guji kjmn wqasde</h3>
-                                <p>Vivamus suscipit tortor eget felis porttitor volutpat. Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit.</p>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                </div>
-                <!-- /.modal -->
+                
 
             </div>
             <!-- ============================================================== -->
