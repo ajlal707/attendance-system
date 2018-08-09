@@ -205,10 +205,10 @@
                         <div class="card">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1">
-                                    <video><source src="<%= `/attachmentVideos/${i.fileName}` %>" type="video/mp4"></video>
+                                    <video><source src="<%= `/videosFolder/${i.fileName}` %>" type="video/mp4"></video>
                                     <div class="el-overlay">
                                         <ul class="el-info">
-                                            <li><a class="btn default btn-outline html5lightbox" href="<%= `/attachmentVideos/${i.fileName}` %>"><i class="icon-control-play"></i></a></li>
+                                            <li><a class="btn default btn-outline html5lightbox" href="<%= `/videosFolder/${i.fileName}` %>"><i class="icon-control-play"></i></a></li>
                                             <input type="hidden" value="<%= i._id%>" id="videoId">
                                             <li><a class="btn default btn-outline danger" href="javascript:void(0);" onclick="deleteVideo()"><i class="ti-trash"></i></a></li>
                                         </ul>
