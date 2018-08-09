@@ -7,7 +7,7 @@ const ensureAuthenticated = require('../config/authUser')
 const crypto = require('crypto')
 var router = express.Router()
 
-const DEFAULT_UPLOAD_PATH = './public/attachmentVideos/';
+const DEFAULT_UPLOAD_PATH = './public/videosFolder/';
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
