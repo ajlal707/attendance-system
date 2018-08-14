@@ -13,6 +13,7 @@
     <title>Create Ad</title>
     <!-- Bootstrap Core CSS -->
     <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
@@ -23,7 +24,9 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5
+    
+    shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
@@ -189,6 +192,10 @@
                                                         <label for="temp-img-1" class="label-for-check">
                                                             <img class="image-select" src="img/templates/temp-01.png" />
                                                         </label>
+                                                        <div class="image-selectcontent">
+                                                            <i class="ti-receipt"></i>
+                                                            <span>1 text</span>
+                                                        </div>
                                                     </div>      
                                                     <div class="ss-title">Template - 1</div>
                                                 </div>
@@ -198,6 +205,10 @@
                                                         <label for="temp-img-2" class="label-for-check">
                                                             <img class="image-select" src="img/templates/temp-02.png" />
                                                         </label>
+                                                        <div class="image-selectcontent">
+                                                            <i class="icon-film"></i>
+                                                            <span>1 text 1 video</span>
+                                                        </div>
                                                     </div>      
                                                     <div class="ss-title">Template - 2</div>
                                                 </div>
@@ -207,6 +218,10 @@
                                                         <label for="temp-img-3" class="label-for-check">
                                                             <img class="image-select" src="img/templates/temp-03.png" />
                                                         </label>
+                                                        <div class="image-selectcontent">
+                                                            <i class="icon-picture"></i>
+                                                            <span>1 text 1 image</span>
+                                                        </div>
                                                     </div>      
                                                     <div class="ss-title">Template - 3</div>
                                                 </div>
@@ -224,18 +239,27 @@
                                     <h4 class="card-title">Select Text</h4>
                                     <div class="row">
                                         <div class="col-sm-8 col-lg-6">
-                                        <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
-                                            <option value="Category 1">Title 1: Lorem Ipsum Dolor</option>
-                                            <option value="Category 2">Title 2: Tortor eget felis</option>
-                                            <option value="Category 3">Title 3: Vivamus suscipit</option>
-                                            <option value="Category 4">Title 4: Curabitur aliquet</option>
-                                        </select>   
+                                           
+                                            <div class="at-select">
+                                                <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
+                                                    <% if(texts) {%>
+                                                        <% texts.forEach(function(t){ %>
+                                                            <option value="<%= t._id %>"><%= t.title %> : <%= t.description%></option>
+                                                        <% }) %>
+                                                    <%} else {%>
+                                                        <% 'there is no record found' %>  
+                                                    <% } %>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
+                    
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
@@ -249,8 +273,8 @@
                                                             <% attachments.forEach(function(i){ %>
                                                     <div>
                                                         <div class="img-checkbox">
-                                                            <input type="checkbox" id="check-img-1" class="check-with-label" />
-                                                            <label for="check-img-1" class="label-for-check">
+                                                            <input type="checkbox" name="select-img" id="<%= i._id%>" class="check-with-label" />
+                                                            <label for="<%= i._id%>" class="label-for-check">
                                                                 <img class="image-select" src="<%= `/attachments/${i.fileName}` %>" />
                                                             </label>
                                                         </div>      
@@ -284,8 +308,8 @@
                                                             <% videos.forEach(function(v){ %>
                                                     <div>
                                                         <div class="img-checkbox">
-                                                            <input type="checkbox" id="check-vid-1" class="check-with-label" />
-                                                            <label for="check-vid-1" class="label-for-check">
+                                                            <input type="checkbox" id="<%= v._id%>" class="check-with-label" />
+                                                            <label for="<%= v._id%>" class="label-for-check">
                                                                 <video class="image-select"><source src="<%= `/videosFolder/${v.fileName}` %>" type="video/mp4"></video>
                                                             </label>
                                                         </div>      
@@ -380,6 +404,7 @@
     <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="js/jquery.slimscroll.js"></script>
+    <!-- <script src="js/jquery.js>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   .js"></script> -->
     <!--Wave Effects -->
     <script src="js/waves.js"></script>
     <!--Menu sidebar -->
@@ -397,22 +422,22 @@
     $('.ss-slider').slick({
         rows: 2,
         slidesPerRow: 6,
-        slidesToScroll: 2,
+        infinite: false,
         nextArrow: '<i class="slick-next fa fa-arrow-right"></i>',
         prevArrow: '<i class="slick-prev fa fa-arrow-left"></i>',
         responsive: [
             {
               breakpoint: 640,
               settings: {
-              slidesPerRow: 2,
-              slidesToShow: 2,
+            //   slidesPerRow: 2,
+            //   slidesToShow: 2,
               }
             },
             {
               breakpoint: 480,
               settings: {
-                slidesPerRow: 1,
-                slidesToShow: 1,
+                // slidesPerRow: 1,
+                // slidesToShow: 1,
             }
             }
         ]

@@ -205,5 +205,13 @@ $(function () {
   $('a[data-action="close"]').on('click', function () {
     $(this).closest('.card').removeClass().slideUp('fast');
   });
+// for selctor 
+  jQuery('.at-select option').each(function () {
+    var text = jQuery(this).text();
+    if (text.length > 50) {
+        text = text.substring(0, 49) + '...';
+        jQuery(this).text(text);
+    }
+});
 
 });

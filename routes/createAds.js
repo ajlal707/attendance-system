@@ -2,6 +2,7 @@ var express = require('express')
 const User = require('../models/user')
 const Attachments = require('../models/attachments')
 const Videos = require('../models/videos')
+const Texts = require('../models/texts')
 const ensureAuthenticated = require('../config/authUser')
 
 var router = express.Router()
@@ -22,8 +23,11 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
           User.find({ role: { $ne: 'admin' } }, (err, users) => {
             if (err) { return next(err) }
 
-            res.render('createAds', { title: 'Create-Ads', user, attachments, videos, users })
+            Texts.find({}, (err, texts) => {
+              if (err) { return next(err) }
 
+              res.render('createAds', { title: 'Create-Ads', user, attachments, videos, users, texts })
+            })
           })
         })
       })

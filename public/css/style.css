@@ -449,7 +449,12 @@ html body .b-all {
 }
 
 .img-circle {
-    border-radius: 100%
+    border-radius: 100%;
+    width: 150px;
+    background: #eee;
+    height: 150px;
+    margin: 0;
+    background-size: contain;
 }
 
 .radius {
@@ -2022,6 +2027,7 @@ form label {
 
 .topbar .profile-pic {
     width: 30px;
+    height: 30px;
     border-radius: 100%
 }
 
@@ -4562,8 +4568,8 @@ table.dataTable thead .sorting:after {
     position: relative;
     -webkit-transition: all .4s linear;
     transition: all .4s linear;
-    width: 100%;
-    height: auto
+    width: 216px;
+    height: 71px;
 }
 
 .el-element-overlay .el-card-item .el-overlay-1:hover img {
@@ -6274,7 +6280,8 @@ a.mytooltip {
 }
 
 .user-profile .profile-img img {
-    width: 100%;
+    width: 70px;
+    height: 70px;
     padding: 5px;
     border: 1px solid rgba(120, 130, 140, 0.13);
     border-radius: 100%
@@ -8500,11 +8507,11 @@ pre {
 [type=checkbox]:checked.chk-col-brown+label:before {
     border-right: 2px solid #795548;
 }
-    border-bottom: 2px solid #795548
+    /* border-bottom: 2px solid #795548; */
 
 [type=checkbox]:checked.chk-col-grey+label:before {
     border-right: 2px solid #9E9E9E;
-    border-bottom: 2px solid #9E9E9E
+    border-bottom: 2px solid #9E9E9E;
 }
 
 [type=checkbox]:checked.chk-col-blue-grey+label:before {
@@ -9363,14 +9370,18 @@ pre {
     position: relative;
     padding-bottom: 70px;
 }
-
 .save-btn {
     position: absolute;
     bottom: 0;
     right: 0;
+    z-index: 10;
     padding: 15px;
 }
-
+.save-btn .waves-input-wrapper .waves-button-input{
+    border: 0;
+    color: #fff;
+    background: transparent;
+}
 .logo-text {
     text-align: center;
     margin: 30px auto;
@@ -9429,7 +9440,12 @@ pre {
 
 .modal-content {
     border-radius: 0rem;
-    padding: 15px;
+    padding: 0;
+}
+.modal-body{padding:30px}
+.modal-header h2{
+    margin: 0;
+    padding: 0 0 0 15px;
 }
 
 .slider-box {
@@ -9471,8 +9487,39 @@ pre {
 
 .img-checkbox {
     padding: 0px 4px;
+    position: relative;
 }
-
+.image-selectcontent{
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    padding: 42px 0;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+.template-area .img-checkbox:hover .image-selectcontent{
+    visibility: visible;
+    opacity: 1;
+}
+.image-selectcontent i{
+    color: #fff;
+    font-size: 20px;
+    display: block;
+    margin: 0 0 10px; 
+}
+.image-selectcontent span{
+    display: block;
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 500;
+}
+.image-selectcontent i
 .img-checkbox video {
     width: 100%;
 }
@@ -9835,7 +9882,43 @@ pre {
     overflow: hidden;
     padding-left: 40px;
 }
-
-
-
-
+.editpic-form{position: relative;}
+.editpic input{display: none;}
+.editpic{
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background: #fff;
+    border: 1px solid #b1b8bb;
+    border-radius: 50%;
+    right: 25%;
+    top: -33px;
+    position: absolute;
+} 
+.el-card-item .el-card-avatar .content-box p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 115px;
+    max-height: 115px;
+}
+.slick-slide .img-checkbox .image-select{height: 52px;}
+.template-area .img-checkbox .image-select{height: 137px;}
+.mfp-figure figure{width: 1000px;}
+.img-circle{
+    background-position: center;
+}
+.at-select{
+    width: 100%;
+    float: left;
+    position: relative;
+    overflow: hidden;
+}
+.at-select select{
+    width: 100%;
+    float: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.at-select select option{width: 462px;}
+.dropify-wrapper .dropify-message p{text-align: center;}

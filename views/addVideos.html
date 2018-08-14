@@ -16,7 +16,7 @@
     <!-- Popup CSS -->
     <link href="plugins/Magnific-Popup-master/dist/magnific-popup.css" rel="stylesheet">
     <!-- Dropzone css -->
-    <link href="plugins/dropzone-master/dist/dropzone.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/dropify/dist/css/dropify.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
@@ -182,12 +182,10 @@
                                 <h4 class="card-title">Upload Video</h4>
                                 <form enctype="multipart/form-data" action="/addVideos/uploadGalleryVideo" method="post">
                                     <div class="fallback">
-                                        <input type="file" id="video-file" name="file" accept="video/x-mp4,video/flv,video/avi" single="single" />
+                                        <input type="file" id="video-file" name="file" accept="video/x-mp4,video/flv,video/avi" single="single" class="dropify" data-max-file-size="2M">
                                     </div>
                                     <div class="save-btn">
-                                        <!-- <button type="submit" class="btn btn-success waves-effect waves-light m-t-30">SAVE VIDEO</button>
-                                         -->
-                                         <input type="submit" class="btn btn-success waves-effect waves-light m-t-30" value="SAVE VIDEO">
+                                        <input type="submit" class="btn btn-success waves-effect waves-light" value="SAVE VIDEO">
                                     </div>
                                 </form>
                             </div>
@@ -273,7 +271,7 @@
     <script src="plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
     <script src="plugins/Magnific-Popup-master/dist/jquery.magnific-popup-init.js"></script>
     <!-- Dropzone Plugin JavaScript -->
-    <script src="plugins/dropzone-master/dist/dropzone.js"></script>
+    <script src="plugins/dropify/dist/js/dropify.min.js"></script>
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->
@@ -281,6 +279,48 @@
 
 
     <script src="js/main.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Basic
+            $('.dropify').dropify();
+        
+            // Translated
+            $('.dropify-fr').dropify({
+                messages: {
+                    default: 'Glissez-déposez un fichier ici ou cliquez',
+                    replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                    remove: 'Supprimer',
+                    error: 'Désolé, le fichier trop volumineux'
+                }
+            });
+        
+            // Used events
+            var drEvent = $('#input-file-events').dropify();
+        
+            drEvent.on('dropify.beforeClear', function(event, element) {
+                return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+            });
+        
+            drEvent.on('dropify.afterClear', function(event, element) {
+                alert('File deleted');
+            });
+        
+            drEvent.on('dropify.errors', function(event, element) {
+                console.log('Has Errors');
+            });
+        
+            var drDestroy = $('#input-file-to-destroy').dropify();
+            drDestroy = drDestroy.data('dropify')
+            $('#toggleDropify').on('click', function(e) {
+                e.preventDefault();
+                if (drDestroy.isDropified()) {
+                    drDestroy.destroy();
+                } else {
+                    drDestroy.init();
+                }
+            })
+        });
+    </script>
 </body>
 
 </html>
