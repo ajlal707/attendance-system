@@ -1,5 +1,10 @@
 var express = require('express')
 const User = require('../models/user')
+const Attachments = require('../models/attachments')
+const createAd = require('../models/createAd')
+const Photo = require('../models/photo')
+const Texts = require('../models/texts')
+const Videos = require('../models/videos')
 const ensureAuthenticated = require('../config/authUser')
 
 var router = express.Router()
@@ -11,8 +16,14 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
         .exec(function (err, user) {
             if (err) { return next(err) }
 
-            res.render('viewAllAds', { title: 'All-Ads', user })
+            createAd.find({}, (err, allAds) => {
+                if (err) { return next(err) }
+
+                res.render('viewAllAds', { title: 'All-Ads', user, allAds })
+
+            })
         })
+
 })
 
 router.get('/logout', function (req, res) {

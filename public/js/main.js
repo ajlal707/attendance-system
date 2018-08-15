@@ -174,8 +174,7 @@ function checkInput() {
     }
 }
 // delete image 
-function deleteImage() {
-    var imageId = document.getElementById('imgId').value;
+function deleteImage(imageId) {
     $.ajax({
         type: "POST",
         url: "/addImages/deleteImage",
@@ -195,8 +194,7 @@ function deleteImage() {
 }
 
 //delete video
-function deleteVideo() {
-    var videoId = document.getElementById('videoId').value;
+function deleteVideo(videoId) {
     $.ajax({
         type: "POST",
         url: "/addVideos/deleteVideo",
@@ -251,8 +249,7 @@ function copyTextToPopup(title, description) {
 }
 // delete text 
 
-function deleteText() {
-    var textId = document.getElementById('textId').value;
+function deleteText(textId) {
     $.ajax({
         type: "POST",
         url: "/addText/deleteText",
@@ -268,5 +265,166 @@ function deleteText() {
             }
         }
     });
+}
+//hide div with help of template
+function hideDive(id) {
+    var temp = document.getElementById(id);
+    var temp1 = document.getElementById('temp-1');
+    var temp2 = document.getElementById('temp-2');
+    var temp3 = document.getElementById('temp-3');
+
+    var image = document.getElementById('imageDiv');
+    var video = document.getElementById('videoImg');
+    var n = $("input:checkbox:checked").length;
+
+    $("input:checkbox:checked").prop('checked', false);
+
+    if (temp.checked && temp1.checked) {
+        video.style.display = 'block';
+        image.style.display = 'none';
+
+    } else if (temp.checked && temp2.checked) {
+        image.style.display = 'block';
+        video.style.display = 'none';
+    } else if (temp.checked && temp3.checked) {
+        video.style.display = 'none';
+        image.style.display = 'none';
+    }
+
+}
+// select one image function
+function checkTempplate(id) {
+    console.log(id)
+
+    document.getElementById('error').innerHTML = ''
+    var selectedElement = document.getElementById(id);
+    var temp1 = document.getElementById('temp-1');
+    var temp2 = document.getElementById('temp-2');
+    var temp3 = document.getElementById('temp-3');
+
+    if (temp1.checked === true || temp2.checked === true || temp3.checked === true) {
+        if (selectedElement.checked === true) {
+            var n = $("input:checkbox:checked").length;
+            if (n > 1) {
+                var error = document.getElementById('error');
+                error.style.color = 'red'
+                error.innerHTML = '1 element selected already'
+                selectedElement.checked = false;
+                setTimeout(function () {
+                    document.getElementById("error").innerHTML = '';
+                }, 3000);
+            } else {
+
+                selectedElement.checked = true;
+            }
+
+        } else {
+            // var error = document.getElementById('error');
+            // error.style.color = 'red'
+            // error.innerHTML = 'With selected template only text adjustable.'
+            selectedElement.checked = false;
+        }
+    } else {
+        var error = document.getElementById('error');
+        error.style.color = 'red'
+        error.innerHTML = ' First of All select Template.'
+
+        selectedElement.checked = false;
+        setTimeout(function () {
+            document.getElementById("error").innerHTML = '';
+        }, 3000);
+    }
+}
+
+
+
+
+// create ads function
+function createAd() {
+    document.getElementById('error').innerHTML = ''
+    var temp1 = document.getElementById('temp-1');
+    var temp2 = document.getElementById('temp-2');
+    var temp3 = document.getElementById('temp-3');
+    var duration = document.getElementById('duration').value;
+    var userId = document.getElementById('userId').value;
+    var textId = document.getElementById('textId').value;
+    var imageId = ''
+    var videoId = ''
+    var template = ''
+    if (temp1.checked === true) {
+        videoId = $('input:checkbox:checked')[0].id;
+        template = 'temp-1'
+
+        $.ajax({
+            type: "POST",
+            url: "/createAds/createAd",
+            data: { videoId, textId, duration, userId, template },
+            success: function (res) {
+                if (res.error) {
+                    var error = document.getElementById('error');
+                    error.style.color = 'red'
+                    error.innerHTML = res.error
+
+                } else if (res.success) {
+                    window.location.href = '/createAds';
+
+                    setTimeout(function () {
+                        document.getElementById("error").innerHTML = '';
+                    }, 3000);
+                }
+            }
+        });
+
+    } else if (temp2.checked === true) {
+
+        imageId = $('input:checkbox:checked')[0].id;
+        template = 'temp-2'
+
+        $.ajax({
+            type: "POST",
+            url: "/createAds/createAd",
+            data: { imageId, textId, duration, userId, template },
+            success: function (res) {
+                if (res.error) {
+                    var error = document.getElementById('error');
+                    error.style.color = 'red'
+                    error.innerHTML = res.error
+
+                } else if (res.success) {
+                    window.location.href = '/createAds';
+                }
+            }
+        });
+    } else if (temp3.checked === true) {
+
+        template = 'temp-3'
+        $.ajax({
+            type: "POST",
+            url: "/createAds/createAd",
+            data: { textId, duration, userId, template },
+            success: function (res) {
+                if (res.error) {
+                    var error = document.getElementById('error');
+                    error.style.color = 'red'
+                    error.innerHTML = res.error
+
+                } else if (res.success) {
+                    window.location.href = '/createAds';
+                }
+            }
+        });
+
+    } else {
+        var error = document.getElementById('error');
+        error.style.color = 'red'
+        error.innerHTML = 'Template not selected.'
+        setTimeout(function () {
+            document.getElementById("error").innerHTML = '';
+        }, 3000);
+    }
+
+
+
+
 
 }

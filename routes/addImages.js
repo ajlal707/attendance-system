@@ -4,6 +4,7 @@ var fs = require('fs')
 const crypto = require('crypto')
 const User = require('../models/user')
 const Attachments = require('../models/attachments')
+const createAd = require('../models/createAd')
 const ensureAuthenticated = require('../config/authUser')
 
 var router = express.Router()
@@ -69,7 +70,7 @@ router.post('/uploadGalleryImg', ensureAuthenticated, upload, (req, res, next) =
       })
     }
   } else {
-      return res.status(500).json({ message: "Please go back and choose a file." })
+    return res.status(500).json({ message: "Please go back and choose a file." })
   }
 })
 router.post('/deleteImage', ensureAuthenticated, function (req, res) {
@@ -77,12 +78,18 @@ router.post('/deleteImage', ensureAuthenticated, function (req, res) {
   Attachments.findOne({ _id: id }, (err, todo) => {
     if (err) return res.json({ error: err })
 
-    fs.unlink(todo.filePath, (err) => {
-      if (err)
-        return res.json(err)
+    createAd.findOne({ imageId: id }, (err, existAd) => {
+      if (err) return res.json({ error: err })
 
-      todo.remove();
-      return res.json({ success: 'success' })
+      if (existAd) return res.json({ error: 'This image is use in ad' })
+
+      fs.unlink(todo.filePath, (err) => {
+        if (err)
+          return res.json(err)
+
+        todo.remove();
+        return res.json({ success: 'success' })
+      })
     })
   });
 })

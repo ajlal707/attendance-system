@@ -1,6 +1,7 @@
 var express = require('express')
 const User = require('../models/user')
 const Texts = require('../models/texts')
+const createAd = require('../models/createAd')
 const ensureAuthenticated = require('../config/authUser')
 
 var router = express.Router()
@@ -36,10 +37,18 @@ router.post('/addText', ensureAuthenticated, function (req, res) {
 
 router.post('/deleteText', function (req, res) {
   var id = req.body.textId
-  Texts.remove({ _id: id }, (err, todo) => {
-    if (err) return res.json({ error: 'something happened bad try again.' })
 
-    return res.json({ success: 'success' })
+  createAd.findOne({ textId: id }, (err, existAd) => {
+    if (err) return res.json({ error: err })
+
+    if (existAd) return res.json({ error: 'This Text is use in ad' })
+
+    Texts.remove({ _id: id }, (err, todo) => {
+      if (err) return res.json({ error: 'something happened bad try again.' })
+
+
+      return res.json({ success: 'success' })
+    })
   })
 })
 

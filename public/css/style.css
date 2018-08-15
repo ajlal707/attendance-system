@@ -7924,6 +7924,7 @@ a.mytooltip {
     position: absolute;
     left: 0;
     top: 0;
+    z-index: 99;
     margin: 4px;
     width: 16px;
     height: 16px;
@@ -8030,7 +8031,9 @@ form p:last-child {
 }
 
 [type=checkbox]:checked,
-[type=checkbox]:not(:checked) {
+[type=checkbox]:not(:checked),
+[type=radio]:checked,
+[type=radio]:not(:checked) {
     position: absolute;
     left: -9999px;
     opacity: 0
@@ -9524,7 +9527,8 @@ pre {
     width: 100%;
 }
 
-.img-checkbox [type=checkbox]+label {
+.img-checkbox [type=checkbox]+label,
+.img-checkbox [type=radio]+label {
     padding-left: 0px;
     height: auto;
     line-height: 21px;
