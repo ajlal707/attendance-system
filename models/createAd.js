@@ -2,19 +2,15 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const createAdSchema = Schema({
-  userId: { type: String },
-  username: { type: String },
-  imageId: { type: String },
-  imagePath: { type: String },
-  videoId: { type: String },
-  textId: { type: String },
-  textTitle: { type: String },
-  textdescription: { type: String },
   duration: { type: String },
   templateId: { type: String },
-  photoId: { type: mongoose.Schema.ObjectId, ref: 'UserId' }
-})
+  userId: { type: mongoose.Schema.ObjectId, ref: "User" },
+  imageId: { type: mongoose.Schema.ObjectId, ref: 'Attachments' },
+  textsId: { type: mongoose.Schema.ObjectId, ref: 'Texts' },
+  videosId: { type: mongoose.Schema.ObjectId, ref: 'Videos' },
 
+
+})
 
 
 const createAd = mongoose.model('createAd', createAdSchema)

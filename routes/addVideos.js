@@ -77,7 +77,7 @@ router.post('/uploadGalleryVideo', ensureAuthenticated, upload, (req, res, next)
 router.post('/deleteVideo', ensureAuthenticated, function (req, res) {
   var id = req.body.videoId
 
-  createAd.findOne({ videoId: id }, (err, existAd) => {
+  createAd.findOne({ videosId: id }, (err, existAd) => {
     if (err) return res.json({ error: err })
 
     if (existAd) return res.json({ error: 'This video is use in ad' })

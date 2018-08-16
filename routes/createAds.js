@@ -40,25 +40,66 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
 
 router.post('/createAd', ensureAuthenticated, (req, res, next) => {
 
-  var { userId, imageId, textId, title, videoId, duration, template } = req.body;
+  var { userId, imageId, textId, videoId, duration, template } = req.body;
 
 
   if (userId && duration) {
     createAd.create({
       userId: userId,
       imageId: imageId,
-      videoId: videoId,
-      textId: textId,
-      textTitle: title,
+      videosId: videoId,
+      textsId: textId,
       duration: duration,
       templateId: template,
 
     }, (err, createdAd) => {
       if (err) return res.json({ message: "Mandetory parameters missing." })
 
+      if (createdAd) {
+        User.findOne({ _id: userId }, (err, user) => {
+          if (err) return res.json({ message: "something happen bad try again." })
+
+          user.createAdId.push(createdAd._id); 
+          user.save((err) => {
+            if (err) return res.json({ message: "something happen bad try again." })
+          })
+        })
+      }
+      if (imageId) {
+        Attachments.findOne({ _id: imageId }, (err, imageData) => {
+          if (err) return res.json({ message: "something happen bad try again." })
+
+          imageData.createAdId.push(createdAd._id); 
+          imageData.save((err) => {
+            if (err) return res.json({ message: "something happen bad try again." })
+
+          })
+        })
+      }
+      if (videoId) {
+        Videos.findOne({ _id: videoId }, (err, videoData) => {
+          if (err) return res.json({ message: "something happen bad try again." })
+
+          videoData.createAdId.push(createdAd._id); 
+          videoData.save((err) => {
+            if (err) return res.json({ message: "something happen bad try again." })
+
+          })
+        })
+      }
+      if (textId) {
+        Texts.findOne({ _id: textId }, (err, textData) => {
+          if (err) return res.json({ message: "something happen bad try again." })
+
+          textData.createAdId.push(createdAd._id); 
+          textData.save((err) => {
+            if (err) return res.json({ message: "something happen bad try again." })
+
+          })
+        })
+      }
       return res.json({ success: "success." })
     })
-
   } else {
     return res.status(200).json({ message: "Mandetory parameters missing." })
   }

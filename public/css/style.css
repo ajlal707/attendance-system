@@ -34,7 +34,6 @@ body {
     background: #fff;
     font-family: "Poppins", sans-serif;
     margin: 0;
-    overflow-x: hidden;
     color: #67757c;
     font-weight: 300
 }
@@ -1953,7 +1952,8 @@ form label {
 }
 
 #main-wrapper {
-    width: 100%
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .boxed #main-wrapper {
@@ -4569,7 +4569,7 @@ table.dataTable thead .sorting:after {
     -webkit-transition: all .4s linear;
     transition: all .4s linear;
     width: 216px;
-    height: 71px;
+    height: 100px;
 }
 
 .el-element-overlay .el-card-item .el-overlay-1:hover img {
@@ -9509,12 +9509,13 @@ pre {
     visibility: visible;
     opacity: 1;
 }
-.image-selectcontent i{
+.image-selectcontent .temp-icon{
     color: #fff;
     font-size: 20px;
     display: block;
-    margin: 0 0 10px; 
+    margin: 0; 
 }
+.image-selectcontent .temp-icon i{margin: 0 3px;}
 .image-selectcontent span{
     display: block;
     color: #fff;
@@ -9614,6 +9615,7 @@ pre {
 .text-box {
     float: left;
     width: 100%;
+    position: relative;
     background: #fff;
     padding: 90px 50px;
     box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.6);
@@ -9926,3 +9928,147 @@ pre {
 }
 .at-select select option{width: 462px;}
 .dropify-wrapper .dropify-message p{text-align: center;}
+
+/*  updated model css */
+.modal-dialog{overflow: hidden;}
+.modaltwo .text-box {
+    padding: 240px 140px;
+}
+.modaltwo .modal-dialog{margin: 36px auto;}
+.modal-logo{
+    margin: 0;
+    right: 30px;
+    bottom: 27px;
+    position: absolute;
+}
+.tg-logo{
+    float: left;
+    margin: 0 0 70px;
+    padding: 0 0 30px;
+    position: relative;
+}
+.tg-logo:after{
+    left: 0;
+    bottom: 0;
+    content: '';
+    width: 40px;
+    height: 5px;
+    position: absolute;
+    background: #000;
+}
+.modalone .text-box p{
+    margin: 0;
+    color: #000;
+    font-size: 25px;
+    line-height: 30px;
+}
+.modalfour .text-box{background: #80c428;}
+.modalfour .modal-content{background: url(../img/bg-5.png) no-repeat;}
+.modalfour .text-box h3{color: #fff;}
+.modalfour .text-box h3:after{background: #fff;}
+.modalfour .video-box figure:before{background:  #fff;}
+
+
+.modalfive .modal-content {
+    background: url(../img/modal-bg6.jpg) no-repeat;
+    background-size: cover;
+    min-height: 1000px;
+}
+.modalfive .modal-header {
+    right: 0;
+    z-index: 99;
+    width: auto;
+    position: absolute;
+}
+.modalfive .titel{padding: 0;}
+.modalfive .text-box{width: 400px;}
+.reprise-logo{
+    float: left;
+    width: 500px;
+    min-height: 100px;
+    padding: 34px 70px;
+    position: relative;
+    background: url(../img/logo-bg.png) no-repeat;
+    background-size: contain;
+}
+.modalfive .text-box {
+    background: none; 
+    box-shadow: none;
+}
+.modalfive .text-box p {
+    margin: 0;
+    color: #afafaf;
+    font-size: 25px;
+    line-height: 30px;
+}
+.footer-text{
+    float: left;
+    width: auto;
+    left: 50%;
+    bottom: 108px;
+    position: absolute;
+    margin: 0 0 0 -564PX;
+}
+.footer-text h2{
+    margin: 0;
+    color: #fff;
+    font-size: 65px;
+    font-weight: 500;
+    line-height: 60px;
+    text-transform: uppercase;
+}
+.modalfive .modal-contentarea{position: static;}
+.modalfive .modal-header button.close{
+    color: red;
+    opacity: 1;
+}
+.modalthree .modal-content {
+    background: #fff url(../img/modal-bg3.png) no-repeat 50% 50%;
+    background-size: cover;
+}
+.modalthree .modal-contentarea {
+    float: left;
+    width: 100%;
+    padding: 80px 160px;
+}
+.modalthree .tg-modalbox {
+    float: left;
+    width: 100%;
+}
+.modalthree .modalcontent-box {
+    float: left;
+    width: 100%;
+    padding: 8%;
+    background: #fff;
+    min-height: 584px;
+    -webkit-box-shadow: 0 0 10px 2px rgba(0,0,0,0.10);
+    box-shadow: 0 0 10px 2px rgba(0,0,0,0.10);
+}
+.modalthree .text-box {
+    padding: 0;
+    float: left;
+    width: 100%;
+    box-shadow: none;
+    background: transparent;
+}
+.modalthree .text-box h3 {
+    color: #000;
+    font-size: 60px;
+    font-weight: 500;
+    line-height: 65px;
+}
+.modalthree .description {
+    overflow: hidden;
+}
+.modalthree .description p {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 34px;
+}
+.template-area{margin-right: 50px;}
+.template-area:last-child{margin: 0;}
+.el-element-overlay .el-card-item .el-overlay-1 img{
+    width: 100%;
+    height: 150px;
+}

@@ -38,7 +38,7 @@ router.post('/addText', ensureAuthenticated, function (req, res) {
 router.post('/deleteText', function (req, res) {
   var id = req.body.textId
 
-  createAd.findOne({ textId: id }, (err, existAd) => {
+  createAd.findOne({ textsId: id }, (err, existAd) => {
     if (err) return res.json({ error: err })
 
     if (existAd) return res.json({ error: 'This Text is use in ad' })

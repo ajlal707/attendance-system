@@ -6,7 +6,8 @@ var VideosSchema = mongoose.Schema({
   filePath: { type: String },
   fileType: { type: String },
   title: { type: String },
-  userId: { type: mongoose.Schema.ObjectId, ref: "User" }
+  createAdId: [{ type: mongoose.Schema.ObjectId, ref: "createAd" }]
+
 })
 
 var Videos = mongoose.model('Videos', VideosSchema)

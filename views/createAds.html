@@ -255,8 +255,10 @@
                                                             <img class="image-select" src="img/templates/temp-01.png" />
                                                         </label>
                                                         <div class="image-selectcontent">
-                                                                <!-- <i class="ti-receipt"></i> -->
-                                                            <i class="icon-film"></i>
+                                                            <span class="temp-icon">    
+                                                                <i class="ti-receipt"></i>
+                                                                <i class="icon-film"></i>
+                                                            </span>
                                                             <span>1 text 1 video </span>
                                                         </div>
                                                     </div>
@@ -269,8 +271,10 @@
                                                             <img class="image-select" src="img/templates/temp-02.png" />
                                                         </label>
                                                         <div class="image-selectcontent">
-                                                                <!-- <i class="ti-receipt"></i> -->
-                                                            <i class="icon-picture"></i>
+                                                            <span class="temp-icon">
+                                                                <i class="ti-receipt"></i>
+                                                                <i class="icon-picture"></i>
+                                                            </span>
                                                             <span>1 text 1 Image</span>
                                                         </div>
                                                     </div>
@@ -283,13 +287,45 @@
                                                             <img class="image-select" src="img/templates/temp-03.png" />
                                                         </label>
                                                         <div class="image-selectcontent">
-                                                            <i class="ti-receipt"></i>
-
+                                                            <span class="temp-icon">
+                                                                <i class="ti-receipt"></i>
+                                                            </span>
                                                             <span>1 text</span>
                                                         </div>
                                                     </div>
                                                     <div class="ss-title">Template - 3</div>
                                                 </div>
+                                                <div class="template-area">
+                                                    <div class="img-checkbox">
+                                                        <input type="radio" name="select-tem" onclick="hideDive('temp-4')" id="temp-4" class="check-with-label" />
+                                                        <label for="temp-4" class="label-for-check">
+                                                            <img class="image-select" src="img/templates/temp-04.png" />
+                                                        </label>
+                                                        <div class="image-selectcontent">
+                                                            <span class="temp-icon">    
+                                                                <i class="ti-receipt"></i>
+                                                                <i class="icon-film"></i>
+                                                            </span>
+                                                            <span>1 text 1 video </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ss-title">Template - 4</div>
+                                                </div>
+                                                <!-- <div class="template-area">
+                                                    <div class="img-checkbox">
+                                                        <input type="radio" name="select-tem" onclick="hideDive('temp-5')" id="temp-5" class="check-with-label" />
+                                                        <label for="temp-5" class="label-for-check">
+                                                            <img class="image-select" src="img/templates/temp-05.png" />
+                                                        </label>
+                                                        <div class="image-selectcontent">
+                                                            <span class="temp-icon">
+                                                                <i class="ti-receipt"></i>
+                                                            </span>
+                                                            <span>1 text</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ss-title">Template - 2</div>
+                                                </div> -->
                                             </div>
                                         </div>
                                     </div>
@@ -310,7 +346,7 @@
                                                     <% if(texts) {%>
                                                         <% texts.forEach(function(t){ %>
                                                                
-                                                            <option value="<%= t._id %>"> <%= t.title %> :<%= t.description%></option>
+                                                            <option value="<%= t._id %>" data-set="<%= t.title %> :<%= t.description%>"> <%= t.title %> :<%= t.description%></option>
 
                                                            
                                                             <% }) %>
@@ -342,7 +378,7 @@
                                                         <% attachments.forEach(function(i){ %>
                                                             <div>
                                                                 <div class="img-checkbox">
-                                                                    <input type="checkbox" name="select-img"  onclick="checkTempplate('<%= i._id%>')" id="<%= i._id %>" class="check-with-label"
+                                                                    <input type="checkbox" name="select-img" data-set="<%= i.filePath %>"  onclick="checkTempplate('<%= i._id%>')" id="<%= i._id %>" class="check-with-label"
                                                                     />
                                                                     <label for="<%= i._id%>" class="label-for-check">
                                                                         <img class="image-select" src="<%= `/attachments/${i.fileName}` %>" />
@@ -379,7 +415,7 @@
                                                         <% videos.forEach(function(v){ %>
                                                             <div>
                                                                 <div class="img-checkbox">
-                                                                    <input type="checkbox" onclick="checkTempplate('<%= v._id%>')" id="<%= v._id%>" class="check-with-label" />
+                                                                    <input type="checkbox" data-set="<%= v.filePath%>" onclick="checkTempplate('<%= v._id%>')" id="<%= v._id%>" class="check-with-label" />
                                                                     <label for="<%= v._id%>" class="label-for-check">
                                                                         <video class="image-select">
                                                                             <source src="<%= `/videosFolder/${v.fileName}` %>"
@@ -442,7 +478,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="pull-right">
-                                <button type="submit" class="btn btn-info waves-effect waves-light m-t-20 m-r-10">Preview</button>
+                                <button type="submit" class="btn btn-info waves-effect waves-light m-t-20 m-r-10" onclick="selectPopup()" data-toggle="modal" id="previewBtn" data-target="">Preview</button>
                                 <button type="submit" onclick="createAd()" class="btn btn-success waves-effect waves-light m-t-20">Create Ad</button>
                             </div>
                         </div>
@@ -469,6 +505,192 @@
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Start Popup  -->
+        <!-- ============================================================== -->
+        <!-- video modal -->
+        <div class="modal fade modalone" id="temp-11" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="modal-contentarea">
+                                <button class="nxtbtn"><i class="ti-arrow-right"></i></button>
+                                <div class="row paddingzero">
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
+                                        <div class="row">
+                                        <div class="modalcontent-box">
+                                            <div class="titel">
+                                            </div>
+                                            <div class="text-box">
+                                                <h3 id="popupTitle1">BRAND NAME AND HEADING<span>OVER HERE</span></h3>
+                                                <pv id="popupdescription1">Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Cras ultricies ligula sed magna dictum porta.</p>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+                                        <div class="row">
+                                            <div class="video-box">
+                                            
+                                                    <iframe id="videoSrc" src="" width="754px" height="432px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <!-- marketing modal -->
+            <div class="modal fade modaltwo" id="temp-22" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="modal-contentarea">
+                                <div class="row paddingzero">
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="row">
+                                            <div class="img-box">
+                                                <figure>
+                                                    <img id="imageSrc" src="" alt="image description">
+                                                </figure>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="row">
+                                            <div class="modalcontent-box">
+                                                <div class="modalcontent-boxholder">
+                                                    <div class="text-box">
+                                                        <h2 id="popupTitle2">MAIN HEADING HERE</h2>
+                                                        <p id="popupdescription2">Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
+                                                        <figure class="modal-logo"><img src="img/carsonline-logo.png" alt="image description"></figure>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <!-- marketing modal -->
+            <div class="modal fade modalthree" id="temp-33" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="modal-contentarea">
+                                <div class="tg-modalbox">
+                                        <div class="modalcontent-box">
+                                           <strong class="tg-logo">
+                                               <img src="img/carsonline-logo.png" alt="image description">
+                                           </strong>
+                                            <div class="text-box">
+                                                <h3 id="popupTitle3">LOREM $500 DE UTENIUM DOLROE FONTIO</h3>
+                                                <div class="description">
+                                                    <p id="popupdescription3">Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convlis quis ac lectus.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <!-- marketing modal -->
+           <div class="modal fade modalone modalfour" id="temp-44" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="modal-contentarea">
+                                <button class="nxtbtn"><i class="ti-arrow-right"></i></button>
+                                <div class="row paddingzero">
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
+                                        <div class="row">
+                                        <div class="modalcontent-box">
+                                            <div class="titel">
+                                            </div>
+                                            <div class="text-box">
+                                                <h3 id="popupTitle4">BRAND NAME AND HEADING<span>OVER HERE</span></h3>
+                                                <p id="popupdescription4">Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Cras ultricies ligula sed magna dictum porta.</p>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+                                        <div class="row">
+                                            <div class="video-box">
+                                                    <iframe id="videoSrc2" src="" width="754px" height="432px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <!-- marketing modal -->
+            <div class="modal fade modalone modalfive" id="modalfive" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="modal-contentarea">
+                                <strong class="reprise-logo">
+                                    <img src="img/carsonline-logo.png" alt="image description">
+                                </strong>
+                                <div class="modalcontent-box">
+                                    <div class="text-box">
+                                        <p>Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit.</p>
+                                    </div>
+                                </div>
+                                <div class="footer-text">
+                                    <h2>REPRISE POUR LES VOITURES EN STOCK</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <!-- ============================================================== -->
+            <!-- End Popup  -->
+            <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
