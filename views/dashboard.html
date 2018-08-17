@@ -127,7 +127,7 @@
                         </a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="/createAds">Create Ads</a></li>
-                                <li><a href="viewAllAds">View All Ads</a></li>
+                                <li><a href="/viewAllAds">View All Ads</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -171,7 +171,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-8"><h2>2376 <i class="font-14 text-danger"></i></h2>
+                                    <div class="col-8"><h2><%= users ? users.length: 0%> <i class="font-14 text-danger"></i></h2>
                                         <h6>Total LCDs</h6></div>
                                     <div class="col-4 align-self-center text-right  p-l-0">
                                         <div class="stat-ic text-info"><i class="ti-desktop"></i></div>
@@ -186,7 +186,7 @@
                             <div class="card-body">
                                 <!-- Row -->
                                 <div class="row">
-                                    <div class="col-8"><h2 class="">36<i class="font-14 text-success"></i></h2>
+                                    <div class="col-8"><h2 class=""><%= images ? images.length: 0%> <i class="font-14 text-success"></i></h2>
                                         <h6>Total Images</h6></div>
                                     <div class="col-4 align-self-center text-right p-l-0">
                                         <div class="stat-ic text-success"><i class="ti-image"></i></div>
@@ -201,7 +201,7 @@
                             <div class="card-body">
                                 <!-- Row -->
                                 <div class="row">
-                                    <div class="col-8"><h2>152 <i class="font-14 text-success"></i></h2>
+                                    <div class="col-8"><h2><%= videos ? videos.length: 0%> <i class="font-14 text-success"></i></h2>
                                         <h6>Total Videos</h6></div>
                                     <div class="col-4 align-self-center text-right p-l-0">
                                         <div class="stat-ic text-purple"><i class="ti-video-camera"></i></div>
@@ -216,7 +216,7 @@
                             <div class="card-body">
                                 <!-- Row -->
                                 <div class="row">
-                                    <div class="col-8"><h2>35<i class="font-14 text-danger"></i></h2>
+                                    <div class="col-8"><h2><%= allAds ? allAds.length: 0%><i class="font-14 text-danger"></i></h2>
                                         <h6>Ads Created</h6></div>
                                     <div class="col-4 align-self-center text-right p-l-0">
                                         <div class="stat-ic text-warning"><i class="ti-layers"></i></div>
@@ -233,168 +233,273 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <div class="row el-element-overlay">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"><img src="img/templates/temp-01.png" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="el-info">
-                                            <li><a class="btn default btn-outline"  href="#" data-toggle="modal" data-target="#video-modal"><i class="icon-control-play"></i></a></li>
-                                        </ul>
+                <div class="container-fluid">
+                        <!-- ============================================================== -->
+                        <!-- Start Page Content -->
+                        <!-- ============================================================== -->
+                        <div class="row el-element-overlay">
+                                <% if(allAds ) {%>
+                                    <% for(var a=0; a<allAds.length; a++) { %>
+                                        
+                                            <%   if(allAds[a].videosId && allAds[a].templateId === "temp-1") { %>
+                                            
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="card">
+                                        <div class="el-card-item">
+                                            <div class="el-card-avatar el-overlay-1">
+                                                <video data-set="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>" id="videoSrc" src="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>" alt="user"></video>
+                                                <h1 id="textTitle"><%= allAds[a].textsId.title%></h1>
+                                                <p id="textDescription"><%= allAds[a].textsId.description%></p>
+                                                <div class="el-overlay">
+                                                    <ul class="el-info">
+                                                        <li>
+                                                            <a class="btn default btn-outline"  onclick="copyToViewTemplate1('<%= allAds[a].templateId %>')"  href="javascript:void(0)" data-toggle="modal" data-target="#<%= allAds[a].templateId%>"> <i class="icon-control-play" ></i></a>
+                                                            
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="el-card-content">
+                                                <h3><%= allAds[a].userId.username%></h3>
+                                                <div class="action-buttons">
+                                                    <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="#">EDIT</a>
+                                                    <a class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="el-card-content">
-                                    <h3>User 1</h3>
-                                    <div class="action-buttons">
-                                        <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="#">EDIT</a>
-                                        <a class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</a>
+                                <% } else if (allAds[a].imageId && allAds[a].templateId === "temp-2") {%>
+                               
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="card">
+                                        <div class="el-card-item">
+                                            <div class="el-card-avatar el-overlay-1"><img id="imageSrc2" data-set="<%= `/attachments/${allAds[a].imageId.fileName}` %>" src="<%= allAds[a].imageId ? `/attachments/${allAds[a].imageId.fileName}`: '' %>" alt="user" />
+                                                <h1 id="textTitle2"><%= allAds[a].textsId.title%></h1>
+                                                <p  id="textDescription2"><%= allAds[a].textsId.description%></p>
+                                                <div class="el-overlay">
+                                                    <ul class="el-info">
+                                                        <li><a class="btn default btn-outline"  onclick="copyToViewTemplate2()"  href="javascript:void(0)" data-toggle="modal" data-target="#<%= allAds[a].templateId%>"><i class="icon-control-play"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="el-card-content">
+                                                    <h3><%= allAds[a].userId.username%></h3>
+                                                <div class="action-buttons">
+                                                    <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="#">EDIT</a>
+                                                    <a class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <% } else if(allAds[a].textsId && allAds[a].templateId === "temp-3") {%>
+                              
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="card">
+                                        <div class="el-card-item">
+                                            <div class="el-card-avatar el-overlay-1">
+                                                <h1 id="textTitle3"><%= allAds[a].textsId.title%></h1>
+                                                <p id="textDescription3"><%= allAds[a].textsId.description%></p>
+                                                <div class="el-overlay">
+                                                    <ul class="el-info">
+                                                        <li><a class="btn default btn-outline" onclick="copyToViewTemplate3()" href="#" data-toggle="modal" data-target="#<%= allAds[a].templateId %>"><i class="icon-control-play"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="el-card-content">
+                                                    <h3><%= allAds[a].userId.username%></h3>
+                                                <div class="action-buttons">
+                                                    <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="#">EDIT</a>
+                                                    <a class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } else if(allAds[a].videosId && allAds[a].templateId === "temp-4") { %>
+        
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="card">
+                                        <div class="el-card-item">
+                                            <div class="el-card-avatar el-overlay-1"><video id="videoSrc4"  data-set="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>" src="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>" alt="user"></video>
+                                                <h1 id="textTitle4"><%= allAds[a].textsId.title%></h1>
+                                                <p id="textDescription4"><%= allAds[a].textsId.description%></p>
+                                                <div class="el-overlay">
+                                                    <ul class="el-info">
+                                                        <li><a class="btn default btn-outline" onclick="copyToViewTemplate4()" href="#" data-toggle="modal" data-target="#<%= allAds[a].templateId %>"><i class="icon-control-play"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="el-card-content">
+                                                    <h3><%= allAds[a].userId.username%></h3>
+                                                <div class="action-buttons">
+                                                    <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="#">EDIT</a>
+                                                    <a class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  <% } %>
+                                 <% } %>
+                                <% } %>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"><img src="img/templates/temp-02.png" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="el-info">
-                                            <li><a class="btn default btn-outline"  href="#" data-toggle="modal" data-target="#markting-modal"><i class="icon-control-play"></i></a></li>
-                                        </ul>
+                                
+                            <!-- video modal -->
+                            <div class="modal fade modalone" id="temp-1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="modal-contentarea">
+                                                <button class="nxtbtn"><i class="ti-arrow-right"></i></button>
+                                                <div class="row paddingzero">
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
+                                                        <div class="row">
+                                                        <div class="modalcontent-box">
+                                                            <div class="titel">
+                                                            </div>
+                                                            <div class="text-box">
+                                                                <h3 id="textTitle1">BRAND NAME AND HEADING</h3>
+                                                                <p id="textDescription1">Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Cras ultricies ligula sed magna dictum porta.</p>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+                                                        <div class="row">
+                                                            <div class="video-box">
+                                                                <figure>
+                                                                    <!-- <video id="videoSrc1" src="" alt="image description"></video> -->
+                                                                    <iframe id="videoSrc1" src="" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                                                </figure>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!-- /.modal-content -->
                                 </div>
-                                <div class="el-card-content">
-                                    <h3>User 1</h3>
-                                    <div class="action-buttons">
-                                        <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="#">EDIT</a>
-                                        <a class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</a>
-                                    </div>
-                                </div>
+                                <!-- /.modal-dialog -->
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"><img src="img/templates/temp-03.png" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="el-info">
-                                            <li><a class="btn default btn-outline"  href="#" data-toggle="modal" data-target="#modalthree"><i class="icon-control-play"></i></a></li>
-                                        </ul>
+                            <!-- /.modal -->
+                            <!-- marketing modal -->
+                            <div class="modal fade modaltwo" id="temp-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="modal-contentarea">
+                                                <div class="row paddingzero">
+                                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                                        <div class="row">
+                                                            <div class="img-box">
+                                                                <figure>
+                                                                    <img id="imageSrc22" src="" alt="image description">
+                                                                </figure>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                                        <div class="row">
+                                                            <div class="modalcontent-box">
+                                                                <div class="modalcontent-boxholder">
+                                                                    <div class="text-box">
+                                                                        <h2 id="textTitle22">MAIN HEADING HERE</h2>
+                                                                        <p id="textDescription22">Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
+                                                                        <figure class="modal-logo"><img src="img/carsonline-logo.png" alt="image description"></figure>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!-- /.modal-content -->
                                 </div>
-                                <div class="el-card-content">
-                                    <h3>User 1</h3>
-                                    <div class="action-buttons">
-                                        <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="#">EDIT</a>
-                                        <a class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</a>
-                                    </div>
-                                </div>
+                                <!-- /.modal-dialog -->
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"><img src="img/templates/temp-04.png" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="el-info">
-                                            <li><a class="btn default btn-outline"  href="#" data-toggle="modal" data-target="#modalfour"><i class="icon-control-play"></i></a></li>
-                                        </ul>
+                            <!-- /.modal -->
+                            <!-- marketing modal -->
+                            <div class="modal fade modalthree" id="temp-3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="modal-contentarea">
+                                                <div class="tg-modalbox">
+                                                        <div class="modalcontent-box">
+                                                           <strong class="tg-logo">
+                                                               <img src="img/carsonline-logo.png" alt="image description">
+                                                           </strong>
+                                                            <div class="text-box">
+                                                                <h3 id="textTitle33">LOREM $500 DE UTENIUM DOLROE FONTIO</h3>
+                                                                <div class="description">
+                                                                    <p id="textDescription33">Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convlis quis ac lectus.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!-- /.modal-content -->
                                 </div>
-                                <div class="el-card-content">
-                                    <h3>User 1</h3>
-                                    <div class="action-buttons">
-                                        <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="#">EDIT</a>
-                                        <a class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</a>
-                                    </div>
-                                </div>
+                                <!-- /.modal-dialog -->
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"><img src="img/templates/temp-01.png" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="el-info">
-                                            <li><a class="btn default btn-outline"  href="#" data-toggle="modal" data-target="#video-modal"><i class="icon-control-play"></i></a></li>
-                                        </ul>
+                            <!-- /.modal -->
+                            <!-- marketing modal -->
+                           <div class="modal fade modalone modalfour" id="temp-4" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="modal-contentarea">
+                                                <button class="nxtbtn"><i class="ti-arrow-right"></i></button>
+                                                <div class="row paddingzero">
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
+                                                        <div class="row">
+                                                        <div class="modalcontent-box">
+                                                            <div class="titel">
+                                                            </div>
+                                                            <div class="text-box">
+                                                                <h3 id="textTitle44">BRAND NAME AND HEADING</h3>
+                                                                <p id="textDescription44">Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Cras ultricies ligula sed magna dictum porta.</p>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+                                                        <div class="row">
+                                                            <div class="video-box">
+                                                                <figure>
+                                                                    <iframe id="videoSrc44" src="" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                                                </figure>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!-- /.modal-content -->
                                 </div>
-                                <div class="el-card-content">
-                                    <h3>User 1</h3>
-                                    <div class="action-buttons">
-                                        <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="#">EDIT</a>
-                                        <a class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</a>
-                                    </div>
-                                </div>
+                                <!-- /.modal-dialog -->
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"><img src="img/templates/temp-02.png" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="el-info">
-                                            <li><a class="btn default btn-outline"  href="#" data-toggle="modal" data-target="#markting-modal"><i class="icon-control-play"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="el-card-content">
-                                    <h3>User 1</h3>
-                                    <div class="action-buttons">
-                                        <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="#">EDIT</a>
-                                        <a class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"><img src="img/templates/temp-03.png" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="el-info">
-                                            <li><a class="btn default btn-outline"  href="#" data-toggle="modal" data-target="#modalthree"><i class="icon-control-play"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="el-card-content">
-                                    <h3>User 1</h3>
-                                    <div class="action-buttons">
-                                        <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="#">EDIT</a>
-                                        <a class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"><img src="img/templates/temp-04.png" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="el-info">
-                                            <li><a class="btn default btn-outline"  href="#" data-toggle="modal" data-target="#modalfour"><i class="icon-control-play"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="el-card-content">
-                                    <h3>User 1</h3>
-                                    <div class="action-buttons">
-                                        <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="#">EDIT</a>
-                                        <a class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!-- ============================================================== -->
             <!-- footer -->

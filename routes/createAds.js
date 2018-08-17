@@ -37,6 +37,39 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
 })
 
 
+router.get('/editAdd/:id', ensureAuthenticated, function (req, res, next) {
+
+  let { id } = req.params
+  User.findOne({ _id: req.user._id })
+    .populate('photoId')
+    .exec(function (err, user) {
+      if (err) { return next(err) }
+
+      Attachments.find({}, (err, attachments) => {
+        if (err) { return next(err) }
+
+        Videos.find({}, (err, videos) => {
+          if (err) { return next(err) }
+
+          User.find({ role: { $ne: 'admin' } }, (err, users) => {
+            if (err) { return next(err) }
+
+            Texts.find({}, (err, texts) => {
+              if (err) { return next(err) }
+
+              createAd.findById(id, function (err, result) {
+                if (err) { return next(err) }
+
+                res.render('createAds', { title: 'Create-Ads', user, attachments, videos, users, texts, result })
+              })
+            })
+          })
+        })
+      })
+    })
+})
+
+
 
 router.post('/createAd', ensureAuthenticated, (req, res, next) => {
 
@@ -59,7 +92,7 @@ router.post('/createAd', ensureAuthenticated, (req, res, next) => {
         User.findOne({ _id: userId }, (err, user) => {
           if (err) return res.json({ message: "something happen bad try again." })
 
-          user.createAdId.push(createdAd._id); 
+          user.createAdId.push(createdAd._id);
           user.save((err) => {
             if (err) return res.json({ message: "something happen bad try again." })
           })
@@ -69,7 +102,7 @@ router.post('/createAd', ensureAuthenticated, (req, res, next) => {
         Attachments.findOne({ _id: imageId }, (err, imageData) => {
           if (err) return res.json({ message: "something happen bad try again." })
 
-          imageData.createAdId.push(createdAd._id); 
+          imageData.createAdId.push(createdAd._id);
           imageData.save((err) => {
             if (err) return res.json({ message: "something happen bad try again." })
 
@@ -80,7 +113,7 @@ router.post('/createAd', ensureAuthenticated, (req, res, next) => {
         Videos.findOne({ _id: videoId }, (err, videoData) => {
           if (err) return res.json({ message: "something happen bad try again." })
 
-          videoData.createAdId.push(createdAd._id); 
+          videoData.createAdId.push(createdAd._id);
           videoData.save((err) => {
             if (err) return res.json({ message: "something happen bad try again." })
 
@@ -91,7 +124,7 @@ router.post('/createAd', ensureAuthenticated, (req, res, next) => {
         Texts.findOne({ _id: textId }, (err, textData) => {
           if (err) return res.json({ message: "something happen bad try again." })
 
-          textData.createAdId.push(createdAd._id); 
+          textData.createAdId.push(createdAd._id);
           textData.save((err) => {
             if (err) return res.json({ message: "something happen bad try again." })
 

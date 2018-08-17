@@ -6,7 +6,7 @@ const createAdSchema = Schema({
   templateId: { type: String },
   userId: { type: mongoose.Schema.ObjectId, ref: "User" },
   imageId: { type: mongoose.Schema.ObjectId, ref: 'Attachments' },
-  textsId: { type: mongoose.Schema.ObjectId, ref: 'Texts' },
+  textsId: { type: mongoose.Schema.ObjectId, ref: 'Text' },
   videosId: { type: mongoose.Schema.ObjectId, ref: 'Videos' },
 
 
