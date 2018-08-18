@@ -211,7 +211,6 @@
                                 <div class="el-card-avatar el-overlay-1"> 
                                     <div class="content-box">
                                         <div class="title">
-                                            <h2>CARS ONLINE HEAD</h2>
                                             <h3 ><%= t.title %></h3>
                                         </div>
                                         <div class="description">
@@ -223,8 +222,7 @@
                                             <li><a onclick="copyTextToPopup(`<%= t.title%>`, `<%= t.description%>`)" class="btn default btn-outline" href="javacript:void(0)" data-toggle="modal" data-target="#Modalbox-1"><i class="icon-magnifier"></i>
 
                                             </a></li>
-                                            <input type="hidden" value="<%= t._id %>" id="textId">
-                                            <li><a class="btn default btn-outline danger" href="javascript:void(0);" onclick="deleteText()"><i class="ti-trash"></i></a></li>
+                                            <li><a class="btn default btn-outline danger" href="javascript:void(0);" onclick="deleteText('<%= t._id %>')"><i class="ti-trash"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -241,15 +239,14 @@
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
-
-                <div id="Modalbox-1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content text-box">
+                <div id="Modalbox-1" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">×</button>
+                                <!-- <h2>Cars Online</h2> -->
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             </div>
                             <div class="modal-body">
-                                <h2>Cars Online</h2>
                                 <h3 id="popupTitle"> </h3>
                                 <p id="popupdescription"> </p>
                             </div>

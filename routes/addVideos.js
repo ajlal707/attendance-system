@@ -3,6 +3,7 @@ var multer = require('multer')
 var fs = require('fs')
 const User = require('../models/user')
 const Videos = require('../models/videos')
+const createAd = require('../models/createAd')
 const ensureAuthenticated = require('../config/authUser')
 const crypto = require('crypto')
 var router = express.Router()
@@ -76,15 +77,21 @@ router.post('/uploadGalleryVideo', ensureAuthenticated, upload, (req, res, next)
 router.post('/deleteVideo', ensureAuthenticated, function (req, res) {
   var id = req.body.videoId
 
-  Videos.findOne({ _id: id }, (err, todo) => {
+  createAd.findOne({ videosId: id }, (err, existAd) => {
     if (err) return res.json({ error: err })
 
-    fs.unlink(todo.filePath, (err) => {
-      if (err)
-        return res.json(err)
+    if (existAd) return res.json({ error: 'This video is use in ad' })
 
-      todo.remove();
-      return res.json({ success: 'success' })
+    Videos.findOne({ _id: id }, (err, todo) => {
+      if (err) return res.json({ error: err })
+
+      fs.unlink(todo.filePath, (err) => {
+        if (err)
+          return res.json(err)
+
+        todo.remove();
+        return res.json({ success: 'success' })
+      })
     })
   });
 })

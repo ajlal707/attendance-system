@@ -178,9 +178,10 @@
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
                             <div class="card-body">
-                                <center class="m-t-30"> 
-                                    <img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>" class="img-circle" width="150" /><br>
-                                <form enctype="multipart/form-data" action="/profile/uploadImage" method="post">
+                                <center class="m-t-30">
+                                        <figure class="img-circle show-image" style="background-image: url('<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>')"></figure> 
+                                    <!-- <img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>" class="img-circle" width="150" /><br> -->
+                                <form enctype="multipart/form-data" action="/profile/uploadImage" method="post" class="editpic-form">
                                  
 
 
@@ -287,6 +288,21 @@
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <script>
+        function changeProfilePicture(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.show-image').attr('style',"background:url("+e.target.result+") center center");
+                    $('.show-image').css({"background-size": "cover", "margin-top":"20px"});
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#image-file").change(function(){
+            changeProfilePicture(this);
+        });
+    </script>
 </body>
 
 </html>

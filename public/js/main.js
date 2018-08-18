@@ -174,8 +174,7 @@ function checkInput() {
     }
 }
 // delete image 
-function deleteImage() {
-    var imageId = document.getElementById('imgId').value;
+function deleteImage(imageId) {
     $.ajax({
         type: "POST",
         url: "/addImages/deleteImage",
@@ -195,8 +194,7 @@ function deleteImage() {
 }
 
 //delete video
-function deleteVideo() {
-    var videoId = document.getElementById('videoId').value;
+function deleteVideo(videoId) {
     $.ajax({
         type: "POST",
         url: "/addVideos/deleteVideo",
@@ -251,8 +249,7 @@ function copyTextToPopup(title, description) {
 }
 // delete text 
 
-function deleteText() {
-    var textId = document.getElementById('textId').value;
+function deleteText(textId) {
     $.ajax({
         type: "POST",
         url: "/addText/deleteText",
@@ -268,5 +265,439 @@ function deleteText() {
             }
         }
     });
+}
+//hide div with help of template
+function hideDive(id) {
+    var temp = document.getElementById(id);
+    var temp1 = document.getElementById('temp-1');
+    var temp2 = document.getElementById('temp-2');
+    var temp3 = document.getElementById('temp-3');
+    var temp4 = document.getElementById('temp-4');
+
+    var image = document.getElementById('imageDiv');
+    var video = document.getElementById('videoImg');
+    var n = $("input:checkbox:checked").length;
+
+    $("input:checkbox:checked").prop('checked', false);
+
+    if (temp.checked && temp1.checked) {
+        video.style.display = 'block';
+        image.style.display = 'none';
+
+    } else if (temp.checked && temp2.checked) {
+        image.style.display = 'block';
+        video.style.display = 'none';
+    } else if (temp.checked && temp3.checked) {
+        video.style.display = 'none';
+        image.style.display = 'none';
+    } else if (temp.checked && temp4.checked) {
+        video.style.display = 'block';
+        image.style.display = 'none';
+    }
 
 }
+// select one image function
+function checkTempplate(id) {
+    console.log(id)
+
+    document.getElementById('error').innerHTML = ''
+    var selectedElement = document.getElementById(id);
+    var temp1 = document.getElementById('temp-1');
+    var temp2 = document.getElementById('temp-2');
+    var temp3 = document.getElementById('temp-3');
+    var temp4 = document.getElementById('temp-4');
+
+    if (temp1.checked === true || temp2.checked === true || temp3.checked === true || temp4.checked === true) {
+
+
+
+        if (selectedElement.checked === true) {
+            var n = $("input:checkbox:checked").length;
+            if (n > 1) {
+                var error = document.getElementById('error');
+                error.style.color = 'red'
+                error.innerHTML = '1 element selected already'
+                selectedElement.checked = false;
+                setTimeout(function () {
+                    document.getElementById("error").innerHTML = '';
+                }, 3000);
+            } else {
+
+                selectedElement.checked = true;
+            }
+
+        } else {
+            selectedElement.checked = false;
+        }
+    } else {
+        var error = document.getElementById('error');
+        error.style.color = 'red'
+        error.innerHTML = ' First of All select Template.'
+
+        selectedElement.checked = false;
+        setTimeout(function () {
+            document.getElementById("error").innerHTML = '';
+        }, 3000);
+    }
+}
+
+
+
+
+// create ads function
+function createAd() {
+    document.getElementById('error').innerHTML = ''
+    var temp1 = document.getElementById('temp-1');
+    var temp2 = document.getElementById('temp-2');
+    var temp3 = document.getElementById('temp-3');
+    var temp4 = document.getElementById('temp-4');
+    var duration = document.getElementById('duration').value;
+    var userId = document.getElementById('userId').value;
+    var textId = document.getElementById('textId').value;
+    var imageId = ''
+    var videoId = ''
+    var template = ''
+    if (temp1.checked === true) {
+        videoId = $('input:checkbox:checked')[0].id;
+        template = 'temp-1'
+        if (videoId) {
+            $.ajax({
+                type: "POST",
+                url: "/createAds/createAd",
+                data: { videoId, textId, duration, userId, template },
+                success: function (res) {
+                    if (res.error) {
+                        var error = document.getElementById('error');
+                        error.style.color = 'red'
+                        error.innerHTML = res.error
+
+                    } else if (res.success) {
+                        window.location.href = '/createAds';
+
+                    }
+                }
+            });
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'Video not selected.'
+            setTimeout(function () {
+                document.getElementById("error").innerHTML = '';
+            }, 3000);
+        }
+
+
+    } else if (temp2.checked === true) {
+
+        imageId = $('input:checkbox:checked')[0].id;
+        template = 'temp-2'
+        if (imageId) {
+            $.ajax({
+                type: "POST",
+                url: "/createAds/createAd",
+                data: { imageId, textId, duration, userId, template },
+                success: function (res) {
+                    if (res.error) {
+                        var error = document.getElementById('error');
+                        error.style.color = 'red'
+                        error.innerHTML = res.error
+
+                    } else if (res.success) {
+                        window.location.href = '/createAds';
+                    }
+                }
+            });
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'Image not selected.'
+            setTimeout(function () {
+                document.getElementById("error").innerHTML = '';
+            }, 3000);
+        }
+    } else if (temp3.checked === true) {
+
+        template = 'temp-3'
+        $.ajax({
+            type: "POST",
+            url: "/createAds/createAd",
+            data: { textId, duration, userId, template },
+            success: function (res) {
+                if (res.error) {
+                    var error = document.getElementById('error');
+                    error.style.color = 'red'
+                    error.innerHTML = res.error
+
+                } else if (res.success) {
+                    window.location.href = '/createAds';
+                }
+            }
+        });
+
+    } else if (temp4.checked === true) {
+        template = 'temp-4'
+        videoId = $('input:checkbox:checked')[0].id;
+        if (videoId) {
+            $.ajax({
+                type: "POST",
+                url: "/createAds/createAd",
+                data: { videoId, textId, duration, userId, template },
+                success: function (res) {
+                    if (res.error) {
+                        var error = document.getElementById('error');
+                        error.style.color = 'red'
+                        error.innerHTML = res.error
+
+                    } else if (res.success) {
+                        window.location.href = '/createAds';
+
+                        setTimeout(function () {
+                            document.getElementById("error").innerHTML = '';
+                        }, 3000);
+                    }
+                }
+            });
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'Video not selected.'
+            setTimeout(function () {
+                document.getElementById("error").innerHTML = '';
+            }, 3000);
+        }
+    } else {
+        var error = document.getElementById('error');
+        error.style.color = 'red'
+        error.innerHTML = 'Template not selected.'
+        setTimeout(function () {
+            document.getElementById("error").innerHTML = '';
+        }, 3000);
+    }
+}
+
+// preview ad function
+function selectPopup() {
+    //texts object geting
+    var texts = document.getElementById('textId');
+    texts = texts.options[texts.selectedIndex].dataset.set
+    texts = texts.split(":")
+    var title = texts[0].trim()
+    var description = texts[1].trim()
+    // geting video object
+
+
+
+    var temp1 = document.getElementById('temp-1');
+    var temp2 = document.getElementById('temp-2');
+    var temp3 = document.getElementById('temp-3');
+    var temp4 = document.getElementById('temp-4');
+
+    var btn = document.getElementById('previewBtn');
+    if (temp1.checked === true) {
+
+        btn.setAttribute('data-target', '#temp-11');
+        document.getElementById('popupTitle1').innerHTML = title
+        document.getElementById('popupdescription1').innerHTML = description
+        var videofilePath = $('input:checkbox:checked')[0].dataset.set
+        document.getElementById('videoSrc').src = videofilePath.replace('public', '');
+
+    }
+    if (temp2.checked === true) {
+        btn.setAttribute('data-target', '#temp-22');
+        document.getElementById('popupTitle2').innerHTML = title
+        document.getElementById('popupdescription2').innerHTML = description
+
+        var imageFilePath = $('input:checkbox:checked')[0].dataset.set
+        document.getElementById('imageSrc').src = imageFilePath.replace('public', '');
+    }
+    if (temp3.checked === true) {
+        btn.setAttribute('data-target', '#temp-33');
+        document.getElementById('popupTitle3').innerHTML = title
+        document.getElementById('popupdescription3').innerHTML = description
+
+    }
+    if (temp4.checked === true) {
+        btn.setAttribute('data-target', '#temp-44');
+        document.getElementById('popupTitle4').innerHTML = title
+        document.getElementById('popupdescription4').innerHTML = description
+        var videofilePath = $('input:checkbox:checked')[0].dataset.set
+        document.getElementById('videoSrc2').src = videofilePath.replace('public', '');
+
+    }
+}
+
+// copy data view-ad to popup functions
+function copyToViewTemplate1() {
+    var videofilePath = document.getElementById('videoSrc').dataset.set
+    document.getElementById('textTitle1').innerHTML = document.getElementById('textTitle').innerHTML;
+    document.getElementById('textDescription1').innerHTML = document.getElementById('textDescription').innerHTML;
+    document.getElementById('videoSrc1').src = videofilePath
+}
+
+function copyToViewTemplate2() {
+    var imageFilePath = document.getElementById('imageSrc2').dataset.set
+    document.getElementById('textTitle22').innerHTML = document.getElementById('textTitle2').innerHTML;
+    document.getElementById('textDescription22').innerHTML = document.getElementById('textDescription2').innerHTML;
+    document.getElementById('imageSrc22').src = imageFilePath
+}
+
+function copyToViewTemplate3() {
+    document.getElementById('textTitle33').innerHTML = document.getElementById('textTitle3').innerHTML;
+    document.getElementById('textDescription33').innerHTML = document.getElementById('textDescription3').innerHTML;
+}
+
+function copyToViewTemplate4() {
+    var videofilePath = document.getElementById('videoSrc4').dataset.set
+    document.getElementById('textTitle44').innerHTML = document.getElementById('textTitle4').innerHTML;
+    document.getElementById('textDescription44').innerHTML = document.getElementById('textDescription4').innerHTML;
+    document.getElementById('videoSrc44').src = videofilePath
+}
+// end copy data view-ad to popup functions
+
+function updateAd() {
+    document.getElementById('error').innerHTML = ''
+    var temp1 = document.getElementById('temp-1');
+    var temp2 = document.getElementById('temp-2');
+    var temp3 = document.getElementById('temp-3');
+    var temp4 = document.getElementById('temp-4');
+    var duration = document.getElementById('duration').value;
+    var userId = document.getElementById('userId').value;
+    var textId = document.getElementById('textId').value;
+    var adIdForUpdate = document.getElementById('adIdForUpdate').value;
+
+    var imageId = ''
+    var videoId = ''
+    var template = ''
+    if (temp1.checked === true) {
+        videoId = $('input:checkbox:checked')[0].id;
+        template = 'temp-1'
+        if (videoId) {
+            $.ajax({
+                type: "POST",
+                url: "/editAd/update",
+                data: { adIdForUpdate, videoId, textId, duration, userId, template },
+                success: function (res) {
+                    if (res.error) {
+                        var error = document.getElementById('error');
+                        error.style.color = 'red'
+                        error.innerHTML = res.error
+
+                    } else if (res.success) {
+                        if (res.calledUrl === '/viewAllAds') {
+                            window.location.href = '/viewAllAds';
+                        } else {
+                            window.location.href = '/dashboard';
+                        }
+                    }
+                }
+            });
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'Video not selected.'
+            setTimeout(function () {
+                document.getElementById("error").innerHTML = '';
+            }, 3000);
+        }
+
+
+    } else if (temp2.checked === true) {
+
+        imageId = $('input:checkbox:checked')[0].id;
+        template = 'temp-2'
+        if (imageId) {
+            $.ajax({
+                type: "POST",
+                url: "/editAd/update",
+                data: { adIdForUpdate, imageId, textId, duration, userId, template },
+                success: function (res) {
+                    if (res.error) {
+                        var error = document.getElementById('error');
+                        error.style.color = 'red'
+                        error.innerHTML = res.error
+
+                    } else if (res.success) {
+                        if (res.calledUrl === '/viewAllAds') {
+                            window.location.href = '/viewAllAds';
+                        } else {
+                            window.location.href = '/dashboard';
+                        }
+                    }
+                }
+            });
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'Image not selected.'
+            setTimeout(function () {
+                document.getElementById("error").innerHTML = '';
+            }, 3000);
+        }
+    } else if (temp3.checked === true) {
+
+        template = 'temp-3'
+        $.ajax({
+            type: "POST",
+            url: "/editAd/update",
+            data: { adIdForUpdate, textId, duration, userId, template },
+            success: function (res) {
+                if (res.error) {
+                    var error = document.getElementById('error');
+                    error.style.color = 'red'
+                    error.innerHTML = res.error
+
+                } else if (res.success) {
+                    if (res.calledUrl === '/viewAllAds') {
+                        window.location.href = '/viewAllAds';
+                    } else {
+                        window.location.href = '/dashboard';
+                    }
+                }
+            }
+        });
+
+    } else if (temp4.checked === true) {
+        template = 'temp-4'
+        videoId = $('input:checkbox:checked')[0].id;
+        if (videoId) {
+            $.ajax({
+                type: "POST",
+                url: "/editAd/update",
+                data: { adIdForUpdate, videoId, textId, duration, userId, template },
+                success: function (res) {
+                    if (res.error) {
+                        var error = document.getElementById('error');
+                        error.style.color = 'red'
+                        error.innerHTML = res.error
+
+                    } else if (res.success) {
+                        if (res.calledUrl === '/viewAllAds') {
+                            window.location.href = '/viewAllAds';
+                        } else {
+                            window.location.href = '/dashboard';
+                        }
+
+                        setTimeout(function () {
+                            document.getElementById("error").innerHTML = '';
+                        }, 3000);
+                    }
+                }
+            });
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'Video not selected.'
+            setTimeout(function () {
+                document.getElementById("error").innerHTML = '';
+            }, 3000);
+        }
+    } else {
+        var error = document.getElementById('error');
+        error.style.color = 'red'
+        error.innerHTML = 'Template not selected.'
+        setTimeout(function () {
+            document.getElementById("error").innerHTML = '';
+        }, 3000);
+    }
+}
+

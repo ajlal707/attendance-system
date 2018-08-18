@@ -22,6 +22,7 @@ var addImagesRouter = require('./routes/addImages')
 var addVideosRouter = require('./routes/addVideos')
 var createAdsRouter = require('./routes/createAds')
 var viewAllAdsRouter = require('./routes/viewAllAds')
+var editAd = require('./routes/editAd')
 
 
 
@@ -96,6 +97,7 @@ app.use('/addImages', addImagesRouter)
 app.use('/addVideos', addVideosRouter)
 app.use('/createAds', createAdsRouter)
 app.use('/viewAllAds', viewAllAdsRouter)
+app.use('/editAd', editAd)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -2,9 +2,10 @@ var mongoose = require('mongoose')
 var schema = mongoose.Schema
 
 var TextSchema = mongoose.Schema({
-  title: { type: String, required: true },
+  title: { type: String},
   description: { type: String },
-  userId: { type: mongoose.Schema.ObjectId, ref: "User" }
+  createAdId: [{ type: mongoose.Schema.ObjectId, ref: "createAd" }]
+
 })
 
 var Text = mongoose.model('Text', TextSchema)
