@@ -45,9 +45,10 @@ router.post('/uploadGalleryVideo', ensureAuthenticated, upload, (req, res, next)
 
   if (req.file) {
     const { filename, mimetype, originalname, path } = req.file;
-    let ext = ['mp4', 'avi', '3gp', 'wmv'];
+    let uploadingType = mimetype.split('/').pop()
+    let ext = 'mp4';
 
-    if (ext.some(s => req.file.mimetype.indexOf(s))) {
+    if (ext === uploadingType) {
       var newVideos = new Videos();
 
       newVideos.filePath = path;
@@ -65,7 +66,7 @@ router.post('/uploadGalleryVideo', ensureAuthenticated, upload, (req, res, next)
       fs.unlink(path, (err) => {
         if (err) return res.status(500).json(err)
 
-        return res.status(200).json({ message: "Please go back and provide a video with valid extensions (.mp4,.avi,.3gp,.wmv)" })
+        return res.status(200).json({ message: "Please go back and provide a video with valid extensions (.mp4)" })
       })
     }
   } else {
