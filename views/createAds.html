@@ -346,13 +346,12 @@
                                                     <% if(texts) {%>
                                                         <% texts.forEach(function(t){ %>
                                                                
-                                                            <option value="<%= t._id %>" data-set="<%= t.title %> :<%= t.description%>"> <%= t.title %> :<%= t.description%></option>
+                                                            <option value="<%= t._id %>" data-set="<%= t.title %> :<%= t.description%>"> <%= t.title %> :<%= t.description%> </option>
 
                                                            
                                                             <% }) %>
-                                                                <%} else {%>
-                                                                    <% 'there is no record found' %>
-                                                                        <% } %>
+                                                                <%} %>
+                                                                   
                                                 </select>
                                             </div>
                                         </div>
