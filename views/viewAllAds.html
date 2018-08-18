@@ -248,14 +248,18 @@
                                     <div class="card">
                                         <div class="el-card-item">
                                             <div class="el-card-avatar el-overlay-1">
-                                                <video data-set="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>" id="videoSrc" src="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>"
-                                                    alt="user"></video>
-                                                <h1 id="textTitle">
-                                                    <%= allAds[a].textsId.title%>
-                                                </h1>
-                                                <p id="textDescription">
-                                                    <%= allAds[a].textsId.description%>
-                                                </p>
+                                                <div class="width-50-p">
+                                                    <video data-set="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>" id="videoSrc" src="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>"
+                                                        alt="user"></video>
+                                                </div>
+                                                <div class="width-50-p">
+                                                    <h1 id="textTitle">
+                                                        <%= allAds[a].textsId.title%>
+                                                    </h1>
+                                                    <p id="textDescription">
+                                                        <%= allAds[a].textsId.description%>
+                                                    </p>
+                                                </div>
                                                 <div class="el-overlay">
                                                     <ul class="el-info">
                                                         <li>
@@ -273,12 +277,15 @@
                                                     <%= allAds[a].userId.username%>
                                                 </h3>
                                                 <div class="action-buttons">
+                                                    <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="/editAd/<%= allAds[a]._id %>">EDIT</a>
                                                     <form method="POST" action="/viewAllAds/deleteAd">
                                                         <input name="adId" type="hidden" value="<%= allAds[a]._id %>">
                                                         <button class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</button>
                                                     </form>
-                                                    <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="/createAds/editAdd/<%= allAds[a]._id %>">EDIT</a>
-
+                                                    <!-- <form method="GETresult" action="/createAds">
+                                                        <input name="adId" type="hidden" value="<%= allAds[a]._id %>">
+                                                        <button class="btn btn-sm waves-effect waves-light btn-danger" href="#">edit</button>
+                                                    </form> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -290,15 +297,19 @@
                                         <div class="card">
                                             <div class="el-card-item">
                                                 <div class="el-card-avatar el-overlay-1">
-                                                    <img id="imageSrc2" data-set="<%= `/attachments/${allAds[a].imageId.fileName}` %>"
+                                                    <div class="width-50-p">
+                                                        <img id="imageSrc2" data-set="<%= `/attachments/${allAds[a].imageId.fileName}` %>"
                                                         src="<%= allAds[a].imageId ? `/attachments/${allAds[a].imageId.fileName}`: '' %>"
                                                         alt="user" />
-                                                    <h1 id="textTitle2">
-                                                        <%= allAds[a].textsId.title%>
-                                                    </h1>
-                                                    <p id="textDescription2">
-                                                        <%= allAds[a].textsId.description%>
-                                                    </p>
+                                                    </div>
+                                                    <div class="width-50-p">
+                                                        <h1 id="textTitle2">
+                                                            <%= allAds[a].textsId.title%>
+                                                        </h1>
+                                                        <p id="textDescription2">
+                                                            <%= allAds[a].textsId.description%>
+                                                        </p>
+                                                    </div>
                                                     <div class="el-overlay">
                                                         <ul class="el-info">
                                                             <li>
@@ -315,7 +326,7 @@
                                                         <%= allAds[a].userId.username%>
                                                     </h3>
                                                     <div class="action-buttons">
-                                                        <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="/createAds/editAdd/<%= allAds[a]._id %>">EDIT</a>
+                                                        <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="/editAd/<%= allAds[a]._id %>">EDIT</a>
                                                         <form method="POST" action="/viewAllAds/deleteAd">
                                                             <input name="adId" type="hidden" value="<%= allAds[a]._id %>">
                                                             <button class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</button>
@@ -331,12 +342,14 @@
                                             <div class="card">
                                                 <div class="el-card-item">
                                                     <div class="el-card-avatar el-overlay-1">
-                                                        <h1 id="textTitle3">
-                                                            <%= allAds[a].textsId.title%>
-                                                        </h1>
-                                                        <p id="textDescription3">
-                                                            <%= allAds[a].textsId.description%>
-                                                        </p>
+                                                        <div class="width-50-p w-100-p">
+                                                            <h1 id="textTitle3">
+                                                                <%= allAds[a].textsId.title%>
+                                                            </h1>
+                                                            <p id="textDescription3">
+                                                                <%= allAds[a].textsId.description%>
+                                                            </p>
+                                                        </div>
                                                         <div class="el-overlay">
                                                             <ul class="el-info">
                                                                 <li>
@@ -353,7 +366,7 @@
                                                             <%= allAds[a].userId.username%>
                                                         </h3>
                                                         <div class="action-buttons">
-                                                            <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="/createAds/editAdd/<%= allAds[a]._id %>">EDIT</a>
+                                                            <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="/editAd/<%= allAds[a]._id %>">EDIT</a>
                                                             <form method="POST" action="/viewAllAds/deleteAd">
                                                                 <input name="adId" type="hidden" value="<%= allAds[a]._id %>">
                                                                 <button class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</button>
@@ -369,14 +382,18 @@
                                                 <div class="card">
                                                     <div class="el-card-item">
                                                         <div class="el-card-avatar el-overlay-1">
-                                                            <video id="videoSrc4" data-set="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>"
-                                                                src="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>" alt="user"></video>
-                                                            <h1 id="textTitle4">
-                                                                <%= allAds[a].textsId.title%>
-                                                            </h1>
-                                                            <p id="textDescription4">
-                                                                <%= allAds[a].textsId.description%>
-                                                            </p>
+                                                            <div class="width-50-p">
+                                                                <video id="videoSrc4" data-set="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>"
+                                                                    src="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>" alt="user"></video>
+                                                            </div>        
+                                                            <div class="width-50-p">
+                                                                <h1 id="textTitle4">
+                                                                    <%= allAds[a].textsId.title%>
+                                                                </h1>
+                                                                <p id="textDescription4">
+                                                                    <%= allAds[a].textsId.description%>
+                                                                </p>
+                                                            </div>
                                                             <div class="el-overlay">
                                                                 <ul class="el-info">
                                                                     <li>
@@ -393,7 +410,7 @@
                                                                 <%= allAds[a].userId.username%>
                                                             </h3>
                                                             <div class="action-buttons">
-                                                                <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="/createAds/editAdd/<%= allAds[a]._id %>">EDIT</a>
+                                                                <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="/editAd/<%= allAds[a]._id %>">EDIT</a>
                                                                 <form method="POST" action="/viewAllAds/deleteAd">
                                                                     <input name="adId" type="hidden" value="<%= allAds[a]._id %>">
                                                                     <button class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</button>

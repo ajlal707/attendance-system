@@ -37,7 +37,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
 })
 
 
-router.get('/editAdd/:id', ensureAuthenticated, function (req, res, next) {
+router.get('/:id', ensureAuthenticated, function (req, res, next) {
 
   let { id } = req.params
   User.findOne({ _id: req.user._id })

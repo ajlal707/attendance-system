@@ -10086,3 +10086,26 @@ pre {
     height: 100%;
     width: 100%;
 }
+.width-50-p{
+    width: 50%;
+    float: left;
+    overflow: hidden;
+    max-height: 120px;
+}
+.el-element-overlay .el-card-item .el-overlay-1 .width-50-p video{
+    height: 150px;
+    object-fit: contain;
+}
+.width-50-p h1{
+    font-size: 15px;
+    margin: 0 0 5px;
+    line-height: 23px;
+}
+.width-50-p p{
+    font-size: 10px;
+    padding: 0 5px;
+    height: 120px;
+    text-align: left;
+}
+.width-50-p.w-100-p{width: 100%;}
+.el-card-item .el-card-content .action-buttons form{display: inline-block}

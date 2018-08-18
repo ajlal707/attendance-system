@@ -360,47 +360,61 @@ function createAd() {
     if (temp1.checked === true) {
         videoId = $('input:checkbox:checked')[0].id;
         template = 'temp-1'
+        if (videoId) {
+            $.ajax({
+                type: "POST",
+                url: "/createAds/createAd",
+                data: { videoId, textId, duration, userId, template },
+                success: function (res) {
+                    if (res.error) {
+                        var error = document.getElementById('error');
+                        error.style.color = 'red'
+                        error.innerHTML = res.error
 
-        $.ajax({
-            type: "POST",
-            url: "/createAds/createAd",
-            data: { videoId, textId, duration, userId, template },
-            success: function (res) {
-                if (res.error) {
-                    var error = document.getElementById('error');
-                    error.style.color = 'red'
-                    error.innerHTML = res.error
+                    } else if (res.success) {
+                        window.location.href = '/createAds';
 
-                } else if (res.success) {
-                    window.location.href = '/createAds';
-
-                    setTimeout(function () {
-                        document.getElementById("error").innerHTML = '';
-                    }, 3000);
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'Video not selected.'
+            setTimeout(function () {
+                document.getElementById("error").innerHTML = '';
+            }, 3000);
+        }
+
 
     } else if (temp2.checked === true) {
 
         imageId = $('input:checkbox:checked')[0].id;
         template = 'temp-2'
+        if (imageId) {
+            $.ajax({
+                type: "POST",
+                url: "/createAds/createAd",
+                data: { imageId, textId, duration, userId, template },
+                success: function (res) {
+                    if (res.error) {
+                        var error = document.getElementById('error');
+                        error.style.color = 'red'
+                        error.innerHTML = res.error
 
-        $.ajax({
-            type: "POST",
-            url: "/createAds/createAd",
-            data: { imageId, textId, duration, userId, template },
-            success: function (res) {
-                if (res.error) {
-                    var error = document.getElementById('error');
-                    error.style.color = 'red'
-                    error.innerHTML = res.error
-
-                } else if (res.success) {
-                    window.location.href = '/createAds';
+                    } else if (res.success) {
+                        window.location.href = '/createAds';
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'Image not selected.'
+            setTimeout(function () {
+                document.getElementById("error").innerHTML = '';
+            }, 3000);
+        }
     } else if (temp3.checked === true) {
 
         template = 'temp-3'
@@ -423,25 +437,34 @@ function createAd() {
     } else if (temp4.checked === true) {
         template = 'temp-4'
         videoId = $('input:checkbox:checked')[0].id;
-        $.ajax({
-            type: "POST",
-            url: "/createAds/createAd",
-            data: { videoId, textId, duration, userId, template },
-            success: function (res) {
-                if (res.error) {
-                    var error = document.getElementById('error');
-                    error.style.color = 'red'
-                    error.innerHTML = res.error
+        if (videoId) {
+            $.ajax({
+                type: "POST",
+                url: "/createAds/createAd",
+                data: { videoId, textId, duration, userId, template },
+                success: function (res) {
+                    if (res.error) {
+                        var error = document.getElementById('error');
+                        error.style.color = 'red'
+                        error.innerHTML = res.error
 
-                } else if (res.success) {
-                    window.location.href = '/createAds';
+                    } else if (res.success) {
+                        window.location.href = '/createAds';
 
-                    setTimeout(function () {
-                        document.getElementById("error").innerHTML = '';
-                    }, 3000);
+                        setTimeout(function () {
+                            document.getElementById("error").innerHTML = '';
+                        }, 3000);
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'Video not selected.'
+            setTimeout(function () {
+                document.getElementById("error").innerHTML = '';
+            }, 3000);
+        }
     } else {
         var error = document.getElementById('error');
         error.style.color = 'red'
@@ -530,3 +553,151 @@ function copyToViewTemplate4() {
     document.getElementById('videoSrc44').src = videofilePath
 }
 // end copy data view-ad to popup functions
+
+function updateAd() {
+    document.getElementById('error').innerHTML = ''
+    var temp1 = document.getElementById('temp-1');
+    var temp2 = document.getElementById('temp-2');
+    var temp3 = document.getElementById('temp-3');
+    var temp4 = document.getElementById('temp-4');
+    var duration = document.getElementById('duration').value;
+    var userId = document.getElementById('userId').value;
+    var textId = document.getElementById('textId').value;
+    var adIdForUpdate = document.getElementById('adIdForUpdate').value;
+
+    var imageId = ''
+    var videoId = ''
+    var template = ''
+    if (temp1.checked === true) {
+        videoId = $('input:checkbox:checked')[0].id;
+        template = 'temp-1'
+        if (videoId) {
+            $.ajax({
+                type: "POST",
+                url: "/editAd/update",
+                data: { adIdForUpdate, videoId, textId, duration, userId, template },
+                success: function (res) {
+                    if (res.error) {
+                        var error = document.getElementById('error');
+                        error.style.color = 'red'
+                        error.innerHTML = res.error
+
+                    } else if (res.success) {
+                        if (res.calledUrl === '/viewAllAds') {
+                            window.location.href = '/viewAllAds';
+                        } else {
+                            window.location.href = '/dashboard';
+                        }
+                    }
+                }
+            });
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'Video not selected.'
+            setTimeout(function () {
+                document.getElementById("error").innerHTML = '';
+            }, 3000);
+        }
+
+
+    } else if (temp2.checked === true) {
+
+        imageId = $('input:checkbox:checked')[0].id;
+        template = 'temp-2'
+        if (imageId) {
+            $.ajax({
+                type: "POST",
+                url: "/editAd/update",
+                data: { adIdForUpdate, imageId, textId, duration, userId, template },
+                success: function (res) {
+                    if (res.error) {
+                        var error = document.getElementById('error');
+                        error.style.color = 'red'
+                        error.innerHTML = res.error
+
+                    } else if (res.success) {
+                        if (res.calledUrl === '/viewAllAds') {
+                            window.location.href = '/viewAllAds';
+                        } else {
+                            window.location.href = '/dashboard';
+                        }
+                    }
+                }
+            });
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'Image not selected.'
+            setTimeout(function () {
+                document.getElementById("error").innerHTML = '';
+            }, 3000);
+        }
+    } else if (temp3.checked === true) {
+
+        template = 'temp-3'
+        $.ajax({
+            type: "POST",
+            url: "/editAd/update",
+            data: { adIdForUpdate, textId, duration, userId, template },
+            success: function (res) {
+                if (res.error) {
+                    var error = document.getElementById('error');
+                    error.style.color = 'red'
+                    error.innerHTML = res.error
+
+                } else if (res.success) {
+                    if (res.calledUrl === '/viewAllAds') {
+                        window.location.href = '/viewAllAds';
+                    } else {
+                        window.location.href = '/dashboard';
+                    }
+                }
+            }
+        });
+
+    } else if (temp4.checked === true) {
+        template = 'temp-4'
+        videoId = $('input:checkbox:checked')[0].id;
+        if (videoId) {
+            $.ajax({
+                type: "POST",
+                url: "/editAd/update",
+                data: { adIdForUpdate, videoId, textId, duration, userId, template },
+                success: function (res) {
+                    if (res.error) {
+                        var error = document.getElementById('error');
+                        error.style.color = 'red'
+                        error.innerHTML = res.error
+
+                    } else if (res.success) {
+                        if (res.calledUrl === '/viewAllAds') {
+                            window.location.href = '/viewAllAds';
+                        } else {
+                            window.location.href = '/dashboard';
+                        }
+
+                        setTimeout(function () {
+                            document.getElementById("error").innerHTML = '';
+                        }, 3000);
+                    }
+                }
+            });
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'Video not selected.'
+            setTimeout(function () {
+                document.getElementById("error").innerHTML = '';
+            }, 3000);
+        }
+    } else {
+        var error = document.getElementById('error');
+        error.style.color = 'red'
+        error.innerHTML = 'Template not selected.'
+        setTimeout(function () {
+            document.getElementById("error").innerHTML = '';
+        }, 3000);
+    }
+}
+

@@ -24,6 +24,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
                 .exec(function (err, allAds) {
                     if (err) { return next(err) }
 
+                    req.session.CalledUrl = req.originalUrl
                     res.render('viewAllAds', { title: 'All-Ads', user, allAds })
                 })
         })
@@ -31,7 +32,6 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
 
 router.post('/deleteAd', function (req, res) {
     var id = req.body.adId
-    console.log(id)
     createAd.findOne({ _id: id }, (err, existAd) => {
         if (err) return res.json({ error: err })
 

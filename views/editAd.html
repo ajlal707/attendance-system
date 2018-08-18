@@ -12,15 +12,15 @@
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.png">
     <title>Create Ad</title>
     <!-- Bootstrap Core CSS -->
-    <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/responsive.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/responsive.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
-    <link href="css/colors/green-dark.css" id="theme" rel="stylesheet">
-    <link href="plugins/slick/slick.css" id="theme" rel="stylesheet">
-    <link href="plugins/slick/slick.theme.css" id="theme" rel="stylesheet">
+    <link href="/css/colors/green-dark.css" id="theme" rel="stylesheet">
+    <link href="/plugins/slick/slick.css" id="theme" rel="stylesheet">
+    <link href="/plugins/slick/slick.theme.css" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -55,12 +55,12 @@
                     <a class="navbar-brand" href="/dashboard">
                         <b>
                             <!-- Light Logo icon -->
-                            <img src="img/logo-light-icon.png" alt="homepage" class="light-logo" />
+                            <img src="/img/logo-light-icon.png" alt="homepage" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
                         <span>
                             <!-- Light Logo text -->
-                            <img src="img/logo-light-text.png" class="light-logo" alt="homepage" />
+                            <img src="/img/logo-light-text.png" class="light-logo" alt="homepage" />
                         </span>
                     </a>
                 </div>
@@ -252,7 +252,7 @@
                                                     <div class="img-checkbox">                                                      
                                                         <input type="radio" name="select-tem" onclick="hideDive('temp-1')" id="temp-1" class="check-with-label"  />
                                                         <label for="temp-1" class="label-for-check">
-                                                            <img class="image-select" src="img/templates/temp-01.png" />
+                                                            <img class="image-select" src="/img/templates/temp-01.png" />
                                                         </label>
                                                         <div class="image-selectcontent">
                                                             <span class="temp-icon">    
@@ -266,9 +266,9 @@
                                                 </div>
                                                 <div class="template-area">
                                                     <div class="img-checkbox">
-                                                        <input type="radio" name="select-tem" onclick="hideDive('temp-2')" id="temp-2" class="check-with-label"  />
+                                                        <input type="radio" name="select-tem" onclick="hideDive('temp-2')" id="temp-2" class="check-with-label" />
                                                         <label for="temp-2" class="label-for-check">
-                                                            <img class="image-select" src="img/templates/temp-02.png" />
+                                                            <img class="image-select" src="/img/templates/temp-02.png" />
                                                         </label>
                                                         <div class="image-selectcontent">
                                                             <span class="temp-icon">
@@ -282,9 +282,9 @@
                                                 </div>
                                                 <div class="template-area">
                                                     <div class="img-checkbox">
-                                                        <input type="radio" name="select-tem" onclick="hideDive('temp-3')" id="temp-3" class="check-with-label"  />
+                                                        <input type="radio" name="select-tem" onclick="hideDive('temp-3')" id="temp-3" class="check-with-label" />
                                                         <label for="temp-3" class="label-for-check">
-                                                            <img class="image-select" src="img/templates/temp-03.png" />
+                                                            <img class="image-select" src="/img/templates/temp-03.png" />
                                                         </label>
                                                         <div class="image-selectcontent">
                                                             <span class="temp-icon">
@@ -299,7 +299,7 @@
                                                     <div class="img-checkbox">
                                                         <input type="radio" name="select-tem" onclick="hideDive('temp-4')" id="temp-4" class="check-with-label" />
                                                         <label for="temp-4" class="label-for-check">
-                                                            <img class="image-select" src="img/templates/temp-04.png" />
+                                                            <img class="image-select" src="/img/templates/temp-04.png" />
                                                         </label>
                                                         <div class="image-selectcontent">
                                                             <span class="temp-icon">    
@@ -315,7 +315,7 @@
                                                     <div class="img-checkbox">
                                                         <input type="radio" name="select-tem" onclick="hideDive('temp-5')" id="temp-5" class="check-with-label" />
                                                         <label for="temp-5" class="label-for-check">
-                                                            <img class="image-select" src="img/templates/temp-05.png" />
+                                                            <img class="image-select" src="/img/templates/temp-05.png" />
                                                         </label>
                                                         <div class="image-selectcontent">
                                                             <span class="temp-icon">
@@ -338,6 +338,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Select Text</h4>
+                                    <input type="hidden" name="" id="adIdForUpdate" value="<%= result._id%>">
                                     <div class="row">
                                         <div class="col-sm-8 col-lg-6">
 
@@ -477,8 +478,8 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="pull-right">
-                                <button type="submit" class="btn btn-info waves-effect waves-light m-t-20 m-r-10" onclick="selectPopup()" data-toggle="modal" id="previewBtn" data-target="">Preview</button>
-                                <button type="submit" onclick="createAd()" class="btn btn-success waves-effect waves-light m-t-20">Create Ad</button>
+                                <!-- <button type="submit" class="btn btn-info waves-effect waves-light m-t-20 m-r-10" onclick="selectPopup()" data-toggle="modal" id="previewBtn" data-target="">Preview</button> -->
+                                <button type="submit" onclick="updateAd()" class="btn btn-success waves-effect waves-light m-t-20">UPDATE</button>
                             </div>
                         </div>
                     </div>
@@ -573,7 +574,7 @@
                                                     <div class="text-box">
                                                         <h2 id="popupTitle2">MAIN HEADING HERE</h2>
                                                         <p id="popupdescription2">Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
-                                                        <figure class="modal-logo"><img src="img/carsonline-logo.png" alt="image description"></figure>
+                                                        <figure class="modal-logo"><img src="/img/carsonline-logo.png" alt="image description"></figure>
                                                     </div>
                                                 </div>
                                             </div>
@@ -600,7 +601,7 @@
                                 <div class="tg-modalbox">
                                         <div class="modalcontent-box">
                                            <strong class="tg-logo">
-                                               <img src="img/carsonline-logo.png" alt="image description">
+                                               <img src="/img/carsonline-logo.png" alt="image description">
                                            </strong>
                                             <div class="text-box">
                                                 <h3 id="popupTitle3">LOREM $500 DE UTENIUM DOLROE FONTIO</h3>
@@ -668,7 +669,7 @@
                         <div class="modal-body">
                             <div class="modal-contentarea">
                                 <strong class="reprise-logo">
-                                    <img src="img/carsonline-logo.png" alt="image description">
+                                    <img src="/img/carsonline-logo.png" alt="image description">
                                 </strong>
                                 <div class="modalcontent-box">
                                     <div class="text-box">
@@ -690,31 +691,37 @@
             <!-- End Popup  -->
             <!-- ============================================================== -->
     </div>
+    <script>
+            
+    
+        
+        </script>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="plugins/bootstrap/js/popper.min.js"></script>
-    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="js/jquery.slimscroll.js"></script>
+    <script src="/js/jquery.slimscroll.js"></script>
     <!-- <script src="js/jquery.js>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   .js"></script> -->
     <!--Wave Effects -->
-    <script src="js/waves.js"></script>
+    <script src="/js/waves.js"></script>
     <!--Menu sidebar -->
-    <script src="js/sidebarmenu.js"></script>
+    <script src="/js/sidebarmenu.js"></script>
     <!--stickey kit -->
-    <script src="plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
-    <script src="js/custom.min.js"></script>
+    <script src="/js/custom.min.js"></script>
 
-    <script src="plugins/slick/slick.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/main.js"></script>
+    <script src="/plugins/slick/slick.js"></script>
+    <script src="/js/custom.js"></script>
+    <script src="/js/editAd.js"></script>
+    <script src="/js/main.js"></script>
 
     <script>
         $('.ss-slider').slick({
@@ -741,7 +748,7 @@
             ]
         });
     </script>
-
+    
 </body>
 
 </html>
