@@ -21,7 +21,7 @@ router.post('/addNewUser', ensureAuthenticated, function (req, res, next) {
     User.findOne({ email: body.email }, (err, user) => {
         if (err) return res.json({ error: 'something bad please try again' })
 
-        if (user) return res.json({ error: 'user with this email alreadt exist.' })
+        if (user) return res.json({ error: 'user with this email already exist.' })
 
         User.create({
             username: req.body.username,

@@ -3,32 +3,39 @@ function userLogin() {
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
 
-    if (email && password) {
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-            $.ajax({
-                type: "POST",
-                url: "/userLogin",
-                data: { email, password },
-                success: function (res) {
-                    if (res.error) {
-                        var error = document.getElementById('error');
-                        error.style.color = 'red'
-                        error.innerHTML = res.error
+    if (email) {
+        if (password) {
+            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                $.ajax({
+                    type: "POST",
+                    url: "/userLogin",
+                    data: { email, password },
+                    success: function (res) {
+                        if (res.error) {
+                            var error = document.getElementById('error');
+                            error.style.color = 'red'
+                            error.innerHTML = res.error
 
-                    } else {
-                        window.location.href = '/dashboard';
+                        } else {
+                            window.location.href = '/dashboard';
+                        }
                     }
-                }
-            });
+                });
+            } else {
+                var error = document.getElementById('error');
+                error.style.color = 'red'
+                error.innerHTML = 'Email format invalid.'
+            }
         } else {
             var error = document.getElementById('error');
             error.style.color = 'red'
-            error.innerHTML = 'Email format invalid.'
+            error.innerHTML = 'Password must not be empty.'
         }
+
     } else {
         var error = document.getElementById('error');
         error.style.color = 'red'
-        error.innerHTML = 'Fix the missing fields.'
+        error.innerHTML = 'Email must not be empty.'
     }
 }
 // signup user
@@ -67,7 +74,7 @@ function addUser() {
                             error.innerHTML = res.error
 
                         } else if (res.success) {
-                            window.location.href = '/addUser';
+                            window.location.href = '/viewAllUsers';
                         }
                     }
                 });
@@ -84,7 +91,7 @@ function addUser() {
     } else {
         var error = document.getElementById('error');
         error.style.color = 'red'
-        error.innerHTML = 'Password length grater then 5.'
+        error.innerHTML = 'Password length greater then 5.'
     }
 }
 //end signup user
@@ -218,26 +225,40 @@ function saveText() {
     document.getElementById('error').value = '';
     var title = document.getElementById('title').value;
     var description = document.getElementById('description').value;
-    if (title && description) {
-        $.ajax({
-            type: "POST",
-            url: "/addText/addText",
-            data: { title, description },
-            success: function (res) {
-                if (res.error) {
-                    var error = document.getElementById('error');
-                    error.style.color = 'red'
-                    error.innerHTML = res.error
+    title = title.trim()
+    description = description.trim()
+    if (title) {
+        if (description) {
+            $.ajax({
+                type: "POST",
+                url: "/addText/addText",
+                data: { title, description },
+                success: function (res) {
+                    if (res.error) {
+                        var error = document.getElementById('error');
+                        error.style.color = 'red'
+                        error.innerHTML = res.error
 
-                } else if (res.success) {
-                    window.location.href = '/addText';
+                    } else if (res.success) {
+                        window.location.href = '/addText';
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'Description field must not be empty.'
+            setTimeout(function () {
+                document.getElementById("error").innerHTML = '';
+            }, 3000);
+        }
     } else {
         var error = document.getElementById('error');
         error.style.color = 'red'
-        error.innerHTML = 'Fields must not be empty.'
+        error.innerHTML = 'Title field must not be empty.'
+        setTimeout(function () {
+            document.getElementById("error").innerHTML = '';
+        }, 3000);
     }
 }
 // copy text into popup
@@ -358,9 +379,13 @@ function createAd() {
     var videoId = ''
     var template = ''
     if (temp1.checked === true) {
-        videoId = $('input:checkbox:checked')[0].id;
-        template = 'temp-1'
-        if (videoId) {
+
+        var n = $("input:checkbox:checked").length;
+        if (n == 1) {
+            videoId = $('input:checkbox:checked')[0].id;
+            template = 'temp-1'
+
+
             $.ajax({
                 type: "POST",
                 url: "/createAds/createAd",
@@ -383,15 +408,17 @@ function createAd() {
             error.innerHTML = 'Video not selected.'
             setTimeout(function () {
                 document.getElementById("error").innerHTML = '';
-            }, 3000);
+            }, 6000);
         }
 
 
     } else if (temp2.checked === true) {
+        var n = $("input:checkbox:checked").length;
+        if (n == 1) {
+            imageId = $('input:checkbox:checked')[0].id;
 
-        imageId = $('input:checkbox:checked')[0].id;
-        template = 'temp-2'
-        if (imageId) {
+            template = 'temp-2'
+
             $.ajax({
                 type: "POST",
                 url: "/createAds/createAd",
@@ -435,9 +462,11 @@ function createAd() {
         });
 
     } else if (temp4.checked === true) {
-        template = 'temp-4'
-        videoId = $('input:checkbox:checked')[0].id;
-        if (videoId) {
+        var n = $("input:checkbox:checked").length;
+        if (n == 1) {
+            template = 'temp-4'
+            videoId = $('input:checkbox:checked')[0].id;
+
             $.ajax({
                 type: "POST",
                 url: "/createAds/createAd",

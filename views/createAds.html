@@ -133,7 +133,7 @@
                     </div>
                     <!-- User profile text-->
                     <div class="profile-text">
-                        <h5>Markarn Doe</h5>
+                        <h5><%= undefined === user || undefined === user.username ? '' : user.username %> </h5>
                         <a href="/profile" class="" data-toggle="tooltip" title="Profile">
                             <i class="ti-user"></i>
                         </a>

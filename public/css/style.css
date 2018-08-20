@@ -10109,3 +10109,10 @@ pre {
 }
 .width-50-p.w-100-p{width: 100%;}
 .el-card-item .el-card-content .action-buttons form{display: inline-block}
+.el-card-item .el-card-avatar .content-box .title h3 {
+    width: 207px;
+    overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
