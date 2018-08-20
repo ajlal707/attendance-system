@@ -10115,4 +10115,4 @@ pre {
         text-overflow: ellipsis;
         white-space: nowrap;
     }
-    
+    #Modalbox-1 .modal-body p{    word-break: break-word;}
