@@ -110,7 +110,7 @@
                     </div>
                     <!-- User profile text-->
                     <div class="profile-text">
-                        <h5>Markarn Doe</h5>
+                        <h5><%= undefined === user || undefined === user.username ? '' : user.username %> </h5>
                         <a href="/profile" class="" data-toggle="tooltip" title="Profile"><i class="ti-user"></i></a>
                         <a href="/logout" class="" data-toggle="tooltip" title="Logout"><i class="ti-power-off"></i></a>
                     </div>
@@ -243,10 +243,11 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <!-- <h2>Cars Online</h2> -->
+                               
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             </div>
                             <div class="modal-body">
+                                 <h2></h2>
                                 <h3 id="popupTitle"> </h3>
                                 <p id="popupdescription"> </p>
                             </div>
