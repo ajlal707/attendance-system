@@ -77,11 +77,11 @@ router.post('/uploadImage', ensureAuthenticated, upload, (req, res, next) => {
                         return res.json({ error: 'something happend bad try again!' })
                     } else {
                         User.findOne({ _id: req.user._id }, (err, user) => {
-                            return res.json({ error: 'something happend bad try again!' })
+                            if(err)  return res.json({ error: 'something happend bad try again!' })
 
                             user.photoId = newPhoto._id
                             user.save(function (err) {
-                                return res.json({ error: 'something happend bad try again!' })
+                              if(err)  return res.json({ error: 'something happend bad try again!' })
 
 
                                 return res.json({ success: 'success' })
