@@ -730,3 +730,112 @@ function updateAd() {
     }
 }
 
+function changeUserProfilePic() {
+
+    let fileObj = document.getElementById("image-file").files[0];
+    if (fileObj) {
+        var formData = new FormData();
+        formData.append('file', fileObj);
+
+        $.ajax({
+            type: "POST",
+            url: "/profile/uploadImage",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response.success) {
+                    window.location.href = '/profile';
+                } else {
+                    var error = document.getElementById('error1');
+                    error.style.color = 'red'
+                    error.innerHTML =  response.error
+                    setTimeout(function () {
+                        document.getElementById("error").innerHTML = '';
+                    }, 3000);
+                }
+            }
+        });
+    } else {
+        var error = document.getElementById('error1');
+        error.style.color = 'red'
+        error.innerHTML = 'First select an image.'
+        setTimeout(function () {
+            document.getElementById("error").innerHTML = '';
+        }, 3000);
+    }
+
+}
+
+function uploadNewImage() {
+
+    let fileObj = document.getElementById("galleryImg").files[0];
+    if (fileObj) {
+        var formData = new FormData();
+        formData.append('galleryImg', fileObj);
+
+        $.ajax({
+            type: "POST",
+            url: "/addImages/uploadGalleryImg",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response.success) {
+                    window.location.href = '/addImages';
+                } else {
+                    var error = document.getElementById('error');
+                    error.style.color = 'red'
+                    error.innerHTML =  response.error
+                    setTimeout(function () {
+                        document.getElementById("error").innerHTML = '';
+                    }, 3000);
+                }
+            }
+        });
+    } else {
+        var error = document.getElementById('error');
+        error.style.color = 'red'
+        error.innerHTML = 'First select image.'
+        setTimeout(function () {
+            document.getElementById("error").innerHTML = '';
+        }, 3000);
+    }
+}
+
+
+function saveNewVideo() {
+
+    let fileObj = document.getElementById("video-file").files[0];
+    if (fileObj) {
+        var formData = new FormData();
+        formData.append('file', fileObj);
+
+        $.ajax({
+            type: "POST",
+            url: "/addVideos/uploadGalleryVideo",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response.success) {
+                    window.location.href = '/addVideos';
+                } else {
+                    var error = document.getElementById('error1');
+                    error.style.color = 'red'
+                    error.innerHTML = response.error
+                    setTimeout(function () {
+                        document.getElementById("error").innerHTML = '';
+                    }, 3000);
+                }
+            }
+        });
+    } else {
+        var error = document.getElementById('error1');
+        error.style.color = 'red'
+        error.innerHTML = 'First select video.'
+        setTimeout(function () {
+            document.getElementById("error1").innerHTML = '';
+        }, 3000);
+    }
+}

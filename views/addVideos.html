@@ -180,14 +180,15 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Upload Video</h4>
-                                <form enctype="multipart/form-data" action="/addVideos/uploadGalleryVideo" method="post">
+                                <span id="error1"></span>
+                                <!-- <form enctype="multipart/form-data" action="/addVideos/uploadGalleryVideo" method="post"> -->
                                     <div class="fallback">
                                         <input type="file" id="video-file" name="file" accept="video/x-mp4,video/flv,video/avi" single="single" class="dropify" data-max-file-size="2M">
                                     </div>
                                     <div class="save-btn">
-                                        <input type="submit" class="btn btn-success waves-effect waves-light" value="SAVE VIDEO">
+                                        <input onclick="saveNewVideo()" type="submit" class="btn btn-success waves-effect waves-light" value="SAVE VIDEO">
                                     </div>
-                                </form>
+                                <!-- </form> -->
                             </div>
                         </div>
                     </div>

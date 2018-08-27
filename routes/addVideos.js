@@ -57,20 +57,20 @@ router.post('/uploadGalleryVideo', ensureAuthenticated, upload, (req, res, next)
       newVideos.title = originalname;
 
       newVideos.save((err) => {
-        if (err) return res.status(500).json(err)
+        if (err) return res.json({error:'Something happen bad try again.'})
 
-        return res.redirect('/addVideos')
+        return res.json({success:'success'})
       })
 
     } else {
       fs.unlink(path, (err) => {
-        if (err) return res.status(500).json(err)
+        if (err) return res.json({error:'Something happen bad try again'})
 
-        return res.status(200).json({ message: "Please go back and provide a video with valid extensions (.mp4)" })
+        return res.json({ error: "Provide a video with valid extensions (.mp4)" })
       })
     }
   } else {
-    return res.status(200).json({ message: "Please go back and choose a file." })
+    return res.json({ error: "Please choose a file." })
   }
 })
 

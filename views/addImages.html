@@ -181,7 +181,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">Upload Image</h4>
                                 <span id="error"></span>
-                                <form enctype="multipart/form-data" action="/addImages/uploadGalleryImg" method="post">
+                               
                                     <div class="fallback">
                                     <!-- <input id="title" type="text" placeholder="Enter Image title"/> -->
                                     <input type="file" id="galleryImg"  name="galleryImg" class="dropify" data-max-file-size="2M" accept="image/x-png,image/jpg,image/jpeg" single="single">
@@ -190,9 +190,9 @@
                                     </div>
                                     <div class="save-btn">
                                         <!-- <button type="submit" class="btn btn-success waves-effect waves-light m-t-30">SAVE IMAGES</button> -->
-                                        <input type="submit" class="btn btn-success waves-effect waves-light m-t-30" value="SAVE IMAGE">
+                                        <input onclick="uploadNewImage()" type="submit" class="btn btn-success waves-effect waves-light m-t-30" value="SAVE IMAGE">
                                     </div>
-                                </form>
+                                
                             </div>
                         </div>
                     </div>

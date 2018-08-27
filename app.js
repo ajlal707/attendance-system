@@ -69,6 +69,7 @@ app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
+app.use(bodyParser({limit: '15mb'}));
 app.use(session({
   secret: 'codeXekReT',
   resave: false,

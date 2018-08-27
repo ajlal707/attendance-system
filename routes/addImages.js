@@ -44,9 +44,9 @@ router.post('/uploadGalleryImg', ensureAuthenticated, upload, (req, res, next) =
 
   if (req.file) {
     const { filename, mimetype, originalname, path } = req.file;
-    let ext = ['jpeg', 'png', 'jpg'];
+    let fileEx = originalname.split('.').pop()
 
-    if (ext.some(s => req.file.mimetype.indexOf(s))) {
+    if (fileEx === 'jpeg' || fileEx === 'png' || fileEx === 'jpg') {
       var newAttachments = new Attachments();
 
       newAttachments.filePath = path;
@@ -56,21 +56,21 @@ router.post('/uploadGalleryImg', ensureAuthenticated, upload, (req, res, next) =
 
       newAttachments.save(function (err) {
         if (err) {
-          res.status(500).json(err)
+          res.json({ error: 'something happen bad try again.' })
         } else {
-          return res.redirect('/addImages')
+          res.json({ success: 'success.' })
         }
       })
 
     } else {
       fs.unlink(path, (err) => {
-        if (err) return res.status(500).json(err)
+        if (err) return  res.json({ error: 'something happen bad try again.' })
 
-        return res.status(200).json({ message: "Please go back and provide a video with valid extensions (.jpeg,.jpg,.png)" })
+        return res.json({ error: "Provide image with valid extensions (.jpeg,.jpg,.png)" })
       })
     }
   } else {
-    return res.status(500).json({ message: "Please go back and choose a file." })
+    return res.json({ error: "Please choose a file." })
   }
 })
 router.post('/deleteImage', ensureAuthenticated, function (req, res) {

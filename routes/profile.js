@@ -6,6 +6,25 @@ const Photo = require('../models/photo')
 let ensureAuthenticated = require('../config/authUser')
 var router = express.Router()
 
+const crypto = require('crypto')
+
+const DEFAULT_UPLOAD_PATH = './public/uploads/';
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, DEFAULT_UPLOAD_PATH);
+    },
+    filename: function (req, file, cb) {
+        let customFileName = crypto.randomBytes(18).toString('hex'),
+            originalname = file.originalname,
+            fileExtension = originalname.substring(originalname.lastIndexOf('.') + 1, originalname.length) || originalname;
+        cb(null, customFileName + '.' + fileExtension)
+    }
+})
+
+var upload = multer({ storage }).single('file')
+
+
 router.get('/', ensureAuthenticated, function (req, res, next) {
     req.session.welcome = 'false'
 
@@ -18,80 +37,84 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
         })
 })
 
-router.post('/uploadImage', ensureAuthenticated, (req, res, next) => {
-    var DIR = './public/uploads/'
-    var upload = multer({ dest: DIR }).single('profilePhoto')
+router.post('/uploadImage', ensureAuthenticated, upload, (req, res, next) => {
+    const { file } = req
+    const { originalname, path, filename } = file
 
-    var path = ''
-    upload(req, res, function (err) {
-        if (err) {
-            return res.status(500).json(err)
-        } else {
-            if (req.file) {
-                var extension = req.file.originalname.split('.').pop()
-                if (extension == 'jpeg' || extension == 'png' || extension == 'jpg') {
+    var extension = originalname.split('.').pop()
+    if (extension == 'jpeg' || extension == 'png' || extension == 'jpg') {
+        Photo.findOne({ userId: req.user._id }).exec((err, photo) => {
+            if (err) return res.json({ error: 'something happend bad try again!' })
 
-                    Photo.findOne({ userId: req.user._id }).exec((err, photo) => {
-                        if (err) return res.json({ error: 'something happend bad try again!' })
+            if (photo) {
+                var pathToDelete = photo.filePath;
 
-                        if (photo) {
-                            var pathToDelete = photo.filePath;
+                photo.filePath = path;
+                photo.fileType = originalname.split('.').pop()
+                photo.fileName = filename;
 
-                            photo.filePath = req.file.path;
-                            photo.fileType = req.file.originalname.split('.').pop()
-                            photo.fileName = req.file.filename;
+                photo.save((err) => {
+                    if (err) return res.json({ error: 'something happend bad try again!' })
 
-                            photo.save((err) => {
-                                if (err) return res.json({ error: err })
-
-                                fs.unlink(pathToDelete, (err) => {
-                                    if (err)
-                                        return res.status(500).json(err)
-
-                                    res.redirect('/profile')
-                                })
-                            })
-                        } else {
-                            //upload new photo
-                            var newPhoto = new Photo();
-
-                            newPhoto.filePath = req.file.path;
-                            newPhoto.fileType = req.file.originalname.split('.').pop()
-                            newPhoto.fileName = req.file.filename;
-                            newPhoto.userId = req.user._id;
-
-                            newPhoto.save(function (err, savedNewPhoto) {
-                                if (err) {
-                                    res.status(500).json(err)
-                                } else {
-                                    User.findOne({ _id: req.user._id }, (err, user) => {
-                                        if (err) console.log('SOme error ')
-                                        user.photoId = newPhoto._id
-                                        user.save(function (err) {
-                                            if (err) return res.json({ error: 'something happend bad' })
-
-                                            res.redirect('/profile')
-                                        })
-                                    })
-                                }
-                            })
-                        }
-                    })
-                } else {
-                    var pathToDelete = req.file.path;
                     fs.unlink(pathToDelete, (err) => {
-                        if (err) {
-                            return res.status(500).json(err)
-                        }
-                        return res.status(200).json({ message: "Please go back and provide a picture with valid extensions (.jpeg,.jpg,.png)" })
+                        if (err)
+                            return res.json({ error: 'something happend bad try again!' })
+
+                        return res.json({ success: 'success' })
                     })
-                }
+                })
             } else {
-                return res.json({ message: 'No file choose. choose a file' })
+                //upload new photo
+                var newPhoto = new Photo();
+
+                newPhoto.filePath = path;
+                newPhoto.fileType = originalname.split('.').pop()
+                newPhoto.fileName = filename;
+                newPhoto.userId = req.user._id;
+
+                newPhoto.save(function (err, savedNewPhoto) {
+                    if (err) {
+                        return res.json({ error: 'something happend bad try again!' })
+                    } else {
+                        User.findOne({ _id: req.user._id }, (err, user) => {
+                            return res.json({ error: 'something happend bad try again!' })
+
+                            user.photoId = newPhoto._id
+                            user.save(function (err) {
+                                return res.json({ error: 'something happend bad try again!' })
+
+
+                                return res.json({ success: 'success' })
+
+                            })
+                        })
+                    }
+                })
             }
-        }
-    })
+        })
+    } else {
+        var pathToDelete = file.path;
+        fs.unlink(pathToDelete, (err) => {
+            if (err) return res.json({ error: 'something happend bad try again!' })
+
+            return res.json({ error: "Provide a picture with valid extensions (.jpeg,.jpg,.png)" })
+        })
+    }
 })
+
+function decodeBase64Image(dataString) {
+    var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+        response = {};
+
+    if (matches.length !== 3) {
+        return new Error('Invalid input string');
+    }
+
+    response.type = matches[1];
+    response.data = new Buffer(matches[2], 'base64');
+
+    return response;
+}
 
 router.post('/updateprofile', ensureAuthenticated, (req, res, next) => {
 
@@ -101,7 +124,7 @@ router.post('/updateprofile', ensureAuthenticated, (req, res, next) => {
 
         if (!user) return res.json({ error: 'Something happend bad please try again.' })
 
-            user.username = username,
+        user.username = username,
             user.email = email,
             user.save((err) => {
                 if (err) return res.json({ error: err })
