@@ -51,9 +51,9 @@ app.use(function (req, res, next) {
 
 
 //mongo connection
-// mongoose.connect('mongodb://maxifjaved:maxifjaved@127.0.0.1:27017/carsOnline?authSource=admin')
+mongoose.connect('mongodb://maxifjaved:maxifjaved@127.0.0.1:27017/carsOnline?authSource=admin')
 
-mongoose.connect('mongodb://127.0.0.1:27017/carsOnline')
+// mongoose.connect('mongodb://127.0.0.1:27017/carsOnline')
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function () {
