@@ -1,8 +1,8 @@
-var createError = require('http-errors')
-var express = require('express')
-var path = require('path')
-var cookieParser = require('cookie-parser')
-var logger = require('morgan')
+const createError = require('http-errors')
+const express = require('express')
+const path = require('path')
+const cookieParser = require('cookie-parser')
+const logger = require('morgan')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const session = require('express-session')
@@ -11,18 +11,21 @@ const mongoStore = require('connect-mongo')(session)
 const flash = require('connect-flash')
 
 //base routes
-var indexRouter = require('./routes/index')
-var dashboardRouter = require('./routes/dashboard')
-var resetpasswordRouter = require('./routes/changePassword')
-var profileRouter = require('./routes/profile')
-var addUserRouter = require('./routes/addUser')
-var viewAllUsersRouter = require('./routes/viewAllUsers')
-var addTextRouter = require('./routes/addText')
-var addImagesRouter = require('./routes/addImages')
-var addVideosRouter = require('./routes/addVideos')
-var createAdsRouter = require('./routes/createAds')
-var viewAllAdsRouter = require('./routes/viewAllAds')
-var editAd = require('./routes/editAd')
+const indexRouter = require('./routes/index')
+const dashboardRouter = require('./routes/dashboard')
+const resetpasswordRouter = require('./routes/changePassword')
+const profileRouter = require('./routes/profile')
+const addUserRouter = require('./routes/addUser')
+const viewAllUsersRouter = require('./routes/viewAllUsers')
+const addTextRouter = require('./routes/addText')
+const addImagesRouter = require('./routes/addImages')
+const addVideosRouter = require('./routes/addVideos')
+const createAdsRouter = require('./routes/createAds')
+const viewAllAdsRouter = require('./routes/viewAllAds')
+const editAd = require('./routes/editAd')
+// user route or lcd where user,s ads shown
+const userLcd = require('./routes/userLcd')
+
 
 
 
@@ -51,9 +54,9 @@ app.use(function (req, res, next) {
 
 
 //mongo connection
-mongoose.connect('mongodb://maxifjaved:maxifjaved@127.0.0.1:27017/carsOnline?authSource=admin')
+// mongoose.connect('mongodb://maxifjaved:maxifjaved@127.0.0.1:27017/carsOnline?authSource=admin')
 
-// mongoose.connect('mongodb://127.0.0.1:27017/carsOnline')
+mongoose.connect('mongodb://127.0.0.1:27017/carsOnline')
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function () {
@@ -99,6 +102,7 @@ app.use('/addVideos', addVideosRouter)
 app.use('/createAds', createAdsRouter)
 app.use('/viewAllAds', viewAllAdsRouter)
 app.use('/editAd', editAd)
+app.use('/userLcd', userLcd)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -3,11 +3,14 @@ module.exports = function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     if (req.user.role === 'admin') {
       next()
+    } else if (req.isAuthenticated() && req.user.role === 'user') {
+      res.redirect('/userLcd')
     } else {
       req.logout();
-      res.redirect('/')
+      res.redirect('/');
     }
   } else {
-    res.redirect('/')
+    req.logout();
+    res.redirect('/');
   }
 }
