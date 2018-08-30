@@ -9731,16 +9731,26 @@ pre {
 }
 
 .modaltwo .text-box h2 {
-    color: #333;
+    color: #91c036;
     font-size: 57px;
     font-weight: 500;
-    margin: 0 0 40px;
+    margin: 0 0 20px;
+    padding: 0 0 20px;
+    position: relative;
     line-height: 65px;
     text-transform: uppercase;
 }
-
+.modaltwo .text-box h2:after {
+    left: 0;
+    bottom: 0;
+    content: '';
+    width: 35px;
+    height: 5px;
+    position: absolute;
+    background: #91c036;
+}
 .modaltwo .text-box p {
-    color: #b2b2b2;
+    color: #000;
     font-size: 20px;
     margin: 0 0 35px;
     line-height: 30px;
@@ -9943,8 +9953,8 @@ pre {
 }
 .tg-logo{
     float: left;
-    margin: 0 0 70px;
-    padding: 0 0 30px;
+    margin: 0 0 50px;
+    padding: 0 0 20px;
     position: relative;
 }
 .tg-logo:after{
@@ -10052,15 +10062,16 @@ pre {
     background: transparent;
 }
 .modalthree .text-box h3 {
-    color: #000;
-    font-size: 60px;
+    color: #39b44a;
+    font-size: 45px;
     font-weight: 500;
-    line-height: 65px;
+    line-height: 50px;
 }
 .modalthree .description {
     overflow: hidden;
 }
 .modalthree .description p {
+    color: #000;
     margin: 0;
     font-size: 24px;
     font-weight: 500;
@@ -10116,3 +10127,51 @@ pre {
         white-space: nowrap;
     }
     #Modalbox-1 .modal-body p{    word-break: break-word;}
+
+    /* slider user lcd css */
+    .slider-page-wrapper{
+        padding: 0;
+        height: 100vh;
+        min-height: auto;
+        overflow-x: hidden;
+        /*overflow-x: hidden;*/
+        margin: 0 !important;
+    }
+    .ss-adsliderholder{
+        width: 100%;
+        float: left;
+    }
+    .ss-adsliderholder .ss-slidermodal{
+        width: 100%;
+        float: left;
+    }
+    .ss-adsliderholder .modal-contentarea{
+        float: left;
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    .ss-adsliderholder .modalone .modal-contentarea {padding: 150px 0;}
+    .ss-adsliderholder .modaltwo .modal-dialog {
+        margin: 0;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    .ss-adsliderholder .modal-content{border: 0;}
+    .ss-adsliderholder .modaltwo .modal-content {padding: 189px 0;}
+    .ss-adsliderholder .modaltwo .modal-content .img-box {padding: 60px 0;}
+    .ss-adsliderholder .modaltwo .modal-content .img-box figure{
+        padding: 35px 0;
+    }
+    .ss-adsliderholder .modaltwo .text-box {padding: 137px 140px;}
+    .ss-adsliderholder  .modalthree .modal-dialog{
+        max-width: 100%;
+        margin: 0;
+    }
+    .ss-adsliderholder .modalthree .modal-contentarea {padding: 172px 0;}
+    .ss-adsliderholder .modalthree .tg-modalbox {
+        float: none;
+        max-width: 1580px;
+        overflow: hidden;
+        margin: 0 auto;
+    }

@@ -7,6 +7,7 @@ var AttachmentsSchema = mongoose.Schema({
   fileType: { type: String },
   title: { type: String },
   createAdId: [{ type: mongoose.Schema.ObjectId, ref: "createAd" }]
+
 })
 
 var Attachments = mongoose.model('Attachments', AttachmentsSchema)

@@ -214,70 +214,162 @@ $(function () {
     }
   });
 
-  // $.ajax({
-  //   type: "POST",
-  //   url: "/editAd/getResult",
-  //   data: {},
-  //   success: function (res) {
-  //     if (res.error) {
-  //       var error = document.getElementById('error');
-  //       error.style.color = 'red'
-  //       error.innerHTML = res.error
+  $.ajax({
+    type: "GET",
+    url: "/userLcd/getResult",
+    data: {},
+    success: function (res) {
+      if (res.userAds) {
+        let userAds = res.userAds
+        let arr = [];
+        for (var i = 0; i < userAds.length; i++) {
 
-  //     } else if (res.success) {
-  //       var result = res.result
-  //       var radioBtn1 = document.getElementById('temp-1')
-  //       var radioBtn2 = document.getElementById('temp-2')
-  //       var radioBtn3 = document.getElementById('temp-3')
-  //       var radioBtn4 = document.getElementById('temp-4')
 
-        
-  //       var image = document.getElementById('imageDiv');
-  //       var video = document.getElementById('videoImg');
-  //       radioBtn1.disabled = true
-  //       radioBtn2.disabled = true
-  //       radioBtn3.disabled = true
-  //       radioBtn4.disabled = true
-  //       if (result.templateId === 'temp-1') {
 
-  //         video.style.display = 'block';
-  //         image.style.display = 'none';
-  //         radioBtn1.checked = true
+          if (userAds[i].videosId) {
+            arr.push(userAds[i].duration)
+            let src = userAds[i].videosId.filePath.replace("public/", "")
+            let title = userAds[i].textsId.title
+            let description = userAds[i].textsId.description
+            let slider = document.getElementById('slider')
+            let model1 = userLcdHtml(src, title, description)
+            slider.insertAdjacentHTML('beforeend', model1);
 
-  //         let videoSelect = document.getElementById(result.videosId);
-  //         videoSelect.checked = true;
+          } else if (userAds[i].imageId) {
+            arr.push(userAds[i].duration)
+            let src = userAds[i].imageId.filePath.replace("public/", "")
+            let title = userAds[i].textsId.title
+            let description = userAds[i].textsId.description
+            let slider = document.getElementById('slider')
+            let model1 = userLcdHtml2(src, title, description)
+            slider.insertAdjacentHTML('beforeend', model1);
 
-  //       } else if (result.templateId === 'temp-2') {
+          } else if (userAds[i].textsId) {
+            arr.push(userAds[i].duration)
+            let title = userAds[i].textsId.title
+            let description = userAds[i].textsId.description
+            let slider = document.getElementById('slider')
+            let model1 = userLcdHtml3(title, description)
+            slider.insertAdjacentHTML('beforeend', model1);
+          }
+        }
+        $('.ss-slider').slick({
+          rows: 1,
+          slidesPerRow: 1,
+          slidesToScroll: 1,
+          autoplay: true,
+          speed: 4000,
+          arrows: false,
+        }).on("afterChange", function (e, slick) {
+          $('.ss-slider').slick("setOption", "autoplaySpeed", arr[slick.currentSlide] * 1);
+        });
+      }
+    }
+  });
 
-  //         image.style.display = 'block';
-  //         video.style.display = 'none';
-  //         radioBtn2.checked = true
-
-  //       } else if (result.templateId === 'temp-3') {
-
-  //         video.style.display = 'none';
-  //         image.style.display = 'none';
-  //         radioBtn3.checked = true
-
-  //       } else if (result.templateId === 'temp-4') {
-
-  //         video.style.display = 'block';
-  //         image.style.display = 'none';
-  //         radioBtn4.checked = true
-
-  //         let videoSelect = document.getElementById(result.videosId);
-  //         videoSelect.checked = true;
-  //       }
-
-  //       let text = document.getElementById('textId');
-  //       text.value = result.textsId;
-  //       let duration = document.getElementById('duration');
-  //       duration.value = result.duration;
-  //       let user = document.getElementById('userId');
-  //       user.value = result.userId;
-
-  //     }
-  //   }
-  // });
 
 });
+function userLcdHtml(videoSrc, title, description) {
+
+  return `<div id="model1" class="modalone ss-slidermodal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-contentarea">
+                    <button class="nxtbtn">
+                        <i class="ti-arrow-right"></i>
+                    </button>
+                    <div class="row paddingzero">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
+                            <div class="row">
+                                <div class="modalcontent-box">
+                                    <div class="titel">
+                                    </div>
+                                    <div class="text-box">
+                                        <h3 id="textTitleId">${title}</h3>
+                                        <p id="textDescriptionId">${description}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+                            <div class="row">
+                                <div class="video-box">
+                                    <figure>
+                                        <iframe id="videoSrcId" src="${videoSrc}" loop="true" autoplay webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>`
+
+}
+function userLcdHtml2(src, title, description) {
+  return ` <div class="modaltwo ss-slidermodal">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body">
+              <div class="modal-contentarea">
+                  <div class="row paddingzero">
+                      <div class="col-xs-12 col-sm-12 col-md-6">
+                          <div class="row">
+                              <div class="img-box">
+                                  <figure>
+                                      <img id="imageSrcId1"  src="${src}" alt="image description">
+                                  </figure>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-xs-12 col-sm-12 col-md-6">
+                          <div class="row">
+                              <div class="modalcontent-box">
+                                  <div class="modalcontent-boxholder">
+                                      <div class="text-box">
+                                          <h2 id="textTitleId1">${title}</h2>
+                                          <p id="textDescriptionId1">${description}.</p>
+                                          <figure class="modal-logo">
+                                              <img src="img/carsonline-logo.png" alt="image description">
+                                          </figure>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>`
+}
+function userLcdHtml3(title, description) {
+  return `<div class="modalthree ss-slidermodal">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-body">
+                          <div class="modal-contentarea">
+                              <div class="tg-modalbox">
+                                  <div class="modalcontent-box">
+                                      <strong class="tg-logo">
+                                          <img src="img/carsonline-logo.png" alt="image description">
+                                      </strong>
+                                      <div class="text-box">
+                                          <h3 id="textTitleId2">${title}</h3>
+                                          <div class="description">
+                                              <p id="textDescriptionId2">${description}.</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div> `
+}

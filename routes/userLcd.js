@@ -15,6 +15,7 @@ router.get('/', function (req, res, next) {
 
                 createAd.find({ userId: req.user._id })
                     .populate('userId')
+                    .populate('imageId')
                     .populate('videosId')
                     .populate('textsId')
                     .exec(function (err, userAds) {
@@ -26,7 +27,28 @@ router.get('/', function (req, res, next) {
     }
 })
 
+router.get('/getResult', function (req, res, next) {
+    if (req.user && req.user.role === 'admin') {
+        return res.json({ error: 'not an admin' })
+    } else {
+        User.findOne({ _id: req.user._id })
+            .populate('photoId')
+            .exec(function (err, user) {
+                if (err) return res.json({ error: 'not an admin' })
 
+                createAd.find({ userId: req.user._id })
+                    .populate('userId')
+                    .populate('imageId')
+                    .populate('videosId')
+                    .populate('textsId')
+                    .exec(function (err, userAds) {
+                        if (err) { return next(err) }
+
+                        return res.json({ userAds, user })
+                    })
+            })
+    }
+})
 router.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
