@@ -261,7 +261,7 @@ $(function () {
           speed: 4000,
           arrows: false,
         }).on("afterChange", function (e, slick) {
-          $('.ss-slider').slick("setOption", "autoplaySpeed", arr[slick.currentSlide] * 1);
+          $('.ss-slider').slick("setOption", "autoplaySpeed", (arr[slick.currentSlide] * 1000));
         });
       }
     }
