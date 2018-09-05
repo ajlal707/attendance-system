@@ -11,12 +11,12 @@
 	.modalone .modal-content{height: 100%;}
 	/*====== yameen =======*/
 	.footer-text{bottom: 135px;}
-	.ss-adsliderholder .modalthree .tg-modalbox{max-width: 1300px;}
+	/* .ss-adsliderholder .modalthree .tg-modalbox{max-width: 1300px;} */
 	.ss-adsliderholder .modalthree .text-box h3{font-size: 40px;}
 	.ss-adsliderholder .modalthree .description p{font-size: 20px;}
-	.ss-adsliderholder .modalone .modal-content {padding: 100px 0 412px;}
+	/* .ss-adsliderholder .modalone .modal-content {padding: 100px 0 412px;}
 	.ss-adsliderholder .modaltwo .modal-content {padding: 209px 0;}
-	.ss-adsliderholder .modalthree .modal-contentarea {padding: 195px 0;}
+	.ss-adsliderholder .modalthree .modal-contentarea {padding: 195px 0;} */
 }
 @media (max-width:1600px){
 	.text-box {padding: 60px 35px;}
@@ -52,7 +52,7 @@
 	   margin: 0 0 0 -435PX;
 	}
 	.footer-text h2{font-size: 55px;}
-	.ss-adsliderholder .modaltwo .modal-content {padding: 262px 0;}
+	/* .ss-adsliderholder .modaltwo .modal-content {padding: 262px 0;} */
 }
 @media (max-width:1366px){
 	.text-box h3 {font-size: 38px;}
@@ -62,8 +62,8 @@
 }
 @media (max-width:1360px){
 	.text-box h3 {font-size: 37px;}
-	.ss-adsliderholder .modalthree .tg-modalbox {max-width: 1150px;}
-	.ss-adsliderholder .modalthree .modal-contentarea {padding: 244px 0;}
+	/* .ss-adsliderholder .modalthree .tg-modalbox {max-width: 1150px;} */
+	/* .ss-adsliderholder .modalthree .modal-contentarea {padding: 244px 0;} */
 }
 @media (max-width:1280px){
 	.text-box h3 {font-size: 35px;}
