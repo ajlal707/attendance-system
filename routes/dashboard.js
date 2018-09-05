@@ -30,7 +30,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
             Videos.find({}, (err, videos) => {
               if (err) { return next(err) }
 
-              User.find({}, (err, users) => {
+              User.find({ role:'user' }, (err, users) => {
                 if (err) { return next(err) }
 
                 req.session.CalledUrl = req.originalUrl

@@ -81,7 +81,7 @@ router.post('/deleteImage', ensureAuthenticated, function (req, res) {
     createAd.findOne({ imageId: id }, (err, existAd) => {
       if (err) return res.json({ error: err })
 
-      if (existAd) return res.json({ error: 'This image is use in ad' })
+      if (existAd) return res.json({ error: 'This image is in use of ads' })
 
       fs.unlink(todo.filePath, (err) => {
         if (err)

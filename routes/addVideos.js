@@ -81,7 +81,7 @@ router.post('/deleteVideo', ensureAuthenticated, function (req, res) {
   createAd.findOne({ videosId: id }, (err, existAd) => {
     if (err) return res.json({ error: err })
 
-    if (existAd) return res.json({ error: 'This video is use in ad' })
+    if (existAd) return res.json({ error: 'This video is in use of ads' })
 
     Videos.findOne({ _id: id }, (err, todo) => {
       if (err) return res.json({ error: err })

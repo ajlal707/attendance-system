@@ -5,25 +5,29 @@ var router = express.Router()
 
 
 router.get('/', function (req, res, next) {
-    if (req.user && req.user.role === 'admin') {
+    if (req.user === undefined) {
         res.redirect('/dashboard');
     } else {
-        User.findOne({ _id: req.user._id })
-            .populate('photoId')
-            .exec(function (err, user) {
-                if (err) { return next(err) }
+        if (req.user.role === 'user') {
+            User.findOne({ _id: req.user._id })
+                .populate('photoId')
+                .exec(function (err, user) {
+                    if (err) { return next(err) }
 
-                createAd.find({ userId: req.user._id })
-                    .populate('userId')
-                    .populate('imageId')
-                    .populate('videosId')
-                    .populate('textsId')
-                    .exec(function (err, userAds) {
-                        if (err) { return next(err) }
+                    createAd.find({ userId: req.user._id })
+                        .populate('userId')
+                        .populate('imageId')
+                        .populate('videosId')
+                        .populate('textsId')
+                        .exec(function (err, userAds) {
+                            if (err) { return next(err) }
 
-                        res.render('userLcd', { title: 'User-Lcd', user, userAds })
-                    })
-            })
+                            res.render('userLcd', { title: 'User-Lcd', user, userAds })
+                        })
+                })
+        } else {
+            res.redirect('/dashboard');
+        }
     }
 })
 
