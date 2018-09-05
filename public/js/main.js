@@ -228,30 +228,50 @@ function saveText() {
     title = title.trim()
     description = description.trim()
     if (title) {
-        if (description) {
-            $.ajax({
-                type: "POST",
-                url: "/addText/addText",
-                data: { title, description },
-                success: function (res) {
-                    if (res.error) {
-                        var error = document.getElementById('error');
-                        error.style.color = 'red'
-                        error.innerHTML = res.error
-
-                    } else if (res.success) {
-                        window.location.href = '/addText';
-                    }
+        if (title.length < 41) {
+            if (description) {
+                if (description.length < 251) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/addText/addText",
+                        data: { title, description },
+                        success: function (res) {
+                            if (res.error) {
+                                var error = document.getElementById('error');
+                                error.style.color = 'red'
+                                error.innerHTML = res.error
+    
+                            } else if (res.success) {
+                                window.location.href = '/addText';
+                            }
+                        }
+                    });
+                } else{
+                    var error = document.getElementById('error');
+                    error.style.color = 'red'
+                    error.innerHTML = 'Description character length must less then 250.'
+                    setTimeout(function () {
+                        document.getElementById("error").innerHTML = '';
+                    }, 3000);
                 }
-            });
+                
+            } else {
+                var error = document.getElementById('error');
+                error.style.color = 'red'
+                error.innerHTML = 'Description field must not be empty.'
+                setTimeout(function () {
+                    document.getElementById("error").innerHTML = '';
+                }, 3000);
+            }
         } else {
             var error = document.getElementById('error');
             error.style.color = 'red'
-            error.innerHTML = 'Description field must not be empty.'
+            error.innerHTML = 'Title character length must less then 40.'
             setTimeout(function () {
                 document.getElementById("error").innerHTML = '';
             }, 3000);
         }
+
     } else {
         var error = document.getElementById('error');
         error.style.color = 'red'
@@ -261,6 +281,7 @@ function saveText() {
         }, 3000);
     }
 }
+
 // copy text into popup
 function copyTextToPopup(title, description) {
     console.log(title, description)
@@ -555,30 +576,31 @@ function selectPopup() {
     }
 }
 
+
 // copy data view-ad to popup functions
-function copyToViewTemplate1() {
-    var videofilePath = document.getElementById('videoSrc').dataset.set
-    document.getElementById('textTitle1').innerHTML = document.getElementById('textTitle').innerHTML;
-    document.getElementById('textDescription1').innerHTML = document.getElementById('textDescription').innerHTML;
+function copyToViewTemplate1(id) {
+    var videofilePath = document.getElementById('videoSrc-' + id).dataset.set
+    document.getElementById('title11').innerHTML = document.getElementById('title-' + id).innerHTML;
+    document.getElementById('des11').innerHTML = document.getElementById('description-' + id).innerHTML;
     document.getElementById('videoSrc1').src = videofilePath
 }
 
-function copyToViewTemplate2() {
-    var imageFilePath = document.getElementById('imageSrc2').dataset.set
-    document.getElementById('textTitle22').innerHTML = document.getElementById('textTitle2').innerHTML;
-    document.getElementById('textDescription22').innerHTML = document.getElementById('textDescription2').innerHTML;
+function copyToViewTemplate2(id) {
+    var imageFilePath = document.getElementById('imageSrc2-' + id).dataset.set
+    document.getElementById('title22').innerHTML = document.getElementById('title-' + id).innerHTML;
+    document.getElementById('des22').innerHTML = document.getElementById('description-' + id).innerHTML;
     document.getElementById('imageSrc22').src = imageFilePath
 }
 
-function copyToViewTemplate3() {
-    document.getElementById('textTitle33').innerHTML = document.getElementById('textTitle3').innerHTML;
-    document.getElementById('textDescription33').innerHTML = document.getElementById('textDescription3').innerHTML;
+function copyToViewTemplate3(id) {
+    document.getElementById('title33').innerHTML = document.getElementById('title-' + id).innerHTML;
+    document.getElementById('des33').innerHTML = document.getElementById('description-' + id).innerHTML;
 }
 
-function copyToViewTemplate4() {
-    var videofilePath = document.getElementById('videoSrc4').dataset.set
-    document.getElementById('textTitle44').innerHTML = document.getElementById('textTitle4').innerHTML;
-    document.getElementById('textDescription44').innerHTML = document.getElementById('textDescription4').innerHTML;
+function copyToViewTemplate4(id) {
+    var videofilePath = document.getElementById('videoSrc-' + id).dataset.set
+    document.getElementById('title44').innerHTML = document.getElementById('title-' + id).innerHTML;
+    document.getElementById('des44').innerHTML = document.getElementById('description-' + id).innerHTML;
     document.getElementById('videoSrc44').src = videofilePath
 }
 // end copy data view-ad to popup functions
@@ -749,7 +771,7 @@ function changeUserProfilePic() {
                 } else {
                     var error = document.getElementById('error1');
                     error.style.color = 'red'
-                    error.innerHTML =  response.error
+                    error.innerHTML = response.error
                     setTimeout(function () {
                         document.getElementById("error").innerHTML = '';
                     }, 3000);
@@ -786,7 +808,7 @@ function uploadNewImage() {
                 } else {
                     var error = document.getElementById('error');
                     error.style.color = 'red'
-                    error.innerHTML =  response.error
+                    error.innerHTML = response.error
                     setTimeout(function () {
                         document.getElementById("error").innerHTML = '';
                     }, 3000);

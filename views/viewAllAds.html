@@ -249,21 +249,21 @@
                                         <div class="el-card-item">
                                             <div class="el-card-avatar el-overlay-1">
                                                 <div class="width-50-p">
-                                                    <video data-set="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>" id="videoSrc" src="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>"
+                                                    <video data-set="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>" id="videoSrc-<%= allAds[a]._id %>" src="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>"
                                                         alt="user"></video>
                                                 </div>
                                                 <div class="width-50-p">
-                                                    <h1 id="textTitle">
+                                                    <h1 id="title-<%= allAds[a]._id %>">
                                                         <%= allAds[a].textsId.title%>
                                                     </h1>
-                                                    <p id="textDescription">
+                                                    <p id="description-<%= allAds[a]._id %>">
                                                         <%= allAds[a].textsId.description%>
                                                     </p>
                                                 </div>
                                                 <div class="el-overlay">
                                                     <ul class="el-info">
                                                         <li>
-                                                            <a class="btn default btn-outline" onclick="copyToViewTemplate1('<%= allAds[a].templateId %>')" href="javascript:void(0)"
+                                                            <a class="btn default btn-outline" onclick="copyToViewTemplate1('<%= allAds[a]._id %>')" href="javascript:void(0)"
                                                                 data-toggle="modal" data-target="#<%= allAds[a].templateId%>">
                                                                 <i class="icon-control-play"></i>
                                                             </a>
@@ -282,10 +282,6 @@
                                                         <input name="adId" type="hidden" value="<%= allAds[a]._id %>">
                                                         <button class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</button>
                                                     </form>
-                                                    <!-- <form method="GETresult" action="/createAds">
-                                                        <input name="adId" type="hidden" value="<%= allAds[a]._id %>">
-                                                        <button class="btn btn-sm waves-effect waves-light btn-danger" href="#">edit</button>
-                                                    </form> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -298,22 +294,22 @@
                                             <div class="el-card-item">
                                                 <div class="el-card-avatar el-overlay-1">
                                                     <div class="width-50-p">
-                                                        <img id="imageSrc2" data-set="<%= `/attachments/${allAds[a].imageId.fileName}` %>"
+                                                        <img id="imageSrc2-<%= allAds[a]._id %>" data-set="<%= `/attachments/${allAds[a].imageId.fileName}` %>"
                                                         src="<%= allAds[a].imageId ? `/attachments/${allAds[a].imageId.fileName}`: '' %>"
                                                         alt="user" />
                                                     </div>
                                                     <div class="width-50-p">
-                                                        <h1 id="textTitle2">
+                                                        <h1 id="title-<%= allAds[a]._id %>">
                                                             <%= allAds[a].textsId.title%>
                                                         </h1>
-                                                        <p id="textDescription2">
+                                                        <p id="description-<%= allAds[a]._id %>">
                                                             <%= allAds[a].textsId.description%>
                                                         </p>
                                                     </div>
                                                     <div class="el-overlay">
                                                         <ul class="el-info">
                                                             <li>
-                                                                <a class="btn default btn-outline" onclick="copyToViewTemplate2()"
+                                                                <a class="btn default btn-outline" onclick="copyToViewTemplate2('<%= allAds[a]._id %>')"
                                                                     href="javascript:void(0)" data-toggle="modal" data-target="#<%= allAds[a].templateId%>">
                                                                     <i class="icon-control-play"></i>
                                                                 </a>
@@ -343,17 +339,17 @@
                                                 <div class="el-card-item">
                                                     <div class="el-card-avatar el-overlay-1">
                                                         <div class="width-50-p w-100-p">
-                                                            <h1 id="textTitle3">
+                                                            <h1 id="title-<%= allAds[a]._id %>">
                                                                 <%= allAds[a].textsId.title%>
                                                             </h1>
-                                                            <p id="textDescription3">
+                                                            <p id="description-<%= allAds[a]._id %>">
                                                                 <%= allAds[a].textsId.description%>
                                                             </p>
                                                         </div>
                                                         <div class="el-overlay">
                                                             <ul class="el-info">
                                                                 <li>
-                                                                    <a class="btn default btn-outline" onclick="copyToViewTemplate3()"
+                                                                    <a class="btn default btn-outline" onclick="copyToViewTemplate3('<%= allAds[a]._id %>')"
                                                                         href="#" data-toggle="modal" data-target="#<%= allAds[a].templateId %>">
                                                                         <i class="icon-control-play"></i>
                                                                     </a>
@@ -383,21 +379,21 @@
                                                     <div class="el-card-item">
                                                         <div class="el-card-avatar el-overlay-1">
                                                             <div class="width-50-p">
-                                                                <video id="videoSrc4" data-set="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>"
+                                                                <video id="videoSrc-<%= allAds[a]._id %>" data-set="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>"
                                                                     src="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>" alt="user"></video>
                                                             </div>        
                                                             <div class="width-50-p">
-                                                                <h1 id="textTitle4">
+                                                                <h1 id="title-<%= allAds[a]._id %>">
                                                                     <%= allAds[a].textsId.title%>
                                                                 </h1>
-                                                                <p id="textDescription4">
+                                                                <p id="description-<%= allAds[a]._id %>">
                                                                     <%= allAds[a].textsId.description%>
                                                                 </p>
                                                             </div>
                                                             <div class="el-overlay">
                                                                 <ul class="el-info">
                                                                     <li>
-                                                                        <a class="btn default btn-outline" onclick="copyToViewTemplate4()"
+                                                                        <a class="btn default btn-outline" onclick="copyToViewTemplate4('<%= allAds[a]._id %>')"
                                                                             href="#" data-toggle="modal" data-target="#<%= allAds[a].templateId %>">
                                                                             <i class="icon-control-play"></i>
                                                                         </a>
@@ -445,10 +441,8 @@
                                                     <div class="titel">
                                                     </div>
                                                     <div class="text-box">
-                                                        <h3 id="textTitle1">BRAND NAME AND HEADING</h3>
-                                                        <p id="textDescription1">Cras ultricies ligula sed magna dictum porta. Curabitur non nulla
-                                                            sit amet nisl tempus convallis quis ac lectus. Cras ultricies
-                                                            ligula sed magna dictum porta.</p>
+                                                        <h3 id="title11"></h3>
+                                                        <p id="des11"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -497,9 +491,8 @@
                                                 <div class="modalcontent-box">
                                                     <div class="modalcontent-boxholder">
                                                         <div class="text-box">
-                                                            <h2 id="textTitle22">MAIN HEADING HERE</h2>
-                                                            <p id="textDescription22">Cras ultricies ligula sed magna dictum porta. Curabitur non nulla
-                                                                sit amet nisl tempus convallis quis ac lectus.</p>
+                                                            <h2 id="title22"></h2>
+                                                            <p id="des22"></p>
                                                             <figure class="modal-logo">
                                                                 <img src="img/carsonline-logo.png" alt="image description">
                                                             </figure>
@@ -533,10 +526,9 @@
                                                 <img src="img/carsonline-logo.png" alt="image description">
                                             </strong>
                                             <div class="text-box">
-                                                <h3 id="textTitle33">LOREM $500 DE UTENIUM DOLROE FONTIO</h3>
+                                                <h3 id="title33"></h3>
                                                 <div class="description">
-                                                    <p id="textDescription33">Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit
-                                                        amet nisl tempus convlis quis ac lectus.</p>
+                                                    <p id="des33"></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -570,10 +562,8 @@
                                                 <div class="titel">
                                                 </div>
                                                 <div class="text-box">
-                                                    <h3 id="textTitle44">BRAND NAME AND HEADING</h3>
-                                                    <p id="textDescription44">Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit
-                                                        amet nisl tempus convallis quis ac lectus. Cras ultricies ligula
-                                                        sed magna dictum porta.</p>
+                                                    <h3 id="title44"></h3>
+                                                    <p id="des44"></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -611,11 +601,11 @@
                                 </strong>
                                 <div class="modalcontent-box">
                                     <div class="text-box">
-                                        <p>Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit.</p>
+                                        <p></p>
                                     </div>
                                 </div>
                                 <div class="footer-text">
-                                    <h2>REPRISE POUR LES VOITURES EN STOCK</h2>
+                                    <h2></h2>
                                 </div>
                             </div>
                         </div>
