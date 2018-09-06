@@ -188,7 +188,7 @@ function deleteImage(imageId) {
         data: { imageId },
         success: function (res) {
             if (res.error) {
-                var error = document.getElementById('error');
+                var error = document.getElementById('error1');
                 error.style.color = 'red'
                 error.innerHTML = res.error
 
@@ -240,28 +240,28 @@ function saveText() {
                                 var error = document.getElementById('error');
                                 error.style.color = 'red'
                                 error.innerHTML = res.error
-    
+
                             } else if (res.success) {
                                 window.location.href = '/addText';
                             }
                         }
                     });
-                } else{
+                } else {
                     var error = document.getElementById('error');
                     error.style.color = 'red'
                     error.innerHTML = 'Description character length must less then 250.'
                     setTimeout(function () {
                         document.getElementById("error").innerHTML = '';
-                    }, 3000);
+                    }, 10000);
                 }
-                
+
             } else {
                 var error = document.getElementById('error');
                 error.style.color = 'red'
                 error.innerHTML = 'Description field must not be empty.'
                 setTimeout(function () {
                     document.getElementById("error").innerHTML = '';
-                }, 3000);
+                }, 10000);
             }
         } else {
             var error = document.getElementById('error');
@@ -269,7 +269,7 @@ function saveText() {
             error.innerHTML = 'Title character length must less then 40.'
             setTimeout(function () {
                 document.getElementById("error").innerHTML = '';
-            }, 3000);
+            }, 10000);
         }
 
     } else {
@@ -278,7 +278,7 @@ function saveText() {
         error.innerHTML = 'Title field must not be empty.'
         setTimeout(function () {
             document.getElementById("error").innerHTML = '';
-        }, 3000);
+        }, 10000);
     }
 }
 
@@ -362,7 +362,7 @@ function checkTempplate(id) {
                 selectedElement.checked = false;
                 setTimeout(function () {
                     document.getElementById("error").innerHTML = '';
-                }, 3000);
+                }, 10000);
             } else {
 
                 selectedElement.checked = true;
@@ -379,7 +379,7 @@ function checkTempplate(id) {
         selectedElement.checked = false;
         setTimeout(function () {
             document.getElementById("error").innerHTML = '';
-        }, 3000);
+        }, 10000);
     }
 }
 
@@ -416,9 +416,10 @@ function createAd() {
                         var error = document.getElementById('error');
                         error.style.color = 'red'
                         error.innerHTML = res.error
+                        window.scrollTo(0, 700);
 
                     } else if (res.success) {
-                        window.location.href = '/createAds';
+                        window.location.href = '/viewAllAds';
 
                     }
                 }
@@ -430,6 +431,7 @@ function createAd() {
             setTimeout(function () {
                 document.getElementById("error").innerHTML = '';
             }, 6000);
+            window.scrollTo(0, 700);
         }
 
 
@@ -449,7 +451,7 @@ function createAd() {
                         var error = document.getElementById('error');
                         error.style.color = 'red'
                         error.innerHTML = res.error
-
+                        window.scrollTo(0, 700);
                     } else if (res.success) {
                         window.location.href = '/createAds';
                     }
@@ -461,7 +463,8 @@ function createAd() {
             error.innerHTML = 'Image not selected.'
             setTimeout(function () {
                 document.getElementById("error").innerHTML = '';
-            }, 3000);
+            }, 10000);
+            window.scrollTo(0, 700);
         }
     } else if (temp3.checked === true) {
 
@@ -475,7 +478,7 @@ function createAd() {
                     var error = document.getElementById('error');
                     error.style.color = 'red'
                     error.innerHTML = res.error
-
+                    window.scrollTo(0, 700);
                 } else if (res.success) {
                     window.location.href = '/createAds';
                 }
@@ -497,13 +500,14 @@ function createAd() {
                         var error = document.getElementById('error');
                         error.style.color = 'red'
                         error.innerHTML = res.error
-
+                        window.scrollTo(0, 700);
                     } else if (res.success) {
                         window.location.href = '/createAds';
 
                         setTimeout(function () {
                             document.getElementById("error").innerHTML = '';
-                        }, 3000);
+                        }, 10000);
+                        window.scrollTo(0, 700);
                     }
                 }
             });
@@ -513,15 +517,17 @@ function createAd() {
             error.innerHTML = 'Video not selected.'
             setTimeout(function () {
                 document.getElementById("error").innerHTML = '';
-            }, 3000);
+            }, 10000);
+            window.scrollTo(0, 700);
         }
     } else {
-        var error = document.getElementById('error');
+        var error = document.getElementById('error1');
         error.style.color = 'red'
         error.innerHTML = 'Template not selected.'
         setTimeout(function () {
             document.getElementById("error").innerHTML = '';
-        }, 3000);
+        }, 10000);
+        window.scrollTo(0, 0);
     }
 }
 
@@ -620,9 +626,12 @@ function updateAd() {
     var videoId = ''
     var template = ''
     if (temp1.checked === true) {
-        videoId = $('input:checkbox:checked')[0].id;
-        template = 'temp-1'
-        if (videoId) {
+
+
+        var n = $("input:checkbox:checked").length;
+        if (n == 1) {
+            videoId = $('input:checkbox:checked')[0].id;
+            template = 'temp-1'
             $.ajax({
                 type: "POST",
                 url: "/editAd/update",
@@ -648,15 +657,19 @@ function updateAd() {
             error.innerHTML = 'Video not selected.'
             setTimeout(function () {
                 document.getElementById("error").innerHTML = '';
-            }, 3000);
+            }, 10000);
+            window.scrollTo(0, 700);
         }
 
 
     } else if (temp2.checked === true) {
 
-        imageId = $('input:checkbox:checked')[0].id;
-        template = 'temp-2'
-        if (imageId) {
+
+        var n = $("input:checkbox:checked").length;
+        if (n == 1) {
+            imageId = $('input:checkbox:checked')[0].id;
+            template = 'temp-2'
+
             $.ajax({
                 type: "POST",
                 url: "/editAd/update",
@@ -682,9 +695,12 @@ function updateAd() {
             error.innerHTML = 'Image not selected.'
             setTimeout(function () {
                 document.getElementById("error").innerHTML = '';
-            }, 3000);
+            }, 10000);
+            window.scrollTo(0, 250);
+
         }
     } else if (temp3.checked === true) {
+
 
         template = 'temp-3'
         $.ajax({
@@ -708,9 +724,12 @@ function updateAd() {
         });
 
     } else if (temp4.checked === true) {
-        template = 'temp-4'
-        videoId = $('input:checkbox:checked')[0].id;
-        if (videoId) {
+
+        var n = $("input:checkbox:checked").length;
+        if (n == 1) {
+            template = 'temp-4'
+            videoId = $('input:checkbox:checked')[0].id;
+
             $.ajax({
                 type: "POST",
                 url: "/editAd/update",
@@ -730,7 +749,7 @@ function updateAd() {
 
                         setTimeout(function () {
                             document.getElementById("error").innerHTML = '';
-                        }, 3000);
+                        }, 10000);
                     }
                 }
             });
@@ -740,7 +759,8 @@ function updateAd() {
             error.innerHTML = 'Video not selected.'
             setTimeout(function () {
                 document.getElementById("error").innerHTML = '';
-            }, 3000);
+            }, 10000);
+            window.scrollTo(0, 250);
         }
     } else {
         var error = document.getElementById('error');
@@ -748,7 +768,8 @@ function updateAd() {
         error.innerHTML = 'Template not selected.'
         setTimeout(function () {
             document.getElementById("error").innerHTML = '';
-        }, 3000);
+        }, 10000);
+        window.scrollTo(0, 0);
     }
 }
 
@@ -774,7 +795,7 @@ function changeUserProfilePic() {
                     error.innerHTML = response.error
                     setTimeout(function () {
                         document.getElementById("error").innerHTML = '';
-                    }, 3000);
+                    }, 10000);
                 }
             }
         });
@@ -784,7 +805,7 @@ function changeUserProfilePic() {
         error.innerHTML = 'First select an image.'
         setTimeout(function () {
             document.getElementById("error").innerHTML = '';
-        }, 3000);
+        }, 10000);
     }
 
 }
@@ -811,7 +832,7 @@ function uploadNewImage() {
                     error.innerHTML = response.error
                     setTimeout(function () {
                         document.getElementById("error").innerHTML = '';
-                    }, 3000);
+                    }, 10000);
                 }
             }
         });
@@ -821,7 +842,7 @@ function uploadNewImage() {
         error.innerHTML = 'First select image.'
         setTimeout(function () {
             document.getElementById("error").innerHTML = '';
-        }, 3000);
+        }, 10000);
     }
 }
 
@@ -832,7 +853,8 @@ function saveNewVideo() {
     if (fileObj) {
         var formData = new FormData();
         formData.append('file', fileObj);
-
+        $('#loader').addClass('showElement')
+        document.getElementById("status").style.display = "block";
         $.ajax({
             type: "POST",
             url: "/addVideos/uploadGalleryVideo",
@@ -843,21 +865,25 @@ function saveNewVideo() {
                 if (response.success) {
                     window.location.href = '/addVideos';
                 } else {
+                    document.getElementById("status").style.display = "none";
+                    $('#loader').removeClass('showElement')
                     var error = document.getElementById('error1');
                     error.style.color = 'red'
                     error.innerHTML = response.error
                     setTimeout(function () {
                         document.getElementById("error").innerHTML = '';
-                    }, 3000);
+                    }, 10000);
                 }
             }
         });
     } else {
+        document.getElementById("status").style.display = "none";
+        $('#loader').removeClass('showElement')
         var error = document.getElementById('error1');
         error.style.color = 'red'
         error.innerHTML = 'First select video.'
         setTimeout(function () {
             document.getElementById("error1").innerHTML = '';
-        }, 3000);
+        }, 10000);
     }
 }

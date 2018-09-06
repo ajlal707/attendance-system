@@ -34,10 +34,10 @@
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
-    <div class="preloader">
+    <!-- <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
             <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
-    </div>
+    </div> -->
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -58,8 +58,10 @@
                         </b>
                         <!--End Logo icon -->
                         <span>
-                        <!-- Light Logo text -->    
-                        <img src="img/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+                            <!-- Light Logo text -->
+                            <img src="img/logo-light-text.png" class="light-logo" alt="homepage" />
+                        </span>
+                    </a>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
@@ -70,8 +72,16 @@
                     <!-- ============================================================== -->
                     <ul class="navbar-nav mr-auto mt-md-0">
                         <!-- This is  -->
-                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
-                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)">
+                                <i class="mdi mdi-menu"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item m-l-10">
+                            <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)">
+                                <i class="ti-menu"></i>
+                            </a>
+                        </li>
                     </ul>
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
@@ -81,12 +91,22 @@
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>" alt="user" class="profile-pic" /></a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>"
+                                    alt="user" class="profile-pic" />
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right scale-up">
                                 <ul class="dropdown-user">
-                                    <li><a href="/profile"><i class="ti-user"></i> My Profile</a></li>
+                                    <li>
+                                        <a href="/profile">
+                                            <i class="ti-user"></i> My Profile</a>
+                                    </li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="/logout"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li>
+                                        <a href="/logout">
+                                            <i class="fa fa-power-off"></i> Logout</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -106,13 +126,21 @@
                 <!-- User profile -->
                 <div class="user-profile">
                     <!-- User profile image -->
-                    <div class="profile-img"> <img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>" alt="user" />                       
+                    <div class="profile-img">
+                        <img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>"
+                            alt="user" />
                     </div>
                     <!-- User profile text-->
                     <div class="profile-text">
-                        <h5><%= undefined === user || undefined === user.username ? '' : user.username %> </h5>
-                        <a href="/profile" class="" data-toggle="tooltip" title="Profile"><i class="ti-user"></i></a>
-                        <a href="/logout" class="" data-toggle="tooltip" title="Logout"><i class="ti-power-off"></i></a>
+                        <h5>
+                            <%= undefined === user || undefined === user.username ? '' : user.username %>
+                        </h5>
+                        <a href="/profile" class="" data-toggle="tooltip" title="Profile">
+                            <i class="ti-user"></i>
+                        </a>
+                        <a href="/logout" class="" data-toggle="tooltip" title="Logout">
+                            <i class="ti-power-off"></i>
+                        </a>
                     </div>
                 </div>
                 <!-- End User profile text-->
@@ -120,22 +148,56 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
-                        <li><a class="waves-effect waves-dark" href="/dashboard"><i class="icon-layers"></i><span class="hide-menu">Dashboard</span>
-                        </a></li>
-                        <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-people"></i><span class="hide-menu">Users</span></a>
+                        <li>
+                            <a class="waves-effect waves-dark" href="/dashboard">
+                                <i class="icon-layers"></i>
+                                <span class="hide-menu">Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                                <i class="icon-people"></i>
+                                <span class="hide-menu">Users</span>
+                            </a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="/addUser">Add User</a></li>
-                                <li><a href="/viewAllUsers">View All Users</a></li>
+                                <li>
+                                    <a href="/addUser">Add User</a>
+                                </li>
+                                <li>
+                                    <a href="/viewAllUsers">View All Users</a>
+                                </li>
                             </ul>
                         </li>
-                        <li><a class="waves-effect waves-dark" href="/addText"><i class="ti-receipt"></i><span class="hide-menu">Add Text</span></a></li>
-                        <li><a class="waves-effect waves-dark" href="/addImages"><i class="icon-picture"></i><span class="hide-menu">Add Images</span></a></li>
-                        <li class="active"><a class="waves-effect waves-dark" href="javascript:void(0)"><i class="icon-film"></i><span class="hide-menu">Add Videos</span></a></li>
-                        <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-grid"></i><span class="hide-menu">Ads</span>
-                        </a>
+                        <li>
+                            <a class="waves-effect waves-dark" href="/addText">
+                                <i class="ti-receipt"></i>
+                                <span class="hide-menu">Add Text</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="waves-effect waves-dark" href="/addImages">
+                                <i class="icon-picture"></i>
+                                <span class="hide-menu">Add Images</span>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a class="waves-effect waves-dark" href="javascript:void(0)">
+                                <i class="icon-film"></i>
+                                <span class="hide-menu">Add Videos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                                <i class="icon-grid"></i>
+                                <span class="hide-menu">Ads</span>
+                            </a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="/createAds">Create Ads</a></li>
-                                <li><a href="/viewAllAds">View All Ads</a></li>
+                                <li>
+                                    <a href="/createAds">Create Ads</a>
+                                </li>
+                                <li>
+                                    <a href="/viewAllAds">View All Ads</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -160,7 +222,9 @@
                 </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                        <li class="breadcrumb-item">
+                            <a href="/dashboard">Home</a>
+                        </li>
                         <li class="breadcrumb-item active">Add Videos</li>
                     </ol>
                 </div>
@@ -179,15 +243,22 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
+
                                 <h4 class="card-title">Upload Video</h4>
                                 <span id="error1"></span>
                                 <!-- <form enctype="multipart/form-data" action="/addVideos/uploadGalleryVideo" method="post"> -->
-                                    <div class="fallback">
-                                        <input type="file" id="video-file" name="file" accept="video/x-mp4,video/flv,video/avi" single="single" class="dropify" data-max-file-size="2M">
-                                    </div>
+                                <div class="fallback">
+                                        <div id="status">
+                                            <span id="loader" class="at-dataloader">
+                                                <img src="../img/loder.gif" alt="image description">
+                                            </span>
+                                        </div>
+                                    <input type="file" id="video-file" name="file" accept="video/x-mp4,video/flv,video/avi" single="single" class="dropify" data-max-file-size="2M">
                                     <div class="save-btn">
                                         <input onclick="saveNewVideo()" type="submit" class="btn btn-success waves-effect waves-light" value="SAVE VIDEO">
                                     </div>
+                                </div>
+                               
                                 <!-- </form> -->
                             </div>
                         </div>
@@ -200,30 +271,43 @@
                     </div>
                     <% if(videos) {%>
                         <% videos.forEach(function(i){ %>
-                    
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1">
-                                    <video><source src="<%= `/videosFolder/${i.fileName}` %>" type="video/mp4"></video>
-                                    <div class="el-overlay">
-                                        <ul class="el-info">
-                                            <li><a class="btn default btn-outline html5lightbox" href="<%= `/videosFolder/${i.fileName}` %>"><i class="icon-control-play"></i></a></li>
-                                            <!-- <input type="hidden" value="<%= i._id%>" id="videoId"> -->
-                                            <li><a class="btn default btn-outline danger" href="javascript:void(0);" onclick="deleteVideo('<%= i._id%>')"><i class="ti-trash"></i></a></li>
-                                        </ul>
+
+                            <div class="col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="el-card-item">
+                                        <div class="el-card-avatar el-overlay-1">
+                                            <video>
+                                                <source src="<%= `/videosFolder/${i.fileName}` %>" type="video/mp4">
+                                            </video>
+                                            <div class="el-overlay">
+                                                <ul class="el-info">
+                                                    <li>
+                                                        <a class="btn default btn-outline html5lightbox" href="<%= `/videosFolder/${i.fileName}` %>">
+                                                            <i class="icon-control-play"></i>
+                                                        </a>
+                                                    </li>
+                                                    <!-- <input type="hidden" value="<%= i._id%>" id="videoId"> -->
+                                                    <li>
+                                                        <a class="btn default btn-outline danger" href="javascript:void(0);"
+                                                            onclick="deleteVideo('<%= i._id%>')">
+                                                            <i class="ti-trash"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="el-card-content">
+                                            <small>
+                                                <%= i.title%>
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="el-card-content">
-                                    <small><%= i.title%></small>
-                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <% }) %>
-                    <%} else {%>
-                        <% 'there is no record found' %>
-                     <% } %>
+                            <% }) %>
+                                <%} else {%>
+                                    <% 'there is no record found' %>
+                                        <% } %>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
@@ -281,10 +365,10 @@
 
     <script src="js/main.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             // Basic
             $('.dropify').dropify();
-        
+
             // Translated
             $('.dropify-fr').dropify({
                 messages: {
@@ -294,25 +378,25 @@
                     error: 'Désolé, le fichier trop volumineux'
                 }
             });
-        
+
             // Used events
             var drEvent = $('#input-file-events').dropify();
-        
-            drEvent.on('dropify.beforeClear', function(event, element) {
+
+            drEvent.on('dropify.beforeClear', function (event, element) {
                 return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
             });
-        
-            drEvent.on('dropify.afterClear', function(event, element) {
+
+            drEvent.on('dropify.afterClear', function (event, element) {
                 alert('File deleted');
             });
-        
-            drEvent.on('dropify.errors', function(event, element) {
+
+            drEvent.on('dropify.errors', function (event, element) {
                 console.log('Has Errors');
             });
-        
+
             var drDestroy = $('#input-file-to-destroy').dropify();
             drDestroy = drDestroy.data('dropify')
-            $('#toggleDropify').on('click', function(e) {
+            $('#toggleDropify').on('click', function (e) {
                 e.preventDefault();
                 if (drDestroy.isDropified()) {
                     drDestroy.destroy();

@@ -181,13 +181,15 @@
                             <div class="card-body">
                                 <!-- <form action=""> -->
                                     <div class="form-group">
-                                        <label>Add Title</label>
+                                        <label>Add Title </label>
+                                        <span class="floatright">max 40</span>
                                         <span id="error"></span>
-                                        <input id="title" type="text" class="form-control">
+                                        <input id="title" type="text" maxlength="40" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label>Add Description</label>
-                                        <textarea id="description" class="form-control" name="" rows="5"></textarea>
+                                        <span class="floatright">max 250</span>
+                                        <textarea id="description" class="form-control" maxlength="250" name="" rows="5"></textarea>
                                     </div>
                                     <div class="pull-right">
                                         <button class="btn btn-success waves-effect waves-light m-t-20" onclick="saveText()">SAVE</button>
