@@ -301,7 +301,9 @@ function userLcdHtml(videoSrc, title, description) {
                                     <div class="text-box">
                                         <h3 id="textTitleId">${title}</h3>
                                         <p id="textDescriptionId">${description}</p>
-                                    </div>
+                                    </div>.slide-content {
+                                        width: 50% !important;
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -315,7 +317,9 @@ function userLcdHtml(videoSrc, title, description) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>.slide-content {
+                    width: 50% !important;
+                }
             </div>
         </div>
         
@@ -326,7 +330,9 @@ function userLcdHtml(videoSrc, title, description) {
 function userLcdHtml2(src, title, description) {
     return ` <div class="modaltwo ss-slidermodal">
   <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content">.slide-content {
+        width: 50% !important;
+    }
           <div class="modal-body">
               <div class="modal-contentarea">
                   <div class="row paddingzero">

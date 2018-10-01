@@ -65,12 +65,16 @@
 		height: 100px;
 		width: 130px;
 	}
+	.el-element-overlay .el-card-item .el-overlay-1 video{
+		height: 150px;
+	}
 }
 @media (max-width:1366px){
 	.text-box h3 {font-size: 38px;}
 	.modaltwo .text-box {padding: 240px 60px 240px 140px;}
 	/*====== yameen =======*/
 	.footer-text {bottom: 105px;}
+	.el-card-content small {width:190px;}
 }
 @media (max-width:1360px){
 	.text-box h3 {font-size: 37px;}
@@ -89,6 +93,7 @@
 		height: 100px;
 		width: 130px;
 	}
+
 }
 @media (max-width:1200px){
 	.modalone .modal-dialog{width: 100%;}
@@ -127,7 +132,9 @@
 		width: 100%;
 		height: 140px;
 	}
+	.slide-content{width: 25% !important;}
 }
+
 @media (max-width:1080px){
 	.text-box h3 {
 		font-size: 29px;
@@ -202,6 +209,9 @@
 	.slick-slide .img-checkbox .image-select {
 		height: 80px;
 		width: 110px;
+	}
+	.slide-content {
+		width: 33% !important;
 	}
 }
 @media (max-width: 900px){
@@ -292,7 +302,7 @@
 	.right-aside{margin-left:0px}
 	.flex-wrap{-ms-flex-wrap:wrap!important;flex-wrap:wrap!important;-webkit-flex-wrap:wrap!important}
 	.chat-list li .chat-content{width:calc(100% - 80px)}
-	.template-area{width: 47%;}
+	.template-area{width: 39%;}
 	.video-box{padding: 0;}
 	.nxtbtn{
 		-moz-transform: rotate(90deg);
@@ -339,6 +349,13 @@
 	}
 	.modalthree .modalcontent-box {min-height: 465px;}
 	.modalthree .modal-dialog {margin: 50px 0 0;}
+	.el-element-overlay .el-card-item .el-overlay-1 img {
+		width: 100%;
+		height: 300px;
+	}
+	.el-element-overlay .el-card-item .el-overlay-1 video {
+		height: 300px;
+	}
 }
 @media (max-width:640px){
 	.modal-contentarea {padding: 20px 0 50px;}
@@ -348,12 +365,22 @@
 	/*====== yameen =======*/
 	.footer-text {margin: 0 0 0 -160px;}
 	.footer-text h2{font-size: 20px;}
+	.template-area {
+		width: 37%;
+		margin-right: 30px;
+	}
 }
 @media (max-width:567px){
 	.nxtbtn{top: 60%;}
 	.img-box {padding: 50px 0 30px;}
 	.modaltwo .text-box {padding: 30px 25px 100px 25px;}
 	.modalthree .modal-contentarea {padding: 80px 20px;}
+	.el-element-overlay .el-card-item .el-overlay-1 video {
+		height: 220px;
+	}
+	.slide-content {
+		width: 50% !important;
+	}
 }
 @media (max-width:479px){
 	.nxtbtn{display: none;}
@@ -389,6 +416,15 @@
 	.el-element-overlay .el-card-item .el-overlay-1 img {
 		width: 100%;
 		height: 180px;
+	}
+	.el-element-overlay .el-card-item .el-overlay-1 video {
+		height: 150px;
+	}
+	.slide-content {
+		width: 100% !important;
+	}
+	.template-area {
+		width: 100%;
 	}
 }
 @media (max-width:359px){
