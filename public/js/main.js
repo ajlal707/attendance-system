@@ -887,3 +887,22 @@ function saveNewVideo() {
         }, 10000);
     }
 }
+
+function pauseVideo(no) {
+    if (no == '1') {
+        let videoSrc = document.getElementById('videoSrc');
+        videoSrc.src = ''
+    } else {
+        let videoSrc2 = document.getElementById('videoSrc2');
+        videoSrc2.src = ''
+    }
+}
+function pauseVideo1(no) {
+    if (no == '1') {
+        let videoSrc = document.getElementById('videoSrc1');
+        videoSrc.src = ''
+    } else {
+        let videoSrc2 = document.getElementById('videoSrc44');
+        videoSrc2.src = ''
+    }
+}

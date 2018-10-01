@@ -25,6 +25,14 @@
 		line-height: 48px;
 	}
 	.modaltwo .text-box p {font-size: 21px;}
+	.el-element-overlay .el-card-item .el-overlay-1 img {
+		width: 100%;
+		height: 150px;
+	}
+	.slick-slide .img-checkbox .image-select {
+		height: 145px;
+		width: 180px;
+	}
 }
 @media (max-width:1440px){
 	.text-box h3 {
@@ -53,6 +61,10 @@
 	}
 	.footer-text h2{font-size: 55px;}
 	/* .ss-adsliderholder .modaltwo .modal-content {padding: 262px 0;} */
+	.slick-slide .img-checkbox .image-select {
+		height: 100px;
+		width: 130px;
+	}
 }
 @media (max-width:1366px){
 	.text-box h3 {font-size: 38px;}
@@ -72,7 +84,11 @@
 	.modalthree .modal-dialog {
  		max-width: 100%;
  		margin:  30px 0 0;
- 	}
+	}
+	 .slick-slide .img-checkbox .image-select {
+		height: 100px;
+		width: 130px;
+	}
 }
 @media (max-width:1200px){
 	.modalone .modal-dialog{width: 100%;}
@@ -107,6 +123,10 @@
 	.modalfive .modal-contentarea{padding: 50px 0 100px;}
 	.footer-text{margin: 0 0 0 -330px;}
 	.footer-text h2 {font-size: 40px;}
+	.el-element-overlay .el-card-item .el-overlay-1 img {
+		width: 100%;
+		height: 140px;
+	}
 }
 @media (max-width:1080px){
 	.text-box h3 {
@@ -171,6 +191,18 @@
 	/*====== yameen =======*/
 	.footer-text {margin: 0 0 0 -230px;}
 	.footer-text h2 {font-size: 30px;}
+	.el-element-overlay .el-card-item .el-overlay-1 img {
+		width: 100%;
+		height: 180px;
+	}
+	.el-element-overlay .el-card-item .el-overlay-1 img {
+		width: 100%;
+		height: 200px;
+	}
+	.slick-slide .img-checkbox .image-select {
+		height: 80px;
+		width: 110px;
+	}
 }
 @media (max-width: 900px){
 	.modaltwo .text-box h2 {
@@ -354,6 +386,10 @@
     	font-size: 16px;
     	line-height: 28px;
 	}
+	.el-element-overlay .el-card-item .el-overlay-1 img {
+		width: 100%;
+		height: 180px;
+	}
 }
 @media (max-width:359px){
 	.footer-text h2 {font-size: 13px;}
@@ -365,5 +401,9 @@
 	.modalthree .description p {
     	font-size: 14px;
     	line-height: 24px;
+	}
+	.el-element-overlay .el-card-item .el-overlay-1 img {
+		width: 100%;
+		height: 150px;
 	}
 }

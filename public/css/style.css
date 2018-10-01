@@ -4568,8 +4568,8 @@ table.dataTable thead .sorting:after {
     position: relative;
     -webkit-transition: all .4s linear;
     transition: all .4s linear;
-    width: 216px;
-    height: 100px;
+    width: 421px;
+    height: 245px;
 }
 
 .el-element-overlay .el-card-item .el-overlay-1:hover img {
@@ -9920,7 +9920,10 @@ pre {
     min-height: 115px;
     max-height: 115px;
 }
-.slick-slide .img-checkbox .image-select{height: 52px;}
+.slick-slide .img-checkbox .image-select{
+    width: 242px;
+    height: 164px;
+}
 .template-area .img-checkbox .image-select{height: 137px;}
 .mfp-figure figure{width: 1000px;}
 .img-circle{
@@ -10083,8 +10086,8 @@ pre {
 .template-area{margin-right: 50px;}
 .template-area:last-child{margin: 0;}
 .el-element-overlay .el-card-item .el-overlay-1 img{
-    width: 100%;
-    height: 150px;
+    width: 421px;
+    height: 245px;
 }
 .img-box figure{padding: 0;}
 .img-box figure img{
@@ -10164,8 +10167,9 @@ pre {
     .ss-adsliderholder .modaltwo .modal-content {padding: 189px 0;}
     .ss-adsliderholder .modaltwo .modal-content .img-box {padding: 60px 0;}
     .ss-adsliderholder .modaltwo .modal-content .img-box figure{
-        padding: 35px 0;
+        padding: 0;
     }
+    .ss-adsliderholder .modaltwo .modal-content .img-box figure img{padding: 0;}
     .ss-adsliderholder .modaltwo .text-box {padding: 137px 140px;}
     .ss-adsliderholder  .modalthree .modal-dialog{
         max-width: 100%;
@@ -10236,4 +10240,13 @@ pre {
     .floatright{
         float: right;
         color: #99abb4;
+    }
+    .el-card-content small {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        width: 250px;
+        margin: 0 auto;
+        text-align: center;
     }
