@@ -8,8 +8,8 @@ const createAdSchema = Schema({
   imageId: { type: mongoose.Schema.ObjectId, ref: 'Attachments' },
   textsId: { type: mongoose.Schema.ObjectId, ref: 'Text' },
   videosId: { type: mongoose.Schema.ObjectId, ref: 'Videos' },
-
-
+  imageIds: [{ type: Schema.Types.ObjectId, ref: 'Attachments' }],
+  textIds: [{ type: Schema.Types.ObjectId, ref: 'Text' }]
 })
 
 

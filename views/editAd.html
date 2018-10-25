@@ -312,21 +312,55 @@
                                                     </div>
                                                     <div class="ss-title">Template - 4</div>
                                                 </div>
-                                                <!-- <div class="template-area">
+                                                
+                                           
+                                                <div class="template-area">
                                                     <div class="img-checkbox">
                                                         <input type="radio" name="select-tem" onclick="hideDive('temp-5')" id="temp-5" class="check-with-label" />
                                                         <label for="temp-5" class="label-for-check">
-                                                            <img class="image-select" src="/img/templates/temp-05.png" />
+                                                            <img class="image-select" src="/img/templates/temp-04.png" />
                                                         </label>
                                                         <div class="image-selectcontent">
                                                             <span class="temp-icon">
                                                                 <i class="ti-receipt"></i>
                                                             </span>
-                                                            <span>1 text</span>
+                                                            <span>1 text Multiple images</span>
                                                         </div>
                                                     </div>
-                                                    <div class="ss-title">Template - 2</div>
-                                                </div> -->
+                                                    <div class="ss-title">Template - 5</div>
+                                                </div>
+
+                                                <div class="template-area">
+                                                    <div class="img-checkbox">
+                                                        <input type="radio" name="select-tem" onclick="hideDive('temp-6')" id="temp-6" class="check-with-label" />
+                                                        <label for="temp-6" class="label-for-check">
+                                                            <img class="image-select" src="/img/templates/temp-04.png" />
+                                                        </label>
+                                                        <div class="image-selectcontent">
+                                                            <span class="temp-icon">
+                                                                <i class="ti-receipt"></i>
+                                                            </span>
+                                                            <span>2 text 1 image</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ss-title">Template - 6</div>
+                                                </div>
+
+                                                <div class="template-area">
+                                                    <div class="img-checkbox">
+                                                        <input type="radio" name="select-tem" onclick="hideDive('temp-7')" id="temp-7" class="check-with-label" />
+                                                        <label for="temp-7" class="label-for-check">
+                                                            <img class="image-select" src="/img/templates/temp-04.png" />
+                                                        </label>
+                                                        <div class="image-selectcontent">
+                                                            <span class="temp-icon">
+                                                                <i class="ti-receipt"></i>
+                                                            </span>
+                                                            <span>2 text Multiple images</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ss-title">Template - 7</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -364,6 +398,38 @@
                         </div>
                     </div>
 
+                    <div id="2ndTextSelector" class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Select 2nd Text </h4>
+                                        <div class="row">
+                                            <div class="col-sm-8 col-lg-6">
+        
+                                                <div class="at-select">
+                                                    <select class="form-control custom-select" id="textId2" data-placeholder="Choose a Category"
+                                                        tabindex="1">
+                                                        <% if(texts) {%>
+                                                        <% texts.forEach(function(t){ %>
+        
+                                                        <option value="<%= t._id %>" data-set="<%= t.title %> :<%= t.description%>">
+                                                            <%= t.title %> :
+                                                            <%= t.description%>
+                                                        </option>
+        
+        
+                                                        <% }) %>
+                                                        <%} %>
+        
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
                     <span id='error'></span>
 
 

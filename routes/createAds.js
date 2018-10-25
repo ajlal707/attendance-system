@@ -85,6 +85,7 @@ router.post('/createAd', ensureAuthenticated, (req, res, next) => {
       duration: duration,
       templateId: template,
 
+
     }, (err, createdAd) => {
       if (err) return res.json({ message: "Mandetory parameters missing." })
 
@@ -137,6 +138,81 @@ router.post('/createAd', ensureAuthenticated, (req, res, next) => {
     return res.status(200).json({ message: "Mandetory parameters missing." })
   }
 })
+
+
+router.post('/createAdNew', ensureAuthenticated, (req, res) => {
+
+  var { userId, duration, template } = req.body;
+  let imageIds = req.body['imageIds[]']
+  let textIds = req.body['textIds[]']
+
+
+  if (userId && duration) {
+    createAd.create({
+      userId: userId,
+      imageIds: imageIds,
+      textIds: textIds,
+      duration: duration,
+      templateId: template,
+
+
+    }, (err, createdAd) => {
+      if (err) return res.json({ message: "Mandetory parameters missing." })
+
+      if (createdAd) {
+        User.findOne({ _id: userId }, (err, user) => {
+          if (err) return res.json({ message: "something happen bad try again." })
+
+          user.createAdId.push(createdAd._id);
+          user.save((err) => {
+            if (err) return res.json({ message: "something happen bad try again." })
+          })
+        })
+      }
+      if (typeof (imageIds) === 'object') {
+        for (let i = 0; i < imageIds.length; i++) {
+          Attachments.findOne({ _id: imageIds[i] }, (err, imageData) => {
+            if (err) return res.json({ message: "something happen bad try again." })
+
+            imageData.createAdId.push(createdAd._id);
+            imageData.save()
+
+          })
+        }
+      } else {
+        Attachments.findOne({ _id: imageIds }, (err, imageData) => {
+          if (err) return res.json({ message: "something happen bad try again." })
+
+          imageData.createAdId.push(createdAd._id);
+          imageData.save()
+
+        })
+      }
+
+      if (typeof (textIds) === 'object') {
+        for (let i = 0; i < textIds.length; i++) {
+          Texts.findOne({ _id: textIds[i] }, (err, textData) => {
+            if (err) return res.json({ message: "something happen bad try again." })
+
+            textData.createAdId.push(createdAd._id);
+            textData.save()
+          })
+        }
+      } else {
+        Texts.findOne({ _id: textIds }, (err, textData) => {
+          if (err) return res.json({ message: "something happen bad try again." })
+
+          textData.createAdId.push(createdAd._id);
+          textData.save()
+        })
+      }
+      return res.json({ success: "success." })
+    })
+  } else {
+    return res.status(200).json({ message: "Mandetory parameters missing." })
+  }
+})
+
 router.get('/logout', function (req, res) {
   req.logout();
   res.redirect('/');

@@ -1,3 +1,30 @@
+$(document).ready(function () {
+    $("#2ndTextSelector").hide();
+});
+function checkboxes() {
+    let checkboxCount = $('input:checkbox:checked')
+    let checkboxIds = [];
+
+    for (var i = 0; i < checkboxCount.length; i++) {
+        if (checkboxCount[i].type === "checkbox" && checkboxCount[i].checked === true) {
+            checkboxIds.push(checkboxCount[i].id)
+
+        }
+    }
+    return checkboxIds;
+}
+function forPopUpCheckBoxs() {
+    let checkboxCount = $('input:checkbox:checked')
+    let checkboxSrc = [];
+
+    for (var i = 0; i < checkboxCount.length; i++) {
+        if (checkboxCount[i].type === "checkbox" && checkboxCount[i].checked === true) {
+            checkboxSrc.push(checkboxCount[i].dataset.set)
+
+        }
+    }
+    return checkboxSrc;
+}
 function userLogin() {
     document.getElementById('error').value = '';
     var email = document.getElementById('email').value;
@@ -315,6 +342,9 @@ function hideDive(id) {
     var temp2 = document.getElementById('temp-2');
     var temp3 = document.getElementById('temp-3');
     var temp4 = document.getElementById('temp-4');
+    var temp5 = document.getElementById('temp-5');
+    var temp6 = document.getElementById('temp-6');
+    var temp7 = document.getElementById('temp-7');
 
     var image = document.getElementById('imageDiv');
     var video = document.getElementById('videoImg');
@@ -325,22 +355,42 @@ function hideDive(id) {
     if (temp.checked && temp1.checked) {
         video.style.display = 'block';
         image.style.display = 'none';
+        $("#2ndTextSelector").hide();
 
     } else if (temp.checked && temp2.checked) {
         image.style.display = 'block';
         video.style.display = 'none';
+        $("#2ndTextSelector").hide();
+
     } else if (temp.checked && temp3.checked) {
         video.style.display = 'none';
         image.style.display = 'none';
+        $("#2ndTextSelector").hide();
+
     } else if (temp.checked && temp4.checked) {
         video.style.display = 'block';
         image.style.display = 'none';
-    }
+        $("#2ndTextSelector").hide();
 
+    } else if (temp.checked && temp5.checked) {
+        image.style.display = 'block';
+        video.style.display = 'none';
+        $("#2ndTextSelector").hide();
+
+    } else if (temp.checked && temp6.checked) {
+        image.style.display = 'block';
+        video.style.display = 'none';
+        $("#2ndTextSelector").show();
+    } else if (temp.checked && temp7.checked) {
+        image.style.display = 'block';
+        video.style.display = 'none';
+        $("#2ndTextSelector").show();
+
+
+    }
 }
 // select one image function
 function checkTempplate(id) {
-    console.log(id)
 
     document.getElementById('error').innerHTML = ''
     var selectedElement = document.getElementById(id);
@@ -348,28 +398,34 @@ function checkTempplate(id) {
     var temp2 = document.getElementById('temp-2');
     var temp3 = document.getElementById('temp-3');
     var temp4 = document.getElementById('temp-4');
+    var temp5 = document.getElementById('temp-5');
+    var temp6 = document.getElementById('temp-6');
+    var temp7 = document.getElementById('temp-7');
 
-    if (temp1.checked === true || temp2.checked === true || temp3.checked === true || temp4.checked === true) {
+    if (temp1.checked === true || temp2.checked === true || temp3.checked === true || temp4.checked === true ||
+        temp5.checked === true || temp6.checked === true || temp7.checked === true) {
 
-
-
-        if (selectedElement.checked === true) {
-            var n = $("input:checkbox:checked").length;
-            if (n > 1) {
-                var error = document.getElementById('error');
-                error.style.color = 'red'
-                error.innerHTML = '1 element selected already'
-                selectedElement.checked = false;
-                setTimeout(function () {
-                    document.getElementById("error").innerHTML = '';
-                }, 10000);
-            } else {
-
-                selectedElement.checked = true;
-            }
-
+        if (temp5.checked === true || temp7.checked === true) {
+            return true
         } else {
-            selectedElement.checked = false;
+            if (selectedElement.checked === true) {
+                var n = $("input:checkbox:checked").length;
+                if (n > 1) {
+                    var error = document.getElementById('error');
+                    error.style.color = 'red'
+                    error.innerHTML = '1 element selected already'
+                    selectedElement.checked = false;
+                    setTimeout(function () {
+                        document.getElementById("error").innerHTML = '';
+                    }, 10000);
+                } else {
+
+                    selectedElement.checked = true;
+                }
+
+            } else {
+                selectedElement.checked = false;
+            }
         }
     } else {
         var error = document.getElementById('error');
@@ -393,9 +449,13 @@ function createAd() {
     var temp2 = document.getElementById('temp-2');
     var temp3 = document.getElementById('temp-3');
     var temp4 = document.getElementById('temp-4');
+    var temp5 = document.getElementById('temp-5');
+    var temp6 = document.getElementById('temp-6');
+    var temp7 = document.getElementById('temp-7');
     var duration = document.getElementById('duration').value;
     var userId = document.getElementById('userId').value;
     var textId = document.getElementById('textId').value;
+
     var imageId = ''
     var videoId = ''
     var template = ''
@@ -405,7 +465,6 @@ function createAd() {
         if (n == 1) {
             videoId = $('input:checkbox:checked')[0].id;
             template = 'temp-1'
-
 
             $.ajax({
                 type: "POST",
@@ -420,7 +479,6 @@ function createAd() {
 
                     } else if (res.success) {
                         window.location.href = '/viewAllAds';
-
                     }
                 }
             });
@@ -433,15 +491,11 @@ function createAd() {
             }, 6000);
             window.scrollTo(0, 700);
         }
-
-
     } else if (temp2.checked === true) {
         var n = $("input:checkbox:checked").length;
         if (n == 1) {
             imageId = $('input:checkbox:checked')[0].id;
-
             template = 'temp-2'
-
             $.ajax({
                 type: "POST",
                 url: "/createAds/createAd",
@@ -520,6 +574,100 @@ function createAd() {
             }, 10000);
             window.scrollTo(0, 700);
         }
+
+    } else if (temp5.checked === true) {
+
+        template = 'temp-5'
+        let imageIds = checkboxes();
+        let textIds = [];
+        textIds.push(textId)
+        $.ajax({
+            type: "POST",
+            url: "/createAds/createAdNew",
+            data: { imageIds, textIds, duration, userId, template },
+            success: function (res) {
+                if (res.error) {
+                    var error = document.getElementById('error');
+                    error.style.color = 'red'
+                    error.innerHTML = res.error
+                    window.scrollTo(0, 700);
+                } else if (res.success) {
+                    window.location.href = '/createAds';
+
+                    setTimeout(function () {
+                        document.getElementById("error").innerHTML = '';
+                    }, 10000);
+                    window.scrollTo(0, 700);
+                }
+            }
+        });
+
+    } else if (temp6.checked === true) {
+        var n = $("input:checkbox:checked").length;
+        if (n == 1) {
+            template = 'temp-6'
+            var textId2 = document.getElementById('textId2').value;
+            let imageIds = checkboxes();
+            let textIds = [];
+            textIds.push(textId)
+            textIds.push(textId2)
+            $.ajax({
+                type: "POST",
+                url: "/createAds/createAdNew",
+                data: { imageIds, textIds, duration, userId, template },
+                success: function (res) {
+                    if (res.error) {
+                        var error = document.getElementById('error');
+                        error.style.color = 'red'
+                        error.innerHTML = res.error
+                        window.scrollTo(0, 700);
+                    } else if (res.success) {
+                        window.location.href = '/createAds';
+
+                        setTimeout(function () {
+                            document.getElementById("error").innerHTML = '';
+                        }, 10000);
+                        window.scrollTo(0, 700);
+                    }
+                }
+            });
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'Image not selected.'
+            setTimeout(function () {
+                document.getElementById("error").innerHTML = '';
+            }, 10000);
+            window.scrollTo(0, 700);
+        }
+    } else if (temp7.checked === true) {
+        template = 'temp-7'
+        var textId2 = document.getElementById('textId2').value;
+        let imageIds = checkboxes();
+        let textIds = [];
+        textIds.push(textId)
+        textIds.push(textId2)
+        $.ajax({
+            type: "POST",
+            url: "/createAds/createAdNew",
+            data: { imageIds, textIds, duration, userId, template },
+            success: function (res) {
+                if (res.error) {
+                    var error = document.getElementById('error');
+                    error.style.color = 'red'
+                    error.innerHTML = res.error
+                    window.scrollTo(0, 700);
+                } else if (res.success) {
+                    window.location.href = '/createAds';
+
+                    setTimeout(function () {
+                        document.getElementById("error").innerHTML = '';
+                    }, 10000);
+                    window.scrollTo(0, 700);
+                }
+            }
+        });
+
     } else {
         var error = document.getElementById('error1');
         error.style.color = 'red'
@@ -531,6 +679,7 @@ function createAd() {
     }
 }
 
+
 // preview ad function
 function selectPopup() {
     //texts object geting
@@ -539,6 +688,7 @@ function selectPopup() {
     texts = texts.split(":")
     var title = texts[0].trim()
     var description = texts[1].trim()
+
     // geting video object
 
 
@@ -547,6 +697,10 @@ function selectPopup() {
     var temp2 = document.getElementById('temp-2');
     var temp3 = document.getElementById('temp-3');
     var temp4 = document.getElementById('temp-4');
+    var temp5 = document.getElementById('temp-5');
+    var temp6 = document.getElementById('temp-6');
+    var temp7 = document.getElementById('temp-7');
+
 
     var btn = document.getElementById('previewBtn');
     if (temp1.checked === true) {
@@ -580,6 +734,140 @@ function selectPopup() {
         document.getElementById('videoSrc2').src = videofilePath.replace('public', '');
 
     }
+
+    if (temp5.checked === true) {
+
+        document.getElementById('popupTitle5').innerHTML = title
+        document.getElementById('popupdescription5').innerHTML = description
+
+        let parentDiv = document.getElementById('at-imagesliders');
+        parentDiv.innerHTML = ''
+        let imagefilePaths = forPopUpCheckBoxs();
+        if (imagefilePaths.length) {
+
+
+
+            for (let i = 0; i < imagefilePaths.length; i++) {
+                let a = imagefilePaths[i].replace('public', '');
+                let imageFigure = `<figure class="at-sliderimg">
+                                <img src="${a}" alt="image description">
+                           </figure>`
+                parentDiv.insertAdjacentHTML('beforeend', imageFigure);
+            }
+
+            $('#at-imagesliders').on('init', function (event, slick) {
+                btn.setAttribute('data-target', '#temp-55');
+            });
+
+            $('#at-imagesliders').slick({
+                speed: 300,
+                arrows: false,
+                autoplay: true,
+                infinite: false,
+                pauseOnHover: false,
+                accessibility: false,
+            })
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'No image select.'
+            window.scrollTo(0, 700);
+        }
+
+
+    }
+    if (temp6.checked === true) {
+
+        var imageFilePath = $('input:checkbox:checked')[0].dataset.set
+        document.getElementById('img666').src = imageFilePath.replace('public', '');
+
+
+
+
+
+        document.getElementById('popupTitle6').innerHTML = title
+        document.getElementById('popupdescription6').innerHTML = description
+
+        //texts object geting
+        var text2 = document.getElementById('textId2');
+        text2 = text2.options[text2.selectedIndex].dataset.set
+        text2 = text2.split(":")
+        var title2 = text2[0].trim()
+        var description2 = text2[1].trim()
+        document.getElementById('popupTitle66').innerHTML = title2
+        document.getElementById('popupdescription66').innerHTML = description2
+
+
+        $('#at-textalider').slick({
+            speed: 300,
+            arrows: false,
+            autoplay: true,
+            infinite: false,
+            pauseOnHover: false,
+            accessibility: false,
+        });
+
+        btn.setAttribute('data-target', '#temp-66');
+
+
+    }
+    if (temp7.checked === true) {
+
+        document.getElementById('popupTitle7').innerHTML = title
+        document.getElementById('popupdescription7').innerHTML = description
+
+        let parentDiv = document.getElementById('at-imagesliders-two');
+        parentDiv.innerHTML = ''
+        let imagefilePaths = forPopUpCheckBoxs();
+        if (imagefilePaths.length) {
+
+            //texts object geting
+            var text2 = document.getElementById('textId2');
+            text2 = text2.options[text2.selectedIndex].dataset.set
+            text2 = text2.split(":")
+            var title2 = text2[0].trim()
+            var description2 = text2[1].trim()
+            document.getElementById('popupTitle77').innerHTML = title2
+            document.getElementById('popupdescription77').innerHTML = description2
+
+            for (let i = 0; i < imagefilePaths.length; i++) {
+                let a = imagefilePaths[i].replace('public', '');
+                let imageFigure = `<figure class="at-sliderimg">
+                                <img src="${a}" alt="image description">
+                           </figure>`
+                parentDiv.insertAdjacentHTML('beforeend', imageFigure);
+            }
+
+            $('#at-imagesliders-two').on('init', function (event, slick) {
+                btn.setAttribute('data-target', '#temp-77');
+            });
+
+            $('#at-imagesliders-two').slick({
+                fade: true,
+                speed: 600,
+                arrows: false,
+                autoplay: true,
+                infinite: false,
+                pauseOnHover: false,
+                accessibility: false,
+            });
+
+            $('#at-textsliders-two').slick({
+                speed: 300,
+                arrows: false,
+                autoplay: true,
+                infinite: false,
+                pauseOnHover: false,
+                accessibility: false,
+            })
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'No image select.'
+            window.scrollTo(0, 700);
+        }
+
+    }
 }
 
 
@@ -609,6 +897,28 @@ function copyToViewTemplate4(id) {
     document.getElementById('des44').innerHTML = document.getElementById('description-' + id).innerHTML;
     document.getElementById('videoSrc44').src = videofilePath
 }
+function copyToViewTemplate5(id) {
+    var imageArray = JSON.parse(document.getElementById('imageSrc-' + id).dataset.set)
+
+    imageArray = JSON.parse(imageArray)
+    document.getElementById('popupTitle5').innerHTML = document.getElementById('title-' + id).innerHTML;
+    document.getElementById('popupdescription5').innerHTML = document.getElementById('description-' + id).innerHTML;
+    document.getElementById('videoSrc44').src = videofilePath
+}
+function copyToViewTemplate6(id) {
+    var imageArray = document.getElementById('imageSrc-' + id).dataset.set
+    document.getElementById('popupTitle6').innerHTML = document.getElementById('title-' + id).innerHTML;
+    document.getElementById('popupdescription6').innerHTML = document.getElementById('description-' + id).innerHTML;
+    document.getElementById('img666').src = imageArray
+}
+function copyToViewTemplate7(id) {
+    var imageArray = JSON.parse(document.getElementById('imageSrc-' + id).dataset.set)
+
+    imageArray = JSON.parse(imageArray)
+    document.getElementById('popupTitle6').innerHTML = document.getElementById('title-' + id).innerHTML;
+    document.getElementById('popupdescription6').innerHTML = document.getElementById('description-' + id).innerHTML;
+    document.getElementById('img666').src = videofilePath
+}
 // end copy data view-ad to popup functions
 
 function updateAd() {
@@ -617,6 +927,9 @@ function updateAd() {
     var temp2 = document.getElementById('temp-2');
     var temp3 = document.getElementById('temp-3');
     var temp4 = document.getElementById('temp-4');
+    var temp5 = document.getElementById('temp-5');
+    var temp6 = document.getElementById('temp-6');
+    var temp7 = document.getElementById('temp-7');
     var duration = document.getElementById('duration').value;
     var userId = document.getElementById('userId').value;
     var textId = document.getElementById('textId').value;
@@ -762,8 +1075,110 @@ function updateAd() {
             }, 10000);
             window.scrollTo(0, 250);
         }
+    } else if (temp5.checked === true) {
+
+        template = 'temp-5'
+        let imageIds = checkboxes();
+        let textIds = [];
+        textIds.push(textId)
+        $.ajax({
+            type: "POST",
+            url: "/editAd/updateNewWay",
+            data: { adIdForUpdate, imageIds, textIds, duration, userId, template },
+            success: function (res) {
+                if (res.error) {
+                    var error = document.getElementById('error');
+                    error.style.color = 'red'
+                    error.innerHTML = res.error
+                    window.scrollTo(0, 700);
+                } else if (res.success) {
+                    window.location.href = '/viewAllAds';
+
+                    setTimeout(function () {
+                        document.getElementById("error").innerHTML = '';
+                    }, 10000);
+                    window.scrollTo(0, 700);
+                }
+            }
+        });
+
+    } else if (temp6.checked === true) {
+        var n = $("input:checkbox:checked").length;
+        if (n == 1) {
+            template = 'temp-6'
+            var textId2 = document.getElementById('textId2').value;
+            let imageIds = checkboxes();
+            let textIds = [];
+            textIds.push(textId)
+            textIds.push(textId2)
+            $.ajax({
+                type: "POST",
+                url: "/editAd/updateNewWay",
+                data: { adIdForUpdate, imageIds, textIds, duration, userId, template },
+                success: function (res) {
+                    if (res.error) {
+                        var error = document.getElementById('error');
+                        error.style.color = 'red'
+                        error.innerHTML = res.error
+                        window.scrollTo(0, 700);
+                    } else if (res.success) {
+                        window.location.href = '/viewAllAds';
+
+                        setTimeout(function () {
+                            document.getElementById("error").innerHTML = '';
+                        }, 10000);
+                        window.scrollTo(0, 700);
+                    }
+                }
+            });
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'Image not selected.'
+            setTimeout(function () {
+                document.getElementById("error").innerHTML = '';
+            }, 10000);
+            window.scrollTo(0, 700);
+        }
+    } else if (temp7.checked === true) {
+        template = 'temp-7'
+        var textId2 = document.getElementById('textId2').value;
+        let imageIds = checkboxes();
+        let textIds = [];
+        textIds.push(textId)
+        textIds.push(textId2)
+        if (imageIds.length == 1 || imageIds.length > 1) {
+            $.ajax({
+                type: "POST",
+                url: "/editAd/updateNewWay",
+                data: { adIdForUpdate, imageIds, textIds, duration, userId, template },
+                success: function (res) {
+                    if (res.error) {
+                        var error = document.getElementById('error');
+                        error.style.color = 'red'
+                        error.innerHTML = res.error
+                        window.scrollTo(0, 700);
+                    } else if (res.success) {
+                        window.location.href = '/viewAllAds';
+
+                        setTimeout(function () {
+                            document.getElementById("error").innerHTML = '';
+                        }, 10000);
+                        window.scrollTo(0, 300);
+                    }
+                }
+            });
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'Image not selected.'
+            setTimeout(function () {
+                document.getElementById("error").innerHTML = '';
+            }, 10000);
+            window.scrollTo(0, 700);
+        }
     } else {
-        var error = document.getElementById('error');
+        var error = document.getElementById('error1');
         error.style.color = 'red'
         error.innerHTML = 'Template not selected.'
         setTimeout(function () {

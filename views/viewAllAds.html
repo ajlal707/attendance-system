@@ -91,8 +91,8 @@
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                                 <img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>"
                                     alt="user" class="profile-pic" />
                             </a>
@@ -132,7 +132,9 @@
                     </div>
                     <!-- User profile text-->
                     <div class="profile-text">
-                        <h5><%= undefined === user || undefined === user.username ? '' : user.username %> </h5>
+                        <h5>
+                            <%= undefined === user || undefined === user.username ? '' : user.username %>
+                        </h5>
                         <a href="/profile" class="" data-toggle="tooltip" title="Profile">
                             <i class="ti-user"></i>
                         </a>
@@ -240,194 +242,327 @@
                 <!-- ============================================================== -->
                 <div class="row el-element-overlay">
                     <% if(allAds ) {%>
-                        <% for(var a=0; a<allAds.length; a++) { %>
+                    <% for(var a=0; a<allAds.length; a++) { %>
 
-                            <%   if(allAds[a].videosId && allAds[a].templateId === "temp-1") { %>
+                    <%   if(allAds[a].videosId && allAds[a].templateId === "temp-1") { %>
 
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <div class="el-card-item">
-                                            <div class="el-card-avatar el-overlay-1">
-                                                <div class="width-50-p">
-                                                    <video data-set="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>" id="videoSrc-<%= allAds[a]._id %>" src="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>"
-                                                        alt="user"></video>
-                                                </div>
-                                                <div class="width-50-p">
-                                                    <h1 id="title-<%= allAds[a]._id %>">
-                                                        <%= allAds[a].textsId.title%>
-                                                    </h1>
-                                                    <p id="description-<%= allAds[a]._id %>">
-                                                        <%= allAds[a].textsId.description%>
-                                                    </p>
-                                                </div>
-                                                <div class="el-overlay">
-                                                    <ul class="el-info">
-                                                        <li>
-                                                            <a class="btn default btn-outline" onclick="copyToViewTemplate1('<%= allAds[a]._id %>')" href="javascript:void(0)"
-                                                                data-toggle="modal" data-target="#<%= allAds[a].templateId%>">
-                                                                <i class="icon-control-play"></i>
-                                                            </a>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="el-card-item">
+                                <div class="el-card-avatar el-overlay-1">
+                                    <div class="width-50-p">
+                                        <video data-set="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>" id="videoSrc-<%= allAds[a]._id %>"
+                                            src="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>" alt="user"></video>
+                                    </div>
+                                    <div class="width-50-p">
+                                        <h1 id="title-<%= allAds[a]._id %>">
+                                            <%= allAds[a].textsId.title%>
+                                        </h1>
+                                        <p id="description-<%= allAds[a]._id %>">
+                                            <%= allAds[a].textsId.description%>
+                                        </p>
+                                    </div>
+                                    <div class="el-overlay">
+                                        <ul class="el-info">
+                                            <li>
+                                                <a class="btn default btn-outline" onclick="copyToViewTemplate1('<%= allAds[a]._id %>')"
+                                                    href="javascript:void(0)" data-toggle="modal" data-target="#<%= allAds[a].templateId%>">
+                                                    <i class="icon-control-play"></i>
+                                                </a>
 
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="el-card-content">
+                                    <h3>
+                                        <%= allAds[a].userId.username%>
+                                    </h3>
+                                    <div class="action-buttons">
+                                        <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="/editAd/<%= allAds[a]._id %>">EDIT</a>
+                                        <form method="POST" action="/viewAllAds/deleteAd">
+                                            <input name="adId" type="hidden" value="<%= allAds[a]._id %>">
+                                            <button class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } else if (allAds[a].imageId && allAds[a].templateId === "temp-2") {%>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="el-card-item">
+                                <div class="el-card-avatar el-overlay-1">
+                                    <div class="width-50-p">
+                                        <img id="imageSrc2-<%= allAds[a]._id %>" data-set="<%= `/attachments/${allAds[a].imageId.fileName}` %>"
+                                            src="<%= allAds[a].imageId ? `/attachments/${allAds[a].imageId.fileName}`: '' %>"
+                                            alt="user" />
+                                    </div>
+                                    <div class="width-50-p">
+                                        <h1 id="title-<%= allAds[a]._id %>">
+                                            <%= allAds[a].textsId.title%>
+                                        </h1>
+                                        <p id="description-<%= allAds[a]._id %>">
+                                            <%= allAds[a].textsId.description%>
+                                        </p>
+                                    </div>
+                                    <div class="el-overlay">
+                                        <ul class="el-info">
+                                            <li>
+                                                <a class="btn default btn-outline" onclick="copyToViewTemplate2('<%= allAds[a]._id %>')"
+                                                    href="javascript:void(0)" data-toggle="modal" data-target="#<%= allAds[a].templateId%>">
+                                                    <i class="icon-control-play"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="el-card-content">
+                                    <h3>
+                                        <%= allAds[a].userId.username%>
+                                    </h3>
+                                    <div class="action-buttons">
+                                        <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="/editAd/<%= allAds[a]._id %>">EDIT</a>
+                                        <form method="POST" action="/viewAllAds/deleteAd">
+                                            <input name="adId" type="hidden" value="<%= allAds[a]._id %>">
+                                            <button class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } else if(allAds[a].textsId && allAds[a].templateId === "temp-3") {%>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="el-card-item">
+                                <div class="el-card-avatar el-overlay-1">
+                                    <div class="width-50-p w-100-p">
+                                        <h1 id="title-<%= allAds[a]._id %>">
+                                            <%= allAds[a].textsId.title%>
+                                        </h1>
+                                        <p id="description-<%= allAds[a]._id %>">
+                                            <%= allAds[a].textsId.description%>
+                                        </p>
+                                    </div>
+                                    <div class="el-overlay">
+                                        <ul class="el-info">
+                                            <li>
+                                                <a class="btn default btn-outline" onclick="copyToViewTemplate3('<%= allAds[a]._id %>')"
+                                                    href="#" data-toggle="modal" data-target="#<%= allAds[a].templateId %>">
+                                                    <i class="icon-control-play"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="el-card-content">
+                                    <h3>
+                                        <%= allAds[a].userId.username%>
+                                    </h3>
+                                    <div class="action-buttons">
+                                        <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="/editAd/<%= allAds[a]._id %>">EDIT</a>
+                                        <form method="POST" action="/viewAllAds/deleteAd">
+                                            <input name="adId" type="hidden" value="<%= allAds[a]._id %>">
+                                            <button class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } else if(allAds[a].videosId && allAds[a].templateId === "temp-4") { %>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="el-card-item">
+                                <div class="el-card-avatar el-overlay-1">
+                                    <div class="width-50-p">
+                                        <video id="videoSrc-<%= allAds[a]._id %>" data-set="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>"
+                                            src="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>" alt="user"></video>
+                                    </div>
+                                    <div class="width-50-p">
+                                        <h1 id="title-<%= allAds[a]._id %>">
+                                            <%= allAds[a].textsId.title%>
+                                        </h1>
+                                        <p id="description-<%= allAds[a]._id %>">
+                                            <%= allAds[a].textsId.description%>
+                                        </p>
+                                    </div>
+                                    <div class="el-overlay">
+                                        <ul class="el-info">
+                                            <li>
+                                                <a class="btn default btn-outline" onclick="copyToViewTemplate4('<%= allAds[a]._id %>')"
+                                                    href="#" data-toggle="modal" data-target="#<%= allAds[a].templateId %>">
+                                                    <i class="icon-control-play"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="el-card-content">
+                                    <h3>
+                                        <%= allAds[a].userId.username%>
+                                    </h3>
+                                    <div class="action-buttons">
+                                        <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="/editAd/<%= allAds[a]._id %>">EDIT</a>
+                                        <form method="POST" action="/viewAllAds/deleteAd">
+                                            <input name="adId" type="hidden" value="<%= allAds[a]._id %>">
+                                            <button class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } else if(allAds[a].imageIds && allAds[a].templateId === "temp-5") { %>
+                        <div class="col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="el-card-item">
+                                        <div class="el-card-avatar el-overlay-1">
+                                            <div class="width-50-p">
+                                                <img id="imageSrc-<%= allAds[a]._id %>" data-set="<%= allAds[a].imageIds %>"
+                                                    src="<%= `/attachments/${allAds[a].imageIds[0].fileName}` %>" alt="user">
                                             </div>
-                                            <div class="el-card-content">
-                                                <h3>
-                                                    <%= allAds[a].userId.username%>
-                                                </h3>
-                                                <div class="action-buttons">
-                                                    <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="/editAd/<%= allAds[a]._id %>">EDIT</a>
-                                                    <form method="POST" action="/viewAllAds/deleteAd">
-                                                        <input name="adId" type="hidden" value="<%= allAds[a]._id %>">
-                                                        <button class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</button>
-                                                    </form>
-                                                </div>
+                                            <div class="width-50-p">
+                                                <h1 id="title-<%= allAds[a]._id %>">
+                                                    <%= allAds[a].textIds[0].title%>
+                                                </h1>
+                                                <p id="description-<%= allAds[a]._id %>">
+                                                    <%= allAds[a].textIds[0].description%>
+                                                </p>
+                                            </div>
+                                            <div class="el-overlay">
+                                                <ul class="el-info">
+                                                    <li>
+                                                        <a class="btn default btn-outline" onclick="copyToViewTemplate5('<%= allAds[a]._id %>')"
+                                                            href="#" data-toggle="modal" data-target="#<%= allAds[a].templateId %>">
+                                                            <i class="icon-control-play"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="el-card-content">
+                                            <h3>
+                                                <%= allAds[a].userId.username%>
+                                            </h3>
+                                            <div class="action-buttons">
+                                                <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="/editAd/<%= allAds[a]._id %>">EDIT</a>
+                                                <form method="POST" action="/viewAllAds/deleteAdNewWay">
+                                                    <input name="adId" type="hidden" value="<%= allAds[a]._id %>">
+                                                    <button class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <% } else if (allAds[a].imageId && allAds[a].templateId === "temp-2") {%>
-
-                                    <div class="col-lg-3 col-md-6">
-                                        <div class="card">
-                                            <div class="el-card-item">
-                                                <div class="el-card-avatar el-overlay-1">
-                                                    <div class="width-50-p">
-                                                        <img id="imageSrc2-<%= allAds[a]._id %>" data-set="<%= `/attachments/${allAds[a].imageId.fileName}` %>"
-                                                        src="<%= allAds[a].imageId ? `/attachments/${allAds[a].imageId.fileName}`: '' %>"
-                                                        alt="user" />
-                                                    </div>
-                                                    <div class="width-50-p">
-                                                        <h1 id="title-<%= allAds[a]._id %>">
-                                                            <%= allAds[a].textsId.title%>
-                                                        </h1>
-                                                        <p id="description-<%= allAds[a]._id %>">
-                                                            <%= allAds[a].textsId.description%>
-                                                        </p>
-                                                    </div>
-                                                    <div class="el-overlay">
-                                                        <ul class="el-info">
-                                                            <li>
-                                                                <a class="btn default btn-outline" onclick="copyToViewTemplate2('<%= allAds[a]._id %>')"
-                                                                    href="javascript:void(0)" data-toggle="modal" data-target="#<%= allAds[a].templateId%>">
-                                                                    <i class="icon-control-play"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="el-card-content">
-                                                    <h3>
-                                                        <%= allAds[a].userId.username%>
-                                                    </h3>
-                                                    <div class="action-buttons">
-                                                        <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="/editAd/<%= allAds[a]._id %>">EDIT</a>
-                                                        <form method="POST" action="/viewAllAds/deleteAd">
-                                                            <input name="adId" type="hidden" value="<%= allAds[a]._id %>">
-                                                            <button class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
+                            </div>
+                          
+                    <% } else if(allAds[a].imageIds && allAds[a].templateId === "temp-6") { %>
+                        <div class="col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="el-card-item">
+                                        <div class="el-card-avatar el-overlay-1">
+                                            <div class="width-50-p">
+                                                <img id="imageSrc-<%= allAds[a]._id %>" data-set="<%= `/attachments/${allAds[a].imageIds[0].fileName}` %>"
+                                                    src="<%= `/attachments/${allAds[a].imageIds[0].fileName}` %>" alt="user">
+                                            </div>
+                                            <div class="width-50-p">
+                                                <h1 id="title-<%= allAds[a]._id %>">
+                                                    <%= allAds[a].textIds[0].title%>
+                                                </h1>
+                                                <p id="description-<%= allAds[a]._id %>">
+                                                    <%= allAds[a].textIds[0].description%>
+                                                </p>
+                                            </div>
+                                            <div class="el-overlay">
+                                                <ul class="el-info">
+                                                    <li>
+                                                        <a class="btn default btn-outline" onclick="copyToViewTemplate6('<%= allAds[a]._id %>')"
+                                                            href="#" data-toggle="modal" data-target="#<%= allAds[a].templateId %>">
+                                                            <i class="icon-control-play"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="el-card-content">
+                                            <h3>
+                                                <%= allAds[a].userId.username%>
+                                            </h3>
+                                            <div class="action-buttons">
+                                                <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="/editAd/<%= allAds[a]._id %>">EDIT</a>
+                                                <form method="POST" action="/viewAllAds/deleteAdNewWay">
+                                                    <input name="adId" type="hidden" value="<%= allAds[a]._id %>">
+                                                    <button class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
-                                    <% } else if(allAds[a].textsId && allAds[a].templateId === "temp-3") {%>
+                                </div>
+                            </div>
 
-                                        <div class="col-lg-3 col-md-6">
-                                            <div class="card">
-                                                <div class="el-card-item">
-                                                    <div class="el-card-avatar el-overlay-1">
-                                                        <div class="width-50-p w-100-p">
-                                                            <h1 id="title-<%= allAds[a]._id %>">
-                                                                <%= allAds[a].textsId.title%>
-                                                            </h1>
-                                                            <p id="description-<%= allAds[a]._id %>">
-                                                                <%= allAds[a].textsId.description%>
-                                                            </p>
-                                                        </div>
-                                                        <div class="el-overlay">
-                                                            <ul class="el-info">
-                                                                <li>
-                                                                    <a class="btn default btn-outline" onclick="copyToViewTemplate3('<%= allAds[a]._id %>')"
-                                                                        href="#" data-toggle="modal" data-target="#<%= allAds[a].templateId %>">
-                                                                        <i class="icon-control-play"></i>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="el-card-content">
-                                                        <h3>
-                                                            <%= allAds[a].userId.username%>
-                                                        </h3>
-                                                        <div class="action-buttons">
-                                                            <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="/editAd/<%= allAds[a]._id %>">EDIT</a>
-                                                            <form method="POST" action="/viewAllAds/deleteAd">
-                                                                <input name="adId" type="hidden" value="<%= allAds[a]._id %>">
-                                                                <button class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                    <% } else if(allAds[a].imageIds && allAds[a].templateId === "temp-7") {%>
+                        <div class="col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="el-card-item">
+                                        <div class="el-card-avatar el-overlay-1">
+                                            <div class="width-50-p">
+                                                <img id="imageSrc-<%= allAds[a]._id %>" data-set="<%= allAds[a].imageIds %>"
+                                                    src="<%= `/attachments/${allAds[a].imageIds[0].fileName}` %>" alt="user">
+                                            </div>
+                                            <div class="width-50-p">
+                                                <h1 id="title-<%= allAds[a]._id %>">
+                                                    <%= allAds[a].textIds[0].title%>
+                                                </h1>
+                                                <p id="description-<%= allAds[a]._id %>">
+                                                    <%= allAds[a].textIds[0].description%>
+                                                </p>
+                                            </div>
+                                            <div class="el-overlay">
+                                                <ul class="el-info">
+                                                    <li>
+                                                        <a class="btn default btn-outline" onclick="copyToViewTemplate7('<%= allAds[a]._id %>')"
+                                                            href="#" data-toggle="modal" data-target="#<%= allAds[a].templateId %>">
+                                                            <i class="icon-control-play"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
-                                        <% } else if(allAds[a].videosId && allAds[a].templateId === "temp-4") { %>
-
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="card">
-                                                    <div class="el-card-item">
-                                                        <div class="el-card-avatar el-overlay-1">
-                                                            <div class="width-50-p">
-                                                                <video id="videoSrc-<%= allAds[a]._id %>" data-set="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>"
-                                                                    src="<%= `/videosFolder/${allAds[a].videosId.fileName}` %>" alt="user"></video>
-                                                            </div>        
-                                                            <div class="width-50-p">
-                                                                <h1 id="title-<%= allAds[a]._id %>">
-                                                                    <%= allAds[a].textsId.title%>
-                                                                </h1>
-                                                                <p id="description-<%= allAds[a]._id %>">
-                                                                    <%= allAds[a].textsId.description%>
-                                                                </p>
-                                                            </div>
-                                                            <div class="el-overlay">
-                                                                <ul class="el-info">
-                                                                    <li>
-                                                                        <a class="btn default btn-outline" onclick="copyToViewTemplate4('<%= allAds[a]._id %>')"
-                                                                            href="#" data-toggle="modal" data-target="#<%= allAds[a].templateId %>">
-                                                                            <i class="icon-control-play"></i>
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <div class="el-card-content">
-                                                            <h3>
-                                                                <%= allAds[a].userId.username%>
-                                                            </h3>
-                                                            <div class="action-buttons">
-                                                                <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="/editAd/<%= allAds[a]._id %>">EDIT</a>
-                                                                <form method="POST" action="/viewAllAds/deleteAd">
-                                                                    <input name="adId" type="hidden" value="<%= allAds[a]._id %>">
-                                                                    <button class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        <div class="el-card-content">
+                                            <h3>
+                                                <%= allAds[a].userId.username%>
+                                            </h3>
+                                            <div class="action-buttons">
+                                                <a class="btn btn-sm waves-effect waves-light btn-info m-r-10" href="/editAd/<%= allAds[a]._id %>">EDIT</a>
+                                                <form method="POST" action="/viewAllAds/deleteAdNewWay">
+                                                    <input name="adId" type="hidden" value="<%= allAds[a]._id %>">
+                                                    <button class="btn btn-sm waves-effect waves-light btn-danger" href="#">DELETE</button>
+                                                </form>
                                             </div>
-                                            <% } %>
-                                                <% } %>
-                                                    <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                    <% } %>
+                    <% } %>
+                    <% } %>
                 </div>
 
                 <!-- video modal -->
-                <div class="modal fade modalone" id="temp-1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
-                    style="display: none;">
+                <div class="modal fade modalone" id="temp-1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                    aria-hidden="true" style="display: none;">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button onclick="pauseVideo1('1')" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <button onclick="pauseVideo1('1')" type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">×</button>
                             </div>
                             <div class="modal-body">
                                 <div class="modal-contentarea">
@@ -452,7 +587,8 @@
                                                 <div class="video-box">
                                                     <figure>
                                                         <!-- <video id="videoSrc1" src="" alt="image description"></video> -->
-                                                        <iframe id="videoSrc1" src="" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                                        <iframe id="videoSrc1" src="" webkitallowfullscreen
+                                                            mozallowfullscreen allowfullscreen></iframe>
                                                     </figure>
                                                 </div>
                                             </div>
@@ -467,8 +603,8 @@
                 </div>
                 <!-- /.modal -->
                 <!-- marketing modal -->
-                <div class="modal fade modaltwo" id="temp-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
-                    style="display: none;">
+                <div class="modal fade modaltwo" id="temp-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                    aria-hidden="true" style="display: none;">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -511,8 +647,8 @@
                 </div>
                 <!-- /.modal -->
                 <!-- marketing modal -->
-                <div class="modal fade modalthree" id="temp-3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
-                    style="display: none;">
+                <div class="modal fade modalthree" id="temp-3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                    aria-hidden="true" style="display: none;">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -543,12 +679,13 @@
             </div>
             <!-- /.modal -->
             <!-- marketing modal -->
-            <div class="modal fade modalone modalfour" id="temp-4" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
-                style="display: none;">
+            <div class="modal fade modalone modalfour" id="temp-4" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                aria-hidden="true" style="display: none;">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button onclick="pauseVideo1('2')" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <button onclick="pauseVideo1('2')" type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">×</button>
                         </div>
                         <div class="modal-body">
                             <div class="modal-contentarea">
@@ -568,11 +705,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+                                    <div class="col-xs-12 ctemp-55ol-sm-12 col-md-6 col-lg-7">
                                         <div class="row">
                                             <div class="video-box">
                                                 <figure>
-                                                    <iframe id="videoSrc44" src="" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                                    <iframe id="videoSrc44" src="" webkitallowfullscreen
+                                                        mozallowfullscreen allowfullscreen></iframe>
                                                 </figure>
                                             </div>
                                         </div>
@@ -586,35 +724,192 @@
                 <!-- /.modal-dialog -->
             </div>
             <!-- /.modal -->
-            <!-- marketing modal -->
-            <div class="modal fade modalone modalfive" id="modalfive" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-                aria-hidden="true" style="display: none;">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="modal-contentarea">
-                                <strong class="reprise-logo">
-                                    <img src="img/carsonline-logo.png" alt="image description">
-                                </strong>
-                                <div class="modalcontent-box">
-                                    <div class="text-box">
-                                        <p></p>
+            <div class="modal fade modalone modalsix" id="temp-5" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+            aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button onclick="pauseVideo('2')" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-contentarea">
+                            <button class="nxtbtn"><i class="ti-arrow-right"></i></button>
+                            <div class="row paddingzero">
+                                <div class="at-slidercontentholder">
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
+                                        <div class="row">
+                                            <div class="modalcontent-box">
+                                                <div class="text-box">
+                                                    <h3 id="popupTitle5">BRAND NAME AND HEADING<span>OVER HERE</span></h3>
+                                                    <p id="popupdescription5">Cras ultricies ligula sed magna dictum porta.
+                                                        Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
+                                                        Cras
+                                                        ultricies ligula sed magna dictum porta.</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="footer-text">
-                                    <h2></h2>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+                                        <div class="row">
+                                            <div class="video-box">
+                                                <div id="at-imagesliders" class="at-imagesliders at-imagessliders">
+                                                    <!-- <figure class="at-sliderimg">
+                                                        <img src="/attachments/fa29e8a81dcfd432b345e26b87834287ef3f.png"
+                                                            alt="image description">
+                                                    </figure> -->
+                                                    <!-- <figure class="at-sliderimg">
+                                                        <img src="https://www.caranddriver.com/images/media/671589/2017-10best-cars-the-best-cars-for-sale-in-america-today-feature-car-and-driver-photo-672522-s-original.jpg"
+                                                            alt="image description">
+                                                    </figure>
+                                                    <figure class="at-sliderimg">
+                                                        <img src="https://www.popsci.com/sites/popsci.com/files/styles/1000_1x_/public/images/2018/03/senna.jpg?itok=eYNPMGjA&fc=50,50"
+                                                            alt="image description">
+                                                    </figure> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- /.modal-content -->
                 </div>
-                <!-- /.modal-dialog -->
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+            </div>
+              <!-- /.modal -->
+            <div class="modal fade modalone modalseven" id="temp-6" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button onclick="pauseVideo('2')" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-contentarea">
+                        <button class="nxtbtn"><i class="ti-arrow-right"></i></button>
+                        <div class="row paddingzero">
+                            <div class="at-slidercontentholder">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
+                                    <div class="row">
+                                        <div class="modalcontent-box">
+                                            <div id="at-textalider" class="at-textalider at-slidertext">
+                                                <div class="at-textholder">
+                                                    <div class="text-box">
+                                                        <h3 id="popupTitle6">BRAND NAME AND HEADING</h3>
+                                                        <p id="popupdescription6">Cras ultricies ligula sed magna
+                                                            dictum
+                                                            porta.
+                                                            Curabitur non nulla sit amet nisl tempus convallis quis ac
+                                                            lectus. Cras
+                                                            ultricies ligula sed magna dictum porta.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="at-textholder">
+                                                    <div class="text-box">
+                                                        <h3 id="popupTitle66">TEMPLATE NAME AND HEADING</h3>
+                                                        <p id="popupdescription66">Cras ultricies ligula sed magna
+                                                            dictum
+                                                            porta.
+                                                            Curabitur non nulla sit amet nisl tempus convallis quis ac
+                                                            lectus.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+                                    <div class="row">
+                                        <div class="video-box">
+                                            <figure class="at-sliderimg">
+                                                <img id="img666" src="" alt="image description">
+                                            </figure>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
             </div>
             <!-- /.modal -->
+
+            <div class="modal fade modalone modalseven" id="temp-7" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button onclick="pauseVideo('2')" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-contentarea">
+                        <button class="nxtbtn"><i class="ti-arrow-right"></i></button>
+                        <div class="row paddingzero">
+                            <div class="at-slidercontentholder">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
+                                    <div class="row">
+                                        <div class="modalcontent-box">
+                                            <div id="at-textalider-two" class="at-textalider at-slidertext at-textalider-two">
+                                                <div class="at-textholder">
+                                                    <div class="text-box">
+                                                        <h3 id="popupTitle7">BRAND NAME AND HEADING<span> OVER HERE</span></h3>
+                                                        <p id="popupdescription7">Cras ultricies ligula sed magna
+                                                            dictum
+                                                            porta.
+                                                            Curabitur non nulla sit amet nisl tempus convallis quis ac
+                                                            lectus. Cras
+                                                            ultricies ligula sed magna dictum porta.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="at-textholder">
+                                                    <div class="text-box">
+                                                        <h3 id="popupTitle77">TEMPLATE NAME AND HEADING<span> OVER HERE</span></h3>
+                                                        <p id="popupdescription77">Cras ultricies ligula sed magna
+                                                            dictum
+                                                            porta.
+                                                            Curabitur non nulla sit amet nisl tempus convallis quis ac
+                                                            lectus.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+                                    <div class="row">
+                                        <div class="video-box">
+                                            <div id="at-imagesliders-two" class="at-imagesliders at-imagessliders">
+                                                <!-- <figure class="at-sliderimg">
+                                                    <img src="/attachments/fa29e8a81dcfd432b345e26b87834287ef3f.png"
+                                                        alt="image description">
+                                                </figure>
+                                                <figure class="at-sliderimg">
+                                                    <img src="https://www.caranddriver.com/images/media/671589/2017-10best-cars-the-best-cars-for-sale-in-america-today-feature-car-and-driver-photo-672522-s-original.jpg"
+                                                        alt="image description">
+                                                </figure>
+                                                <figure class="at-sliderimg">
+                                                    <img src="https://www.popsci.com/sites/popsci.com/files/styles/1000_1x_/public/images/2018/03/senna.jpg?itok=eYNPMGjA&fc=50,50"
+                                                        alt="image description">
+                                                </figure> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
             <!-- ============================================================== -->
             <!-- End PAge Content -->
             <!-- ============================================================== -->

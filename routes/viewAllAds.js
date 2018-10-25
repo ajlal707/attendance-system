@@ -21,10 +21,13 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
                 .populate('imageId')
                 .populate('videosId')
                 .populate('textsId')
+                .populate('textIds')
+                .populate('imageIds')
                 .exec(function (err, allAds) {
                     if (err) { return next(err) }
 
                     req.session.CalledUrl = req.originalUrl
+                    console.log(allAds)
                     res.render('viewAllAds', { title: 'All-Ads', user, allAds })
                 })
         })
@@ -34,7 +37,6 @@ router.post('/deleteAd', function (req, res) {
     var id = req.body.adId
     createAd.findOne({ _id: id }, (err, existAd) => {
         if (err) return res.json({ error: err })
-
 
         var adObject = existAd
         if (adObject.videosId) {
@@ -97,6 +99,69 @@ router.post('/deleteAd', function (req, res) {
                 })
             })
         }
+
+
+        existAd.remove();
+        return res.redirect('/viewAllAds')
+    })
+})
+
+
+router.post('/deleteAdNewWay', function (req, res) {
+    var id = req.body.adId
+    createAd.findOne({ _id: id }, (err, existAd) => {
+        if (err) return res.json({ error: err })
+
+        var adObject = existAd
+        if (adObject.textIds.length > 0) {
+
+
+            Texts.findOne({ _id: adObject.textIds[0] }, (err, textsObject) => {
+                if (err) return res.json({ error: err })
+
+                var createadArray = textsObject.createAdId
+                var indexOfId = createadArray.indexOf(adObject.textsId)
+
+                createadArray = createadArray.splice(indexOfId, 1)
+                textsObject.createAdId = createadArray
+                textsObject.save((err) => {
+                    if (err) return res.json({ error: err })
+
+                })
+            })
+        }
+        if (adObject.userId) {
+            User.findOne({ _id: adObject.userId }, (err, userObject) => {
+                if (err) return res.json({ error: err })
+
+                var createadArray = userObject.createAdId
+                var indexOfId = createadArray.indexOf(adObject.textsId)
+
+                createadArray = createadArray.splice(indexOfId, 1)
+                userObject.createAdId = createadArray
+                userObject.save((err) => {
+                    if (err) return res.json({ error: err })
+
+                })
+            })
+        }
+        if (adObject.imageIds.length > 0) {
+            Attachments.findOne({ _id: adObject.imageIds[0] }, (err, imageObject) => {
+                if (err) return res.json({ error: err })
+
+                var createadArray = imageObject.createAdId
+                var indexOfId = createadArray.indexOf(adObject.imageId)
+
+                createadArray = createadArray.splice(indexOfId, 1)
+                imageObject.createAdId = createadArray
+                imageObject.save((err) => {
+                    if (err) return res.json({ error: err })
+
+                })
+            })
+        }
+
+
         existAd.remove();
         return res.redirect('/viewAllAds')
     })

@@ -61,7 +61,7 @@ router.get('/:id', ensureAuthenticated, function (req, res, next) {
 
                             createAd.findById(id, function (err, result) {
                                 if (err) { return next(err) }
-                    
+
                                 req.session.resultId = result._id
                                 res.render('editAd', { title: 'Edit-Ad', user, attachments, videos, users, texts, result })
                             })
@@ -94,7 +94,7 @@ router.post('/getResult', ensureAuthenticated, function (req, res, next) {
                             createAd.findById(req.session.resultId, function (err, result) {
                                 if (err) res.json({ error: 'error' })
 
-                                
+
                                 res.json({ success: 'success', user, attachments, videos, users, texts, result })
                             })
                         })
@@ -133,8 +133,37 @@ router.post('/update', ensureAuthenticated, function (req, res, next) {
     })
 
 })
+
+router.post('/updateNewWay', ensureAuthenticated, function (req, res, next) {
+
+    var { adIdForUpdate, userId, duration, template } = req.body;
+    let imageIds = req.body['imageIds[]']
+    let textIds = req.body['textIds[]']
+
+    createAd.findOne({ _id: adIdForUpdate }, (err, adObject) => {
+        if (err) return res.json({ error: 'error' })
+
+        if (adObject) {
+            adObject.userId = userId
+            adObject.imageIds = imageIds
+            adObject.textIds = textIds
+            adObject.duration = duration
+            adObject.templateId = template
+            adObject.save((err) => {
+                if (err) return res.json({ error: 'error' })
+
+                var calledUrl = req.session.CalledUrl
+
+                return res.json({ success: 'success', calledUrl })
+            })
+        } else {
+            return res.json({ error: 'try again.' })
+        }
+    })
+
+})
 router.get('/logout', function (req, res) {
-    
+
     req.logout();
     res.redirect('/');
 })

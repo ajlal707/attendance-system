@@ -279,8 +279,6 @@ $(function () {
             }
         }
     });
-
-
 });
 function userLcdHtml(videoSrc, title, description) {
 
