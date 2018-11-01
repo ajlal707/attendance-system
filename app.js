@@ -25,6 +25,7 @@ const viewAllAdsRouter = require('./routes/viewAllAds')
 const editAd = require('./routes/editAd')
 // user route or lcd where user,s ads shown
 const userLcd = require('./routes/userLcd')
+const userSlider = require('./routes/userSlider')
 
 
 
@@ -102,6 +103,7 @@ app.use('/createAds', createAdsRouter)
 app.use('/viewAllAds', viewAllAdsRouter)
 app.use('/editAd', editAd)
 app.use('/userLcd', userLcd)
+app.use('/userSlider', userSlider)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

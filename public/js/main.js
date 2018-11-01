@@ -122,9 +122,6 @@ function addUser() {
     }
 }
 //end signup user
-
-
-
 // RESET PASSWORD FUNCTION
 
 function resetPassword() {
@@ -311,10 +308,8 @@ function saveText() {
 
 // copy text into popup
 function copyTextToPopup(title, description) {
-    console.log(title, description)
     document.getElementById('popupTitle').innerHTML = title;
     document.getElementById('popupdescription').innerHTML = description
-
 }
 // delete text 
 
@@ -438,9 +433,6 @@ function checkTempplate(id) {
         }, 10000);
     }
 }
-
-
-
 
 // create ads function
 function createAd() {
@@ -581,27 +573,33 @@ function createAd() {
         let imageIds = checkboxes();
         let textIds = [];
         textIds.push(textId)
-        $.ajax({
-            type: "POST",
-            url: "/createAds/createAdNew",
-            data: { imageIds, textIds, duration, userId, template },
-            success: function (res) {
-                if (res.error) {
-                    var error = document.getElementById('error');
-                    error.style.color = 'red'
-                    error.innerHTML = res.error
-                    window.scrollTo(0, 700);
-                } else if (res.success) {
-                    window.location.href = '/createAds';
+        if (imageIds.length > 0) {
+            $.ajax({
+                type: "POST",
+                url: "/createAds/createAdNew",
+                data: { imageIds, textIds, duration, userId, template },
+                success: function (res) {
+                    if (res.error) {
+                        var error = document.getElementById('error');
+                        error.style.color = 'red'
+                        error.innerHTML = res.error
+                        window.scrollTo(0, 700);
+                    } else if (res.success) {
+                        window.location.href = '/createAds';
 
-                    setTimeout(function () {
-                        document.getElementById("error").innerHTML = '';
-                    }, 10000);
-                    window.scrollTo(0, 700);
+                        setTimeout(function () {
+                            document.getElementById("error").innerHTML = '';
+                        }, 10000);
+                        window.scrollTo(0, 700);
+                    }
                 }
-            }
-        });
-
+            });
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'No image selected.'
+            window.scrollTo(0, 700);
+        }
     } else if (temp6.checked === true) {
         var n = $("input:checkbox:checked").length;
         if (n == 1) {
@@ -647,27 +645,33 @@ function createAd() {
         let textIds = [];
         textIds.push(textId)
         textIds.push(textId2)
-        $.ajax({
-            type: "POST",
-            url: "/createAds/createAdNew",
-            data: { imageIds, textIds, duration, userId, template },
-            success: function (res) {
-                if (res.error) {
-                    var error = document.getElementById('error');
-                    error.style.color = 'red'
-                    error.innerHTML = res.error
-                    window.scrollTo(0, 700);
-                } else if (res.success) {
-                    window.location.href = '/createAds';
+        if (imageIds.length > 0) {
+            $.ajax({
+                type: "POST",
+                url: "/createAds/createAdNew",
+                data: { imageIds, textIds, duration, userId, template },
+                success: function (res) {
+                    if (res.error) {
+                        var error = document.getElementById('error');
+                        error.style.color = 'red'
+                        error.innerHTML = res.error
+                        window.scrollTo(0, 700);
+                    } else if (res.success) {
+                        window.location.href = '/createAds';
 
-                    setTimeout(function () {
-                        document.getElementById("error").innerHTML = '';
-                    }, 10000);
-                    window.scrollTo(0, 700);
+                        setTimeout(function () {
+                            document.getElementById("error").innerHTML = '';
+                        }, 10000);
+                        window.scrollTo(0, 700);
+                    }
                 }
-            }
-        });
-
+            });
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'No image selected.'
+            window.scrollTo(0, 700);
+        }
     } else {
         var error = document.getElementById('error1');
         error.style.color = 'red'
@@ -690,8 +694,6 @@ function selectPopup() {
     var description = texts[1].trim()
 
     // geting video object
-
-
 
     var temp1 = document.getElementById('temp-1');
     var temp2 = document.getElementById('temp-2');
@@ -727,7 +729,7 @@ function selectPopup() {
 
     }
     if (temp4.checked === true) {
-        btn.setAttribute('data-target', '#temp-44');
+        btn.setAttribute('data-tarselectPopupget', '#temp-44');
         document.getElementById('popupTitle4').innerHTML = title
         document.getElementById('popupdescription4').innerHTML = description
         var videofilePath = $('input:checkbox:checked')[0].dataset.set
@@ -736,16 +738,20 @@ function selectPopup() {
     }
 
     if (temp5.checked === true) {
-
+        $(".preloader").css("display", "block");
+        $(".preloader").delay(8000).fadeOut("slow");
         document.getElementById('popupTitle5').innerHTML = title
         document.getElementById('popupdescription5').innerHTML = description
 
+        var duration = document.getElementById('duration').value;
+
         let parentDiv = document.getElementById('at-imagesliders');
+        parentDiv.classList.remove('slick-slider')
+        parentDiv.classList.remove('slick-initialized')
         parentDiv.innerHTML = ''
+
         let imagefilePaths = forPopUpCheckBoxs();
         if (imagefilePaths.length) {
-
-
 
             for (let i = 0; i < imagefilePaths.length; i++) {
                 let a = imagefilePaths[i].replace('public', '');
@@ -756,11 +762,15 @@ function selectPopup() {
             }
 
             $('#at-imagesliders').on('init', function (event, slick) {
-                btn.setAttribute('data-target', '#temp-55');
+                setTimeout(() => {
+                    $('#temp-55').modal('show');
+                    $(".preloader").css("display", "none");
+
+                }, 4000);
             });
 
             $('#at-imagesliders').slick({
-                speed: 300,
+                speed: ((duration * 1) * 1000),
                 arrows: false,
                 autoplay: true,
                 infinite: false,
@@ -773,21 +783,18 @@ function selectPopup() {
             error.innerHTML = 'No image select.'
             window.scrollTo(0, 700);
         }
-
-
     }
     if (temp6.checked === true) {
+        $(".preloader").css("display", "block");
+        $(".preloader").delay(3000).fadeOut("slow");
 
         var imageFilePath = $('input:checkbox:checked')[0].dataset.set
         document.getElementById('img666').src = imageFilePath.replace('public', '');
 
-
-
-
+        var duration = document.getElementById('duration').value;
 
         document.getElementById('popupTitle6').innerHTML = title
         document.getElementById('popupdescription6').innerHTML = description
-
         //texts object geting
         var text2 = document.getElementById('textId2');
         text2 = text2.options[text2.selectedIndex].dataset.set
@@ -797,26 +804,34 @@ function selectPopup() {
         document.getElementById('popupTitle66').innerHTML = title2
         document.getElementById('popupdescription66').innerHTML = description2
 
+        $('#at-textalider').on('init', function (event, slick) {
+            setTimeout(() => {
+                $(".preloader").css("display", "none");
+                $('#temp-66').modal('show');
+
+            }, 3000);
+        });
 
         $('#at-textalider').slick({
-            speed: 300,
+            speed: ((duration * 1) * 1000),
             arrows: false,
             autoplay: true,
             infinite: false,
             pauseOnHover: false,
             accessibility: false,
         });
-
-        btn.setAttribute('data-target', '#temp-66');
-
-
     }
     if (temp7.checked === true) {
+        $(".preloader").css("display", "block");
+        $(".preloader").delay(8000).fadeOut("slow");
 
         document.getElementById('popupTitle7').innerHTML = title
         document.getElementById('popupdescription7').innerHTML = description
+        var duration = document.getElementById('duration').value;
 
         let parentDiv = document.getElementById('at-imagesliders-two');
+        parentDiv.classList.remove('slick-slider')
+        parentDiv.classList.remove('slick-initialized')
         parentDiv.innerHTML = ''
         let imagefilePaths = forPopUpCheckBoxs();
         if (imagefilePaths.length) {
@@ -839,12 +854,15 @@ function selectPopup() {
             }
 
             $('#at-imagesliders-two').on('init', function (event, slick) {
-                btn.setAttribute('data-target', '#temp-77');
+                setTimeout(() => {
+                    $(".preloader").css("display", "none");
+                    $('#temp-77').modal('show');
+
+                }, 3000);
             });
 
             $('#at-imagesliders-two').slick({
-                fade: true,
-                speed: 600,
+                speed: ((duration * 1) * 1000),
                 arrows: false,
                 autoplay: true,
                 infinite: false,
@@ -853,7 +871,7 @@ function selectPopup() {
             });
 
             $('#at-textsliders-two').slick({
-                speed: 300,
+                speed: (((duration * 1) * 1000) / 2),
                 arrows: false,
                 autoplay: true,
                 infinite: false,
@@ -898,26 +916,114 @@ function copyToViewTemplate4(id) {
     document.getElementById('videoSrc44').src = videofilePath
 }
 function copyToViewTemplate5(id) {
-    var imageArray = JSON.parse(document.getElementById('imageSrc-' + id).dataset.set)
 
-    imageArray = JSON.parse(imageArray)
+    $(".preloader").css("display", "block");
+    $(".preloader").delay(5000).fadeOut("slow");
+
+    let parentDiv = document.getElementById('at-imagesliders');
+    parentDiv.classList.remove('slick-slider')
+    parentDiv.classList.remove('slick-initialized')
+
+    parentDiv.innerHTML = ''
+
+    var imageArray = document.getElementById('imageSrc-' + id).dataset.set
+    let jsonImageArray = JSON.parse(imageArray)
     document.getElementById('popupTitle5').innerHTML = document.getElementById('title-' + id).innerHTML;
     document.getElementById('popupdescription5').innerHTML = document.getElementById('description-' + id).innerHTML;
-    document.getElementById('videoSrc44').src = videofilePath
+
+    for (let i = 0; i < jsonImageArray.imageIds.length; i++) {
+        let a = jsonImageArray.imageIds[i].filePath.replace('public', '');
+        let imageFigure = `<figure class="at-sliderimg">
+                            <img src="${a}" alt="image description">
+                       </figure>`
+
+        parentDiv.insertAdjacentHTML('beforeend', imageFigure);
+    }
+
+    $('#temp-5').modal('show');
+
+    $('#at-imagesliders').slick({
+        speed: 3000,
+        arrows: false,
+        autoplay: true,
+        infinite: false,
+        pauseOnHover: false,
+        accessibility: false,
+    })
+
+
 }
 function copyToViewTemplate6(id) {
+    $('#at-textalider').slick({
+        speed: 3000,
+        arrows: false,
+        autoplay: true,
+        infinite: false,
+        pauseOnHover: false,
+        accessibility: false,
+    })
+
+    $(".preloader").css("display", "block");
+    $(".preloader").delay(6000).fadeOut("slow");
+
     var imageArray = document.getElementById('imageSrc-' + id).dataset.set
-    document.getElementById('popupTitle6').innerHTML = document.getElementById('title-' + id).innerHTML;
-    document.getElementById('popupdescription6').innerHTML = document.getElementById('description-' + id).innerHTML;
-    document.getElementById('img666').src = imageArray
+    let jsonImageArray = JSON.parse(imageArray)
+    document.getElementById('img666').src = jsonImageArray.imageIds[0].filePath.replace('public', '');
+    document.getElementById('popupTitle6').innerHTML = jsonImageArray.textIds[0].title
+    document.getElementById('popupdescription6').innerHTML = jsonImageArray.textIds[0].description
+    document.getElementById('popupTitle66').innerHTML = jsonImageArray.textIds[1].title
+    document.getElementById('popupdescription66').innerHTML = jsonImageArray.textIds[1].description
+
+    $('#temp-6').modal('show');
 }
 function copyToViewTemplate7(id) {
-    var imageArray = JSON.parse(document.getElementById('imageSrc-' + id).dataset.set)
 
-    imageArray = JSON.parse(imageArray)
-    document.getElementById('popupTitle6').innerHTML = document.getElementById('title-' + id).innerHTML;
-    document.getElementById('popupdescription6').innerHTML = document.getElementById('description-' + id).innerHTML;
-    document.getElementById('img666').src = videofilePath
+
+
+    $(".preloader").css("display", "block");
+    $(".preloader").delay(6000).fadeOut("slow");
+
+
+    var imageArray = document.getElementById('imageSrc-' + id).dataset.set
+    let jsonImageArray = JSON.parse(imageArray)
+
+    document.getElementById('popupTitle7').innerHTML = jsonImageArray.textIds[0].title
+    document.getElementById('popupdescription7').innerHTML = jsonImageArray.textIds[0].description
+    document.getElementById('popupTitle77').innerHTML = jsonImageArray.textIds[1].title
+    document.getElementById('popupdescription77').innerHTML = jsonImageArray.textIds[1].description
+
+    let parentDiv = document.getElementById('at-imagesliders-two');
+    parentDiv.classList.remove('slick-slider')
+    parentDiv.classList.remove('slick-initialized')
+    parentDiv.innerHTML = ''
+
+    for (let i = 0; i < jsonImageArray.imageIds.length; i++) {
+        let a = jsonImageArray.imageIds[i].filePath.replace('public', '');
+        let imageFigure = `<figure class="at-sliderimg">
+                            <img src="${a}" alt="image description">
+                       </figure>`
+        parentDiv.insertAdjacentHTML('beforeend', imageFigure);
+    }
+
+    $('#at-imagesliders-two').slick({
+        speed: 3000,
+        arrows: false,
+        autoplay: true,
+        infinite: true,
+        pauseOnHover: false,
+        accessibility: false,
+    });
+
+    $('#at-textalider-two').slick({
+        speed: 2000,
+        arrows: false,
+        autoplay: true,
+        infinite: false,
+        pauseOnHover: false,
+        accessibility: false,
+    })
+    $('#temp-7').modal('show');
+
 }
 // end copy data view-ad to popup functions
 
@@ -1260,7 +1366,6 @@ function uploadNewImage() {
         }, 10000);
     }
 }
-
 
 function saveNewVideo() {
 

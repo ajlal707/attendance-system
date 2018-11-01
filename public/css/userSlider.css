@@ -1,0 +1,97 @@
+.page-wrapper{
+    background: none;
+    overflow: hidden;
+    min-height: auto !important;
+}
+.ss-adsliderholder{
+    width: 100%;
+    float: left;
+}
+.at-usersliderholder{
+    width: 100%;
+    float: left;
+}
+.at-slidercontent{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    -webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-orient: vertical;
+	justify-content: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: row;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+}
+.at-textboxholder,
+.at-imgvideoholder{
+    width: 50%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.at-imgvideoholder .video-box iframe{
+    margin: 0;
+    position: relative;
+}
+.at-slidercontent .nxtbtn{
+    left: 50%;
+    z-index: 9999;
+    -moz-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+.at-textuser .at-textboxholder{
+    max-width: 1170px;
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+.at-textuser .at-textboxholder .text-box{padding: 190px 50px;}
+
+
+
+
+
+.at-addbgone{
+    background: url('/img/bg-10.png') no-repeat;
+    background-size: cover;
+}
+.at-addbgtwo{
+    background: url('/img/bg-1.png') no-repeat;
+    background-size: cover;
+}
+.at-addbgthree{
+    background: url('/img/bg-2.png') no-repeat;
+    background-size: cover;
+}
+.at-addbgfour{
+    background: url('/img/bg-3.png') no-repeat;
+    background-size: cover;
+}
+.at-addbgfive{
+    background: url('/img/modal-bg3.png') no-repeat;
+    background-size: cover;
+}
+.at-addbgsix{
+    background: url('/img/bg-5.png') no-repeat;
+    background-size: cover;
+}
+.at-addbgseven{
+    background: url('/img/modal-bg3.png') no-repeat;
+    background-size: cover;
+}

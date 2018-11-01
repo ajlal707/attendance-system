@@ -24,7 +24,7 @@ router.get('/', function (req, res, next) {
                         .exec(function (err, userAds) {
                             if (err) { return next(err) }
 
-                            res.render('userLcd', { title: 'User-Lcd', user, userAds })
+                            res.render('userSlider', { title: 'User-Lcd', user, userAds })
                         })
                 })
         } else {

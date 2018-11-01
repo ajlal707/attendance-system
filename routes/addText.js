@@ -43,11 +43,17 @@ router.post('/deleteText', function (req, res) {
 
     if (existAd) return res.json({ error: 'This Text is in use of ads' })
 
-    Texts.remove({ _id: id }, (err, todo) => {
-      if (err) return res.json({ error: 'something happened bad try again.' })
+    createAd.findOne({ textIds: id }, (err, existsAd) => {
+      if (err) return res.json({ error: err })
+
+      if (existsAd) return res.json({ error: 'This Text is in use of ads' })
+     
+      Texts.remove({ _id: id }, (err, todo) => {
+        if (err) return res.json({ error: 'something happened bad try again.' })
 
 
-      return res.json({ success: 'success' })
+        return res.json({ success: 'success' })
+      })
     })
   })
 })

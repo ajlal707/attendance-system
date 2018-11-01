@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon --debug --inspect ./bin/www"
+    "start": "nodemon --debug --inspect ./bin/www",
+    "frontend": "node ./bin/www"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",

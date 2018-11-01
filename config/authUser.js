@@ -4,7 +4,7 @@ module.exports = function ensureAuthenticated(req, res, next) {
     if (req.user.role === 'admin') {
       next()
     } else if (req.isAuthenticated() && req.user.role === 'user') {
-      res.redirect('/userLcd')
+      res.redirect('/userSlider')
     } else {
       req.logout();
       res.redirect('/');

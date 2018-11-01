@@ -64,7 +64,7 @@ router.post('/uploadGalleryImg', ensureAuthenticated, upload, (req, res, next) =
 
     } else {
       fs.unlink(path, (err) => {
-        if (err) return  res.json({ error: 'something happen bad try again.' })
+        if (err) return res.json({ error: 'something happen bad try again.' })
 
         return res.json({ error: "Provide image with valid extensions (.jpeg,.jpg,.png)" })
       })
@@ -83,12 +83,18 @@ router.post('/deleteImage', ensureAuthenticated, function (req, res) {
 
       if (existAd) return res.json({ error: 'This image is in use of ads' })
 
-      fs.unlink(todo.filePath, (err) => {
-        if (err)
-          return res.json(err)
+      createAd.findOne({ imageIds: id }, (err, existsAd) => {
+        if (err) return res.json({ error: err })
 
-        todo.remove();
-        return res.json({ success: 'success' })
+        if (existsAd) return res.json({ error: 'This image is in use of ads' })
+
+        fs.unlink(todo.filePath, (err) => {
+          if (err)
+            return res.json(err)
+
+          todo.remove();
+          return res.json({ success: 'success' })
+        })
       })
     })
   });
