@@ -8,7 +8,6 @@ function checkboxes() {
     for (var i = 0; i < checkboxCount.length; i++) {
         if (checkboxCount[i].type === "checkbox" && checkboxCount[i].checked === true) {
             checkboxIds.push(checkboxCount[i].id)
-
         }
     }
     return checkboxIds;
@@ -20,7 +19,6 @@ function forPopUpCheckBoxs() {
     for (var i = 0; i < checkboxCount.length; i++) {
         if (checkboxCount[i].type === "checkbox" && checkboxCount[i].checked === true) {
             checkboxSrc.push(checkboxCount[i].dataset.set)
-
         }
     }
     return checkboxSrc;
@@ -58,7 +56,6 @@ function userLogin() {
             error.style.color = 'red'
             error.innerHTML = 'Password must not be empty.'
         }
-
     } else {
         var error = document.getElementById('error');
         error.style.color = 'red'
@@ -123,7 +120,6 @@ function addUser() {
 }
 //end signup user
 // RESET PASSWORD FUNCTION
-
 function resetPassword() {
     document.getElementById('error').value = '';
     var pass1 = document.getElementById('pass1').value;
@@ -145,13 +141,11 @@ function resetPassword() {
                     }
                 }
             });
-
         } else {
             var error = document.getElementById('error');
             error.style.color = 'red'
             error.innerHTML = 'Password length must be 6'
         }
-
     } else {
         var error = document.getElementById('error');
         error.style.color = 'red'
@@ -197,7 +191,6 @@ function checkInput() {
     document.getElementById('error').value = '';
     var imageUploader = document.getElementById('uploader').value;
     if (imageUploader) {
-
     } else {
         var error = document.getElementById('error');
         error.style.color = 'red'
@@ -221,9 +214,7 @@ function deleteImage(imageId) {
             }
         }
     });
-
 }
-
 //delete video
 function deleteVideo(videoId) {
     $.ajax({
@@ -241,7 +232,6 @@ function deleteVideo(videoId) {
             }
         }
     });
-
 }
 
 // add text method
@@ -278,7 +268,6 @@ function saveText() {
                         document.getElementById("error").innerHTML = '';
                     }, 10000);
                 }
-
             } else {
                 var error = document.getElementById('error');
                 error.style.color = 'red'
@@ -305,14 +294,12 @@ function saveText() {
         }, 10000);
     }
 }
-
 // copy text into popup
 function copyTextToPopup(title, description) {
     document.getElementById('popupTitle').innerHTML = title;
     document.getElementById('popupdescription').innerHTML = description
 }
 // delete text 
-
 function deleteText(textId) {
     $.ajax({
         type: "POST",
@@ -346,7 +333,6 @@ function hideDive(id) {
     var n = $("input:checkbox:checked").length;
 
     $("input:checkbox:checked").prop('checked', false);
-
     if (temp.checked && temp1.checked) {
         video.style.display = 'block';
         image.style.display = 'none';
@@ -380,13 +366,10 @@ function hideDive(id) {
         image.style.display = 'block';
         video.style.display = 'none';
         $("#2ndTextSelector").show();
-
-
     }
 }
 // select one image function
 function checkTempplate(id) {
-
     document.getElementById('error').innerHTML = ''
     var selectedElement = document.getElementById(id);
     var temp1 = document.getElementById('temp-1');
@@ -417,7 +400,6 @@ function checkTempplate(id) {
 
                     selectedElement.checked = true;
                 }
-
             } else {
                 selectedElement.checked = false;
             }
@@ -433,7 +415,6 @@ function checkTempplate(id) {
         }, 10000);
     }
 }
-
 // create ads function
 function createAd() {
     document.getElementById('error').innerHTML = ''
@@ -513,7 +494,6 @@ function createAd() {
             window.scrollTo(0, 700);
         }
     } else if (temp3.checked === true) {
-
         template = 'temp-3'
         $.ajax({
             type: "POST",
@@ -530,7 +510,6 @@ function createAd() {
                 }
             }
         });
-
     } else if (temp4.checked === true) {
         var n = $("input:checkbox:checked").length;
         if (n == 1) {
@@ -566,9 +545,7 @@ function createAd() {
             }, 10000);
             window.scrollTo(0, 700);
         }
-
     } else if (temp5.checked === true) {
-
         template = 'temp-5'
         let imageIds = checkboxes();
         let textIds = [];
@@ -692,9 +669,7 @@ function selectPopup() {
     texts = texts.split(":")
     var title = texts[0].trim()
     var description = texts[1].trim()
-
     // geting video object
-
     var temp1 = document.getElementById('temp-1');
     var temp2 = document.getElementById('temp-2');
     var temp3 = document.getElementById('temp-3');
@@ -702,23 +677,18 @@ function selectPopup() {
     var temp5 = document.getElementById('temp-5');
     var temp6 = document.getElementById('temp-6');
     var temp7 = document.getElementById('temp-7');
-
-
     var btn = document.getElementById('previewBtn');
     if (temp1.checked === true) {
-
         btn.setAttribute('data-target', '#temp-11');
         document.getElementById('popupTitle1').innerHTML = title
         document.getElementById('popupdescription1').innerHTML = description
         var videofilePath = $('input:checkbox:checked')[0].dataset.set
         document.getElementById('videoSrc').src = videofilePath.replace('public', '');
-
     }
     if (temp2.checked === true) {
         btn.setAttribute('data-target', '#temp-22');
         document.getElementById('popupTitle2').innerHTML = title
         document.getElementById('popupdescription2').innerHTML = description
-
         var imageFilePath = $('input:checkbox:checked')[0].dataset.set
         document.getElementById('imageSrc').src = imageFilePath.replace('public', '');
     }
@@ -726,7 +696,6 @@ function selectPopup() {
         btn.setAttribute('data-target', '#temp-33');
         document.getElementById('popupTitle3').innerHTML = title
         document.getElementById('popupdescription3').innerHTML = description
-
     }
     if (temp4.checked === true) {
         btn.setAttribute('data-tarselectPopupget', '#temp-44');
@@ -734,16 +703,11 @@ function selectPopup() {
         document.getElementById('popupdescription4').innerHTML = description
         var videofilePath = $('input:checkbox:checked')[0].dataset.set
         document.getElementById('videoSrc2').src = videofilePath.replace('public', '');
-
     }
 
     if (temp5.checked === true) {
-        $(".preloader").css("display", "block");
-        $(".preloader").delay(8000).fadeOut("slow");
         document.getElementById('popupTitle5').innerHTML = title
         document.getElementById('popupdescription5').innerHTML = description
-
-        var duration = document.getElementById('duration').value;
 
         let parentDiv = document.getElementById('at-imagesliders');
         parentDiv.classList.remove('slick-slider')
@@ -752,6 +716,8 @@ function selectPopup() {
 
         let imagefilePaths = forPopUpCheckBoxs();
         if (imagefilePaths.length) {
+            $(".preloader").css("display", "block");
+            $(".preloader").delay(6000).fadeOut("slow");
 
             for (let i = 0; i < imagefilePaths.length; i++) {
                 let a = imagefilePaths[i].replace('public', '');
@@ -760,23 +726,15 @@ function selectPopup() {
                            </figure>`
                 parentDiv.insertAdjacentHTML('beforeend', imageFigure);
             }
-
-            $('#at-imagesliders').on('init', function (event, slick) {
-                setTimeout(() => {
-                    $('#temp-55').modal('show');
-                    $(".preloader").css("display", "none");
-
-                }, 4000);
-            });
-
             $('#at-imagesliders').slick({
-                speed: ((duration * 1) * 1000),
+                speed: 3000,
                 arrows: false,
                 autoplay: true,
                 infinite: false,
                 pauseOnHover: false,
                 accessibility: false,
             })
+            $('#temp-55').modal('show');
         } else {
             var error = document.getElementById('error');
             error.style.color = 'red'
@@ -791,7 +749,7 @@ function selectPopup() {
             $(".preloader").css("display", "block");
             $(".preloader").delay(5000).fadeOut("slow");
             $('#at-textalider').slick({
-                speed:2000,
+                speed: 2000,
                 arrows: false,
                 autoplay: true,
                 infinite: false,
@@ -799,8 +757,6 @@ function selectPopup() {
                 accessibility: false,
             });
             document.getElementById('img666').src = imageFilePath.replace('public', '');
-
-        
 
             document.getElementById('popupTitle6').innerHTML = title
             document.getElementById('popupdescription6').innerHTML = description
@@ -813,26 +769,15 @@ function selectPopup() {
             document.getElementById('popupTitle66').innerHTML = title2
             document.getElementById('popupdescription66').innerHTML = description2
 
-            // $('#at-textalider').on('init', function (event, slick) {
-            //     setTimeout(() => {
-            //         $(".preloader").css("display", "none");
-
-            //     }, 3000);
-            // });
             $('#temp-66').modal('show');
-
-
         } else {
             var error = document.getElementById('error');
             error.style.color = 'red'
             error.innerHTML = 'No image select.'
             window.scrollTo(0, 700);
         }
-
     }
     if (temp7.checked === true) {
-        $(".preloader").css("display", "block");
-        $(".preloader").delay(8000).fadeOut("slow");
 
         document.getElementById('popupTitle7').innerHTML = title
         document.getElementById('popupdescription7').innerHTML = description
@@ -844,7 +789,8 @@ function selectPopup() {
         parentDiv.innerHTML = ''
         let imagefilePaths = forPopUpCheckBoxs();
         if (imagefilePaths.length) {
-
+            $(".preloader").css("display", "block");
+            $(".preloader").delay(6000).fadeOut("slow");
             //texts object geting
             var text2 = document.getElementById('textId2');
             text2 = text2.options[text2.selectedIndex].dataset.set
@@ -861,39 +807,29 @@ function selectPopup() {
                            </figure>`
                 parentDiv.insertAdjacentHTML('beforeend', imageFigure);
             }
-
-            $('#at-imagesliders-two').on('init', function (event, slick) {
-                setTimeout(() => {
-                    $(".preloader").css("display", "none");
-                    $('#temp-77').modal('show');
-
-                }, 3000);
-            });
-
             $('#at-imagesliders-two').slick({
-                speed: ((duration * 1) * 1000),
+                speed: 3000,
                 arrows: false,
                 autoplay: true,
                 infinite: false,
                 pauseOnHover: false,
                 accessibility: false,
             });
-
             $('#at-textsliders-two').slick({
-                speed: (((duration * 1) * 1000) / 2),
+                speed: 2000,
                 arrows: false,
                 autoplay: true,
                 infinite: false,
                 pauseOnHover: false,
                 accessibility: false,
             })
+            $('#temp-77').modal('show');
         } else {
             var error = document.getElementById('error');
             error.style.color = 'red'
             error.innerHTML = 'No image select.'
             window.scrollTo(0, 700);
         }
-
     }
 }
 
