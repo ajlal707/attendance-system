@@ -27,32 +27,22 @@ const editAd = require('./routes/editAd')
 const userLcd = require('./routes/userLcd')
 const userSlider = require('./routes/userSlider')
 
-
-
-
-
 var app = express()
 
 // Add headers
 app.use(function (req, res, next) {
-
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
-
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
   // Request headers you wish to allow
   // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
   // Set to true if you need the website to include cookies in the requests sent
   // to the API (e.g. in case you use sessions)
   // res.setHeader('Access-Control-Allow-Credentials', true);
-
   // Pass to next layer of middleware
   next();
 });
-
 
 //mongo connection
 mongoose.connect('mongodb://maxifjaved:maxifjaved@127.0.0.1:27017/carsOnline?authSource=admin')
@@ -63,7 +53,6 @@ db.once('open', function () {
   console.log('Successfully connected to MongoDB server!')
 })
 require('./config/passport')(passport)
-
 // view engine setup
 app.engine('html', require('ejs').renderFile)
 app.set('view engine', 'html')

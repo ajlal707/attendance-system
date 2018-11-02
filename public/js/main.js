@@ -785,41 +785,50 @@ function selectPopup() {
         }
     }
     if (temp6.checked === true) {
-        $(".preloader").css("display", "block");
-        $(".preloader").delay(3000).fadeOut("slow");
+        let inputLength = $('input:checkbox:checked')
+        if (inputLength.length > 0) {
+            var imageFilePath = $('input:checkbox:checked')[0].dataset.set
+            $(".preloader").css("display", "block");
+            $(".preloader").delay(5000).fadeOut("slow");
+            $('#at-textalider').slick({
+                speed:2000,
+                arrows: false,
+                autoplay: true,
+                infinite: false,
+                pauseOnHover: false,
+                accessibility: false,
+            });
+            document.getElementById('img666').src = imageFilePath.replace('public', '');
 
-        var imageFilePath = $('input:checkbox:checked')[0].dataset.set
-        document.getElementById('img666').src = imageFilePath.replace('public', '');
+        
 
-        var duration = document.getElementById('duration').value;
+            document.getElementById('popupTitle6').innerHTML = title
+            document.getElementById('popupdescription6').innerHTML = description
+            //texts object geting
+            var text2 = document.getElementById('textId2');
+            text2 = text2.options[text2.selectedIndex].dataset.set
+            text2 = text2.split(":")
+            var title2 = text2[0].trim()
+            var description2 = text2[1].trim()
+            document.getElementById('popupTitle66').innerHTML = title2
+            document.getElementById('popupdescription66').innerHTML = description2
 
-        document.getElementById('popupTitle6').innerHTML = title
-        document.getElementById('popupdescription6').innerHTML = description
-        //texts object geting
-        var text2 = document.getElementById('textId2');
-        text2 = text2.options[text2.selectedIndex].dataset.set
-        text2 = text2.split(":")
-        var title2 = text2[0].trim()
-        var description2 = text2[1].trim()
-        document.getElementById('popupTitle66').innerHTML = title2
-        document.getElementById('popupdescription66').innerHTML = description2
+            // $('#at-textalider').on('init', function (event, slick) {
+            //     setTimeout(() => {
+            //         $(".preloader").css("display", "none");
 
-        $('#at-textalider').on('init', function (event, slick) {
-            setTimeout(() => {
-                $(".preloader").css("display", "none");
-                $('#temp-66').modal('show');
+            //     }, 3000);
+            // });
+            $('#temp-66').modal('show');
 
-            }, 3000);
-        });
 
-        $('#at-textalider').slick({
-            speed: ((duration * 1) * 1000),
-            arrows: false,
-            autoplay: true,
-            infinite: false,
-            pauseOnHover: false,
-            accessibility: false,
-        });
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'No image select.'
+            window.scrollTo(0, 700);
+        }
+
     }
     if (temp7.checked === true) {
         $(".preloader").css("display", "block");
