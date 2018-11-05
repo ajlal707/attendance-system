@@ -962,7 +962,7 @@ function copyToViewTemplate7(id) {
     $('#at-textalider-two').slick({
         speed: 2000,
         arrows: false,
-        autoplay: false,
+        autoplay: true,
         infinite: false,
         pauseOnHover: false,
         accessibility: false,
