@@ -728,22 +728,31 @@ function selectPopup() {
         if (imagefilePaths.length) {
             $(".preloader").css("display", "block");
             $(".preloader").delay(6000).fadeOut("slow");
-
-            for (let i = 0; i < imagefilePaths.length; i++) {
-                let a = imagefilePaths[i].replace('public', '');
+            if (imagefilePaths.length == 1) {
+                let a = imagefilePaths[0].replace('public', '');
                 let imageFigure = `<figure class="at-sliderimg">
                                 <img src="${a}" alt="image description">
                            </figure>`
                 parentDiv.insertAdjacentHTML('beforeend', imageFigure);
+            } else {
+                for (let i = 0; i < imagefilePaths.length; i++) {
+                    let a = imagefilePaths[i].replace('public', '');
+                    let imageFigure = `<figure class="at-sliderimg">
+                                    <img src="${a}" alt="image description">
+                               </figure>`
+                    parentDiv.insertAdjacentHTML('beforeend', imageFigure);
+                }
+                $('#at-imagesliders').slick({
+                    speed: 3000,
+                    arrows: false,
+                    autoplay: true,
+                    infinite: false,
+                    pauseOnHover: false,
+                    accessibility: false,
+                })
             }
-            $('#at-imagesliders').slick({
-                speed: 3000,
-                arrows: false,
-                autoplay: true,
-                infinite: false,
-                pauseOnHover: false,
-                accessibility: false,
-            })
+
+
             $('#temp-55').modal('show');
         } else {
             var error = document.getElementById('error');
@@ -791,7 +800,6 @@ function selectPopup() {
 
         document.getElementById('popupTitle7').innerHTML = title
         document.getElementById('popupdescription7').innerHTML = description
-        var duration = document.getElementById('duration').value;
 
         let parentDiv = document.getElementById('at-imagesliders-two');
         parentDiv.classList.remove('slick-slider')
@@ -809,22 +817,29 @@ function selectPopup() {
             var description2 = text2[1].trim()
             document.getElementById('popupTitle77').innerHTML = title2
             document.getElementById('popupdescription77').innerHTML = description2
-
-            for (let i = 0; i < imagefilePaths.length; i++) {
-                let a = imagefilePaths[i].replace('public', '');
+            if (imagefilePaths.length == 1) {
+                let a = imagefilePaths[0].replace('public', '');
                 let imageFigure = `<figure class="at-sliderimg">
                                 <img src="${a}" alt="image description">
                            </figure>`
                 parentDiv.insertAdjacentHTML('beforeend', imageFigure);
+            } else {
+                for (let i = 0; i < imagefilePaths.length; i++) {
+                    let a = imagefilePaths[i].replace('public', '');
+                    let imageFigure = `<figure class="at-sliderimg">
+                                    <img src="${a}" alt="image description">
+                               </figure>`
+                    parentDiv.insertAdjacentHTML('beforeend', imageFigure);
+                }
+                $('#at-imagesliders-two').slick({
+                    speed: 3000,
+                    arrows: false,
+                    autoplay: true,
+                    infinite: false,
+                    pauseOnHover: false,
+                    accessibility: false,
+                });
             }
-            $('#at-imagesliders-two').slick({
-                speed: 3000,
-                arrows: false,
-                autoplay: true,
-                infinite: false,
-                pauseOnHover: false,
-                accessibility: false,
-            });
             $('#at-textsliders-two').slick({
                 speed: 2000,
                 arrows: false,
@@ -886,27 +901,32 @@ function copyToViewTemplate5(id) {
     document.getElementById('popupTitle5').innerHTML = document.getElementById('title-' + id).innerHTML;
     document.getElementById('popupdescription5').innerHTML = document.getElementById('description-' + id).innerHTML;
 
-    for (let i = 0; i < jsonImageArray.imageIds.length; i++) {
-        let a = jsonImageArray.imageIds[i].filePath.replace('public', '');
+    if (jsonImageArray.imageIds.length == 1) {
+        let a = jsonImageArray.imageIds[0].filePath.replace('public', '');
         let imageFigure = `<figure class="at-sliderimg">
                             <img src="${a}" alt="image description">
                        </figure>`
 
         parentDiv.insertAdjacentHTML('beforeend', imageFigure);
+    } else {
+        for (let i = 0; i < jsonImageArray.imageIds.length; i++) {
+            let a = jsonImageArray.imageIds[i].filePath.replace('public', '');
+            let imageFigure = `<figure class="at-sliderimg">
+                                <img src="${a}" alt="image description">
+                           </figure>`
+
+            parentDiv.insertAdjacentHTML('beforeend', imageFigure);
+        }
+        $('#at-imagesliders').slick({
+            speed: 3000,
+            arrows: false,
+            autoplay: true,
+            infinite: false,
+            pauseOnHover: false,
+            accessibility: false,
+        })
     }
-
     $('#temp-5').modal('show');
-
-    $('#at-imagesliders').slick({
-        speed: 3000,
-        arrows: false,
-        autoplay: true,
-        infinite: false,
-        pauseOnHover: false,
-        accessibility: false,
-    })
-
-
 }
 function copyToViewTemplate6(id) {
     $('#at-textalider').slick({
@@ -951,23 +971,34 @@ function copyToViewTemplate7(id) {
     parentDiv.classList.remove('slick-slider')
     parentDiv.classList.remove('slick-initialized')
     parentDiv.innerHTML = ''
-
-    for (let i = 0; i < jsonImageArray.imageIds.length; i++) {
-        let a = jsonImageArray.imageIds[i].filePath.replace('public', '');
+    if (jsonImageArray.imageIds.length == 1) {
+        let a = jsonImageArray.imageIds[0].filePath.replace('public', '');
         let imageFigure = `<figure class="at-sliderimg">
+                        <img src="${a}" alt="image description">
+                   </figure>`
+        parentDiv.insertAdjacentHTML('beforeend', imageFigure);
+
+
+    } else {
+        for (let i = 0; i < jsonImageArray.imageIds.length; i++) {
+            let a = jsonImageArray.imageIds[i].filePath.replace('public', '');
+            let imageFigure = `<figure class="at-sliderimg">
                             <img src="${a}" alt="image description">
                        </figure>`
-        parentDiv.insertAdjacentHTML('beforeend', imageFigure);
+            parentDiv.insertAdjacentHTML('beforeend', imageFigure);
+        }
+        $('#at-imagesliders-two').slick({
+            speed: 3000,
+            arrows: false,
+            autoplay: true,
+            infinite: true,
+            pauseOnHover: false,
+            accessibility: false,
+        });
     }
 
-    $('#at-imagesliders-two').slick({
-        speed: 3000,
-        arrows: false,
-        autoplay: true,
-        infinite: true,
-        pauseOnHover: false,
-        accessibility: false,
-    });
+
+
 
     $('#at-textalider-two').slick({
         speed: 2000,

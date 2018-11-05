@@ -104,8 +104,6 @@ router.post('/getResult', ensureAuthenticated, function (req, res, next) {
         })
 })
 
-
-
 router.post('/update', ensureAuthenticated, function (req, res, next) {
 
     var { adIdForUpdate, userId, imageId, textId, videoId, duration, template } = req.body;
