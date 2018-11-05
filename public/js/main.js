@@ -686,11 +686,21 @@ function selectPopup() {
         document.getElementById('videoSrc').src = videofilePath.replace('public', '');
     }
     if (temp2.checked === true) {
-        btn.setAttribute('data-target', '#temp-22');
+
         document.getElementById('popupTitle2').innerHTML = title
         document.getElementById('popupdescription2').innerHTML = description
-        var imageFilePath = $('input:checkbox:checked')[0].dataset.set
-        document.getElementById('imageSrc').src = imageFilePath.replace('public', '');
+        if ($('input:checkbox:checked').length > 0) {
+            btn.setAttribute('data-target', '#temp-22');
+            var imageFilePath = $('input:checkbox:checked')[0].dataset.set
+
+            document.getElementById('imageSrc').src = imageFilePath.replace('public', '');
+
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'No image select.'
+            window.scrollTo(0, 700);
+        }
     }
     if (temp3.checked === true) {
         btn.setAttribute('data-target', '#temp-33');
