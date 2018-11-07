@@ -71,7 +71,11 @@ function matchPassword() {
         var error = document.getElementById('error');
         error.style.color = 'green'
         error.innerHTML = 'Password match.'
+        let resetBtn = document.getElementById('resetButton')
+        resetBtn.disabled = false;
     } else {
+        let resetBtn = document.getElementById('resetButton')
+        resetBtn.disabled = true;
         var error = document.getElementById('error');
         error.style.color = 'red'
         error.innerHTML = 'Password not match.'
@@ -124,26 +128,33 @@ function resetPassword() {
     var pass1 = document.getElementById('pass1').value;
     var pass2 = document.getElementById('pass2').value;
     if (pass1 && pass2) {
-        if (pass1.length > 5) {
-            $.ajax({
-                type: "POST",
-                url: "/changePassword/resetpassword",
-                data: { password: pass1 },
-                success: function (res) {
-                    if (res.error) {
-                        var error = document.getElementById('error');
-                        error.style.color = 'red'
-                        error.innerHTML = res.error
+        if (pass1 === pass2) {
 
-                    } else {
-                        window.location.href = '/'
+            if (pass1.length > 5) {
+                $.ajax({
+                    type: "POST",
+                    url: "/changePassword/resetpassword",
+                    data: { password: pass1 },
+                    success: function (res) {
+                        if (res.error) {
+                            var error = document.getElementById('error');
+                            error.style.color = 'red'
+                            error.innerHTML = res.error
+
+                        } else {
+                            window.location.href = '/'
+                        }
                     }
-                }
-            });
+                });
+            } else {
+                var error = document.getElementById('error');
+                error.style.color = 'red'
+                error.innerHTML = 'Password length must be 6'
+            }
         } else {
             var error = document.getElementById('error');
             error.style.color = 'red'
-            error.innerHTML = 'Password length must be 6'
+            error.innerHTML = 'Password not match.'
         }
     } else {
         var error = document.getElementById('error');
