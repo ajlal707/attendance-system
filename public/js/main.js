@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $("#2ndTextSelector").hide();
-});
+})
 function checkboxes() {
     let checkboxCount = $('input:checkbox:checked')
     let checkboxIds = [];
@@ -77,7 +77,6 @@ function matchPassword() {
         error.innerHTML = 'Password not match.'
     }
 }
-
 function addUser() {
     document.getElementById('error').value = '';
     var username = document.getElementById('username').value;
@@ -168,7 +167,6 @@ function updateProfile() {
                         var error = document.getElementById('error');
                         error.style.color = 'red'
                         error.innerHTML = res.error
-
                     } else if (res.success) {
                         window.location.href = '/profile';
                     }
@@ -208,12 +206,15 @@ function deleteImage(imageId) {
                 var error = document.getElementById('error1');
                 error.style.color = 'red'
                 error.innerHTML = res.error
-
+                window.scrollTo(0, 300)
+                setTimeout(function () {
+                    document.getElementById("error1").innerHTML = '';
+                }, 8000)
             } else if (res.success) {
                 window.location.href = '/addImages';
             }
         }
-    });
+    })
 }
 //delete video
 function deleteVideo(videoId) {
@@ -226,6 +227,10 @@ function deleteVideo(videoId) {
                 var error = document.getElementById('error');
                 error.style.color = 'red'
                 error.innerHTML = res.error
+                window.scrollTo(0, 300)
+                setTimeout(function () {
+                    document.getElementById("error").innerHTML = '';
+                }, 8000);
 
             } else if (res.success) {
                 window.location.href = '/addVideos';
@@ -310,7 +315,10 @@ function deleteText(textId) {
                 var error = document.getElementById('error1');
                 error.style.color = 'red'
                 error.innerHTML = res.error
-
+                window.scrollTo(0, 300)
+                setTimeout(function () {
+                    document.getElementById("error1").innerHTML = '';
+                }, 8000);
             } else if (res.success) {
                 window.location.href = '/addText';
             }
@@ -393,11 +401,11 @@ function checkTempplate(id) {
                     error.style.color = 'red'
                     error.innerHTML = '1 element selected already'
                     selectedElement.checked = false;
+
                     setTimeout(function () {
                         document.getElementById("error").innerHTML = '';
                     }, 10000);
                 } else {
-
                     selectedElement.checked = true;
                 }
             } else {
@@ -659,8 +667,6 @@ function createAd() {
         window.scrollTo(0, 0);
     }
 }
-
-
 // preview ad function
 function selectPopup() {
     //texts object geting
@@ -679,11 +685,22 @@ function selectPopup() {
     var temp7 = document.getElementById('temp-7');
     var btn = document.getElementById('previewBtn');
     if (temp1.checked === true) {
-        btn.setAttribute('data-target', '#temp-11');
         document.getElementById('popupTitle1').innerHTML = title
         document.getElementById('popupdescription1').innerHTML = description
-        var videofilePath = $('input:checkbox:checked')[0].dataset.set
-        document.getElementById('videoSrc').src = videofilePath.replace('public', '');
+        if ($('input:checkbox:checked').length > 0) {
+            var videofilePath = $('input:checkbox:checked')[0].dataset.set
+            document.getElementById('videoSrc').src = videofilePath.replace('public', '');
+            btn.setAttribute('data-target', '#temp-11');
+
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'No Video select.'
+            window.scrollTo(0, 700);
+            setTimeout(() => {
+                document.getElementById('error').innerHTML = '';
+            }, 8000);
+        }
     }
     if (temp2.checked === true) {
 
@@ -700,6 +717,9 @@ function selectPopup() {
             error.style.color = 'red'
             error.innerHTML = 'No image select.'
             window.scrollTo(0, 700);
+            setTimeout(() => {
+                document.getElementById('error').innerHTML = '';
+            }, 8000);
         }
     }
     if (temp3.checked === true) {
@@ -708,13 +728,23 @@ function selectPopup() {
         document.getElementById('popupdescription3').innerHTML = description
     }
     if (temp4.checked === true) {
-        btn.setAttribute('data-tarselectPopupget', '#temp-44');
-        document.getElementById('popupTitle4').innerHTML = title
-        document.getElementById('popupdescription4').innerHTML = description
-        var videofilePath = $('input:checkbox:checked')[0].dataset.set
-        document.getElementById('videoSrc2').src = videofilePath.replace('public', '');
+        document.getElementById('videoSrc').src = ''
+        document.getElementById('popupTitle1').innerHTML = title
+        document.getElementById('popupdescription1').innerHTML = description
+        if ($('input:checkbox:checked').length > 0) {
+            var videofilePath = $('input:checkbox:checked')[0].dataset.set
+            document.getElementById('videoSrc').src = videofilePath.replace('public', '');
+            btn.setAttribute('data-target', '#temp-11');
+        } else {
+            var error = document.getElementById('error');
+            error.style.color = 'red'
+            error.innerHTML = 'No video select.'
+            window.scrollTo(0, 700);
+            setTimeout(() => {
+                document.getElementById('error').innerHTML = '';
+            }, 8000);
+        }
     }
-
     if (temp5.checked === true) {
         document.getElementById('popupTitle5').innerHTML = title
         document.getElementById('popupdescription5').innerHTML = description
@@ -731,15 +761,15 @@ function selectPopup() {
             if (imagefilePaths.length == 1) {
                 let a = imagefilePaths[0].replace('public', '');
                 let imageFigure = `<figure class="at-sliderimg">
-                                <img src="${a}" alt="image description">
-                           </figure>`
+                                     <img src="${a}" alt="image description">
+                                   </figure>`
                 parentDiv.insertAdjacentHTML('beforeend', imageFigure);
             } else {
                 for (let i = 0; i < imagefilePaths.length; i++) {
                     let a = imagefilePaths[i].replace('public', '');
                     let imageFigure = `<figure class="at-sliderimg">
-                                    <img src="${a}" alt="image description">
-                               </figure>`
+                                         <img src="${a}" alt="image description">
+                                       </figure>`
                     parentDiv.insertAdjacentHTML('beforeend', imageFigure);
                 }
                 $('#at-imagesliders').slick({
@@ -751,8 +781,6 @@ function selectPopup() {
                     accessibility: false,
                 })
             }
-
-
             $('#temp-55').modal('show');
         } else {
             var error = document.getElementById('error');
@@ -820,15 +848,15 @@ function selectPopup() {
             if (imagefilePaths.length == 1) {
                 let a = imagefilePaths[0].replace('public', '');
                 let imageFigure = `<figure class="at-sliderimg">
-                                <img src="${a}" alt="image description">
-                           </figure>`
+                                     <img src="${a}" alt="image description">
+                                   </figure>`
                 parentDiv.insertAdjacentHTML('beforeend', imageFigure);
             } else {
                 for (let i = 0; i < imagefilePaths.length; i++) {
                     let a = imagefilePaths[i].replace('public', '');
                     let imageFigure = `<figure class="at-sliderimg">
-                                    <img src="${a}" alt="image description">
-                               </figure>`
+                                         <img src="${a}" alt="image description">
+                                      </figure>`
                     parentDiv.insertAdjacentHTML('beforeend', imageFigure);
                 }
                 $('#at-imagesliders-two').slick({
@@ -857,8 +885,6 @@ function selectPopup() {
         }
     }
 }
-
-
 // copy data view-ad to popup functions
 function copyToViewTemplate1(id) {
     var videofilePath = document.getElementById('videoSrc-' + id).dataset.set
@@ -866,19 +892,16 @@ function copyToViewTemplate1(id) {
     document.getElementById('des11').innerHTML = document.getElementById('description-' + id).innerHTML;
     document.getElementById('videoSrc1').src = videofilePath
 }
-
 function copyToViewTemplate2(id) {
     var imageFilePath = document.getElementById('imageSrc2-' + id).dataset.set
     document.getElementById('title22').innerHTML = document.getElementById('title-' + id).innerHTML;
     document.getElementById('des22').innerHTML = document.getElementById('description-' + id).innerHTML;
     document.getElementById('imageSrc22').src = imageFilePath
 }
-
 function copyToViewTemplate3(id) {
     document.getElementById('title33').innerHTML = document.getElementById('title-' + id).innerHTML;
     document.getElementById('des33').innerHTML = document.getElementById('description-' + id).innerHTML;
 }
-
 function copyToViewTemplate4(id) {
     var videofilePath = document.getElementById('videoSrc-' + id).dataset.set
     document.getElementById('title44').innerHTML = document.getElementById('title-' + id).innerHTML;
@@ -893,7 +916,6 @@ function copyToViewTemplate5(id) {
     let parentDiv = document.getElementById('at-imagesliders');
     parentDiv.classList.remove('slick-slider')
     parentDiv.classList.remove('slick-initialized')
-
     parentDiv.innerHTML = ''
 
     var imageArray = document.getElementById('imageSrc-' + id).dataset.set
@@ -905,16 +927,14 @@ function copyToViewTemplate5(id) {
         let a = jsonImageArray.imageIds[0].filePath.replace('public', '');
         let imageFigure = `<figure class="at-sliderimg">
                             <img src="${a}" alt="image description">
-                       </figure>`
-
+                         </figure>`
         parentDiv.insertAdjacentHTML('beforeend', imageFigure);
     } else {
         for (let i = 0; i < jsonImageArray.imageIds.length; i++) {
             let a = jsonImageArray.imageIds[i].filePath.replace('public', '');
             let imageFigure = `<figure class="at-sliderimg">
                                 <img src="${a}" alt="image description">
-                           </figure>`
-
+                              </figure>`
             parentDiv.insertAdjacentHTML('beforeend', imageFigure);
         }
         $('#at-imagesliders').slick({
@@ -937,7 +957,6 @@ function copyToViewTemplate6(id) {
         pauseOnHover: false,
         accessibility: false,
     })
-
     $(".preloader").css("display", "block");
     $(".preloader").delay(6000).fadeOut("slow");
 
@@ -953,11 +972,8 @@ function copyToViewTemplate6(id) {
 }
 function copyToViewTemplate7(id) {
 
-
-
     $(".preloader").css("display", "block");
     $(".preloader").delay(6000).fadeOut("slow");
-
 
     var imageArray = document.getElementById('imageSrc-' + id).dataset.set
     let jsonImageArray = JSON.parse(imageArray)
@@ -978,7 +994,6 @@ function copyToViewTemplate7(id) {
                    </figure>`
         parentDiv.insertAdjacentHTML('beforeend', imageFigure);
 
-
     } else {
         for (let i = 0; i < jsonImageArray.imageIds.length; i++) {
             let a = jsonImageArray.imageIds[i].filePath.replace('public', '');
@@ -996,10 +1011,6 @@ function copyToViewTemplate7(id) {
             accessibility: false,
         });
     }
-
-
-
-
     $('#at-textalider-two').slick({
         speed: 2000,
         arrows: false,
@@ -1009,10 +1020,8 @@ function copyToViewTemplate7(id) {
         accessibility: false,
     })
     $('#temp-7').modal('show');
-
 }
 // end copy data view-ad to popup functions
-
 function updateAd() {
     document.getElementById('error').innerHTML = ''
     var temp1 = document.getElementById('temp-1');
@@ -1031,7 +1040,6 @@ function updateAd() {
     var videoId = ''
     var template = ''
     if (temp1.checked === true) {
-
 
         var n = $("input:checkbox:checked").length;
         if (n == 1) {
@@ -1065,16 +1073,12 @@ function updateAd() {
             }, 10000);
             window.scrollTo(0, 700);
         }
-
-
     } else if (temp2.checked === true) {
-
 
         var n = $("input:checkbox:checked").length;
         if (n == 1) {
             imageId = $('input:checkbox:checked')[0].id;
             template = 'temp-2'
-
             $.ajax({
                 type: "POST",
                 url: "/editAd/update",
@@ -1102,10 +1106,8 @@ function updateAd() {
                 document.getElementById("error").innerHTML = '';
             }, 10000);
             window.scrollTo(0, 250);
-
         }
     } else if (temp3.checked === true) {
-
 
         template = 'temp-3'
         $.ajax({
@@ -1127,7 +1129,6 @@ function updateAd() {
                 }
             }
         });
-
     } else if (temp4.checked === true) {
 
         var n = $("input:checkbox:checked").length;
@@ -1193,7 +1194,6 @@ function updateAd() {
                 }
             }
         });
-
     } else if (temp6.checked === true) {
         var n = $("input:checkbox:checked").length;
         if (n == 1) {
@@ -1314,7 +1314,6 @@ function changeUserProfilePic() {
             document.getElementById("error").innerHTML = '';
         }, 10000);
     }
-
 }
 
 function uploadNewImage() {

@@ -36,9 +36,15 @@
 	-webkit-flex-direction: row;
 	flex-direction: row;
 }
-.at-textboxholder,
+.at-textboxholder{
+    width: 40%;
+    margin: 0 -4px;
+    display: inline-block;
+    vertical-align: middle;
+}
 .at-imgvideoholder{
-    width: 50%;
+    width: 60%;
+    margin: 0 -5px;
     display: inline-block;
     vertical-align: middle;
 }
@@ -47,7 +53,7 @@
     position: relative;
 }
 .at-slidercontent .nxtbtn{
-    left: 50%;
+    left: 40%;
     z-index: 9999;
     -moz-transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
@@ -55,6 +61,7 @@
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
 }
+.at-slidercontent .at-left{left: 60%;}
 .at-textuser .at-textboxholder{
     max-width: 1170px;
     width: 100%;
@@ -80,7 +87,7 @@
     background-size: cover;
 }
 .at-addbgfour{
-    background: url('/img/bg-3.png') no-repeat;
+    background: url('/img/bg-10.png') no-repeat;
     background-size: cover;
 }
 .at-addbgfive{
@@ -94,4 +101,12 @@
 .at-addbgseven{
     background: url('/img/modal-bg3.png') no-repeat;
     background-size: cover;
+}
+.slick-slide > div{
+    width: 100%;
+    float: left;
+}
+.slick-track{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }

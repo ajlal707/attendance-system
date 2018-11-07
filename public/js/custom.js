@@ -216,6 +216,15 @@ $(function () {
             jQuery(this).text(text);
         }
     });
+    jQuery('.at-select2 option').each(function () {
+        var text = jQuery(this).text();
+        if (text.length > 50) {
+            text = text.replace(/\s\s+/g, ' ');
+            text = text.trim()
+            text = text.substring(0, 45) + '...';
+            jQuery(this).text(text);
+        }
+    });
 
     $.ajax({
         type: "GET",
@@ -305,11 +314,7 @@ $(function () {
                         let model1 = userLcdHtml6(title, description, title1, description1, imageIds)
                         slider.insertAdjacentHTML('beforeend', model1);
                     }
-
-
                 }
-
-
                 $('.at-imagesliders').slick({
                     speed: 3000,
                     arrows: false,
@@ -326,7 +331,6 @@ $(function () {
                     pauseOnHover: false,
                     accessibility: false,
                 })
-
                 $('.at-imgvideoholder .video-box').slick({
                     speed: 3000,
                     arrows: false,
@@ -334,7 +338,7 @@ $(function () {
                     infinite: false,
                     pauseOnHover: false,
                     accessibility: false,
-                });
+                })
                 $('.at-textalider').slick({
                     speed: 2000,
                     arrows: false,
@@ -343,24 +347,17 @@ $(function () {
                     pauseOnHover: false,
                     accessibility: false,
                 })
-
                 $('#at-usersliders').slick({
                     rows: 1,
                     slidesPerRow: 1,
                     slidesToScroll: 1,
+                    pauseOnHover: false,
                     autoplay: true,
                     speed: 3000,
                     arrows: false
                 })
-
-                $('#at-usersliders').on('init', function (event, slick, currentSlide, nextSlide) {
-
-                })
-
                 $('#at-usersliders').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-
                     if (templateArr[slick.currentSlide] === 'temp-5') {
-
                         $('.at-imagesliders').slick({
                             speed: 3000,
                             arrows: false,
@@ -388,7 +385,7 @@ $(function () {
                             infinite: false,
                             pauseOnHover: false,
                             accessibility: false,
-                        });
+                        })
                         $('.at-textalider').slick({
                             speed: 2000,
                             arrows: false,
@@ -399,8 +396,8 @@ $(function () {
                         })
                     }
                 });
-
                 $('#at-usersliders').on("afterChange", function (event, slick, currentSlide, nextSlide) {
+                    
                     if ($(slick.$slides[slick.currentSlide]).find('iframe').get(0)) {
                         let src = $(slick.$slides[slick.currentSlide]).find('iframe').get(0).src;
                         $(slick.$slides[slick.currentSlide]).find('iframe')[0].src = '';
@@ -443,12 +440,12 @@ $(function () {
                             infinite: false,
                             pauseOnHover: false,
                             accessibility: false,
-                        });
+                        })
                     }
                     let delay = ((arr[slick.currentSlide])
                         * ((imageLength[slick.currentSlide]) ? ((imageLength[slick.currentSlide])) : 1)
                         * 1000);
-                    $('#at-usersliders').slick("setOption", "autoplaySpeed", delay);
+                    $('#at-usersliders').slick("setOption", "autoplaySpeed", delay)
                 });
             }
         }
@@ -479,7 +476,7 @@ function userLcdHtml(videoSrc, title, description) {
 function userLcdHtml2(src, title, description) {
     return `<div class="at-usersliderholder">
                 <div class="at-slidercontent at-addbgtwo">
-                    <button class="nxtbtn">
+                    <button class="nxtbtn at-left">
                         <i class="ti-arrow-right"></i>
                     </button>
                     <div class="at-imgvideoholder">
@@ -560,7 +557,6 @@ function userLcdHtml5(title, description, title1, description1, imageIds) {
                 </div>
             </div>`
 }
-
 function userLcdHtml6(title, description, title1, description1, imageIds) {
 
     return `<div class="at-usersliderholder">
