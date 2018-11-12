@@ -1329,11 +1329,12 @@ function changeUserProfilePic() {
 
 function uploadNewImage() {
 
-    let fileObj = document.getElementById("galleryImg").files[0];
+    let fileObj = document.getElementById("galleryImg").files;
     if (fileObj) {
         var formData = new FormData();
-        formData.append('galleryImg', fileObj);
-
+        for (let i = 0; i < fileObj.length; i++) {
+            formData.append('galleryImg', fileObj[i]);
+        }
         $.ajax({
             type: "POST",
             url: "/addImages/uploadGalleryImg",

@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
     cb(null, customFileName + '.' + fileExtension)
   }
 })
-var upload = multer({ storage }).single('galleryImg')
+var upload = multer({ storage }).array('galleryImg')
 
 
 router.get('/', ensureAuthenticated, function (req, res, next) {
@@ -40,35 +40,24 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
     })
 })
 
-router.post('/uploadGalleryImg', ensureAuthenticated, upload, (req, res, next) => {
+router.post('/uploadGalleryImg', ensureAuthenticated, upload, async (req, res, next) => {
 
-  if (req.file) {
-    const { filename, mimetype, originalname, path } = req.file;
-    let fileEx = originalname.split('.').pop()
+  if (req.files) {
+    let uploadAbleFiles = req.files
+    for (let i of uploadAbleFiles) {
+      const { filename, mimetype, originalname, path } = i;
+        var newAttachments = new Attachments();
 
-    if (fileEx === 'jpeg' || fileEx === 'png' || fileEx === 'jpg') {
-      var newAttachments = new Attachments();
+        newAttachments.filePath = path;
+        newAttachments.fileType = mimetype
+        newAttachments.fileName = filename
+        newAttachments.title = originalname
 
-      newAttachments.filePath = path;
-      newAttachments.fileType = mimetype
-      newAttachments.fileName = filename
-      newAttachments.title = originalname
-
-      newAttachments.save(function (err) {
-        if (err) {
-          res.json({ error: 'something happen bad try again.' })
-        } else {
-          res.json({ success: 'success.' })
-        }
-      })
-
-    } else {
-      fs.unlink(path, (err) => {
-        if (err) return res.json({ error: 'something happen bad try again.' })
-
-        return res.json({ error: "Provide image with valid extensions (.jpeg,.jpg,.png)" })
-      })
+        await newAttachments.save();
     }
+
+    return res.json({ success: "success." })
+
   } else {
     return res.json({ error: "Please choose a file." })
   }
