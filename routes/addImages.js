@@ -42,18 +42,18 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
 
 router.post('/uploadGalleryImg', ensureAuthenticated, upload, async (req, res, next) => {
 
-  if (req.files) {
+  if (req.files.length > 0) {
     let uploadAbleFiles = req.files
     for (let i of uploadAbleFiles) {
       const { filename, mimetype, originalname, path } = i;
-        var newAttachments = new Attachments();
+      var newAttachments = new Attachments();
 
-        newAttachments.filePath = path;
-        newAttachments.fileType = mimetype
-        newAttachments.fileName = filename
-        newAttachments.title = originalname
+      newAttachments.filePath = path;
+      newAttachments.fileType = mimetype
+      newAttachments.fileName = filename
+      newAttachments.title = originalname
 
-        await newAttachments.save();
+      await newAttachments.save();
     }
 
     return res.json({ success: "success." })
