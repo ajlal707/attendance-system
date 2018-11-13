@@ -49,9 +49,9 @@ router.post('/uploadGalleryImg', ensureAuthenticated, upload, async (req, res, n
       var newAttachments = new Attachments();
 
       newAttachments.filePath = path;
-      newAttachments.fileType = mimetype
-      newAttachments.fileName = filename
-      newAttachments.title = originalname
+      newAttachments.fileType = mimetype;
+      newAttachments.fileName = filename;
+      newAttachments.title = originalname;
 
       await newAttachments.save();
     }
@@ -86,7 +86,7 @@ router.post('/deleteImage', ensureAuthenticated, function (req, res) {
         })
       })
     })
-  });
+  })
 })
 
 router.get('/logout', function (req, res) {

@@ -39,6 +39,7 @@ function Dropify(element, options) {
         showRemove: true,
         showLoader: true,
         showErrors: true,
+        preview:5,
         errorsPosition: 'overlay',
         allowedFormats: ['portrait', 'square', 'landscape'],
         messages: {
@@ -117,6 +118,7 @@ Dropify.prototype.onChange = function()
  */
 Dropify.prototype.createElements = function()
 {
+
     this.isInit = true;
     this.input.wrap($(this.settings.tpl.wrap));
     this.wrapper = this.input.parent();
@@ -283,8 +285,8 @@ Dropify.prototype.setPreview = function(src)
     var render = this.preview.children('.dropify-render');
 
     this.hideLoader();
-
     if (this.isImage() === true) {
+       
         var imgTag = $('<img />').attr('src', src);
         
         if (this.settings.height) {
@@ -304,6 +306,8 @@ Dropify.prototype.setPreview = function(src)
  */
 Dropify.prototype.resetPreview = function()
 {
+    debugger;
+
     this.wrapper.removeClass('has-preview');
     var render = this.preview.children('.dropify-render');
     render.find('.dropify-extension').remove();

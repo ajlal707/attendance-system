@@ -9580,8 +9580,28 @@ pre {
 .modal-contentarea {
     float: left;
     width: 100%;
-    padding: 100px 0;
+    height: 100vh;
+    /* padding: 100px 0; */
     position: relative;
+    /* -webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-orient: vertical;
+	justify-content: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	-webkit-flex-direction: column;
+	flex-direction: column; */
+
 }
 
 .modalcontent-box {
@@ -9820,6 +9840,8 @@ pre {
 }
 .modalthree .modal-dialog {
     max-width: 70%;
+    height: 100vh;
+    margin: 0 auto;
 }
 
 .modalthree .modal-content {
@@ -10272,3 +10294,47 @@ pre {
 } */
 .ss-slider .slick-prev:before,
 .ss-slider .slick-next:before{color:#000;}
+.modalone .modal-header{
+    top: 10px;
+    right: 30px;
+    z-index: 99;
+    position: absolute;
+}
+.modaltwo .modal-dialog,
+.modal-one-text .row.paddingzero,
+.modalsix .row.paddingzero,
+.modalseven .row.paddingzero{height: 100vh;}
+.modaltwo .modal-dialog,
+.modal-one-text .row.paddingzero,
+.modalone .modal-contentarea,
+.modalthree .modal-dialog{
+    -webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-orient: vertical;
+	justify-content: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: row;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+}
+.modalseven .modal-contentarea,
+.modalsix .modal-contentarea{display: block}
+.modal-one-text .video-box iframe {
+    margin: 0;
+    position: relative;
+    height: 750px;
+    width: 100%;
+    float: left;
+}
+.modaltwo .modal-contentarea{height: auto;}
+.modaltwo .modal-dialog{margin: 0 auto;}

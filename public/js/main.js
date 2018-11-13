@@ -944,8 +944,8 @@ function copyToViewTemplate5(id) {
         for (let i = 0; i < jsonImageArray.imageIds.length; i++) {
             let a = jsonImageArray.imageIds[i].filePath.replace('public', '');
             let imageFigure = `<figure class="at-sliderimg">
-                                <img src="${a}" alt="image description">
-                              </figure>`
+                                 <img src="${a}" alt="image description">
+                               </figure>`
             parentDiv.insertAdjacentHTML('beforeend', imageFigure);
         }
         $('#at-imagesliders').slick({
