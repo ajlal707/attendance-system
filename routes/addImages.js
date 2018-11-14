@@ -55,7 +55,6 @@ router.post('/uploadGalleryImg', ensureAuthenticated, upload, async (req, res, n
 
       await newAttachments.save();
     }
-
     return res.json({ success: "success." })
 
   } else {

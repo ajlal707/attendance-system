@@ -9375,8 +9375,8 @@ pre {
 }
 .save-btn {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 45px;
+    right: 20px;
     z-index: 10;
 }
 .save-btn .waves-input-wrapper .waves-button-input{
@@ -10338,3 +10338,11 @@ pre {
 }
 .modaltwo .modal-contentarea{height: auto;}
 .modaltwo .modal-dialog{margin: 0 auto;}
+.file-footer-buttons .kv-file-upload,
+.file-footer-buttons .kv-file-zoom{display: none;}
+.file-drop-zone,
+.file-drop-zone.clickable:hover {border: 0;}
+.krajee-default.file-preview-frame{margin: 8px 5px;}
+.kv-file-remove {
+    display: none;
+}

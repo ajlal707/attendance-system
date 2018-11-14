@@ -17,7 +17,7 @@
     <link href="plugins/Magnific-Popup-master/dist/magnific-popup.css" rel="stylesheet">
     <!-- Dropzone css -->
     <link href="plugins/dropify/dist/css/dropify.min.css" rel="stylesheet">
-    <link href="css/dropzone.css" rel="stylesheet">
+    <link href="css/fileinput.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
@@ -59,8 +59,8 @@
                         </b>
                         <!--End Logo icon -->
                         <span>
-                        <!-- Light Logo text -->    
-                        <img src="img/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+                            <!-- Light Logo text -->
+                            <img src="img/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
@@ -71,8 +71,10 @@
                     <!-- ============================================================== -->
                     <ul class="navbar-nav mr-auto mt-md-0">
                         <!-- This is  -->
-                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
-                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark"
+                                href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark"
+                                href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
                     </ul>
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
@@ -82,7 +84,9 @@
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>" alt="user" class="profile-pic" /></a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>"
+                                    alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right scale-up">
                                 <ul class="dropdown-user">
                                     <li><a href="/profile"><i class="ti-user"></i> My Profile</a></li>
@@ -107,11 +111,14 @@
                 <!-- User profile -->
                 <div class="user-profile">
                     <!-- User profile image -->
-                    <div class="profile-img"> <img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>" alt="user" />                       
+                    <div class="profile-img"> <img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>"
+                            alt="user" />
                     </div>
                     <!-- User profile text-->
                     <div class="profile-text">
-                        <h5><%= undefined === user || undefined === user.username ? '' : user.username %> </h5>
+                        <h5>
+                            <%= undefined === user || undefined === user.username ? '' : user.username %>
+                        </h5>
                         <a href="/profile" class="" data-toggle="tooltip" title="Profile"><i class="ti-user"></i></a>
                         <a href="/logout" class="" data-toggle="tooltip" title="Logout"><i class="ti-power-off"></i></a>
                     </div>
@@ -122,18 +129,23 @@
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
                         <li><a class="waves-effect waves-dark" href="/dashboard"><i class="icon-layers"></i><span class="hide-menu">Dashboard</span>
-                        </a></li>
-                        <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-people"></i><span class="hide-menu">Users</span></a>
+                            </a></li>
+                        <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-people"></i><span
+                                    class="hide-menu">Users</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="/addUser">Add User</a></li>
                                 <li><a href="/'viewAllUsers'">View All Users</a></li>
                             </ul>
                         </li>
-                        <li><a class="waves-effect waves-dark" href="/addText"><i class="ti-receipt"></i><span class="hide-menu">Add Text</span></a></li>
-                        <li class="active"><a class="waves-effect waves-dark" href="javascript:void(0)"><i class="icon-picture"></i><span class="hide-menu">Add Images</span></a></li>
-                        <li><a class="waves-effect waves-dark" href="/addVideos"><i class="icon-film"></i><span class="hide-menu">Add Videos</span></a></li>
-                        <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-grid"></i><span class="hide-menu">Ads</span>
-                        </a>
+                        <li><a class="waves-effect waves-dark" href="/addText"><i class="ti-receipt"></i><span class="hide-menu">Add
+                                    Text</span></a></li>
+                        <li class="active"><a class="waves-effect waves-dark" href="javascript:void(0)"><i class="icon-picture"></i><span
+                                    class="hide-menu">Add Images</span></a></li>
+                        <li><a class="waves-effect waves-dark" href="/addVideos"><i class="icon-film"></i><span class="hide-menu">Add
+                                    Videos</span></a></li>
+                        <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-grid"></i><span
+                                    class="hide-menu">Ads</span>
+                            </a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="/createAds">Create Ads</a></li>
                                 <li><a href="/viewAllAds">View All Ads</a></li>
@@ -185,47 +197,60 @@
                                 <!-- <form action="/upload-target" class="dropzone">
                                 
                                 </form> -->
-                                     <div class="fallback">
+
+                                <!-- <div class="fallback">
                                        <input type="file" id="galleryImg"  name="galleryImg" class="dropify" data-max-file-size="2M" accept="image/png,image/jpg,image/jpeg" multiple="multiple">
                                          <div class="save-btn">
                                             <input onclick="uploadNewImage()" type="submit" class="btn btn-success waves-effect waves-light m-t-30" value="SAVE IMAGE">
                                          </div>
-                                     </div>
-                              </div>
+                                     </div> -->
+                                <div class="form-group">
+                                    <input id="galleryImg" multiple name="galleryImg" type="file" data-browse-on-zone-click="true">
+                                    <div class="save-btn">
+                                        <input onclick="uploadNewImage()" type="submit" class="btn btn-success waves-effect waves-light m-t-30"
+                                        value="SAVE IMAGE">
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="row el-element-overlay">
                     <div class="col-md-12">
-                            <span id="error1"></span>
+                        <span id="error1"></span>
                         <h4 class="card-title">Gallery</h4>
                     </div>
 
                     <% if(attachments) {%>
-                            <% attachments.forEach(function(i){ %>
+                    <% attachments.forEach(function(i){ %>
                     <div class="col-lg-3 col-md-6">
                         <div class="card">
                             <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"><img src="<%= `/attachments/${i.fileName}` %>" alt="user" />
+                                <div class="el-card-avatar el-overlay-1"><img src="<%= `/attachments/${i.fileName}` %>"
+                                        alt="user" />
                                     <div class="el-overlay">
                                         <ul class="el-info">
-                                            <li><a class="btn default btn-outline image-popup-vertical-fit" href="<%= `/attachments/${i.fileName}` %>"><i class="icon-magnifier"></i></a></li>
-                                           <!-- <input type="hidden" value="<%= i._id%>" id="imgId"> -->
-                                            <li><a class="btn default btn-outline danger" href="javascript:void(0)" onclick="deleteImage('<%= i._id%>')"><i class="ti-trash" ></i></a></li>
+                                            <li><a class="btn default btn-outline image-popup-vertical-fit" href="<%= `/attachments/${i.fileName}` %>"><i
+                                                        class="icon-magnifier"></i></a></li>
+                                            <!-- <input type="hidden" value="<%= i._id%>" id="imgId"> -->
+                                            <li><a class="btn default btn-outline danger" href="javascript:void(0)"
+                                                    onclick="deleteImage('<%= i._id%>')"><i class="ti-trash"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="el-card-content">
-                                    <small><%= i.title %></small>
+                                    <small>
+                                        <%= i.title %></small>
                                 </div>
                             </div>
                         </div>
                     </div>
-                      <% }) %>
+                    <% }) %>
                     <%} else {%>
-                        <% 'there is no record found' %>
-                      
-                     <% } %>
+                    <% 'there is no record found' %>
+
+                    <% } %>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
@@ -246,7 +271,7 @@
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
     </div>
-    
+
     <script src="plugins/jquery/jquery.min.js"></script>
     <script src="plugins/bootstrap/js/popper.min.js"></script>
     <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -256,7 +281,7 @@
     <script src="plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
     <script src="js/custom.min.js"></script>
-    <script src="js/dropzone.js"></script>
+    <script src="js/fileinput.min.js"></script>
     <script src="plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
     <script src="plugins/Magnific-Popup-master/dist/jquery.magnific-popup-init.js"></script>
     <script src="plugins/dropify/dist/js/dropify.min.js"></script>
@@ -264,10 +289,10 @@
     <script src="js/custom.js"></script>
     <script src="js/main.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             // Basic
             $('.dropify').dropify();
-        
+
             // Translated
             $('.dropify-fr').dropify({
                 messages: {
@@ -277,25 +302,25 @@
                     error: 'Désolé, le fichier trop volumineux'
                 }
             });
-        
+
             // Used events
             var drEvent = $('#input-file-events').dropify();
-        
-            drEvent.on('dropify.beforeClear', function(event, element) {
+
+            drEvent.on('dropify.beforeClear', function (event, element) {
                 return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
             });
-        
-            drEvent.on('dropify.afterClear', function(event, element) {
+
+            drEvent.on('dropify.afterClear', function (event, element) {
                 alert('File deleted');
             });
-        
-            drEvent.on('dropify.errors', function(event, element) {
+
+            drEvent.on('dropify.errors', function (event, element) {
                 console.log('Has Errors');
             });
-        
+
             var drDestroy = $('#input-file-to-destroy').dropify();
             drDestroy = drDestroy.data('dropify')
-            $('#toggleDropify').on('click', function(e) {
+            $('#toggleDropify').on('click', function (e) {
                 e.preventDefault();
                 if (drDestroy.isDropified()) {
                     drDestroy.destroy();
@@ -304,6 +329,19 @@
                 }
             })
         });
+
+        $("#galleryImg").fileinput({
+            uploadUrl: "/file-upload-batch/2",
+            autoReplace: true,
+            showCaption: false,
+            showRemove: false,
+            showUpload: false,
+            showClose: true,
+            showBrowse: false,
+            fileActionSettings: false,
+            allowedFileExtensions: ["jpg", "png", "jpeg"]
+        });
+
     </script>
 </body>
 

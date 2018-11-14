@@ -1001,16 +1001,16 @@ function copyToViewTemplate7(id) {
     if (jsonImageArray.imageIds.length == 1) {
         let a = jsonImageArray.imageIds[0].filePath.replace('public', '');
         let imageFigure = `<figure class="at-sliderimg">
-                        <img src="${a}" alt="image description">
-                   </figure>`
+                               <img src="${a}" alt="image description">
+                           </figure>`
         parentDiv.insertAdjacentHTML('beforeend', imageFigure);
 
     } else {
         for (let i = 0; i < jsonImageArray.imageIds.length; i++) {
             let a = jsonImageArray.imageIds[i].filePath.replace('public', '');
             let imageFigure = `<figure class="at-sliderimg">
-                            <img src="${a}" alt="image description">
-                       </figure>`
+                                  <img src="${a}" alt="image description">
+                               </figure>`
             parentDiv.insertAdjacentHTML('beforeend', imageFigure);
         }
         $('#at-imagesliders-two').slick({
