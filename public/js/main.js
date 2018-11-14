@@ -1328,7 +1328,7 @@ function changeUserProfilePic() {
 }
 
 function uploadNewImage() {
-
+    $("#saveImage").attr("disabled", "disabled");
     let fileObj = document.getElementById("galleryImg").files;
     if (fileObj) {
         var formData = new FormData();
@@ -1343,8 +1343,10 @@ function uploadNewImage() {
             processData: false,
             success: function (response) {
                 if (response.success) {
+                    $("#saveImage").removeAttr("disabled");
                     window.location.href = '/addImages';
                 } else {
+                    $("#saveImage").removeAttr("disabled");
                     var error = document.getElementById('error');
                     error.style.color = 'red'
                     error.innerHTML = response.error
@@ -1355,6 +1357,7 @@ function uploadNewImage() {
             }
         });
     } else {
+        $("#saveImage").removeAttr("disabled");
         var error = document.getElementById('error');
         error.style.color = 'red'
         error.innerHTML = 'First select image.'
