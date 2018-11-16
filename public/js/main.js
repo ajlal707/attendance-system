@@ -1,5 +1,7 @@
 $(document).ready(function () {
     $("#2ndTextSelector").hide();
+    //  document.getElementsByClassName("file-drop-zone-title")[0].innerHTML = "Click here to select images ...";
+
 })
 function checkboxes() {
     let checkboxCount = $('input:checkbox:checked')
@@ -1328,7 +1330,8 @@ function changeUserProfilePic() {
 }
 
 function uploadNewImage() {
-    $("#saveImage").attr("disabled", "disabled");
+    document.getElementById("saveImage").disabled = true;
+
     let fileObj = document.getElementById("galleryImg").files;
     if (fileObj) {
         var formData = new FormData();
@@ -1343,10 +1346,11 @@ function uploadNewImage() {
             processData: false,
             success: function (response) {
                 if (response.success) {
+                    document.getElementById("saveImage").disabled = false;
                     $("#saveImage").removeAttr("disabled");
                     window.location.href = '/addImages';
                 } else {
-                    $("#saveImage").removeAttr("disabled");
+                    document.getElementById("saveImage").disabled = false;
                     var error = document.getElementById('error');
                     error.style.color = 'red'
                     error.innerHTML = response.error
@@ -1357,7 +1361,7 @@ function uploadNewImage() {
             }
         });
     } else {
-        $("#saveImage").removeAttr("disabled");
+        document.getElementById("saveImage").disabled = false;
         var error = document.getElementById('error');
         error.style.color = 'red'
         error.innerHTML = 'First select image.'

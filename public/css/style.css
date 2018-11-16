@@ -9374,10 +9374,16 @@ pre {
     padding-bottom: 70px;
 }
 .save-btn {
+    right: 0;
+    bottom: 0;
+    z-index: 10;
     position: absolute;
-    bottom: 45px;
+}
+.save-btn.postion{
     right: 20px;
     z-index: 10;
+    bottom: 45px;
+    position: absolute;
 }
 .save-btn .waves-input-wrapper .waves-button-input{
     border: 0;
