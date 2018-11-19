@@ -49,13 +49,13 @@ $(function () {
     // ============================================================== 
     // Slimscrollbars
     // ==============================================================
-    $(function () { 
-    $('.scroll-sidebar').slimScroll({
-        position: 'left'
-        , size: "5px"
-        , height: '100%'
-        , color: '#dcdcdc'
-    });
+    $(function () {
+        $('.scroll-sidebar').slimScroll({
+            position: 'left'
+            , size: "5px"
+            , height: '100%'
+            , color: '#dcdcdc'
+        });
     });
     // $('.message-center').slimScroll({
     //     position: 'right'
@@ -280,47 +280,47 @@ $(function () {
                     arrows: false
                 })
                 $('#at-usersliders').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-                    if (templateArr[slick.currentSlide] === 'temp-5') {
-                        $('.at-imagesliders').slick({
-                            speed: 3000,
-                            arrows: false,
-                            autoplay: true,
-                            infinite: false,
-                            pauseOnHover: false,
-                            accessibility: false,
-                        })
-                    }
-                    if (templateArr[slick.currentSlide] === 'temp-6') {
-                        $('.at-textboxholder').slick({
-                            speed: 2000,
-                            arrows: false,
-                            autoplay: true,
-                            infinite: false,
-                            pauseOnHover: false,
-                            accessibility: false,
-                        })
-                    }
-                    if (templateArr[slick.currentSlide] === 'temp-7') {
-                        $('.at-imgvideoholder .video-box').slick({
-                            speed: 3000,
-                            arrows: false,
-                            autoplay: true,
-                            infinite: false,
-                            pauseOnHover: false,
-                            accessibility: false,
-                        })
-                        $('.at-textalider').slick({
-                            speed: 2000,
-                            arrows: false,
-                            autoplay: true,
-                            infinite: false,
-                            pauseOnHover: false,
-                            accessibility: false,
-                        })
-                    }
+                    // if (templateArr[slick.currentSlide] === 'temp-5') {
+                    //     $('.at-imagesliders').slick({
+                    //         speed: 3000,
+                    //         arrows: false,
+                    //         autoplay: true,
+                    //         infinite: false,
+                    //         pauseOnHover: false,
+                    //         accessibility: false,
+                    //     })
+                    // }
+                    // if (templateArr[slick.currentSlide] === 'temp-6') {
+                    //     $('.at-textboxholder').slick({
+                    //         speed: 2000,
+                    //         arrows: false,
+                    //         autoplay: true,
+                    //         infinite: false,
+                    //         pauseOnHover: false,
+                    //         accessibility: false,
+                    //     })
+                    // }
+                    // if (templateArr[slick.currentSlide] === 'temp-7') {
+                    //     $('.at-imgvideoholder .video-box').slick({
+                    //         speed: 3000,
+                    //         arrows: false,
+                    //         autoplay: true,
+                    //         infinite: false,
+                    //         pauseOnHover: false,
+                    //         accessibility: false,
+                    //     })
+                    //     $('.at-textalider').slick({
+                    //         speed: 2000,
+                    //         arrows: false,
+                    //         autoplay: true,
+                    //         infinite: false,
+                    //         pauseOnHover: false,
+                    //         accessibility: false,
+                    //     })
+                    // }
                 });
                 $('#at-usersliders').on("afterChange", function (event, slick, currentSlide, nextSlide) {
-                    
+
                     if ($(slick.$slides[slick.currentSlide]).find('iframe').get(0)) {
                         let src = $(slick.$slides[slick.currentSlide]).find('iframe').get(0).src;
                         $(slick.$slides[slick.currentSlide]).find('iframe')[0].src = '';
