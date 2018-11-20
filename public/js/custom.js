@@ -149,6 +149,7 @@ $(function () {
         }
     });
 
+
     $.ajax({
         type: "GET",
         url: "/userLcd/getResult",
@@ -279,7 +280,12 @@ $(function () {
                     speed: 3000,
                     arrows: false
                 })
-            
+                $('#at-usersliders').on("beforeChange", function (event, slick, currentSlide, nextSlide) {
+                    // if ($(slick.$slides[slick.currentSlide]).find('iframe').get(0)) {
+                    //     $(slick.$slides[slick.currentSlide]).find('iframe')[0].src = '';
+                    // }
+                })
+
                 $('#at-usersliders').on("afterChange", function (event, slick, currentSlide, nextSlide) {
 
                     if ($(slick.$slides[slick.currentSlide]).find('iframe').get(0)) {
@@ -288,47 +294,47 @@ $(function () {
                         $(slick.$slides[slick.currentSlide]).find('iframe')[0].src = src;
                     }
 
-                    if (templateArr[slick.currentSlide] === 'temp-5') {
+                    // if (templateArr[slick.currentSlide] === 'temp-5') {
 
-                        $('.at-imagesliders').slick({
-                            speed: 3000,
-                            arrows: false,
-                            autoplay: true,
-                            infinite: false,
-                            pauseOnHover: false,
-                            accessibility: false,
-                        })
-                    }
-                    if (templateArr[slick.currentSlide] === 'temp-6') {
+                    //     $('.at-imagesliders').slick({
+                    //         speed: 3000,
+                    //         arrows: false,
+                    //         autoplay: true,
+                    //         infinite: false,
+                    //         pauseOnHover: false,
+                    //         accessibility: false,
+                    //     })
+                    // }
+                    // if (templateArr[slick.currentSlide] === 'temp-6') {
 
-                        $('.at-textboxholder').slick({
-                            speed: 2000,
-                            arrows: false,
-                            autoplay: true,
-                            infinite: false,
-                            pauseOnHover: false,
-                            accessibility: false,
-                        })
-                    }
-                    if (templateArr[slick.currentSlide] === 'temp-7') {
+                    //     $('.at-textboxholder').slick({
+                    //         speed: 2000,
+                    //         arrows: false,
+                    //         autoplay: true,
+                    //         infinite: false,
+                    //         pauseOnHover: false,
+                    //         accessibility: false,
+                    //     })
+                    // }
+                    // if (templateArr[slick.currentSlide] === 'temp-7') {
 
-                        $('.at-imgvideoholder .video-box').slick({
-                            speed: 3000,
-                            arrows: false,
-                            autoplay: true,
-                            infinite: false,
-                            pauseOnHover: false,
-                            accessibility: false,
-                        })
-                        $('.at-textalider').slick({
-                            speed: 2000,
-                            arrows: false,
-                            autoplay: true,
-                            infinite: false,
-                            pauseOnHover: false,
-                            accessibility: false,
-                        })
-                    }
+                    //     $('.at-imgvideoholder .video-box').slick({
+                    //         speed: 3000,
+                    //         arrows: false,
+                    //         autoplay: true,
+                    //         infinite: false,
+                    //         pauseOnHover: false,
+                    //         accessibility: false,
+                    //     })
+                    //     $('.at-textalider').slick({
+                    //         speed: 2000,
+                    //         arrows: false,
+                    //         autoplay: true,
+                    //         infinite: false,
+                    //         pauseOnHover: false,
+                    //         accessibility: false,
+                    //     })
+                    // }
 
                     let delay = ((arr[slick.currentSlide])
                         * ((imageLength[slick.currentSlide]) ? ((imageLength[slick.currentSlide])) : 1)
@@ -339,6 +345,7 @@ $(function () {
         }
     });
 });
+
 function userLcdHtml(videoSrc, title, description) {
     return `<div class="at-usersliderholder">
                 <div class="at-slidercontent at-addbgone">
