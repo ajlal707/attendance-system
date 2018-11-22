@@ -161,6 +161,13 @@ $(function () {
                 let templateArr = [];
                 let imageLength = [];
                 let textLength = [];
+
+                localStorage.clear();
+                let parentDiv = document.getElementById('at-usersliders')
+                while (parentDiv.firstChild) {
+                    parentDiv.removeChild(parentDiv.firstChild);
+                }
+
                 for (var i = 0; i < userAds.length; i++) {
 
                     if (userAds[i].videosId) {
