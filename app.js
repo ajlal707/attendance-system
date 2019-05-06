@@ -16,16 +16,7 @@ const dashboardRouter = require('./routes/dashboard')
 const resetpasswordRouter = require('./routes/changePassword')
 const profileRouter = require('./routes/profile')
 const addUserRouter = require('./routes/addUser')
-const viewAllUsersRouter = require('./routes/viewAllUsers')
-const addTextRouter = require('./routes/addText')
-const addImagesRouter = require('./routes/addImages')
-const addVideosRouter = require('./routes/addVideos')
-const createAdsRouter = require('./routes/createAds')
-const viewAllAdsRouter = require('./routes/viewAllAds')
-const editAd = require('./routes/editAd')
-// user route or lcd where user,s ads shown
-const userLcd = require('./routes/userLcd')
-const userSlider = require('./routes/userSlider')
+const viewAllUsers = require('./routes/viewAllUsers')
 
 var app = express()
 
@@ -45,8 +36,8 @@ app.use(function (req, res, next) {
 });
 
 //mongo connection
-mongoose.connect('mongodb://maxifjaved:maxifjaved@127.0.0.1:27017/carsOnline?authSource=admin')
-// mongoose.connect('mongodb://127.0.0.1:27017/carsOnline')
+// mongoose.connect('mongodb://maxifjaved:maxifjaved@127.0.0.1:27017/carsOnline?authSource=admin')
+mongoose.connect('mongodb://127.0.0.1:27017/attendance')
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function () {
@@ -84,15 +75,7 @@ app.use('/changePassword', resetpasswordRouter)
 app.use('/profile', profileRouter)
 app.use('/dashboard', dashboardRouter)
 app.use('/addUser', addUserRouter)
-app.use('/viewAllUsers', viewAllUsersRouter)
-app.use('/addText', addTextRouter)
-app.use('/addImages', addImagesRouter)
-app.use('/addVideos', addVideosRouter)
-app.use('/createAds', createAdsRouter)
-app.use('/viewAllAds', viewAllAdsRouter)
-app.use('/editAd', editAd)
-app.use('/userLcd', userLcd)
-app.use('/userSlider', userSlider)
+app.use('/viewAllUsers', viewAllUsers)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -11,7 +11,7 @@ const UserSchema = Schema({
   status: { type: String },
   createdAt: { type: String },
   photoId: { type: mongoose.Schema.ObjectId, ref: 'Photo' },
-  createAdId: [{ type: mongoose.Schema.ObjectId, ref: 'createAd' }],
+  attendanceId: { type: mongoose.Schema.ObjectId, ref: 'Attendance' },
 })
 
 UserSchema.methods.toJSON = function () {

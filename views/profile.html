@@ -4,67 +4,28 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.png">
     <title>Profile</title>
     <% include ./partials/header %>
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
             <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
     </div>
-    <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
-    <!-- ============================================================== -->
     <div id="main-wrapper">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
-
         <header class="topbar">
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
-                <!-- ============================================================== -->
-                <!-- Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="/dashboard">
-                        <b>
-                            <!-- Light Logo icon -->
-                            <img src="img/logo-light-icon.png" alt="homepage" class="light-logo" />
-                        </b>
-                        <!--End Logo icon -->
-                        <span>
-                        <!-- Light Logo text -->    
-                        <img src="img/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
                 <div class="navbar-collapse">
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
                     <ul class="navbar-nav mr-auto mt-md-0">
-                        <!-- This is  -->
                         <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
                         <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
                     </ul>
-                    <!-- ============================================================== -->
-                    <!-- User profile and search -->
-                    <!-- ============================================================== -->
                     <ul class="navbar-nav my-lg-0">
-                        <!-- ============================================================== -->
-                        <!-- Profile -->
-                        <!-- ============================================================== -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right scale-up">
@@ -79,66 +40,36 @@
                 </div>
             </nav>
         </header>
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
         <aside class="left-sidebar">
-            <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
-                <!-- User profile -->
                 <div class="user-profile">
-                    <!-- User profile image -->
                     <div class="profile-img"> <img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>" alt="user" />                       
                     </div>
-                    <!-- User profile text-->
                     <div class="profile-text">
                         <h5><%= undefined === user || undefined === user.username ? '' : user.username %> </h5>
                         <a href="javascript:void(0)" class="" data-toggle="tooltip" title="Profile"><i class="ti-user"></i></a>
                         <a href="/logout" class="" data-toggle="tooltip" title="Logout"><i class="ti-power-off"></i></a>
                     </div>
                 </div>
-                <!-- End User profile text-->
-                <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
-                        <li><a class="waves-effect waves-dark" href="/dashboard"><i class="icon-layers"></i><span class="hide-menu">Dashboard</span>
-                        </a></li>
-                        <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-people"></i><span class="hide-menu">Users</span></a>
+                        <li class="active"><a class="waves-effect waves-dark" href="/dashboard"><i class="icon-layers"></i><span
+                                    class="hide-menu">Dashboard</span>
+                            </a></li>
+                        <li><a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                                    class="icon-people"></i><span class="hide-menu">Employee</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="/addUser">Add User</a></li>
-                                <li><a href="/viewAllUsers">View All Users</a></li>
-                            </ul>
-                        </li>
-                        <li><a class="waves-effect waves-dark" href="/addText"><i class="ti-receipt"></i><span class="hide-menu">Add Text</span></a></li>
-                        <li><a class="waves-effect waves-dark" href="/addImages"><i class="icon-picture"></i><span class="hide-menu">Add Images</span></a></li>
-                        <li><a class="waves-effect waves-dark" href="/addVideos"><i class="icon-film"></i><span class="hide-menu">Add Videos</span></a></li>
-                        <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-grid"></i><span class="hide-menu">Ads</span>
-                        </a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="/createAds">Create Ads</a></li>
-                                <li><a href="/viewAllAds">View All Ads</a></li>
+                                <li><a href="/addUser">Add Employee</a></li>
+                                <li><a href="/viewAllUsers">Employees List</a></li>
                             </ul>
                         </li>
                     </ul>
                 </nav>
-                <!-- End Sidebar navigation -->
+
             </div>
-            <!-- End Sidebar scroll-->
         </aside>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
         <div class="page-wrapper">
-            <!-- ============================================================== -->
-            <!-- Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
                     <h3 class="text-themecolor">Profile</h3>
@@ -150,19 +81,8 @@
                     </ol>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- End Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
             <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <!-- Row -->
                 <div class="row">
-                    <!-- Column -->
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                             <span id="error1"></span>
 
@@ -170,7 +90,6 @@
                             <div class="card-body">
                                 <center class="m-t-30">
                                         <figure class="img-circle show-image" style="background-image: url('<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>')"></figure> 
-                                <!-- <form enctype="multipart/form-data" action="/profile/uploadImage" method="post" class="editpic-form" required> -->
                                     <div class="editpic-form">
                                         <label class="editpic">
                                             <input id="image-file" type="file" name="profilePhoto" accept="image/x-png,image/jpg,image/jpeg" single="single" />
@@ -178,20 +97,15 @@
                                         </label>
                                         <input type="submit" onclick="changeUserProfilePic()" class="btn btn-secondary btn-sm m-t-20 m-b-30" value="Save Image">
                                     </div>
-                                <!-- </form> -->
-
                                     <h4 class="card-title m-t-10"><%= user.username %></h4>
                                 </center>
                             </div>
                         </div>
                     </div>
-                    <!-- Column -->
-                    <!-- Column -->
                     <div class="col-lg-8 col-xlg-9 col-md-7">
                         <div class="card">                               
                             <div class="card-body">
                                 <span id="error"></span>
-                                <!-- <form class="form-horizontal form-material"> -->
                                     <div class="form-group">
                                         <label class="col-md-12">Full Name</label>
                                         <div class="col-md-12">
@@ -216,30 +130,15 @@
                                             <button class="btn btn-success" onclick="updateProfile()">Update Profile</button>
                                         </div>
                                     </div>
-                                <!-- </form> -->
                             </div>
                         </div>
                     </div>
-                    <!-- Column -->
                 </div>
-                <!-- Row -->
-                <!-- ============================================================== -->
-                <!-- End PAge Content -->
-                <!-- ============================================================== -->
             </div>
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
             <footer class="footer">
-                © 2018 CarsOnline
+                © 2019 Eureka Attendance
             </footer>
-            <!-- ============================================================== -->
-            <!-- End footer -->
-            <!-- ============================================================== -->
         </div>
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
     </div>
     
     <% include ./partials/footer %>

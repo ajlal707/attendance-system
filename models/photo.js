@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var PhotoSchema = mongoose.Schema({
-  fileName: { type: String, required: true },
+  fileName: { type: String },
   filePath: { type: String },
   fileType: { type: String },
   userId: { type: mongoose.Schema.ObjectId, ref: "User" },

@@ -41,7 +41,7 @@ router.post('/uploadImage', ensureAuthenticated, upload, (req, res, next) => {
     const { file } = req
     const { originalname, path, filename } = file
 
-    var extension = originalname.split('.').pop()
+    var extension = file.mimetype.split('/').pop()
     if (extension == 'jpeg' || extension == 'png' || extension == 'jpg') {
         Photo.findOne({ userId: req.user._id }).exec((err, photo) => {
             if (err) return res.json({ error: 'something happend bad try again!' })
@@ -102,19 +102,7 @@ router.post('/uploadImage', ensureAuthenticated, upload, (req, res, next) => {
     }
 })
 
-function decodeBase64Image(dataString) {
-    var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
-        response = {};
 
-    if (matches.length !== 3) {
-        return new Error('Invalid input string');
-    }
-
-    response.type = matches[1];
-    response.data = new Buffer(matches[2], 'base64');
-
-    return response;
-}
 
 router.post('/updateprofile', ensureAuthenticated, (req, res, next) => {
 
