@@ -92,6 +92,8 @@
                                             <tr>
                                                 <th>Eployee Name</th>
                                                 <th>Eployees Email</th>
+                                                <th>Eployees Leaves</th>
+                                                <th>Pending Leaves</th>
                                                
                                             </tr>
                                         </thead>
@@ -101,7 +103,9 @@
                                             <tr>
                                                 <td><%= i.username %></td>
                                                 <td><%= i.email %></td>
-                                               
+                                                <td><%= i.employeeLeaves %></td>
+                                                <td><%= i.pendingLeaves %></td>
+                                                
                                             </tr>
                                             <% }) %>
                                             <%} else {%>

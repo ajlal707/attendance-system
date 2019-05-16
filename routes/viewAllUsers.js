@@ -14,7 +14,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
             User.find({ role: { $ne: 'admin' } }, (err, users) => {
                 if (err) { return next(err) }
 
-                res.render('viewAllUsers', { title: 'Dashboard', user, users })
+                res.render('viewAllUsers', { title: 'EmployeesList', user, users })
             })
         })
 })

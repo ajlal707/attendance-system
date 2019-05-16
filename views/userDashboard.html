@@ -60,13 +60,13 @@
                     </div>
                 </div>
             
-                <nav class="sidebar-nav">
+                <!-- <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
-                        <li class="active"><a class="waves-effect waves-dark" href="javascript:void(0)"><i class="icon-layers"></i><span
+                        <li class="active"><a class="waves-effect waves-dark" href="/dashboard"><i class="icon-layers"></i><span
                                     class="hide-menu">Dashboard</span>
                             </a></li>
-                        <li><a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                        <li><a class="has-arrow waves-effect waves-dark" href="/dashboard" aria-expanded="false"><i
                                     class="icon-people"></i><span class="hide-menu">Employee</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="/addUser">Add Employee</a></li>
@@ -74,7 +74,17 @@
                             </ul>
                         </li>
                     </ul>
-                </nav>
+                </nav> -->
+                <%if(user.role === 'user') {%>
+                    <nav class="sidebar-nav">
+                        <ul id="sidebarnav">
+                            <li class="nav-devider"></li>
+                            <li class="active"><a class="waves-effect waves-dark" href="/profile"><i class="icon-layers"></i><span
+                                        class="hide-menu">Profile</span>
+                                </a></li>
+                        </ul>
+                    </nav>
+                    <% } %>
 
             </div>
         </aside>
@@ -85,13 +95,26 @@
                 </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
+                    
                     </ol>
 
                 </div>
                 
             </div>
+
+             <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-themecolor">Total Leaves : <%= user.employeeLeaves %></h3>
+                </div>
+                <div class="col-md-5 align-self-center">
+                        <h3 class="text-themecolor">Pending Leaves : <%= user.pendingLeaves %></h3>
+                </div>
+                <div class="col-md-2 align-self-center">
+                        <button type="submit" class="btn btn-info waves-effect waves-light m-t-20 m-r-10" onclick="selectPopup()"
+                        data-toggle="modal" id="previewBtn" data-target="">Apply Leave</button>
+                </div>
+            </div>
+
             <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
@@ -100,8 +123,6 @@
                                     <div class="table-responsive">
                                         <table id="myTable" class="table table-bordered table-striped">
                                             <thead>
-                                         <% if(leaves) {%>
-
                                                 <tr>
                                                     <th>Eployee Name</th>
                                                     <th>Start Date</th>
@@ -109,8 +130,8 @@
                                                     <th>No Of Leaves</th>
                                                     <th>Reason</th>
                                                     <th>Status</th>
+                                                   
                                                 </tr>
-                                         <% } %>
                                             </thead>
                                             <tbody>
                                           <% if(leaves) {%>
@@ -122,10 +143,11 @@
                                                     <td><%= i.noOfLeaves %></td>
                                                     <td><%= i.reason %></td>
                                                     <td><%= i.status %></td>
-                                                    <th><button onclick="openPopup(this)">View</button></th>
                                                     
                                                 </tr>
                                                 <% }) %>
+                                                <%} else {%>
+                                                <% 'there is no record found' %>
                                                 <% } %>
                                             </tbody>
                                         </table>
@@ -134,12 +156,49 @@
                             </div>
                         </div>
                     </div>
-                </div>   
-
-
-                
-
+                </div>    
+        
     <% include ./partials/footer %>
+    <!-- popup for apply leave -->
+    <div class="modal fade modalone" id="temp-11" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                </div>
+                <div class="modal-body">
+                    <div class="modal-contentarea">
+                        <div class="row paddingzero d_block">
+                            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+                                <div class="row">
+                                <div class="modalcontent-box">
+                                    <div class="text-box height_auto">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <p id="error"></p>
+                                        <div class="new_fields">
+                                            <div class="new_field">
+                                                <span>Start :</span> <input type="date" id="startDate" >
+                                            </div>
+                                            <div class="new_field">
+                                                <span>End :</span> <input type="date" id="endDate">
+                                            </div>
+                                            <div class="new_field">
+                                                <span class="fluid_span">Reason  :</span>
+                                                <textarea min="5" max="500" id="reason"></textarea>
+                                            </div>
+                                            <div class="new_field btn_submit">
+                                                <input type="submit" onclick="applyLeave()">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

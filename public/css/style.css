@@ -997,7 +997,8 @@ html body .waves-notransition {
 
 .btn {
     padding: 7px 12px;
-    cursor: pointer
+    cursor: pointer;
+    margin-bottom: 23px;
 }
 
 .btn-group label {
@@ -10351,4 +10352,64 @@ pre {
 .krajee-default.file-preview-frame{margin: 8px 5px;}
 .kv-file-remove {
     display: none;
+}
+
+
+
+
+.new_fields {
+    overflow: hidden;
+}
+.new_field {
+    margin: 0 0 10px;
+    overflow: hidden;
+}
+.new_field span {
+    margin:8px 0 0;
+    float:left;
+    width: 50px;
+}
+.row.paddingzero.d_block {
+    width: 100%;
+    max-width: 620px;
+}
+.new_field input {
+    padding: 5px 10px;
+    float:right;
+    width: 82%;
+    border: 1px solid #ccc;
+    height: 40px;
+}
+.new_field textarea {
+    padding: 5px 10px;
+    display: block;
+    width: 100%;
+    height: 120px;
+    border: 1px solid #ccc;
+}
+.new_field span.fluid_span {
+    width: 100%;
+    display: block;
+}
+.new_field input[type="submit"] {
+    width: 120px;
+    float: right;
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+.text-box.height_auto{
+    position:relative;
+    min-height: auto;
+}
+.text-box.height_auto {
+    padding: 80px 35px 55px;
+}
+.text-box.height_auto button.close{
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    text-shadow: none;
+    font-size: 26px;
 }

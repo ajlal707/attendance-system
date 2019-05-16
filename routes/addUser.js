@@ -26,11 +26,20 @@ router.post('/addNewUser', ensureAuthenticated, function (req, res, next) {
         User.create({
             username: req.body.username,
             email: req.body.email,
+            employeeId: req.body.employeeId,
+            employeeLeaves: req.body.employeeLeaves,
+            pendingLeaves: req.body.employeeLeaves,
             password: req.body.password,
             role: 'user',
         }, (err, user) => {
-            if (err) return res.json({ error: 'something bad please try again' })
 
+            if (err) {
+                if (err.message.indexOf("duplicate")) {
+                    if (err) return res.json({ error: 'EmployeeId already used.' })
+                }
+                if (err) return res.json({ error: 'something bad please try again' })
+
+            }
             return res.json({ success: 'success' })
         })
 

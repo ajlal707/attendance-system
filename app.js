@@ -10,13 +10,19 @@ const passport = require('passport')
 const mongoStore = require('connect-mongo')(session)
 const flash = require('connect-flash')
 
-//base routes
+//admin routes
 const indexRouter = require('./routes/index')
 const dashboardRouter = require('./routes/dashboard')
+//common routes
 const resetpasswordRouter = require('./routes/changePassword')
 const profileRouter = require('./routes/profile')
+//
 const addUserRouter = require('./routes/addUser')
 const viewAllUsers = require('./routes/viewAllUsers')
+
+//user routes
+const userDashboard = require('./routes/userDashboard')
+
 
 var app = express()
 
@@ -73,6 +79,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', indexRouter)
 app.use('/changePassword', resetpasswordRouter)
 app.use('/profile', profileRouter)
+app.use('/userDashboard', userDashboard)
+
 app.use('/dashboard', dashboardRouter)
 app.use('/addUser', addUserRouter)
 app.use('/viewAllUsers', viewAllUsers)

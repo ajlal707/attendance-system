@@ -7,7 +7,7 @@ const AttendanceSchema = Schema({
   checkOut: { type: String },
   date: { type: Date },
   createdAt: { type: String },
-  userId: { type: mongoose.Schema.ObjectId, ref: 'User' },
+  employeeId: { type: String, ref: "User" },
 })
 
 
