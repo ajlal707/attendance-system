@@ -6,10 +6,9 @@ var LeaveSchema = mongoose.Schema({
   endDate: { type: String },
   reason: { type: String },
   noOfLeaves: { type: String },
-  status: { type: String, default: 'not-approve' },
-  employeeId: { type: String, ref: "User" },
+  status: { type: String, default: 'pending' },
+  empId: { type: String },
 })
 
 var Leave = mongoose.model('Leave', LeaveSchema)
 module.exports = Leave
-

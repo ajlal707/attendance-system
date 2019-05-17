@@ -13,7 +13,8 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
         .exec(async function (err, user) {
             if (err) { return next(err) }
 
-            let leaves = await Leave.find({ employeeId: req.user.employeeId });
+            // let leaves = await Leave.find({ $and: [{ employeeId: req.user.employeeId }, { status: "pending" }] });
+            let leaves = await Leave.find({ empId: req.user.employeeId });
 
             res.render('userDashboard', { title: 'User-Dashboard', user, leaves })
         })
@@ -38,13 +39,13 @@ router.post('/applyUserLeave', ensureAuthenticated, async function (req, res, ne
                 endDate: endDate,
                 reason: reason,
                 noOfLeaves: diffDays,
-                employeeId: req.user.employeeId,
-            }, (err, leave) => {
+                empId: req.user.employeeId,
+            }, async function (err, leave) {
 
                 if (err) if (err) return res.json({ error: 'something bad please try again' })
 
                 user.pendingLeaves = userPendingLeaves - diffDays;
-                user.save();
+                await user.save();
 
                 return res.json({ success: 'success' })
             })

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.png">
-    <title>Eureka attendance</title>
+    <title>Dashboard</title>
     <% include ./partials/header %>
 </head>
 
@@ -20,24 +20,19 @@
     <div id="main-wrapper">
         <header class="topbar">
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
-               
                 <div class="navbar-collapse">
                     <ul class="navbar-nav mr-auto mt-md-0">
-                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark"
-                                href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
-                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark"
-                                href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
                     </ul>
                     <ul class="navbar-nav my-lg-0">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>"
-                                    alt="user" class="profile-pic" /></a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right scale-up">
                                 <ul class="dropdown-user">
                                     <li><a href="/profile"><i class="ti-user"></i> My Profile</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="/logout"><i class="ti-power-off"></i> Logout</a></li>
+                                    <li><a href="/logout"><i class="fa fa-power-off"></i> Logout</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -48,18 +43,14 @@
         <aside class="left-sidebar">
             <div class="scroll-sidebar">
                 <div class="user-profile">
-                    <div class="profile-img"> <img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>"
-                            alt="user" />
+                    <div class="profile-img"> <img src="<%= undefined === user || undefined === user.photoId ? '/images/user.png' : `/uploads/${user.photoId.fileName}` %>" alt="user" />                       
                     </div>
                     <div class="profile-text">
-                        <h5>
-                            <%= user.username %>
-                        </h5>
+                        <h5><%= undefined === user || undefined === user.username ? '' : user.username %> </h5>
                         <a href="/profile" class="" data-toggle="tooltip" title="Profile"><i class="ti-user"></i></a>
-                        <a href='/logout' class="" data-toggle="tooltip" title="Logout"><i class="ti-power-off"></i></a>
+                        <a href="/logout" class="" data-toggle="tooltip" title="Logout"><i class="ti-power-off"></i></a>
                     </div>
                 </div>
-            
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
@@ -67,7 +58,7 @@
                                     class="hide-menu">Dashboard</span>
                             </a></li>
                         <li><a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
-                                    class="icon-people"></i><span class="hide-menu">Employee</span></a>
+                                    class="icon-people"></i><span class="hide-menu">Emp-Mangement</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="/addUser">Add Employee</a></li>
                                 <li><a href="/viewAllUsers">Employees List</a></li>
@@ -75,71 +66,111 @@
                         </li>
                     </ul>
                 </nav>
-
             </div>
         </aside>
         <div class="page-wrapper">
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-themecolor">Dashboard</h3>
+                    <h3 class="text-themecolor">Eployees leaves mangement</h3>
                 </div>
-                <div class="col-md-7 align-self-center">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
-                    </ol>
-
-                </div>
-                
             </div>
             <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table id="myTable" class="table table-bordered table-striped">
-                                            <thead>
-                                         <% if(leaves) {%>
-
-                                                <tr>
-                                                    <th>Eployee Name</th>
-                                                    <th>Start Date</th>
-                                                    <th>End Date</th>
-                                                    <th>No Of Leaves</th>
-                                                    <th>Reason</th>
-                                                    <th>Status</th>
-                                                </tr>
-                                         <% } %>
-                                            </thead>
-                                            <tbody>
-                                          <% if(leaves) {%>
-                                            <% leaves.forEach(function(i){ %>
-                                                <tr>
-                                                    <td><%= user.username %></td>
-                                                    <td><%= i.startDate %></td>
-                                                    <td><%= i.endDate %></td>
-                                                    <td><%= i.noOfLeaves %></td>
-                                                    <td><%= i.reason %></td>
-                                                    <td><%= i.status %></td>
-                                                    <th><button onclick="openPopup(this)">View</button></th>
-                                                    
-                                                </tr>
-                                                <% }) %>
-                                                <% } %>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="myTable" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Employee Name</th>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
+                                                <th>No Of Leaves</th>
+                                                <th>Reason</th>
+                                                <th>Status</th>
+                                                <th>Deny</th>
+                                                <th>Allow</th>
+                                               
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                      <% if(leaves) {%>
+                                        <% leaves.forEach(function(i){ %>
+                                            <tr>
+                                                <td><%= i.username %></td>
+                                                <td><%= i.startDate %></td>
+                                                <td><%= i.endDate %></td>
+                                                <td><%= i.noOfLeaves %></td>
+                                                <td><%= i.reason %></td>
+                                                <td><%= i.status %></td>
+                                                <td><button>No</button></td>
+                                                <td><button>Yes</button></td>
+                                                
+                                                
+                                            </tr>
+                                             <% }) %>
+                                           <% } %>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>   
-
-
-                
-
+                </div>
+            </div>
+            <footer class="footer"> © 2019 Eureka Attendance </footer>
+        </div>
+    </div>
     <% include ./partials/footer %>
+    <script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+        $(document).ready(function() {
+            var table = $('#example').DataTable({
+                "columnDefs": [{
+                    "visible": false,
+                    "targets": 2
+                }],
+                "order": [
+                    [2, 'asc']
+                ],
+                "displayLength": 25,
+                "drawCallback": function(settings) {
+                    var api = this.api();
+                    var rows = api.rows({
+                        page: 'current'
+                    }).nodes();
+                    var last = null;
+                    api.column(2, {
+                        page: 'current'
+                    }).data().each(function(group, i) {
+                        if (last !== group) {
+                            $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                            last = group;
+                        }
+                    });
+                }
+            });
+            // Order by the grouping
+            $('#example tbody').on('click', 'tr.group', function() {
+                var currentOrder = table.order()[0];
+                if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                    table.order([2, 'desc']).draw();
+                } else {
+                    table.order([2, 'asc']).draw();
+                }
+            });
+        });
+    });
+    $('#example23').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+    </script>
+
 </body>
 
 </html>

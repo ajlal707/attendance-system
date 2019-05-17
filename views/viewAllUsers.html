@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.png">
-    <title>All Users</title>
+    <title>All Employees</title>
     <% include ./partials/header %>
 </head>
 
@@ -90,9 +90,9 @@
                                     <table id="myTable" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Eployee Name</th>
-                                                <th>Eployees Email</th>
-                                                <th>Eployees Leaves</th>
+                                                <th>Employee Name</th>
+                                                <th>Employees Email</th>
+                                                <th>Employees Leaves</th>
                                                 <th>Pending Leaves</th>
                                                
                                             </tr>
@@ -108,9 +108,7 @@
                                                 
                                             </tr>
                                             <% }) %>
-                                            <%} else {%>
-                                            <% 'there is no record found' %>
-                                            <% } %>
+                                           <% } %>
                                         </tbody>
                                     </table>
                                 </div>

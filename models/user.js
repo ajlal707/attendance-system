@@ -11,7 +11,7 @@ const UserSchema = Schema({
   status: { type: String },
   employeeLeaves: { type: String },
   pendingLeaves: { type: String },
-  employeeId: { type: String, unique: true },
+  employeeId: { type: String },
   createdAt: { type: String },
   photoId: { type: mongoose.Schema.ObjectId, ref: 'Photo' },
   attendanceId: { type: mongoose.Schema.ObjectId, ref: 'Attendance' },

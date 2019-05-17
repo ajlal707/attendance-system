@@ -5,17 +5,25 @@ const ensureAuthenticated = require('../config/authUser')
 
 var router = express.Router()
 
-router.get('/', ensureAuthenticated,  function (req, res, next) {
+router.get('/', ensureAuthenticated, function (req, res, next) {
 
     User.findOne({ _id: req.user._id })
         .populate('photoId')
-        .exec( async function (err, user) {
+        .exec(async function (err, user) {
             if (err) { return next(err) }
 
             let users = await User.find({ role: { $ne: 'admin' } })
-            let leaves = await Leave.find({status: { $eq: 'not-approve' }});
+            let leaves = await Leave.find({ status: { $eq: 'pending' } });
 
-            res.render('dashboard', { title: 'Dashboard', user, users,leaves })
+            let emplId = '';
+            let userObj = '';
+            for (let i = 0; i < leaves.length; i++) {
+                emplId = leaves[i].empId;
+                userObj = await User.findOne({ employeeId: emplId });
+                leaves[i].username = userObj.username;
+            }
+            debugger
+            res.render('dashboard', { title: 'Dashboard', user, users, leaves })
         })
 })
 
